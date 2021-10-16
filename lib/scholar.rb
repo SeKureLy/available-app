@@ -7,10 +7,14 @@ require 'json'
 module Google
   require 'google_search_results'
 
-  # Library for
+  # Library for Google Scholar API
   class ScholarApi
+
+    # handling error
     module Errors
+      # Handle not found 404
       class NotFound < StandardError; end
+      # Handle not found 401
       class Unauthorized < StandardError; end # rubocop:disable Layout/EmptyLineBetweenDefs
     end
 
