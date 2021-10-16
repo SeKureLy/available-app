@@ -5,12 +5,12 @@ require 'minitest/rg'
 require 'yaml'
 require_relative '../lib/scholar'
 
-RAW_CORRECT = YAML.safe_load(File.read('spec/fixtures/raw_gs_results.yml'),[Symbol])
-PARSE_CORRECT = YAML.safe_load(File.read('spec/fixtures/gs_results.yml'),[Symbol])
+RAW_CORRECT = YAML.safe_load(File.read('spec/fixtures/raw_gs_results.yml'), [Symbol])
+PARSE_CORRECT = YAML.safe_load(File.read('spec/fixtures/gs_results.yml'), [Symbol])
 CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
 SERP_API_TOKEN = CONFIG['api_key']
 
-API =  Google::ScholarApi.new(SERP_API_TOKEN)
+API = Google::ScholarApi.new(SERP_API_TOKEN)
 
 describe 'Tests Github API library' do
   before do
@@ -30,7 +30,7 @@ describe 'Tests Github API library' do
 
   describe 'Check Parse Search Result' do
     before do
-      @parse_result = API.parse()
+      @parse_result = API.parse
     end
     it 'HAPPY: should provide correct length' do
       _(@parse_result.size).must_equal PARSE_CORRECT.size
