@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'http'
 require 'yaml'
-require 'google_search_results' 
+require 'google_search_results'
 
 def parse(origin_hash)
   # puts origin_hash
@@ -17,20 +19,18 @@ end
 
 config = YAML.safe_load(File.read('config/secrets.yml'))
 
-
 params = {
-  engine: "google_scholar",
-  q: "blockchain",
-  api_key: config["api_key"]
+  engine: 'google_scholar',
+  q: 'blockchain',
+  api_key: config['api_key']
 }
 
 search = GoogleSearch.new(params)
 organic_results = search.get_hash[:organic_results]
 
-
-organic_results.each { |item|
+organic_results.each do |item|
   parse(item)
-}
+end
 
 # results = {}
 # File.write('spec/fixtures/github_results.yml', organic_results.to_yaml)

@@ -28,6 +28,7 @@ GEM
     unf_ext (0.0.8)
 
 PLATFORMS
+  universal-darwin-20
   x86_64-linux
 
 DEPENDENCIES
@@ -35,4 +36,4 @@ DEPENDENCIES
   http (~> 5.0)
 
 BUNDLED WITH
-   2.2.27
+   2.2.28
