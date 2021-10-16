@@ -5,7 +5,6 @@ require 'yaml'
 require 'google_search_results'
 
 def parse(origin_hash)
-  # puts origin_hash
   return_hash = {
     title: origin_hash[:title],
     link: origin_hash[:link],
@@ -14,7 +13,6 @@ def parse(origin_hash)
     author: origin_hash[:publication_info][:summary].split('-')[0],
     citeBy: origin_hash[:inline_links][:cited_by][:total]
   }
-  puts return_hash
 end
 
 config = YAML.safe_load(File.read('config/secrets.yml'))
@@ -28,9 +26,6 @@ params = {
 search = GoogleSearch.new(params)
 organic_results = search.get_hash[:organic_results]
 
-organic_results.each do |item|
-  parse(item)
-end
+results = organic_results.map { |item| parse(item) }
 
-# results = {}
-# File.write('spec/fixtures/github_results.yml', organic_results.to_yaml)
+File.write('spec/fixtures/gh_results.yml', results.to_yaml)
