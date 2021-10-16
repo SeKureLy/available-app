@@ -29,15 +29,21 @@ module Google
 
     def parse()
       results = @organic_results.map do |origin_hash| {
-          title: origin_hash['title'],
-          link: origin_hash['link'],
-          snippet: origin_hash['snippet'],
-          journal: origin_hash['publication_info']['summary'].split('-')[1],
-          author: origin_hash['publication_info']['summary'].split('-')[0],
-          citeBy: origin_hash['inline_links']['cited_by']['total']
+          # title: origin_hash['title'],
+          # link: origin_hash['link'],
+          # snippet: origin_hash['snippet'],
+          # journal: origin_hash['publication_info']['summary'].split('-')[1],
+          # author: origin_hash['publication_info']['summary'].split('-')[0],
+          # citeBy: origin_hash['inline_links']['cited_by']['total']
+          title: origin_hash[:title],
+          link: origin_hash[:link],
+          snippet: origin_hash[:snippet],
+          journal: origin_hash[:publication_info][:summary].split('-')[1],
+          author: origin_hash[:publication_info][:summary].split('-')[0],
+          citeBy: origin_hash[:inline_links][:cited_by][:total]
         } 
       end
-      puts results
+      # puts results
       # File.write('spec/test/gs_results.yml', results.to_yaml)
       results
     end
@@ -47,13 +53,14 @@ module Google
 
       result = HTTP.get(url)
 
-      puts result.code
+      # puts result.code
       # puts result.parse
       # puts JSON.parse(result)['organic_results']
       # @organic_results = result.parse['organic_results'].map { |item| item.transform_keys(&:to_sym)}
+      # @organic_results = result.parse['organic_results'].deep_transform_keys(&:to_sym)
       # @organic_results = result.parse['organic_results'].deep_symbolize_keys
-      @organic_results = JSON.parse(result, symbolize_keys: true)
-      puts @organic_results
+      @organic_results = JSON.parse(result, symbolize_names: true)[:organic_results]
+      # puts @organic_results
       # my_hash.transform_keys(&:to_sym)
       # qq = result.parse['organic_results'].map{ |k, v|
       #   v
@@ -69,8 +76,8 @@ module Google
   end
 end
 
-test = Google::ScholarApi.new('2b6e002a31a702d2ff300b0c9918ad4d68a6c804e7ed7c263777d378a5893910')
-test.search("blockchain")
+# test = Google::ScholarApi.new('2b6e002a31a702d2ff300b0c9918ad4d68a6c804e7ed7c263777d378a5893910')
+# test.search("blockchain")
 # puts test.parse()
 #       params = {
 #         engine: @engine,
