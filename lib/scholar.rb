@@ -7,10 +7,16 @@ require 'json'
 module Google
   require 'google_search_results'
 
-  # Library for
+  # Library for Google Scholar API
   class ScholarApi
+    attr_reader :organic_results
+
+    # attr_accessor :result
+    # handling error
     module Errors
+      # Handle not found 404
       class NotFound < StandardError; end
+      # Handle not found 401
       class Unauthorized < StandardError; end # rubocop:disable Layout/EmptyLineBetweenDefs
     end
 
@@ -26,13 +32,13 @@ module Google
     end
 
     def parse
-      @organic_results.map do |origin_hash|
+      organic_results.map do |origin_hash|
+        summary = origin_hash[:publication_info][:summary].split('-')
         {
           title: origin_hash[:title],
           link: origin_hash[:link],
           snippet: origin_hash[:snippet],
-          journal: origin_hash[:publication_info][:summary].split('-')[1],
-          author: origin_hash[:publication_info][:summary].split('-')[0],
+          journal: summary[1], author: summary[0],
           citeBy: origin_hash[:inline_links][:cited_by][:total]
         }
       end
@@ -40,16 +46,11 @@ module Google
 
     def search(query)
       url = API_PROJECT_ROOT + "engine=google_scholar&q=#{query}&api_key=#{@api_key}"
-
       result = HTTP.get(url)
+      response_code = result.code
+      raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)
 
       @organic_results = JSON.parse(result, symbolize_names: true)[:organic_results]
-
-      successful?(result) ? @organic_results : raise(HTTP_ERROR[result.code])
-    end
-
-    def successful?(result)
-      !HTTP_ERROR.keys.include?(result.code)
     end
   end
 end
