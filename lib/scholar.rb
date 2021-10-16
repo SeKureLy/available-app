@@ -7,11 +7,11 @@ require 'json'
 module Google
   require 'google_search_results'
 
-
   # Library for Google Scholar API
   class ScholarApi
     attr_reader :organic_results
-    # attr_accessor :result 
+
+    # attr_accessor :result
     # handling error
     module Errors
       # Handle not found 404
@@ -26,7 +26,6 @@ module Google
     }.freeze
 
     API_PROJECT_ROOT = 'https://serpapi.com/search.json?'
-    
 
     def initialize(api_key)
       @api_key = api_key
@@ -35,32 +34,23 @@ module Google
     def parse
       organic_results.map do |origin_hash|
         summary = origin_hash[:publication_info][:summary].split('-')
-        return_hash = 
         {
           title: origin_hash[:title],
           link: origin_hash[:link],
           snippet: origin_hash[:snippet],
-          journal: summary[1],
-          author: summary[0],
+          journal: summary[1], author: summary[0],
           citeBy: origin_hash[:inline_links][:cited_by][:total]
         }
       end
     end
 
-    def set_organic_results(data)
-      @organic_results = data
-    end
-    
     def search(query)
       url = API_PROJECT_ROOT + "engine=google_scholar&q=#{query}&api_key=#{@api_key}"
-
       result = HTTP.get(url)
       response_code = result.code
-      set_organic_results(JSON.parse(result, symbolize_names: true)[:organic_results])
-      !HTTP_ERROR.keys.include?(response_code) ? organic_results : raise(HTTP_ERROR[response_code])
+      raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)
+
+      @organic_results = JSON.parse(result, symbolize_names: true)[:organic_results]
     end
-
-    
   end
-
 end
