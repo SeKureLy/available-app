@@ -27,12 +27,14 @@ module Google
 
     def parse
       @organic_results.map do |origin_hash|
+        summary = origin_hash[:publication_info][:summary].split('-')
+        return_hash = 
         {
           title: origin_hash[:title],
           link: origin_hash[:link],
           snippet: origin_hash[:snippet],
-          journal: origin_hash[:publication_info][:summary].split('-')[1],
-          author: origin_hash[:publication_info][:summary].split('-')[0],
+          journal: summary[1],
+          author: summary[0],
           citeBy: origin_hash[:inline_links][:cited_by][:total]
         }
       end
