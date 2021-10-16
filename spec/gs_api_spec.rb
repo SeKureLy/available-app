@@ -5,12 +5,12 @@ require 'minitest/rg'
 require 'yaml'
 require_relative '../lib/scholar'
 
-RAW_CORRECT = YAML.safe_load(File.read('spec/fixtures/raw_gs_results.yml'),[Symbol])
-PARSE_CORRECT = YAML.safe_load(File.read('spec/fixtures/gs_results.yml'),[Symbol])
+RAW_CORRECT = YAML.safe_load(File.read('spec/fixtures/raw_gs_results.yml'), [Symbol])
+PARSE_CORRECT = YAML.safe_load(File.read('spec/fixtures/gs_results.yml'), [Symbol])
 CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
 SERP_API_TOKEN = CONFIG['api_key']
 
-API =  Google::ScholarApi.new(SERP_API_TOKEN)
+API = Google::ScholarApi.new(SERP_API_TOKEN)
 
 describe 'Tests Google Scholar API library' do
   before do
@@ -27,19 +27,30 @@ describe 'Tests Google Scholar API library' do
       _(@search_result[0][:position]).must_equal RAW_CORRECT[0][:position]
     end
   end
+end
 
-  describe 'Check Parse Search Result' do
-    before do
-      @parse_result = API.parse()
-    end
-    it 'HAPPY: should provide correct length' do
-      _(@parse_result.size).must_equal PARSE_CORRECT.size
-    end
-    it 'HAPPY: title should be blockchain' do
-      _(@parse_result[0][:title]).must_equal RAW_CORRECT[0][:title]
-    end
-    it 'HAPPY: position should be filtered' do
-      _(@parse_result[0][:position]).must_equal nil
-    end
+describe 'Check Parse Search Result' do
+  before do
+    @api_instance = Google::ScholarApi.new(SERP_API_TOKEN)
+    @api_instance.search('blockchain')
+    @parse_result = @api_instance.parse
+  end
+  it 'HAPPY: should provide correct length' do
+    _(@parse_result.size).must_equal PARSE_CORRECT.size
+  end
+  it 'HAPPY: title should be blockchain' do
+    _(@parse_result[0][:title]).must_equal RAW_CORRECT[0][:title]
+  end
+  it 'HAPPY: position should be filtered' do
+    _(@parse_result[0][:position]).must_equal nil
   end
 end
+
+# describe 'Error handling' do
+#   # _(proc do
+#   #   Google::ScholarApi.new('bad token').search('Blockchain')
+#   #   end).must_raise Google::ScholarApi::Errors::Unauthorized
+#   it 'test' do
+#     Google::ScholarApi.new('bad token').search('Blockchain')
+#   end
+# end

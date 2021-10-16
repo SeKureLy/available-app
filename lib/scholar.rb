@@ -8,6 +8,16 @@ module Google
   # Library for 
   class ScholarApi
 
+    # module Errors
+    #   class NotFound < StandardError; end
+    #   class Unauthorized < StandardError; end # rubocop:disable Layout/EmptyLineBetweenDefs
+    # end
+
+    # HTTP_ERROR = {
+    #   401 => Errors::Unauthorized,
+    #   404 => Errors::NotFound
+    # }.freeze
+
     def initialize(api_key)
       @engine = 'google_scholar'
       @serp_api_key = api_key
@@ -20,7 +30,10 @@ module Google
         api_key: @serp_api_key
       }
       search = GoogleSearch.new(params)
+      # puts search
+      # successful?(@organic_results) ? @organic_results : raise(HTTP_ERROR[@organic_results.code])
       @organic_results = search.get_hash[:organic_results]
+      
     end
 
     def parse()
@@ -34,6 +47,10 @@ module Google
         } 
       end
     end
+
+    # def successful?(result)
+    #   !HTTP_ERROR.keys.include?(result.code)
+    # end
 
   end
 end
