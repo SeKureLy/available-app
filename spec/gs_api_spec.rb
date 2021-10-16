@@ -32,7 +32,7 @@ end
 describe 'Check Parse Search Result' do
   before do
     @api_instance = Google::ScholarApi.new(SERP_API_TOKEN)
-    @api_instance.search('blockchain')
+    @api_instance.search('Blockchain')
     @parse_result = @api_instance.parse
   end
   it 'HAPPY: should provide correct length' do
@@ -42,7 +42,7 @@ describe 'Check Parse Search Result' do
     _(@parse_result[0][:title]).must_equal RAW_CORRECT[0][:title]
   end
   it 'HAPPY: position should be filtered' do
-    _(@parse_result[0][:position]).must_equal nil
+    _(assert_nil(@parse_result[0][:position]))
   end
 end
 
