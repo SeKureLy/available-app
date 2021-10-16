@@ -46,11 +46,10 @@ describe 'Check Parse Search Result' do
   end
 end
 
-# describe 'Error handling' do
-#   # _(proc do
-#   #   Google::ScholarApi.new('bad token').search('Blockchain')
-#   #   end).must_raise Google::ScholarApi::Errors::Unauthorized
-#   it 'test' do
-#     Google::ScholarApi.new('bad token').search('Blockchain')
-#   end
-# end
+describe 'Error handling' do
+  it 'should raise unauthorized' do
+    _(proc do
+        Google::ScholarApi.new('bad token').search('Blockchain')
+      end).must_raise Google::ScholarApi::Errors::Unauthorized
+  end
+end
