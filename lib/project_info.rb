@@ -28,4 +28,4 @@ organic_results = search.get_hash[:organic_results]
 
 results = organic_results.map { |item| parse(item) }
 
-File.write('spec/fixtures/gh_results.yml', results.to_yaml)
+File.write('spec/fixtures/gs_results.yml', results.to_yaml)
