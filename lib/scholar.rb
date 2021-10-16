@@ -7,9 +7,11 @@ require 'json'
 module Google
   require 'google_search_results'
 
+
   # Library for Google Scholar API
   class ScholarApi
-
+    # attr_accessor :organic_results
+    # attr_accessor :result 
     # handling error
     module Errors
       # Handle not found 404
@@ -24,6 +26,7 @@ module Google
     }.freeze
 
     API_PROJECT_ROOT = 'https://serpapi.com/search.json?'
+    
 
     def initialize(api_key)
       @api_key = api_key
@@ -47,15 +50,15 @@ module Google
     def search(query)
       url = API_PROJECT_ROOT + "engine=google_scholar&q=#{query}&api_key=#{@api_key}"
 
-      result = HTTP.get(url)
+      @result = HTTP.get(url)
 
-      @organic_results = JSON.parse(result, symbolize_names: true)[:organic_results]
+      @organic_results = JSON.parse(@result, symbolize_names: true)[:organic_results]
 
-      successful?(result) ? @organic_results : raise(HTTP_ERROR[result.code])
+      successful?() ? @organic_results : raise(HTTP_ERROR[@result.code])
     end
 
-    def successful?(result)
-      !HTTP_ERROR.keys.include?(result.code)
+    def successful?()
+      !HTTP_ERROR.keys.include?(@result.code)
     end
   end
 end
