@@ -10,7 +10,7 @@ module Google
 
   # Library for Google Scholar API
   class ScholarApi
-    # attr_accessor :organic_results
+    attr_reader :organic_results
     # attr_accessor :result 
     # handling error
     module Errors
@@ -33,7 +33,7 @@ module Google
     end
 
     def parse
-      @organic_results.map do |origin_hash|
+      organic_results.map do |origin_hash|
         summary = origin_hash[:publication_info][:summary].split('-')
         return_hash = 
         {
@@ -47,18 +47,20 @@ module Google
       end
     end
 
+    def set_organic_results(data)
+      @organic_results = data
+    end
+    
     def search(query)
       url = API_PROJECT_ROOT + "engine=google_scholar&q=#{query}&api_key=#{@api_key}"
 
-      @result = HTTP.get(url)
-
-      @organic_results = JSON.parse(@result, symbolize_names: true)[:organic_results]
-
-      successful?() ? @organic_results : raise(HTTP_ERROR[@result.code])
+      result = HTTP.get(url)
+      response_code = result.code
+      set_organic_results(JSON.parse(result, symbolize_names: true)[:organic_results])
+      !HTTP_ERROR.keys.include?(response_code) ? organic_results : raise(HTTP_ERROR[response_code])
     end
 
-    def successful?()
-      !HTTP_ERROR.keys.include?(@result.code)
-    end
+    
   end
+
 end
