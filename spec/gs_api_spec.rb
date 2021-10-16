@@ -12,7 +12,7 @@ SERP_API_TOKEN = CONFIG['api_key']
 
 API =  Google::ScholarApi.new(SERP_API_TOKEN)
 
-describe 'Tests Github API library' do
+describe 'Tests Google Scholar API library' do
   before do
     @search_result = API.search('blockchain')
   end
