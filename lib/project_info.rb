@@ -1,30 +1,67 @@
 # frozen_string_literal: true
 
 require 'http'
+require 'json'
 require 'yaml'
-require 'google_search_results'
 
-config = YAML.safe_load(File.read('config/secrets.yml'))
 
-params = {
-  engine: 'google_scholar',
-  q: 'blockchain',
-  api_key: config['api_key']
-}
 
-search = GoogleSearch.new(params)
-organic_results = search.get_hash[:organic_results]
+# module for calling Google API
+module Elsevier
+  # require 'google_search_results'
+  
+  # Library for Google Scholar API
+  class ScopusAPI
+    attr_reader :organic_results
+    
+    # attr_accessor :result
+    # handling error
+    module Errors
+      # Handle not found 404
+      class NotFound < StandardError; end
+      # Handle not found 401
+      class Unauthorized < StandardError; end # rubocop:disable Layout/EmptyLineBetweenDefs
+    end
 
-results = organic_results.map do |origin_hash|
-  summary = origin_hash[:publication_info][:summary].split('-')
-  {
-    title: origin_hash[:title],
-    link: origin_hash[:link],
-    snippet: origin_hash[:snippet],
-    journal: summary[1], author: summary[0],
-    citeBy: origin_hash[:inline_links][:cited_by][:total]
-  }
+    HTTP_ERROR = {
+      401 => Errors::Unauthorized,
+      404 => Errors::NotFound
+    }.freeze
+
+    API_PROJECT_ROOT = 'https://api.elsevier.com/content/search/scopus?'
+
+    def initialize()
+    end
+
+    def parse
+      organic_results.map do |origin_hash|
+        summary = origin_hash[:publication_info][:summary].split('-')
+        {
+          title: origin_hash[:title],
+          link: origin_hash[:link],
+          snippet: origin_hash[:snippet],
+          journal: summary[1], author: summary[0],
+          citeBy: origin_hash[:inline_links][:cited_by][:total]
+        }
+      end
+    end
+
+    def search(query)
+      config = YAML.safe_load(File.read('config/secrets.yml'))
+      # api_key = config['api_key']
+      # puts api_key
+      url = API_PROJECT_ROOT + "query=#{query}&sort=citedby-count&count=1&subj=COMP"
+      puts url
+      result = HTTP.headers('Accept' => 'application/json',
+                            'X-ELS-APIKey' => "#{config['api_key']}").get(url)
+      response_code = result.code
+      raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)
+
+      @organic_results = JSON.parse(result, symbolize_names: true)
+      puts @organic_results
+    end
+  end
 end
 
-File.write('spec/fixtures/raw_gs_results.yml', organic_results.to_yaml)
-File.write('spec/fixtures/gs_results.yml', results.to_yaml)
+test = Elsevier::ScopusAPI.new()
+test.search("blockchain")
