@@ -2,6 +2,53 @@
 http_interactions:
 - request:
     method: get
+    uri: https://api.elsevier.com/content/search/scopus?field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname&query=Blockchain&sort=citedby-count
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      X-Els-Apikey:
+      - bad token
+      Connection:
+      - close
+      Host:
+      - api.elsevier.com
+      User-Agent:
+      - http.rb/5.0.4
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Fri, 22 Oct 2021 14:23:32 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '100'
+      Connection:
+      - close
+      X-Els-Reqid:
+      - 8de14d59963a90bf
+      X-Els-Transid:
+      - d1f5e4dfa408879a
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6a23624ebb29313b-TPE
+    body:
+      encoding: ASCII-8BIT
+      string: '{"error-response":{"error-code":"APIKEY_INVALID","error-message":"The
+        provided apiKey is invalid."}}'
+  recorded_at: Fri, 22 Oct 2021 14:23:32 GMT
+- request:
+    method: get
     uri: https://api.elsevier.com/content/search/scopus?field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname&query=blockchain&sort=citedby-count
     body:
       encoding: UTF-8
@@ -23,7 +70,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 22 Oct 2021 14:10:32 GMT
+      - Fri, 22 Oct 2021 14:23:34 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -40,17 +87,17 @@ http_interactions:
       X-Els-Apikey:
       - "<SCOPUS_API_TOKEN>"
       X-Els-Reqid:
-      - 2390209d5214b262
+      - d5627ace2c7376a2
       X-Els-Resourceversion:
       - default
       X-Els-Status:
       - OK
       X-Els-Transid:
-      - fed9a563f5d292d2
+      - 61e9d2d2eedaf82c
       X-Ratelimit-Limit:
       - '20000'
       X-Ratelimit-Remaining:
-      - '19991'
+      - '19990'
       X-Ratelimit-Reset:
       - '1635470767000'
       Cf-Cache-Status:
@@ -60,7 +107,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 6a234f421c390740-TPE
+      - 6a236255cf120760-TPE
     body:
       encoding: UTF-8
       string: '{"search-results":{"opensearch:totalResults":"48202","opensearch:startIndex":"0","opensearch:itemsPerPage":"25","opensearch:Query":{"@role":
@@ -208,52 +255,5 @@ http_interactions:
         technology and its relationships to sustainable supply chain management","dc:creator":"Saberi
         S.","prism:publicationName":"International Journal of Production Research","prism:coverDate":"2019-04-03","citedby-count":"543","affiliation":
         [{"@_fa": "true", "affilname":"Foisie Business School"}]}]}}'
-  recorded_at: Fri, 22 Oct 2021 14:10:32 GMT
-- request:
-    method: get
-    uri: https://api.elsevier.com/content/search/scopus?field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname&query=blockchain&sort=citedby-count
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      X-Els-Apikey:
-      - bad token
-      Connection:
-      - close
-      Host:
-      - api.elsevier.com
-      User-Agent:
-      - http.rb/5.0.4
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      Date:
-      - Fri, 22 Oct 2021 14:10:33 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '100'
-      Connection:
-      - close
-      X-Els-Reqid:
-      - 76bbca4ef9dc5d42
-      X-Els-Transid:
-      - 6d98e0e32f0c4911
-      Cf-Cache-Status:
-      - DYNAMIC
-      Expect-Ct:
-      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 6a234f4aff826b74-TPE
-    body:
-      encoding: ASCII-8BIT
-      string: '{"error-response":{"error-code":"APIKEY_INVALID","error-message":"The
-        provided apiKey is invalid."}}'
-  recorded_at: Fri, 22 Oct 2021 14:10:33 GMT
+  recorded_at: Fri, 22 Oct 2021 14:23:33 GMT
 recorded_with: VCR 6.0.0

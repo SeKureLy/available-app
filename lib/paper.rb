@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+# module for PaperDeep
 module PaperDeep
+  # class for paper to solve feature envy
   class PaperInfo
     # attr_reader origin_hash
 
-    def initialize(paperData)
-      @origin_hash = paperData
+    def initialize(paper_data)
+      @origin_hash = paper_data
     end
 
     attr_reader :origin_hash
@@ -22,7 +24,7 @@ module PaperDeep
       origin_hash[:'prism:url']
     end
 
-    def publicationName
+    def publication_name
       origin_hash[:'prism:publicationName']
     end
 
@@ -48,7 +50,7 @@ module PaperDeep
         eid: eid,
         title: title,
         link: link,
-        publicationName: publicationName,
+        publicationName: publication_name,
         date: date,
         Organization: organization,
         citeBy: citedby,

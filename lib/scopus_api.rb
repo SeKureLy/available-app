@@ -8,14 +8,13 @@ require 'yaml'
 
 # module for calling Google API
 module PaperDeep
-  # require 'google_search_results'
+  require_relative 'paper'
 
   # Library for Google Scholar API
-  require_relative 'paper'
   class ScopusAPI
     attr_reader :search_result
 
-    # attr_accessor :result
+    # attr_accessor :uri
     # handling error
     module Errors
       # Handle not found 404
@@ -41,30 +40,25 @@ module PaperDeep
       end
     end
 
-    def search(_query)
-      # field = ["dc:creator", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
-      # # puts field
-      # url = API_PROJECT_ROOT + "query=#{query}&sort=citedby-count&field=#{field}"
-
+    def make_uri(query)
       uri = URI('https://api.elsevier.com/content/search/scopus?')
       params = {
-        query: 'blockchain',
+        query: query,
         sort: 'citedby-count',
         field: ['dc:creator', 'dc:title', 'eid', 'citedby-count', 'prism:url', 'prism:publicationName',
                 'prism:coverDate', 'affilname'].join(',')
       }
       uri.query = URI.encode_www_form(params)
-      # # url = "https://api.elsevier.com/content/search/scopus?query=blockchain&sort=citedby-count&count=1&field=authname,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname"
-      # puts url
-      # # puts url
+    end
+
+    def search(query)
+      make_uri(query)
       result = HTTP.headers('Accept' => 'application/json',
-                            'X-ELS-APIKey' => @api_key.to_s).get(uri)
+                            'X-ELS-APIKey' => @api_key.to_s).get(@uri)
       response_code = result.code
       raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)
 
       @search_result = JSON.parse(result, symbolize_names: true)[:'search-results'][:entry]
-      # PaperDeep::Matadata.new(@search_result, self)
-      # puts @search_result
     end
   end
 end

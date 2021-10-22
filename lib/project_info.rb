@@ -7,12 +7,6 @@ require 'yaml'
 require_relative 'paper'
 
 config = YAML.safe_load(File.read('config/secrets.yml'))
-# api_key = config['api_key']
-# puts api_key
-# field = ["dc:creator", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
-# # puts field
-# API_PROJECT_ROOT = 'https://api.elsevier.com/content/search/scopus?'
-# url = API_PROJECT_ROOT + "query=blockchain&sort=citedby-count&field=#{field}"
 
 uri = URI('https://api.elsevier.com/content/search/scopus?')
 params = {
@@ -26,8 +20,6 @@ uri.query = URI.encode_www_form(params)
 
 result = HTTP.headers('Accept' => 'application/json',
                       'X-ELS-APIKey' => (config['api_key']).to_s).get(uri)
-puts result
-response_code = result.code
 
 search_result = JSON.parse(result, symbolize_names: true)[:'search-results'][:entry]
 
