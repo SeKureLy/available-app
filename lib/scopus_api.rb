@@ -8,7 +8,7 @@ require 'yaml'
 
 
 # module for calling Google API
-module Elsevier
+module PaperDeep
   # require 'google_search_results'
   
   # Library for Google Scholar API
@@ -31,7 +31,8 @@ module Elsevier
 
     API_PROJECT_ROOT = 'https://api.elsevier.com/content/search/scopus?'
 
-    def initialize()
+    def initialize(api_key)
+      @api_key = api_key
     end
 
     def parse
@@ -51,17 +52,14 @@ module Elsevier
     end
 
     def search(query)
-      config = YAML.safe_load(File.read('config/secrets.yml'))
-      # api_key = config['api_key']
-      # puts api_key
       field = ["authname", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
       # puts field
-      url = API_PROJECT_ROOT + "query=#{query}&sort=citedby-count&count=1&field=#{field}"
+      url = API_PROJECT_ROOT + "query=#{query}&sort=citedby-count&field=#{field}"
       # # url = "https://api.elsevier.com/content/search/scopus?query=blockchain&sort=citedby-count&count=1&field=authname,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname"
       # puts url
       # # puts url
       result = HTTP.headers('Accept' => 'application/json',
-                            'X-ELS-APIKey' => "#{config['api_key']}").get(url)
+                            'X-ELS-APIKey' => "#{@api_key}").get(url)
       response_code = result.code
       raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)
 
@@ -72,6 +70,6 @@ module Elsevier
   end
 end
 
-# test = Elsevier::ScopusAPI.new()
+# test = Elsevier::ScopusAPI.new('c04c47e12dff67bb111f066d47f54115')
 # test.search("blockchain")
 # puts test.parse()
