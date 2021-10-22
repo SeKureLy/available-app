@@ -6,7 +6,7 @@
   :date: '2016-01-01'
   :Organization: NC State University
   :citeBy: '1802'
-  :author: Christidis K.,Devetsikiotis M.
+  :author: Christidis K.
 - :eid: 2-s2.0-85019665012
   :title: 'An Overview of Blockchain Technology: Architecture, Consensus, and Future
     Trends'
@@ -16,7 +16,7 @@
   :date: '2017-09-07'
   :Organization: National Key Laboratory for Parallel and Distributed Processing
   :citeBy: '1275'
-  :author: Zheng Z.,Xie S.,Dai H.,Chen X.,Wang H.
+  :author: Zheng Z.
 - :eid: 2-s2.0-84945945234
   :title: 'Decentralizing privacy: Using blockchain to protect personal data'
   :link: https://api.elsevier.com/content/abstract/scopus_id/84945945234
@@ -24,7 +24,7 @@
   :date: '2015-07-17'
   :Organization: Tel Aviv University
   :citeBy: '1205'
-  :author: Zyskind G.,Nathan O.,Pentland A.
+  :author: Zyskind G.
 - :eid: 2-s2.0-84987677692
   :title: 'Hawk: The Blockchain Model of Cryptography and Privacy-Preserving Smart
     Contracts'
@@ -34,7 +34,7 @@
   :date: '2016-08-16'
   :Organization: University of Maryland, College Park
   :citeBy: '1014'
-  :author: Kosba A.,Miller A.,Shi E.,Wen Z.,Papamanthou C.
+  :author: Kosba A.
 - :eid: 2-s2.0-85035321551
   :title: 'IoT security: Review, blockchain solutions, and open challenges'
   :link: https://api.elsevier.com/content/abstract/scopus_id/85035321551
@@ -42,7 +42,7 @@
   :date: '2018-05-01'
   :Organization: Khalifa University of Science and Technology
   :citeBy: '868'
-  :author: Khan M.A.,Salah K.
+  :author: Khan M.A.
 - :eid: 2-s2.0-85050874028
   :title: 'Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains'
   :link: https://api.elsevier.com/content/abstract/scopus_id/85050874028
@@ -50,10 +50,7 @@
   :date: '2018-04-23'
   :Organization: International Business Machines
   :citeBy: '867'
-  :author: Androulaki E.,Barger A.,Bortnikov V.,Muralidharan S.,Cachin C.,Christidis
-    K.,De Caro A.,Enyeart D.,Murthy C.,Ferris C.,Laventman G.,Manevich Y.,Nguyen B.,Sethi
-    M.,Singh G.,Smith K.,Sorniotti A.,Stathakopoulou C.,Vukolić M.,Cocco S.W.,Yellick
-    J.
+  :author: Androulaki E.
 - :eid: 2-s2.0-84991717011
   :title: 'MedRec: Using blockchain for medical data access and permission management'
   :link: https://api.elsevier.com/content/abstract/scopus_id/84991717011
@@ -62,7 +59,7 @@
   :date: '2016-09-21'
   :Organization: Massachusetts Institute of Technology
   :citeBy: '863'
-  :author: Azaria A.,Ekblaw A.,Vieira T.,Lippman A.
+  :author: Azaria A.
 - :eid: 2-s2.0-85064005739
   :title: 'Industry 4.0: State of the art and future trends'
   :link: https://api.elsevier.com/content/abstract/scopus_id/85064005739
@@ -70,7 +67,7 @@
   :date: '2018-01-01'
   :Organization: Carlson School of Management
   :citeBy: '861'
-  :author: Xu L.D.,Xu E.L.,Li L.
+  :author: Xu L.D.
 - :eid: 2-s2.0-85055257106
   :title: 'Blockchain challenges and opportunities: A survey'
   :link: https://api.elsevier.com/content/abstract/scopus_id/85055257106
@@ -78,7 +75,7 @@
   :date: '2018-01-01'
   :Organization: National Key Laboratory for Parallel and Distributed Processing
   :citeBy: '813'
-  :author: Zheng Z.,Xie S.,Dai H.N.,Chen X.,Wang H.
+  :author: Zheng Z.
 - :eid: 2-s2.0-85019031448
   :title: 'Blockchain for IoT security and privacy: The case study of a smart home'
   :link: https://api.elsevier.com/content/abstract/scopus_id/85019031448
@@ -87,7 +84,7 @@
   :date: '2017-05-02'
   :Organization: Tata Consultancy Services India
   :citeBy: '782'
-  :author: Dorri A.,Kanhere S.,Jurdak R.,Gauravaram P.
+  :author: Dorri A.
 - :eid: 2-s2.0-84991447929
   :title: Where is current research on Blockchain technology? - A systematic review
   :link: https://api.elsevier.com/content/abstract/scopus_id/84991447929
@@ -95,7 +92,7 @@
   :date: '2016-10-01'
   :Organization: Aalto University
   :citeBy: '766'
-  :author: Yli-Huumo J.,Ko D.,Choi S.,Park S.,Smolander K.
+  :author: Yli-Huumo J.
 - :eid: 2-s2.0-84985991912
   :title: 'Bitcoin and beyond: A technical survey on decentralized digital currencies'
   :link: https://api.elsevier.com/content/abstract/scopus_id/84985991912
@@ -103,7 +100,7 @@
   :date: '2016-07-01'
   :Organization: Humboldt-Universität zu Berlin
   :citeBy: '744'
-  :author: Tschorsch F.,Scheuermann B.
+  :author: Tschorsch F.
 - :eid: 2-s2.0-84995404927
   :title: Making smart contracts smarter
   :link: https://api.elsevier.com/content/abstract/scopus_id/84995404927
@@ -112,7 +109,7 @@
   :date: '2016-10-24'
   :Organization: Yale NUS College
   :citeBy: '735'
-  :author: Luu L.,Chu D.H.,Olickel H.,Saxena P.,Hobor A.
+  :author: Luu L.
 - :eid: 2-s2.0-85061188595
   :title: 'Federated machine learning: Concept and applications'
   :link: https://api.elsevier.com/content/abstract/scopus_id/85061188595
@@ -120,7 +117,7 @@
   :date: '2019-01-01'
   :Organization: Beihang University
   :citeBy: '684'
-  :author: Yang Q.,Liu Y.,Chen T.,Tong Y.
+  :author: Yang Q.
 - :eid: 2-s2.0-85071147013
   :title: 'Bitcoin-NG: A scalable blockchain protocol'
   :link: https://api.elsevier.com/content/abstract/scopus_id/85071147013
@@ -129,7 +126,7 @@
   :date: '2016-01-01'
   :Organization: Cornell University
   :citeBy: '609'
-  :author: Eyal I.,Gencer A.E.,Sirer E.G.,Van Renesse R.
+  :author: Eyal I.
 - :eid: 2-s2.0-85018630011
   :title: A survey of attacks on Ethereum smart contracts (SoK)
   :link: https://api.elsevier.com/content/abstract/scopus_id/85018630011
@@ -138,7 +135,7 @@
   :date: '2017-01-01'
   :Organization: Università degli Studi di Cagliari
   :citeBy: '609'
-  :author: Atzei N.,Bartoletti M.,Cimoli T.
+  :author: Atzei N.
 - :eid: 2-s2.0-85018292153
   :title: The truth about blockchain
   :link: https://api.elsevier.com/content/abstract/scopus_id/85018292153
@@ -146,7 +143,7 @@
   :date: '2017-01-01'
   :Organization: Harvard Business School
   :citeBy: '603'
-  :author: Iansiti M.,Lakhani K.R.
+  :author: Iansiti M.
 - :eid: 2-s2.0-85021106763
   :title: 'Designing microgrid energy markets: A case study: The Brooklyn Microgrid'
   :link: https://api.elsevier.com/content/abstract/scopus_id/85021106763
@@ -154,7 +151,7 @@
   :date: '2018-01-15'
   :Organization: Karlsruher Institut für Technologie
   :citeBy: '593'
-  :author: Mengelkamp E.,Gärttner J.,Rock K.,Kessler S.,Orsini L.,Weinhardt C.
+  :author: Mengelkamp E.
 - :eid: 2-s2.0-85045190865
   :title: Opportunities and obstacles for deep learning in biology and medicine
   :link: https://api.elsevier.com/content/abstract/scopus_id/85045190865
@@ -162,12 +159,7 @@
   :date: '2018-01-01'
   :Organization: Toyota Technological Institute at Chicago
   :citeBy: '592'
-  :author: Ching T.,Himmelstein D.S.,Beaulieu-Jones B.K.,Kalinin A.A.,Do B.T.,Way
-    G.P.,Ferrero E.,Agapow P.M.,Zietz M.,Hoffman M.M.,Xie W.,Rosen G.L.,Lengerich
-    B.J.,Israeli J.,Lanchantin J.,Woloszynek S.,Carpenter A.E.,Shrikumar A.,Xu J.,Cofer
-    E.M.,Lavender C.A.,Turaga S.C.,Alexandari A.M.,Lu Z.,Harris D.J.,Decaprio D.,Qi
-    Y.,Kundaje A.,Peng Y.,Wiley L.K.,Segler M.H.S.,Boca S.M.,Swamidass S.J.,Huang
-    A.,Gitter A.,Greene C.S.
+  :author: Ching T.
 - :eid: 2-s2.0-84995482126
   :title: On the security and performance of Proof of Work blockchains
   :link: https://api.elsevier.com/content/abstract/scopus_id/84995482126
@@ -176,7 +168,7 @@
   :date: '2016-10-24'
   :Organization: ETH Zürich
   :citeBy: '585'
-  :author: Gervais A.,Karame G.O.,Wüst K.,Glykantzis V.,Ritzdorf H.,Čapkun S.
+  :author: Gervais A.
 - :eid: 2-s2.0-85048498829
   :title: On blockchain and its integration with IoT. Challenges and opportunities
   :link: https://api.elsevier.com/content/abstract/scopus_id/85048498829
@@ -184,7 +176,7 @@
   :date: '2018-11-01'
   :Organization: Universidad de Málaga
   :citeBy: '572'
-  :author: Reyna A.,Martín C.,Chen J.,Soler E.,Díaz M.
+  :author: Reyna A.
 - :eid: 2-s2.0-84966577745
   :title: 'Blockchain: The state of the art and future trends'
   :link: https://api.elsevier.com/content/abstract/scopus_id/84966577745
@@ -192,7 +184,7 @@
   :date: '2016-04-01'
   :Organization: National University of Defense Technology
   :citeBy: '568'
-  :author: Yuan Y.,Wang F.Y.
+  :author: Yuan Y.
 - :eid: 2-s2.0-85055874134
   :title: 'Blockchain technology in the energy sector: A systematic review of challenges
     and opportunities'
@@ -201,8 +193,7 @@
   :date: '2019-02-01'
   :Organization: Durham University
   :citeBy: '561'
-  :author: Andoni M.,Robu V.,Flynn D.,Abram S.,Geach D.,Jenkins D.,McCallum P.,Peacock
-    A.
+  :author: Andoni M.
 - :eid: 2-s2.0-84929077014
   :title: 'Bitcoin: Economics, technology, and governance'
   :link: https://api.elsevier.com/content/abstract/scopus_id/84929077014
@@ -210,7 +201,7 @@
   :date: '2015-01-01'
   :Organization: Carnegie Mellon University
   :citeBy: '548'
-  :author: Böhme R.,Christin N.,Edelman B.,Moore T.
+  :author: Böhme R.
 - :eid: 2-s2.0-85055168966
   :title: Blockchain technology and its relationships to sustainable supply chain
     management
@@ -219,4 +210,4 @@
   :date: '2019-04-03'
   :Organization: Foisie Business School
   :citeBy: '543'
-  :author: Saberi S.,Kouhizadeh M.,Sarkis J.,Shen L.
+  :author: Saberi S.

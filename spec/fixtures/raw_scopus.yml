@@ -3,22 +3,19 @@
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84979828304
   :eid: 2-s2.0-84979828304
   :dc:title: Blockchains and Smart Contracts for the Internet of Things
+  :dc:creator: Christidis K.
   :prism:publicationName: IEEE Access
   :prism:coverDate: '2016-01-01'
   :citedby-count: '1802'
   :affiliation:
   - :@_fa: 'true'
     :affilname: NC State University
-  :author:
-  - :@_fa: 'true'
-    :authname: Christidis K.
-  - :@_fa: 'true'
-    :authname: Devetsikiotis M.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85019665012
   :eid: 2-s2.0-85019665012
   :dc:title: 'An Overview of Blockchain Technology: Architecture, Consensus, and Future
     Trends'
+  :dc:creator: Zheng Z.
   :prism:publicationName: Proceedings - 2017 IEEE 6th International Congress on Big
     Data, BigData Congress 2017
   :prism:coverDate: '2017-09-07'
@@ -30,21 +27,11 @@
     :affilname: Macau University of Science and Technology
   - :@_fa: 'true'
     :affilname: Sun Yat-Sen University
-  :author:
-  - :@_fa: 'true'
-    :authname: Zheng Z.
-  - :@_fa: 'true'
-    :authname: Xie S.
-  - :@_fa: 'true'
-    :authname: Dai H.
-  - :@_fa: 'true'
-    :authname: Chen X.
-  - :@_fa: 'true'
-    :authname: Wang H.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84945945234
   :eid: 2-s2.0-84945945234
   :dc:title: 'Decentralizing privacy: Using blockchain to protect personal data'
+  :dc:creator: Zyskind G.
   :prism:publicationName: Proceedings - 2015 IEEE Security and Privacy Workshops,
     SPW 2015
   :prism:coverDate: '2015-07-17'
@@ -54,18 +41,12 @@
     :affilname: Tel Aviv University
   - :@_fa: 'true'
     :affilname: MIT Media Lab
-  :author:
-  - :@_fa: 'true'
-    :authname: Zyskind G.
-  - :@_fa: 'true'
-    :authname: Nathan O.
-  - :@_fa: 'true'
-    :authname: Pentland A.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84987677692
   :eid: 2-s2.0-84987677692
   :dc:title: 'Hawk: The Blockchain Model of Cryptography and Privacy-Preserving Smart
     Contracts'
+  :dc:creator: Kosba A.
   :prism:publicationName: Proceedings - 2016 IEEE Symposium on Security and Privacy,
     SP 2016
   :prism:coverDate: '2016-08-16'
@@ -75,21 +56,11 @@
     :affilname: University of Maryland, College Park
   - :@_fa: 'true'
     :affilname: Cornell University
-  :author:
-  - :@_fa: 'true'
-    :authname: Kosba A.
-  - :@_fa: 'true'
-    :authname: Miller A.
-  - :@_fa: 'true'
-    :authname: Shi E.
-  - :@_fa: 'true'
-    :authname: Wen Z.
-  - :@_fa: 'true'
-    :authname: Papamanthou C.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85035321551
   :eid: 2-s2.0-85035321551
   :dc:title: 'IoT security: Review, blockchain solutions, and open challenges'
+  :dc:creator: Khan M.A.
   :prism:publicationName: Future Generation Computer Systems
   :prism:coverDate: '2018-05-01'
   :citedby-count: '868'
@@ -98,69 +69,23 @@
     :affilname: Khalifa University of Science and Technology
   - :@_fa: 'true'
     :affilname: Bahauddin Zakariya University
-  :author:
-  - :@_fa: 'true'
-    :authname: Khan M.A.
-  - :@_fa: 'true'
-    :authname: Salah K.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85050874028
   :eid: 2-s2.0-85050874028
   :dc:title: 'Hyperledger Fabric: A Distributed Operating System for Permissioned
     Blockchains'
+  :dc:creator: Androulaki E.
   :prism:publicationName: Proceedings of the 13th EuroSys Conference, EuroSys 2018
   :prism:coverDate: '2018-04-23'
   :citedby-count: '867'
   :affiliation:
   - :@_fa: 'true'
     :affilname: International Business Machines
-  :author:
-  - :@_fa: 'true'
-    :authname: Androulaki E.
-  - :@_fa: 'true'
-    :authname: Barger A.
-  - :@_fa: 'true'
-    :authname: Bortnikov V.
-  - :@_fa: 'true'
-    :authname: Muralidharan S.
-  - :@_fa: 'true'
-    :authname: Cachin C.
-  - :@_fa: 'true'
-    :authname: Christidis K.
-  - :@_fa: 'true'
-    :authname: De Caro A.
-  - :@_fa: 'true'
-    :authname: Enyeart D.
-  - :@_fa: 'true'
-    :authname: Murthy C.
-  - :@_fa: 'true'
-    :authname: Ferris C.
-  - :@_fa: 'true'
-    :authname: Laventman G.
-  - :@_fa: 'true'
-    :authname: Manevich Y.
-  - :@_fa: 'true'
-    :authname: Nguyen B.
-  - :@_fa: 'true'
-    :authname: Sethi M.
-  - :@_fa: 'true'
-    :authname: Singh G.
-  - :@_fa: 'true'
-    :authname: Smith K.
-  - :@_fa: 'true'
-    :authname: Sorniotti A.
-  - :@_fa: 'true'
-    :authname: Stathakopoulou C.
-  - :@_fa: 'true'
-    :authname: Vukolić M.
-  - :@_fa: 'true'
-    :authname: Cocco S.W.
-  - :@_fa: 'true'
-    :authname: Yellick J.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84991717011
   :eid: 2-s2.0-84991717011
   :dc:title: 'MedRec: Using blockchain for medical data access and permission management'
+  :dc:creator: Azaria A.
   :prism:publicationName: Proceedings - 2016 2nd International Conference on Open
     and Big Data, OBD 2016
   :prism:coverDate: '2016-09-21'
@@ -168,19 +93,11 @@
   :affiliation:
   - :@_fa: 'true'
     :affilname: Massachusetts Institute of Technology
-  :author:
-  - :@_fa: 'true'
-    :authname: Azaria A.
-  - :@_fa: 'true'
-    :authname: Ekblaw A.
-  - :@_fa: 'true'
-    :authname: Vieira T.
-  - :@_fa: 'true'
-    :authname: Lippman A.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85064005739
   :eid: 2-s2.0-85064005739
   :dc:title: 'Industry 4.0: State of the art and future trends'
+  :dc:creator: Xu L.D.
   :prism:publicationName: International Journal of Production Research
   :prism:coverDate: '2018-01-01'
   :citedby-count: '861'
@@ -189,17 +106,11 @@
     :affilname: Carlson School of Management
   - :@_fa: 'true'
     :affilname: Old Dominion University
-  :author:
-  - :@_fa: 'true'
-    :authname: Xu L.D.
-  - :@_fa: 'true'
-    :authname: Xu E.L.
-  - :@_fa: 'true'
-    :authname: Li L.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85055257106
   :eid: 2-s2.0-85055257106
   :dc:title: 'Blockchain challenges and opportunities: A survey'
+  :dc:creator: Zheng Z.
   :prism:publicationName: International Journal of Web and Grid Services
   :prism:coverDate: '2018-01-01'
   :citedby-count: '813'
@@ -210,21 +121,11 @@
     :affilname: Macau University of Science and Technology
   - :@_fa: 'true'
     :affilname: Sun Yat-Sen University
-  :author:
-  - :@_fa: 'true'
-    :authname: Zheng Z.
-  - :@_fa: 'true'
-    :authname: Xie S.
-  - :@_fa: 'true'
-    :authname: Dai H.N.
-  - :@_fa: 'true'
-    :authname: Chen X.
-  - :@_fa: 'true'
-    :authname: Wang H.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85019031448
   :eid: 2-s2.0-85019031448
   :dc:title: 'Blockchain for IoT security and privacy: The case study of a smart home'
+  :dc:creator: Dorri A.
   :prism:publicationName: 2017 IEEE International Conference on Pervasive Computing
     and Communications Workshops, PerCom Workshops 2017
   :prism:coverDate: '2017-05-02'
@@ -236,19 +137,11 @@
     :affilname: Commonwealth Scientific and Industrial Research Organization
   - :@_fa: 'true'
     :affilname: UNSW Sydney
-  :author:
-  - :@_fa: 'true'
-    :authname: Dorri A.
-  - :@_fa: 'true'
-    :authname: Kanhere S.
-  - :@_fa: 'true'
-    :authname: Jurdak R.
-  - :@_fa: 'true'
-    :authname: Gauravaram P.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84991447929
   :eid: 2-s2.0-84991447929
   :dc:title: Where is current research on Blockchain technology? - A systematic review
+  :dc:creator: Yli-Huumo J.
   :prism:publicationName: PLoS ONE
   :prism:coverDate: '2016-10-01'
   :citedby-count: '766'
@@ -259,36 +152,22 @@
     :affilname: Sogang University
   - :@_fa: 'true'
     :affilname: LUT University
-  :author:
-  - :@_fa: 'true'
-    :authname: Yli-Huumo J.
-  - :@_fa: 'true'
-    :authname: Ko D.
-  - :@_fa: 'true'
-    :authname: Choi S.
-  - :@_fa: 'true'
-    :authname: Park S.
-  - :@_fa: 'true'
-    :authname: Smolander K.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84985991912
   :eid: 2-s2.0-84985991912
   :dc:title: 'Bitcoin and beyond: A technical survey on decentralized digital currencies'
+  :dc:creator: Tschorsch F.
   :prism:publicationName: IEEE Communications Surveys and Tutorials
   :prism:coverDate: '2016-07-01'
   :citedby-count: '744'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Humboldt-Universität zu Berlin
-  :author:
-  - :@_fa: 'true'
-    :authname: Tschorsch F.
-  - :@_fa: 'true'
-    :authname: Scheuermann B.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84995404927
   :eid: 2-s2.0-84995404927
   :dc:title: Making smart contracts smarter
+  :dc:creator: Luu L.
   :prism:publicationName: Proceedings of the ACM Conference on Computer and Communications
     Security
   :prism:coverDate: '2016-10-24'
@@ -298,21 +177,11 @@
     :affilname: Yale NUS College
   - :@_fa: 'true'
     :affilname: National University of Singapore
-  :author:
-  - :@_fa: 'true'
-    :authname: Luu L.
-  - :@_fa: 'true'
-    :authname: Chu D.H.
-  - :@_fa: 'true'
-    :authname: Olickel H.
-  - :@_fa: 'true'
-    :authname: Saxena P.
-  - :@_fa: 'true'
-    :authname: Hobor A.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85061188595
   :eid: 2-s2.0-85061188595
   :dc:title: 'Federated machine learning: Concept and applications'
+  :dc:creator: Yang Q.
   :prism:publicationName: ACM Transactions on Intelligent Systems and Technology
   :prism:coverDate: '2019-01-01'
   :citedby-count: '684'
@@ -321,19 +190,11 @@
     :affilname: Beihang University
   - :@_fa: 'true'
     :affilname: Hong Kong University of Science and Technology
-  :author:
-  - :@_fa: 'true'
-    :authname: Yang Q.
-  - :@_fa: 'true'
-    :authname: Liu Y.
-  - :@_fa: 'true'
-    :authname: Chen T.
-  - :@_fa: 'true'
-    :authname: Tong Y.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85071147013
   :eid: 2-s2.0-85071147013
   :dc:title: 'Bitcoin-NG: A scalable blockchain protocol'
+  :dc:creator: Eyal I.
   :prism:publicationName: Proceedings of the 13th USENIX Symposium on Networked Systems
     Design and Implementation, NSDI 2016
   :prism:coverDate: '2016-01-01'
@@ -341,19 +202,11 @@
   :affiliation:
   - :@_fa: 'true'
     :affilname: Cornell University
-  :author:
-  - :@_fa: 'true'
-    :authname: Eyal I.
-  - :@_fa: 'true'
-    :authname: Gencer A.E.
-  - :@_fa: 'true'
-    :authname: Sirer E.G.
-  - :@_fa: 'true'
-    :authname: Van Renesse R.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85018630011
   :eid: 2-s2.0-85018630011
   :dc:title: A survey of attacks on Ethereum smart contracts (SoK)
+  :dc:creator: Atzei N.
   :prism:publicationName: Lecture Notes in Computer Science (including subseries Lecture
     Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)
   :prism:coverDate: '2017-01-01'
@@ -361,55 +214,33 @@
   :affiliation:
   - :@_fa: 'true'
     :affilname: Università degli Studi di Cagliari
-  :author:
-  - :@_fa: 'true'
-    :authname: Atzei N.
-  - :@_fa: 'true'
-    :authname: Bartoletti M.
-  - :@_fa: 'true'
-    :authname: Cimoli T.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85018292153
   :eid: 2-s2.0-85018292153
   :dc:title: The truth about blockchain
+  :dc:creator: Iansiti M.
   :prism:publicationName: Harvard Business Review
   :prism:coverDate: '2017-01-01'
   :citedby-count: '603'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Harvard Business School
-  :author:
-  - :@_fa: 'true'
-    :authname: Iansiti M.
-  - :@_fa: 'true'
-    :authname: Lakhani K.R.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85021106763
   :eid: 2-s2.0-85021106763
   :dc:title: 'Designing microgrid energy markets: A case study: The Brooklyn Microgrid'
+  :dc:creator: Mengelkamp E.
   :prism:publicationName: Applied Energy
   :prism:coverDate: '2018-01-15'
   :citedby-count: '593'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Karlsruher Institut für Technologie
-  :author:
-  - :@_fa: 'true'
-    :authname: Mengelkamp E.
-  - :@_fa: 'true'
-    :authname: Gärttner J.
-  - :@_fa: 'true'
-    :authname: Rock K.
-  - :@_fa: 'true'
-    :authname: Kessler S.
-  - :@_fa: 'true'
-    :authname: Orsini L.
-  - :@_fa: 'true'
-    :authname: Weinhardt C.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85045190865
   :eid: 2-s2.0-85045190865
   :dc:title: Opportunities and obstacles for deep learning in biology and medicine
+  :dc:creator: Ching T.
   :prism:publicationName: Journal of the Royal Society Interface
   :prism:coverDate: '2018-01-01'
   :citedby-count: '592'
@@ -472,83 +303,11 @@
     :affilname: Innovation Center for Biomedical Informatics
   - :@_fa: 'true'
     :affilname: Morgridge Institute for Research
-  :author:
-  - :@_fa: 'true'
-    :authname: Ching T.
-  - :@_fa: 'true'
-    :authname: Himmelstein D.S.
-  - :@_fa: 'true'
-    :authname: Beaulieu-Jones B.K.
-  - :@_fa: 'true'
-    :authname: Kalinin A.A.
-  - :@_fa: 'true'
-    :authname: Do B.T.
-  - :@_fa: 'true'
-    :authname: Way G.P.
-  - :@_fa: 'true'
-    :authname: Ferrero E.
-  - :@_fa: 'true'
-    :authname: Agapow P.M.
-  - :@_fa: 'true'
-    :authname: Zietz M.
-  - :@_fa: 'true'
-    :authname: Hoffman M.M.
-  - :@_fa: 'true'
-    :authname: Xie W.
-  - :@_fa: 'true'
-    :authname: Rosen G.L.
-  - :@_fa: 'true'
-    :authname: Lengerich B.J.
-  - :@_fa: 'true'
-    :authname: Israeli J.
-  - :@_fa: 'true'
-    :authname: Lanchantin J.
-  - :@_fa: 'true'
-    :authname: Woloszynek S.
-  - :@_fa: 'true'
-    :authname: Carpenter A.E.
-  - :@_fa: 'true'
-    :authname: Shrikumar A.
-  - :@_fa: 'true'
-    :authname: Xu J.
-  - :@_fa: 'true'
-    :authname: Cofer E.M.
-  - :@_fa: 'true'
-    :authname: Lavender C.A.
-  - :@_fa: 'true'
-    :authname: Turaga S.C.
-  - :@_fa: 'true'
-    :authname: Alexandari A.M.
-  - :@_fa: 'true'
-    :authname: Lu Z.
-  - :@_fa: 'true'
-    :authname: Harris D.J.
-  - :@_fa: 'true'
-    :authname: Decaprio D.
-  - :@_fa: 'true'
-    :authname: Qi Y.
-  - :@_fa: 'true'
-    :authname: Kundaje A.
-  - :@_fa: 'true'
-    :authname: Peng Y.
-  - :@_fa: 'true'
-    :authname: Wiley L.K.
-  - :@_fa: 'true'
-    :authname: Segler M.H.S.
-  - :@_fa: 'true'
-    :authname: Boca S.M.
-  - :@_fa: 'true'
-    :authname: Swamidass S.J.
-  - :@_fa: 'true'
-    :authname: Huang A.
-  - :@_fa: 'true'
-    :authname: Gitter A.
-  - :@_fa: 'true'
-    :authname: Greene C.S.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84995482126
   :eid: 2-s2.0-84995482126
   :dc:title: On the security and performance of Proof of Work blockchains
+  :dc:creator: Gervais A.
   :prism:publicationName: Proceedings of the ACM Conference on Computer and Communications
     Security
   :prism:coverDate: '2016-10-24'
@@ -558,44 +317,22 @@
     :affilname: ETH Zürich
   - :@_fa: 'true'
     :affilname: NEC Laboratories America, Inc.
-  :author:
-  - :@_fa: 'true'
-    :authname: Gervais A.
-  - :@_fa: 'true'
-    :authname: Karame G.O.
-  - :@_fa: 'true'
-    :authname: Wüst K.
-  - :@_fa: 'true'
-    :authname: Glykantzis V.
-  - :@_fa: 'true'
-    :authname: Ritzdorf H.
-  - :@_fa: 'true'
-    :authname: Čapkun S.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85048498829
   :eid: 2-s2.0-85048498829
   :dc:title: On blockchain and its integration with IoT. Challenges and opportunities
+  :dc:creator: Reyna A.
   :prism:publicationName: Future Generation Computer Systems
   :prism:coverDate: '2018-11-01'
   :citedby-count: '572'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Universidad de Málaga
-  :author:
-  - :@_fa: 'true'
-    :authname: Reyna A.
-  - :@_fa: 'true'
-    :authname: Martín C.
-  - :@_fa: 'true'
-    :authname: Chen J.
-  - :@_fa: 'true'
-    :authname: Soler E.
-  - :@_fa: 'true'
-    :authname: Díaz M.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84966577745
   :eid: 2-s2.0-84966577745
   :dc:title: 'Blockchain: The state of the art and future trends'
+  :dc:creator: Yuan Y.
   :prism:publicationName: Zidonghua Xuebao/Acta Automatica Sinica
   :prism:coverDate: '2016-04-01'
   :citedby-count: '568'
@@ -606,16 +343,12 @@
     :affilname: Institute of Automation Chinese Academy of Sciences
   - :@_fa: 'true'
     :affilname: Qingdao Academy of Intelligent Industries
-  :author:
-  - :@_fa: 'true'
-    :authname: Yuan Y.
-  - :@_fa: 'true'
-    :authname: Wang F.Y.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85055874134
   :eid: 2-s2.0-85055874134
   :dc:title: 'Blockchain technology in the energy sector: A systematic review of challenges
     and opportunities'
+  :dc:creator: Andoni M.
   :prism:publicationName: Renewable and Sustainable Energy Reviews
   :prism:coverDate: '2019-02-01'
   :citedby-count: '561'
@@ -626,27 +359,11 @@
     :affilname: Heriot-Watt University
   - :@_fa: 'true'
     :affilname: Siemens Energy Management
-  :author:
-  - :@_fa: 'true'
-    :authname: Andoni M.
-  - :@_fa: 'true'
-    :authname: Robu V.
-  - :@_fa: 'true'
-    :authname: Flynn D.
-  - :@_fa: 'true'
-    :authname: Abram S.
-  - :@_fa: 'true'
-    :authname: Geach D.
-  - :@_fa: 'true'
-    :authname: Jenkins D.
-  - :@_fa: 'true'
-    :authname: McCallum P.
-  - :@_fa: 'true'
-    :authname: Peacock A.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84929077014
   :eid: 2-s2.0-84929077014
   :dc:title: 'Bitcoin: Economics, technology, and governance'
+  :dc:creator: Böhme R.
   :prism:publicationName: Journal of Economic Perspectives
   :prism:coverDate: '2015-01-01'
   :citedby-count: '548'
@@ -659,32 +376,15 @@
     :affilname: Southern Methodist University
   - :@_fa: 'true'
     :affilname: Universität Innsbruck
-  :author:
-  - :@_fa: 'true'
-    :authname: Böhme R.
-  - :@_fa: 'true'
-    :authname: Christin N.
-  - :@_fa: 'true'
-    :authname: Edelman B.
-  - :@_fa: 'true'
-    :authname: Moore T.
 - :@_fa: 'true'
   :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85055168966
   :eid: 2-s2.0-85055168966
   :dc:title: Blockchain technology and its relationships to sustainable supply chain
     management
+  :dc:creator: Saberi S.
   :prism:publicationName: International Journal of Production Research
   :prism:coverDate: '2019-04-03'
   :citedby-count: '543'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Foisie Business School
-  :author:
-  - :@_fa: 'true'
-    :authname: Saberi S.
-  - :@_fa: 'true'
-    :authname: Kouhizadeh M.
-  - :@_fa: 'true'
-    :authname: Sarkis J.
-  - :@_fa: 'true'
-    :authname: Shen L.

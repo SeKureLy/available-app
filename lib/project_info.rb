@@ -8,20 +8,21 @@ require 'yaml'
 config = YAML.safe_load(File.read('config/secrets.yml'))
 # api_key = config['api_key']
 # puts api_key
-field = ["authname", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
+field = ["dc:creator", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
 # puts field
 API_PROJECT_ROOT = 'https://api.elsevier.com/content/search/scopus?'
 url = API_PROJECT_ROOT + "query=blockchain&sort=citedby-count&field=#{field}"
 
 result = HTTP.headers('Accept' => 'application/json',
                       'X-ELS-APIKey' => "#{config['api_key']}").get(url)
+# puts result
 response_code = result.code
 
 search_result = JSON.parse(result, symbolize_names: true)[:"search-results"][:entry]
 
 
 parse_result = search_result.map do |origin_hash|
-  author_list = origin_hash[:author].map { |item| item[:authname]}
+  # author_list = origin_hash[:author].map { |item| item[:authname]}
   {
     eid: origin_hash[:eid],
     title: origin_hash[:"dc:title"],
@@ -30,7 +31,7 @@ parse_result = search_result.map do |origin_hash|
     date: origin_hash[:"prism:coverDate"],
     Organization: origin_hash[:affiliation][0][:affilname],
     citeBy: origin_hash[:"citedby-count"],
-    author: author_list.join(",")
+    author: origin_hash[:"dc:creator"]
   }
 end
 

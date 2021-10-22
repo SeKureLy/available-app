@@ -37,7 +37,7 @@ module PaperDeep
 
     def parse
       search_result.map do |origin_hash|
-        author_list = origin_hash[:author].map { |item| item[:authname]}
+        # author_list = origin_hash[:author].map { |item| item[:authname]}
         {
           eid: origin_hash[:eid],
           title: origin_hash[:"dc:title"],
@@ -46,13 +46,13 @@ module PaperDeep
           date: origin_hash[:"prism:coverDate"],
           Organization: origin_hash[:affiliation][0][:affilname],
           citeBy: origin_hash[:"citedby-count"],
-          author: author_list.join(",")
+          author: origin_hash[:"dc:creator"]
         }
       end
     end
 
     def search(query)
-      field = ["authname", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
+      field = ["dc:creator", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
       # puts field
       url = API_PROJECT_ROOT + "query=#{query}&sort=citedby-count&field=#{field}"
       # # url = "https://api.elsevier.com/content/search/scopus?query=blockchain&sort=citedby-count&count=1&field=authname,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname"
