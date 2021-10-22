@@ -1,30 +1,38 @@
 # frozen_string_literal: true
 
 require 'http'
+require 'json'
 require 'yaml'
-require 'google_search_results'
+
 
 config = YAML.safe_load(File.read('config/secrets.yml'))
+# api_key = config['api_key']
+# puts api_key
+field = ["authname", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
+# puts field
+API_PROJECT_ROOT = 'https://api.elsevier.com/content/search/scopus?'
+url = API_PROJECT_ROOT + "query=blockchain&sort=citedby-count&field=#{field}"
 
-params = {
-  engine: 'google_scholar',
-  q: 'blockchain',
-  api_key: config['api_key']
-}
+result = HTTP.headers('Accept' => 'application/json',
+                      'X-ELS-APIKey' => "#{config['api_key']}").get(url)
+response_code = result.code
 
-search = GoogleSearch.new(params)
-organic_results = search.get_hash[:organic_results]
+search_result = JSON.parse(result, symbolize_names: true)[:"search-results"][:entry]
 
-results = organic_results.map do |origin_hash|
-  summary = origin_hash[:publication_info][:summary].split('-')
+
+parse_result = search_result.map do |origin_hash|
+  author_list = origin_hash[:author].map { |item| item[:authname]}
   {
-    title: origin_hash[:title],
-    link: origin_hash[:link],
-    snippet: origin_hash[:snippet],
-    journal: summary[1], author: summary[0],
-    citeBy: origin_hash[:inline_links][:cited_by][:total]
+    eid: origin_hash[:eid],
+    title: origin_hash[:"dc:title"],
+    link: origin_hash[:"prism:url"],
+    publicationName: origin_hash[:"prism:publicationName"],
+    date: origin_hash[:"prism:coverDate"],
+    Organization: origin_hash[:affiliation][0][:affilname],
+    citeBy: origin_hash[:"citedby-count"],
+    author: author_list.join(",")
   }
 end
 
-File.write('spec/fixtures/raw_gs_results.yml', organic_results.to_yaml)
-File.write('spec/fixtures/gs_results.yml', results.to_yaml)
+File.write('spec/fixtures/raw_scopus.yml', search_result.to_yaml)
+File.write('spec/fixtures/parse_scopus.yml', parse_result.to_yaml)
