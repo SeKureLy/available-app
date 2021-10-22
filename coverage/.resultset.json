@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/dongba/PaperDeep/lib/scopus_api.rb": {
+      "/home/sycheng/rb_project/PaperDeep/lib/scopus_api.rb": {
         "lines": [
           null,
           null,
@@ -78,7 +78,7 @@
           null
         ]
       },
-      "/home/dongba/PaperDeep/lib/paper.rb": {
+      "/home/sycheng/rb_project/PaperDeep/lib/paper.rb": {
         "lines": [
           null,
           null,
@@ -115,7 +115,7 @@
           null,
           null,
           1,
-          null,
+          400,
           100,
           null,
           null,
@@ -144,6 +144,6 @@
         ]
       }
     },
-    "timestamp": 1634913664
+    "timestamp": 1634915275
   }
 }
