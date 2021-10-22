@@ -4,15 +4,16 @@ require 'http'
 require 'json'
 require 'yaml'
 
+require_relative 'metadata'
 
 
 # module for calling Google API
-module PaperDeep
+module Elsevier
   # require 'google_search_results'
   
   # Library for Google Scholar API
   class ScopusAPI
-    attr_reader :organic_results
+    attr_reader :search_result
     
     # attr_accessor :result
     # handling error
@@ -33,19 +34,6 @@ module PaperDeep
     def initialize()
     end
 
-    # def parse
-    #   organic_results.map do |origin_hash|
-    #     {
-    #       eid: origin_hash[:eid],
-    #       title: origin_hash[:"dc:title"],
-    #       link: origin_hash[:"prism:url"],
-    #       snippet: origin_hash[:snippet],
-    #       journal: summary[1], author: summary[0],
-    #       citeBy: origin_hash[:inline_links][:cited_by][:total]
-    #     }
-    #   end
-    # end
-
     def search(query)
       config = YAML.safe_load(File.read('config/secrets.yml'))
       # api_key = config['api_key']
@@ -61,11 +49,12 @@ module PaperDeep
       response_code = result.code
       raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)
 
-      @organic_results = JSON.parse(result, symbolize_names: true)[:"search-results"][:entry]
-      puts @organic_results
+      @search_result = JSON.parse(result, symbolize_names: true)[:"search-results"][:entry]
+      PaperDeep::Matadata.new(@search_result, self)
+      # puts @search_result
     end
   end
 end
 
-test = PaperDeep::ScopusAPI.new()
-test.search("blockchain")
+# test = Elsevier::ScopusAPI.new()
+# test.search("blockchain")
