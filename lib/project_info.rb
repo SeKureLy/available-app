@@ -10,19 +10,17 @@ config = YAML.safe_load(File.read('config/secrets.yml'))
 # puts api_key
 field = ["authname", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
 # puts field
-url = API_PROJECT_ROOT + "query=#{query}&sort=citedby-count&field=#{field}"
-# # url = "https://api.elsevier.com/content/search/scopus?query=blockchain&sort=citedby-count&count=1&field=authname,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname"
-# puts url
-# # puts url
+API_PROJECT_ROOT = 'https://api.elsevier.com/content/search/scopus?'
+url = API_PROJECT_ROOT + "query=blockchain&sort=citedby-count&field=#{field}"
+
 result = HTTP.headers('Accept' => 'application/json',
                       'X-ELS-APIKey' => "#{config['api_key']}").get(url)
 response_code = result.code
-raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)
 
 search_result = JSON.parse(result, symbolize_names: true)[:"search-results"][:entry]
 
 
-search_result.map do |origin_hash|
+parse_result = search_result.map do |origin_hash|
   author_list = origin_hash[:author].map { |item| item[:authname]}
   {
     eid: origin_hash[:eid],
@@ -36,5 +34,5 @@ search_result.map do |origin_hash|
   }
 end
 
-puts search_result
-
+File.write('spec/fixtures/raw_scopus.yml', search_result.to_yaml)
+File.write('spec/fixtures/parse_scopus.yml', parse_result.to_yaml)
