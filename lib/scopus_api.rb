@@ -12,7 +12,7 @@ module PaperDeep
 
   # Library for Google Scholar API
   class ScopusAPI
-    attr_reader :search_result
+    attr_reader :search_result, :uri
 
     # attr_accessor :uri
     # handling error
@@ -40,6 +40,10 @@ module PaperDeep
       end
     end
 
+    def write_uri(uri)
+      @uri = uri
+    end
+
     def make_uri(query)
       uri = URI('https://api.elsevier.com/content/search/scopus?')
       params = {
@@ -49,12 +53,13 @@ module PaperDeep
                 'prism:coverDate', 'affilname'].join(',')
       }
       uri.query = URI.encode_www_form(params)
+      write_uri(uri)
     end
 
     def search(query)
       make_uri(query)
       result = HTTP.headers('Accept' => 'application/json',
-                            'X-ELS-APIKey' => @api_key.to_s).get(@uri)
+                            'X-ELS-APIKey' => @api_key.to_s).get(uri)
       response_code = result.code
       raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)
 

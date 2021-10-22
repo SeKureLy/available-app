@@ -23,7 +23,7 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Fri, 22 Oct 2021 14:23:32 GMT
+      - Fri, 22 Oct 2021 14:33:44 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,9 +31,9 @@ http_interactions:
       Connection:
       - close
       X-Els-Reqid:
-      - 8de14d59963a90bf
+      - 0f0b4fbfba0e0486
       X-Els-Transid:
-      - d1f5e4dfa408879a
+      - '089e72a121753d9c'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -41,12 +41,12 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 6a23624ebb29313b-TPE
+      - 6a23713c78416a8a-TPE
     body:
       encoding: ASCII-8BIT
       string: '{"error-response":{"error-code":"APIKEY_INVALID","error-message":"The
         provided apiKey is invalid."}}'
-  recorded_at: Fri, 22 Oct 2021 14:23:32 GMT
+  recorded_at: Fri, 22 Oct 2021 14:33:43 GMT
 - request:
     method: get
     uri: https://api.elsevier.com/content/search/scopus?field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname&query=blockchain&sort=citedby-count
@@ -70,7 +70,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 22 Oct 2021 14:23:34 GMT
+      - Fri, 22 Oct 2021 14:33:46 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -87,17 +87,17 @@ http_interactions:
       X-Els-Apikey:
       - "<SCOPUS_API_TOKEN>"
       X-Els-Reqid:
-      - d5627ace2c7376a2
+      - d1c0454f58665b06
       X-Els-Resourceversion:
       - default
       X-Els-Status:
       - OK
       X-Els-Transid:
-      - 61e9d2d2eedaf82c
+      - d5ad89093c8084b9
       X-Ratelimit-Limit:
       - '20000'
       X-Ratelimit-Remaining:
-      - '19990'
+      - '19989'
       X-Ratelimit-Reset:
       - '1635470767000'
       Cf-Cache-Status:
@@ -107,7 +107,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 6a236255cf120760-TPE
+      - 6a2371436e9b4105-TPE
     body:
       encoding: UTF-8
       string: '{"search-results":{"opensearch:totalResults":"48202","opensearch:startIndex":"0","opensearch:itemsPerPage":"25","opensearch:Query":{"@role":
@@ -255,5 +255,5 @@ http_interactions:
         technology and its relationships to sustainable supply chain management","dc:creator":"Saberi
         S.","prism:publicationName":"International Journal of Production Research","prism:coverDate":"2019-04-03","citedby-count":"543","affiliation":
         [{"@_fa": "true", "affilname":"Foisie Business School"}]}]}}'
-  recorded_at: Fri, 22 Oct 2021 14:23:33 GMT
+  recorded_at: Fri, 22 Oct 2021 14:33:45 GMT
 recorded_with: VCR 6.0.0

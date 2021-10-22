@@ -33,8 +33,8 @@ module PaperDeep
     end
 
     def organization
-      # TODO: change to list.join
-      origin_hash[:affiliation][0][:affilname]
+      organization_list = origin_hash[:affiliation].map { |item| item[:affilname]}
+      organization_list.join(',')
     end
 
     def citedby
