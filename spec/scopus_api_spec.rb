@@ -33,7 +33,6 @@ describe 'Tests Scopus API library with cassette' do
   end
 
   describe 'Tests Scopus API library' do
-
     before do
       @search_result = API.search('blockchain')
     end
@@ -42,13 +41,13 @@ describe 'Tests Scopus API library with cassette' do
         _(@search_result.size).must_equal RAW_CORRECT.size
       end
       it '[raw]HAPPY: title should be blockchain' do
-        _(@search_result[0][:"dc:title"]).must_equal RAW_CORRECT[0][:"dc:title"]
+        _(@search_result[0][:'dc:title']).must_equal RAW_CORRECT[0][:'dc:title']
       end
       it '[raw]HAPPY: eid should be same' do
         _(@search_result[0][:eid]).must_equal RAW_CORRECT[0][:eid]
       end
       it '[raw]HAPPY: cite-by-count should be same' do
-        _(@search_result[0][:"citedby-count"]).must_equal RAW_CORRECT[0][:"citedby-count"]
+        _(@search_result[0][:'citedby-count']).must_equal RAW_CORRECT[0][:'citedby-count']
       end
     end
   end
@@ -70,7 +69,7 @@ describe 'Tests Scopus API library with cassette' do
       _(@parse_result[0][:author]).must_equal PARSE_CORRECT[0][:author]
     end
     it '[parse]HAPPY: prism:url should be parsed to link, so it is nil' do
-      _(assert_nil(@parse_result[0][:"prism:url"]))
+      _(assert_nil(@parse_result[0][:'prism:url']))
     end
   end
 
