@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
-require 'minitest/rg'
-require 'yaml'
-require_relative '../lib/scopus_api'
+# require 'minitest/autorun'
+# require 'minitest/rg'
+# require 'yaml'
+# require_relative '../lib/scopus_api'
+require_relative 'spec_helper'
 
-RAW_CORRECT = YAML.safe_load(File.read('spec/fixtures/raw_scopus.yml'), [Symbol])
-PARSE_CORRECT = YAML.safe_load(File.read('spec/fixtures/parse_scopus.yml'), [Symbol])
-CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-API_TOKEN = CONFIG['api_key']
+# RAW_CORRECT = YAML.safe_load(File.read('spec/fixtures/raw_scopus.yml'), [Symbol])
+# PARSE_CORRECT = YAML.safe_load(File.read('spec/fixtures/parse_scopus.yml'), [Symbol])
+# CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
+# API_TOKEN = CONFIG['api_key']
 
 API = PaperDeep::ScopusAPI.new(API_TOKEN)
 
