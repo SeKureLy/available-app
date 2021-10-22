@@ -4,7 +4,7 @@ require 'http'
 require 'json'
 require 'yaml'
 
-require_relative 'metadata'
+# require_relative 'metadata'
 
 
 # module for calling Google API
@@ -34,6 +34,22 @@ module Elsevier
     def initialize()
     end
 
+    def parse
+      search_result.map do |origin_hash|
+        author_list = origin_hash[:author].map { |item| item[:authname]}
+        {
+          eid: origin_hash[:eid],
+          title: origin_hash[:"dc:title"],
+          link: origin_hash[:"prism:url"],
+          publicationName: origin_hash[:"prism:publicationName"],
+          date: origin_hash[:"prism:coverDate"],
+          Organization: origin_hash[:affiliation][0][:affilname],
+          citeBy: origin_hash[:"citedby-count"],
+          author: author_list.join(",")
+        }
+      end
+    end
+
     def search(query)
       config = YAML.safe_load(File.read('config/secrets.yml'))
       # api_key = config['api_key']
@@ -50,7 +66,7 @@ module Elsevier
       raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)
 
       @search_result = JSON.parse(result, symbolize_names: true)[:"search-results"][:entry]
-      PaperDeep::Matadata.new(@search_result, self)
+      # PaperDeep::Matadata.new(@search_result, self)
       # puts @search_result
     end
   end
@@ -58,3 +74,4 @@ end
 
 # test = Elsevier::ScopusAPI.new()
 # test.search("blockchain")
+# puts test.parse()
