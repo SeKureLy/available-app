@@ -10,6 +10,53 @@ http_interactions:
       Accept:
       - application/json
       X-Els-Apikey:
+      - bad token
+      Connection:
+      - close
+      Host:
+      - api.elsevier.com
+      User-Agent:
+      - http.rb/5.0.4
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Fri, 22 Oct 2021 14:06:29 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '100'
+      Connection:
+      - close
+      X-Els-Reqid:
+      - 43c4323515542bc5
+      X-Els-Transid:
+      - 9261ce431665fe5f
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6a2349539eea6a9e-TPE
+    body:
+      encoding: ASCII-8BIT
+      string: '{"error-response":{"error-code":"APIKEY_INVALID","error-message":"The
+        provided apiKey is invalid."}}'
+  recorded_at: Fri, 22 Oct 2021 14:06:29 GMT
+- request:
+    method: get
+    uri: https://api.elsevier.com/content/search/scopus?field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname&query=blockchain&sort=citedby-count
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      X-Els-Apikey:
       - "<SCOPUS_API_TOKEN>"
       Connection:
       - close
@@ -23,7 +70,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 22 Oct 2021 13:51:41 GMT
+      - Fri, 22 Oct 2021 14:06:31 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -40,17 +87,17 @@ http_interactions:
       X-Els-Apikey:
       - "<SCOPUS_API_TOKEN>"
       X-Els-Reqid:
-      - 3caa126348b5afae
+      - dd413494343d368a
       X-Els-Resourceversion:
       - default
       X-Els-Status:
       - OK
       X-Els-Transid:
-      - ae1274943d816937
+      - 4de09189fbfc35e3
       X-Ratelimit-Limit:
       - '20000'
       X-Ratelimit-Remaining:
-      - '19925'
+      - '19920'
       X-Ratelimit-Reset:
       - '1635319202000'
       Cf-Cache-Status:
@@ -60,15 +107,15 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 6a2333a28a406a9e-TPE
+      - 6a23495a9c876b78-TPE
     body:
       encoding: UTF-8
       string: '{"search-results":{"opensearch:totalResults":"48202","opensearch:startIndex":"0","opensearch:itemsPerPage":"25","opensearch:Query":{"@role":
         "request", "@searchTerms": "blockchain", "@startPage": "0"},"link": [{"@_fa":
-        "true", "@ref": "self", "@href": "https://api.elsevier.com/content/search/scopus?start=0&count=25&query=blockchain&sort=citedby-count&field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname",
-        "@type": "application/json"},{"@_fa": "true", "@ref": "first", "@href": "https://api.elsevier.com/content/search/scopus?start=0&count=25&query=blockchain&sort=citedby-count&field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname",
-        "@type": "application/json"},{"@_fa": "true", "@ref": "next", "@href": "https://api.elsevier.com/content/search/scopus?start=25&count=25&query=blockchain&sort=citedby-count&field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname",
-        "@type": "application/json"},{"@_fa": "true", "@ref": "last", "@href": "https://api.elsevier.com/content/search/scopus?start=4975&count=25&query=blockchain&sort=citedby-count&field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname",
+        "true", "@ref": "self", "@href": "https://api.elsevier.com/content/search/scopus?start=0&count=25&query=blockchain&sort=citedby-count&field=dc%3Acreator%2Cdc%3Atitle%2Ceid%2Ccitedby-count%2Cprism%3Aurl%2Cprism%3ApublicationName%2Cprism%3AcoverDate%2Caffilname",
+        "@type": "application/json"},{"@_fa": "true", "@ref": "first", "@href": "https://api.elsevier.com/content/search/scopus?start=0&count=25&query=blockchain&sort=citedby-count&field=dc%3Acreator%2Cdc%3Atitle%2Ceid%2Ccitedby-count%2Cprism%3Aurl%2Cprism%3ApublicationName%2Cprism%3AcoverDate%2Caffilname",
+        "@type": "application/json"},{"@_fa": "true", "@ref": "next", "@href": "https://api.elsevier.com/content/search/scopus?start=25&count=25&query=blockchain&sort=citedby-count&field=dc%3Acreator%2Cdc%3Atitle%2Ceid%2Ccitedby-count%2Cprism%3Aurl%2Cprism%3ApublicationName%2Cprism%3AcoverDate%2Caffilname",
+        "@type": "application/json"},{"@_fa": "true", "@ref": "last", "@href": "https://api.elsevier.com/content/search/scopus?start=4975&count=25&query=blockchain&sort=citedby-count&field=dc%3Acreator%2Cdc%3Atitle%2Ceid%2Ccitedby-count%2Cprism%3Aurl%2Cprism%3ApublicationName%2Cprism%3AcoverDate%2Caffilname",
         "@type": "application/json"}],"entry": [{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84979828304","eid":"2-s2.0-84979828304","dc:title":"Blockchains
         and Smart Contracts for the Internet of Things","dc:creator":"Christidis K.","prism:publicationName":"IEEE
         Access","prism:coverDate":"2016-01-01","citedby-count":"1802","affiliation":
@@ -208,52 +255,5 @@ http_interactions:
         technology and its relationships to sustainable supply chain management","dc:creator":"Saberi
         S.","prism:publicationName":"International Journal of Production Research","prism:coverDate":"2019-04-03","citedby-count":"543","affiliation":
         [{"@_fa": "true", "affilname":"Foisie Business School"}]}]}}'
-  recorded_at: Fri, 22 Oct 2021 13:51:41 GMT
-- request:
-    method: get
-    uri: https://api.elsevier.com/content/search/scopus?field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname&query=Blockchain&sort=citedby-count
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      X-Els-Apikey:
-      - bad token
-      Connection:
-      - close
-      Host:
-      - api.elsevier.com
-      User-Agent:
-      - http.rb/5.0.4
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      Date:
-      - Fri, 22 Oct 2021 13:51:42 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '100'
-      Connection:
-      - close
-      X-Els-Reqid:
-      - 69feb7882b796d02
-      X-Els-Transid:
-      - 3c212840a5d67ea1
-      Cf-Cache-Status:
-      - DYNAMIC
-      Expect-Ct:
-      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 6a2333af0d5d56fb-TPE
-    body:
-      encoding: ASCII-8BIT
-      string: '{"error-response":{"error-code":"APIKEY_INVALID","error-message":"The
-        provided apiKey is invalid."}}'
-  recorded_at: Fri, 22 Oct 2021 13:51:41 GMT
+  recorded_at: Fri, 22 Oct 2021 14:06:30 GMT
 recorded_with: VCR 6.0.0

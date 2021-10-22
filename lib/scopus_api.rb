@@ -52,14 +52,22 @@ module PaperDeep
     end
 
     def search(query)
-      field = ["dc:creator", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
-      # puts field
-      url = API_PROJECT_ROOT + "query=#{query}&sort=citedby-count&field=#{field}"
+      # field = ["dc:creator", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
+      # # puts field
+      # url = API_PROJECT_ROOT + "query=#{query}&sort=citedby-count&field=#{field}"
+
+      uri = URI('https://api.elsevier.com/content/search/scopus?')
+      params = { 
+        query: 'blockchain', 
+        sort: 'citedby-count',
+        field: ["dc:creator", "dc:title", "eid", "citedby-count", "prism:url", "prism:publicationName", "prism:coverDate", "affilname"].join(",")
+      }
+      uri.query = URI.encode_www_form(params)
       # # url = "https://api.elsevier.com/content/search/scopus?query=blockchain&sort=citedby-count&count=1&field=authname,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname"
       # puts url
       # # puts url
       result = HTTP.headers('Accept' => 'application/json',
-                            'X-ELS-APIKey' => "#{@api_key}").get(url)
+                            'X-ELS-APIKey' => "#{@api_key}").get(uri)
       response_code = result.code
       raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)
 
