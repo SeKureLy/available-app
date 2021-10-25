@@ -10,7 +10,8 @@ require 'minitest/rg'
 require 'vcr'
 require 'webmock'
 
-require_relative '../lib/scopus_api'
+# require_relative '../lib/scopus_api'
+require_relative '../lib/mappers/paper_mapper'
 
 RAW_CORRECT = YAML.safe_load(File.read('spec/fixtures/raw_scopus.yml'), [Symbol])
 PARSE_CORRECT = YAML.safe_load(File.read('spec/fixtures/parse_scopus.yml'), [Symbol])

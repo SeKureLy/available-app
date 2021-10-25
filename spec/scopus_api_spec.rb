@@ -11,7 +11,7 @@ require_relative 'spec_helper'
 # CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
 # API_TOKEN = CONFIG['api_key']
 
-API = PaperDeep::ScopusAPI.new(API_TOKEN)
+API = PaperDeep::PaperMapper.new(API_TOKEN)
 
 describe 'Tests Scopus API library with cassette' do
   VCR.configure do |c|
@@ -63,13 +63,13 @@ describe 'Tests Scopus API library with cassette' do
       _(@parse_result.size).must_equal PARSE_CORRECT.size
     end
     it '[parse]HAPPY: title should be blockchain' do
-      _(@parse_result[0][:title]).must_equal PARSE_CORRECT[0][:title]
+      _(@parse_result[0].title).must_equal PARSE_CORRECT[0][:title]
     end
     it '[parse]HAPPY: author should be blockchain' do
-      _(@parse_result[0][:author]).must_equal PARSE_CORRECT[0][:author]
+      _(@parse_result[0].author).must_equal PARSE_CORRECT[0][:author]
     end
     it '[parse]HAPPY: prism:url should be parsed to link, so it is nil' do
-      _(assert_nil(@parse_result[0][:'prism:url']))
+      _(assert_nil(defined?(@parse_result[0].url)))
     end
   end
 

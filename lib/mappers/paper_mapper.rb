@@ -9,7 +9,7 @@ module PaperDeep
             @gateway = @gateway_class.new(@token)
         end
 
-        def raw_data(query)
+        def search(query)
             @data = @gateway.search(query)
         end
 
@@ -84,7 +84,7 @@ end
 CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
 API_TOKEN = CONFIG['api_key']
 instance = PaperDeep::PaperMapper.new(API_TOKEN)
-instance.raw_data('blockchain')
+instance.search('blockchain')
 QAQ = instance.parse
 
 puts QAQ[0].content
