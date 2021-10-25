@@ -34,11 +34,7 @@ module PaperDeep
       @api_key = api_key
     end
 
-    def parse
-      search_result.map do |origin_hash|
-        PaperDeep::PaperInfo.new(origin_hash).content
-      end
-    end
+    
 
     def write_uri(uri)
       @uri = uri
