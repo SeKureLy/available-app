@@ -8,15 +8,27 @@ module PaperDeep
     # Domain entity for team members
     class Paper < Dry::Struct
       include Dry.Types
-
-      attribute :title,  Strict::String
-      attribute :publication_name,  Strict::String
-      attribute :link,  Strict::String
-      attribute :author,  Strict::String
-      attribute :organization,  Strict::String
       attribute :eid,  Strict::String
-      attribute :citedby, Strict::Integer
+      attribute :title,  Strict::String
+      attribute :link,  Strict::String
+      attribute :publication_name,  Strict::String
       attribute :date,  Strict::String
+      attribute :organization,  Strict::String
+      attribute :citedby, Strict::Integer
+      attribute :author,  Strict::String
+
+      def content 
+        {
+            eid: eid,
+            title: title,
+            link: link,
+            publication_name: publication_name,
+            date: date,
+            organization: organization,
+            citedby: citedby,
+            author: author
+        }
+      end
     end
   end
 end

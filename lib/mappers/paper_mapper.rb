@@ -1,6 +1,6 @@
 require 'yaml'
 require_relative '../gateways/scopus_api'
-
+require_relative '../entities/paper'
 module PaperDeep
     class PaperMapper
         def initialize(gh_token, gateway_class = ScopusAPI)
@@ -60,7 +60,7 @@ module PaperDeep
         end
     
         def citedby
-          origin_hash[:'citedby-count']
+          origin_hash[:'citedby-count'].to_i
         end
     
         def author
@@ -72,10 +72,10 @@ module PaperDeep
                 eid: eid,
                 title: title,
                 link: link,
-                publicationName: publication_name,
+                publication_name: publication_name,
                 date: date,
-                Organization: organization,
-                citeBy: citedby,
+                organization: organization,
+                citedby: citedby,
                 author: author
             )
         end
@@ -84,7 +84,7 @@ end
 CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
 API_TOKEN = CONFIG['api_key']
 instance = PaperDeep::PaperMapper.new(API_TOKEN)
-cool = instance.raw_data('blockchain')
-QAQ = cool.parse
+instance.raw_data('blockchain')
+QAQ = instance.parse
 
-puts QAQ
+puts QAQ[0].content
