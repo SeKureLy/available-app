@@ -18,7 +18,7 @@ module PaperDeep
     #   end
 
     #   GET /
-        routing.root do
+        routing.get ["","test2"] do
         #   routing.assets
           File.read("app/views/index.html")
         # render('index')

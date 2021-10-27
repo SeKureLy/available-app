@@ -1,5 +1,20 @@
 # PaperDeep  
 ## front-end
+### set-up
+* install nvm
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+```
+reopen terminal and install nodejs
+```
+nvm install --lts
+```
+open project,init npm and download packages
+```
+cd view-app
+npm init
+npm i
+```
 ### Develop when building front-end
 ```
 cd view-app
