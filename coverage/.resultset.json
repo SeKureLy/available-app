@@ -1,13 +1,15 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/su/PaperDeep/init.rb": {
+      "/Users/juihungkao/PaperDeep/init.rb": {
         "lines": [
           1
         ]
       },
-      "/home/su/PaperDeep/lib/init.rb": {
+      "/Users/juihungkao/PaperDeep/lib/init.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           3,
@@ -16,7 +18,7 @@
           null
         ]
       },
-      "/home/su/PaperDeep/lib/entities/paper.rb": {
+      "/Users/juihungkao/PaperDeep/lib/entities/paper.rb": {
         "lines": [
           null,
           null,
@@ -54,7 +56,7 @@
           null
         ]
       },
-      "/home/su/PaperDeep/lib/gateways/scopus_api.rb": {
+      "/Users/juihungkao/PaperDeep/lib/gateways/scopus_api.rb": {
         "lines": [
           null,
           null,
@@ -131,10 +133,8 @@
           null
         ]
       },
-      "/home/su/PaperDeep/lib/mappers/paper_mapper.rb": {
+      "/Users/juihungkao/PaperDeep/lib/mappers/paper_mapper.rb": {
         "lines": [
-          null,
-          null,
           null,
           1,
           1,
@@ -221,11 +221,10 @@
           null,
           null,
           null,
-          null,
           null
         ]
       }
     },
-    "timestamp": 1635324331
+    "timestamp": 1635324669
   }
 }
