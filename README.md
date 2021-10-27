@@ -1,4 +1,16 @@
 # PaperDeep  
+## front-end
+### Develop when building front-end
+```
+cd view-app
+npm run start
+```
+
+### Develop End, build react as static files
+```
+npm run build
+```
+this command will build the view-app static code to app/views
 
 ## Overview
 When you are drowning in enormous papers, PaperDeep advances paper search, recommending the  most relevant and significant ones.
