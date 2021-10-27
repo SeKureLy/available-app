@@ -68,6 +68,6 @@ module PaperDeep
   end
 end
 
-# test = Elsevier::ScopusAPI.new('c04c47e12dff67bb111f066d47f54115')
+# test = PaperDeep::ScopusAPI.new('c04c47e12dff67bb111f066d47f54115')
 # test.search("blockchain")
 # puts test.parse()
