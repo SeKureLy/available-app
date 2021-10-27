@@ -1,8 +1,7 @@
-require 'yaml'
-require_relative '../gateways/scopus_api'
-require_relative '../entities/paper'
+
 module PaperDeep
     class PaperMapper
+        attr_reader :raw_data
         def initialize(gh_token, gateway_class = ScopusAPI)
             @token = gh_token
             @gateway_class = gateway_class
@@ -10,11 +9,11 @@ module PaperDeep
         end
 
         def search(query)
-            @data = @gateway.search(query)
+            @raw_data = @gateway.search(query)
         end
 
         def parse
-            @data.map do |origin_hash|
+            raw_data.map do |origin_hash|
                 PaperMapper.build_entity(origin_hash)
             end
         end
@@ -26,7 +25,6 @@ module PaperDeep
     end
 
     class PaperInfo
-        # attr_reader origin_hash
     
         def initialize(paper_data)
           @origin_hash = paper_data
@@ -81,10 +79,9 @@ module PaperDeep
         end
       end
 end
-CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-API_TOKEN = CONFIG['api_key']
-instance = PaperDeep::PaperMapper.new(API_TOKEN)
-instance.search('blockchain')
-QAQ = instance.parse
-
-puts QAQ[0].content
+# CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
+# API_TOKEN = CONFIG['api_key']
+# instance = PaperDeep::PaperMapper.new(API_TOKEN)
+# instance.search('blockchain')
+# QAQ = instance.parse
+# puts QAQ[0].content
