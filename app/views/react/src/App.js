@@ -32,11 +32,11 @@ function App() {
         </Navbar.Brand>
         <Nav>
             <Nav.Item>
-              <Link to="/" style={{color: "white"}}>test</Link>
+              <Link to="/" style={{color: "white"}}>Search</Link>
             </Nav.Item>
             &nbsp;&nbsp;
             <Nav.Item>
-              <Link to="/test2" style={{color: "white"}}>test2</Link>
+              <Link to="/test2" style={{color: "white"}}>CitationTree</Link>
             </Nav.Item>
         </Nav>
       </Navbar>

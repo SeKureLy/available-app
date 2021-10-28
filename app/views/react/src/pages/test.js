@@ -47,7 +47,7 @@ function Test() {
         <>
             <br />
             <div className="App">
-                <h1>Test Search</h1>
+                <h1>Paper Search</h1>
             </div>
             <br />
             <Container>
@@ -77,6 +77,7 @@ function Test() {
                                 <th>Lead Author</th>
                                 {/* <th>Publication</th> */}
                                 <th>Paper Link</th>
+                                <th>Citedby</th>
                             </tr>
                         </thead>
                         <tbody >
@@ -88,6 +89,7 @@ function Test() {
                                 <td width="15%">{self.author}</td>
                                 {/* <td width="3%" overflow="hidden">{self.publication_name}</td> */}
                                 <td width="10%"><a href={self.paper_link} target="_blank">Scopus link</a></td>
+                                <td width="10%">{self.citedby}<br/><a href={self.citedby_link} target="_blank">Detail</a></td>
                             </tr>)}
                         </tbody>
                     </Table>
