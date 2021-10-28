@@ -2,10 +2,10 @@
 module PaperDeep
     class PaperMapper
         attr_reader :raw_data
-        def initialize(gh_token, gateway_class = ScopusAPI)
-            @token = gh_token
+        def initialize(api_key, gateway_class = ScopusAPI)
+            @api_key = api_key
             @gateway_class = gateway_class
-            @gateway = @gateway_class.new(@token)
+            @gateway = @gateway_class.new(@api_key)
         end
 
         def search(query)

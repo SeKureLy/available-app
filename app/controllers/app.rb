@@ -33,18 +33,37 @@ module PaperDeep
     #   For Apis
         routing.on 'project' do
           routing.is do
+            routing.get do
+              scopus = PaperDeep::PaperMapper.new(API_TOKEN)
+              scopus.search('blockchain')
+              scopus_parse_project = scopus.parse
+              scopus_parse_project.map do | paper|
+                paper.content
+              end.to_json
+            end
+
             # POST /project/
             routing.post do
               params = JSON.parse(routing.body.read)
-              return params["test_url"]
+    
+              scopus = PaperDeep::PaperMapper.new(API_TOKEN)
+              scopus.search(params["keyword"])
+              scopus_parse_project = scopus.parse
+              scopus_parse_project.map do | paper|
+                paper.content
+              end.to_json
             end
           end
 
-          routing.on String, String do |owner, project|
+          routing.on do
+          # routing.on String, String do |owner, project|
             # GET /project/owner/project
-            routing.get do
-              "#{owner}/#{project}"
-            end
+            # routing.get do
+            #   # "#{owner}/#{project}"
+            #   scopus_project = PaperDeep::PaperMapper
+            #   .new(c04c47e12dff67bb111f066d47f54115)
+            #   .search('blockchain')
+            # end
           end
         end
     #########################################    
