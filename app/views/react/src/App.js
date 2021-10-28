@@ -7,7 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import {Button, Navbar,Nav} from 'react-bootstrap'
-import logo from './logo.svg';
+import logo from './logo.jpg';
 import Test1 from './pages/test'
 import Test2 from './pages/test2'
 

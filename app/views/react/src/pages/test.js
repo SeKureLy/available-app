@@ -85,9 +85,9 @@ function Test() {
                                 {/* name */}
                                 <td>{self.title}</td>
                                 {/* type */}
-                                <td>{self.author}</td>
+                                <td width="15%">{self.author}</td>
                                 {/* <td width="3%" overflow="hidden">{self.publication_name}</td> */}
-                                <td><a href={self.paper_link} target="_blank">Scopus link</a></td>
+                                <td width="10%"><a href={self.paper_link} target="_blank">Scopus link</a></td>
                             </tr>)}
                         </tbody>
                     </Table>
