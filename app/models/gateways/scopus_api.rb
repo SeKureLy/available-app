@@ -38,7 +38,7 @@ module PaperDeep
       uri = URI('https://api.elsevier.com/content/search/scopus?')
       params = {
         query: query,
-        count: 2,
+        # count: 2,
         sort: 'citedby-count'
         # field: ['dc:creator', 'dc:title', 'eid', 'citedby-count', 'prism:url', 'prism:publicationName',
         #         'prism:coverDate', 'affilname'].join(',')

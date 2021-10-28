@@ -69,12 +69,14 @@ function Test() {
 
                 </Row>
                 <Row>
-                    <Table striped bordered hover size="sm" style={{ width: '85%', margin: "auto", marginTop: "1%" }}>
+                    <Table striped bordered hover size="sm" style={{ width: '85%', margin: "auto", marginTop: "1%"}}>
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>title</th>
-                                <th>link</th>
+                                <th>Title</th>
+                                <th>Lead Author</th>
+                                {/* <th>Publication</th> */}
+                                <th>Paper Link</th>
                             </tr>
                         </thead>
                         <tbody >
@@ -83,7 +85,9 @@ function Test() {
                                 {/* name */}
                                 <td>{self.title}</td>
                                 {/* type */}
-                                <td><a href={self.link} target="_blank">link</a></td>
+                                <td>{self.author}</td>
+                                {/* <td width="3%" overflow="hidden">{self.publication_name}</td> */}
+                                <td><a href={self.paper_link} target="_blank">Scopus link</a></td>
                             </tr>)}
                         </tbody>
                     </Table>
