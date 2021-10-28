@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 
-import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container } from 'react-bootstrap'
+import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container,Table } from 'react-bootstrap'
 import logo from './../logo.svg';
 
 function Test() {
     const [test1, settest1] = useState(null)
     const [query, setQuery] = useState("")
+    const [data, setData] = useState([])
+
 
     useEffect(() => {
-        PostTest()
-        GetTest()
-    }, [test1]);
+
+    });
 
     async function PostTest() {
         const requestOptions = {
@@ -18,14 +19,19 @@ function Test() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ test_url: 'github.com/qqq/www' })
+            body: JSON.stringify({ keyword: query })
         };
-        fetch('http://localhost:9292/project', requestOptions)
-            .then(async response => {
-                let result = await response.text()
-                console.log(result)
-                // settest1(result)
-            })
+        try {
+            fetch('http://localhost:9292/project', requestOptions)
+                .then(async response => {
+                    let result = await response.json()
+                    // console.log(result)
+                    setData(result)
+                })
+        } catch (e) {
+            console.log(e.message)
+        }
+
     }
 
     async function GetTest() {
@@ -50,17 +56,37 @@ function Test() {
                     <Col xs={8}>
                         <Form>
                             <Row>
-                            <Col sm="9">
-                            <FormControl  type="text" placeholder="Search Study Fields" onChange={(e) => { setQuery(e.target.value) }} />
-                            </Col>
-                            <Col sm="3">
-                            <Button variant="outline-primary" onClick={Search}>Search</Button>
-                            </Col>
+                                <Col sm="9">
+                                    <FormControl type="text" placeholder="Search Study Fields" onChange={(e) => { setQuery(e.target.value) }} />
+                                </Col>
+                                <Col sm="3">
+                                    <Button variant="outline-primary" onClick={PostTest}>Search</Button>
+                                </Col>
                             </Row>
                         </Form>
                     </Col>
                     <Col></Col>
 
+                </Row>
+                <Row>
+                    <Table striped bordered hover size="sm" style={{ width: '85%', margin: "auto", marginTop: "1%" }}>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>title</th>
+                                <th>link</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {data.map((self, index) => <tr key={index}>
+                                <td width="3%">{index}</td>
+                                {/* name */}
+                                <td>{self.title}</td>
+                                {/* type */}
+                                <td><a href={self.link} target="_blank">link</a></td>
+                            </tr>)}
+                        </tbody>
+                    </Table>
                 </Row>
             </Container>
         </>
