@@ -15,18 +15,18 @@ module PaperDeep
         resource '*', headers: :any, methods: allowed_methods
       end
     end
-    plugin :public, root: "app/views" , gzip: true
-    plugin :assets, js_dir:'app/views/static/js'#,css_dir:'app/views/static/css'
+    plugin :public, root: "app/views/built" , gzip: true
+    # plugin :assets, js_dir:'app/views/static/js'#,css_dir:'app/views/static/css'
     plugin :halt
     route do |routing|
     #########################################
     #   For render react static files
         routing.public
-        routing.assets
+        # routing.assets
     
     #   GET /
         routing.get ["","test2"] do
-          File.read("app/views/index.html")
+          File.read("app/views/built/index.html")
         end
 
     #########################################
