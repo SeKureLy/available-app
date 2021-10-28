@@ -4,9 +4,9 @@ source 'https://rubygems.org'
 
 # Web Application
 gem 'puma', '~> 5.5'
+gem 'rack-cors'
 gem 'roda', '~> 3.49'
 gem 'slim', '~> 4.1'
-gem 'rack-cors'
 
 # Validation
 gem 'dry-struct', '~> 1.4'

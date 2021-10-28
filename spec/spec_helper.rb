@@ -11,7 +11,7 @@ require 'vcr'
 require 'webmock'
 
 require_relative '../init'
-require_relative '../lib/mappers/paper_mapper'
+require_relative '../app/models/mappers/paper_mapper'
 
 RAW_CORRECT = YAML.safe_load(File.read('spec/fixtures/raw_scopus.yml'), [Symbol])
 PARSE_CORRECT = YAML.safe_load(File.read('spec/fixtures/parse_scopus.yml'), [Symbol])
