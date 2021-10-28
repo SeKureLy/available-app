@@ -12,7 +12,9 @@
 coverage/*
 !coverage/.resultset.json
 _snippets/
-
+# for node_modules in mvc and mvc-move branch
+view-app/node_modules/*
+app/views/react/node_modules/*
 # Used by dotenv library to load environment variables.
 # .env
 
