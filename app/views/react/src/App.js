@@ -28,7 +28,7 @@ function App() {
             height="30"
             className="d-inline-block align-top"
           />{' '}
-          React Bootstrap
+          PaperDeep
         </Navbar.Brand>
         <Nav>
             <Nav.Item>

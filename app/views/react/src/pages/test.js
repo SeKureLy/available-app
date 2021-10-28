@@ -1,27 +1,23 @@
 import React, { useState, useEffect } from "react";
 
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-import { Button, Navbar, Nav } from 'react-bootstrap'
+import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container } from 'react-bootstrap'
 import logo from './../logo.svg';
 
 function Test() {
     const [test1, settest1] = useState(null)
+    const [query, setQuery] = useState("")
 
     useEffect(() => {
         PostTest()
         GetTest()
-    },[test1]);
+    }, [test1]);
 
     async function PostTest() {
         const requestOptions = {
             method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({ test_url: 'github.com/qqq/www' })
         };
         fetch('http://localhost:9292/project', requestOptions)
@@ -37,23 +33,36 @@ function Test() {
         var content = await result.text()
         console.log(content)
     }
+
+    async function Search() {
+        console.log(query)
+    }
     return (
         <>
+            <br />
             <div className="App">
-                <h1>Test1</h1>
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
+                <h1>Test Search</h1>
             </div>
+            <br />
+            <Container>
+                <Row>
+                    <Col></Col>
+                    <Col xs={8}>
+                        <Form>
+                            <Row>
+                            <Col sm="9">
+                            <FormControl  type="text" placeholder="Search Study Fields" onChange={(e) => { setQuery(e.target.value) }} />
+                            </Col>
+                            <Col sm="3">
+                            <Button variant="outline-primary" onClick={Search}>Search</Button>
+                            </Col>
+                            </Row>
+                        </Form>
+                    </Col>
+                    <Col></Col>
+
+                </Row>
+            </Container>
         </>
     );
 }

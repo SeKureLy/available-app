@@ -21,6 +21,10 @@ cd view-app
 npm run start
 ```
 
+### Develop when building back-end
+```
+rack up
+```
 ### Develop End, build react as static files
 ```
 npm run build
