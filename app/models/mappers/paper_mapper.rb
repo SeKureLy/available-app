@@ -1,4 +1,7 @@
 
+require_relative '../gateways/scopus_api.rb'
+require_relative '../entities/paper.rb'
+
 module PaperDeep
     class PaperMapper
         attr_reader :raw_data
@@ -40,8 +43,14 @@ module PaperDeep
           origin_hash[:'dc:title']
         end
     
-        def link
-          origin_hash[:'prism:url']
+        def paper_link
+          scopus_part = origin_hash[:link].select { |item| item[:@ref] == 'scopus'}
+          scopus_part[0][:@href]
+        end
+
+        def citedby_link
+          citedby_part = origin_hash[:link].select { |item| item[:@ref] == 'scopus-citedby'}
+          citedby_part[0][:@href]
         end
     
         def publication_name
@@ -69,19 +78,20 @@ module PaperDeep
             PaperDeep::Entity::Paper.new(
                 eid: eid,
                 title: title,
-                link: link,
                 publication_name: publication_name,
                 date: date,
                 organization: organization,
                 citedby: citedby,
-                author: author
+                author: author,
+                paper_link: paper_link,
+                citedby_link: citedby_link
             )
         end
       end
 end
-# CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-# API_TOKEN = CONFIG['api_key']
-# instance = PaperDeep::PaperMapper.new(API_TOKEN)
+
+# instance = PaperDeep::PaperMapper.new('c04c47e12dff67bb111f066d47f54115')
 # instance.search('blockchain')
+# # puts instance.origin_hash
 # QAQ = instance.parse
 # puts QAQ[0].content

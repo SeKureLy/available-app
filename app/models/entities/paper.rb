@@ -10,7 +10,8 @@ module PaperDeep
       include Dry.Types
       attribute :eid,  Strict::String
       attribute :title,  Strict::String
-      attribute :link,  Strict::String
+      attribute :paper_link,  Strict::String
+      attribute :citedby_link,  Strict::String
       attribute :publication_name,  Strict::String
       attribute :date,  Strict::String
       attribute :organization,  Strict::String
@@ -21,7 +22,8 @@ module PaperDeep
         {
             eid: eid,
             title: title,
-            link: link,
+            paper_link: paper_link,
+            citedby_link: citedby_link,
             publication_name: publication_name,
             date: date,
             organization: organization,

@@ -4,22 +4,19 @@ require 'http'
 require 'json'
 require 'yaml'
 
-# require_relative 'metadata'
 
-# module for calling Google API
+# module for the paperdeep project 
 module PaperDeep
-#   require_relative 'paper'
 
-  # Library for Google Scholar API
+  # class for the scopus API
   class ScopusAPI
     attr_reader :search_result, :uri
 
-    # attr_accessor :uri
     # handling error
     module Errors
       # Handle not found 404
       class NotFound < StandardError; end
-      # Handle not found 401
+      # Handle unauthorized 401
       class Unauthorized < StandardError; end # rubocop:disable Layout/EmptyLineBetweenDefs
     end
 
@@ -28,17 +25,10 @@ module PaperDeep
       404 => Errors::NotFound
     }.freeze
 
-    API_PROJECT_ROOT = 'https://api.elsevier.com/content/search/scopus?'
 
     def initialize(api_key)
       @api_key = api_key
     end
-
-    # def parse
-    #   search_result.map do |origin_hash|
-    #     PaperDeep::PaperInfo.new(origin_hash).content
-    #   end
-    # end
 
     def write_uri(uri)
       @uri = uri
@@ -48,9 +38,10 @@ module PaperDeep
       uri = URI('https://api.elsevier.com/content/search/scopus?')
       params = {
         query: query,
-        sort: 'citedby-count',
-        field: ['dc:creator', 'dc:title', 'eid', 'citedby-count', 'prism:url', 'prism:publicationName',
-                'prism:coverDate', 'affilname'].join(',')
+        count: 2,
+        sort: 'citedby-count'
+        # field: ['dc:creator', 'dc:title', 'eid', 'citedby-count', 'prism:url', 'prism:publicationName',
+        #         'prism:coverDate', 'affilname'].join(',')
       }
       uri.query = URI.encode_www_form(params)
       write_uri(uri)
@@ -69,5 +60,7 @@ module PaperDeep
 end
 
 # test = PaperDeep::ScopusAPI.new('c04c47e12dff67bb111f066d47f54115')
-# test.search("blockchain")
-# puts test.parse()
+# tmp = test.search("blockchain")
+# # puts tmp[:link].select { |item| item[:@ref] == 'scopus-citedby'}
+# a = tmp[0][:link].select { |item| item[:@ref] == 'scopus-citedby'}
+# puts a[0][:@href]
