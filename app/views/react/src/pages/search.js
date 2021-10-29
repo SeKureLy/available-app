@@ -10,7 +10,7 @@ import {
 import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container,Table } from 'react-bootstrap'
 import logo from './../logo.svg';
 
-function Test() {
+function Search() {
     const { search } = useLocation()
     const urlparams = queryString.parse(search)
     const [init, setinit] = useState(false)
@@ -117,4 +117,4 @@ function Test() {
     );
 }
 
-export default Test;
+export default Search;

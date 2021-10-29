@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 import {Button, Navbar,Nav} from 'react-bootstrap'
 import logo from './logo.jpg';
-import Test1 from './pages/test'
-import Test2 from './pages/test2'
+import Search from './pages/search'
+import CitationTree from './pages/citationTree'
 import Beta from './pages/beta'
 import CitedResult from './pages/citedResult'
 
@@ -42,7 +42,7 @@ function App() {
             </Nav.Item>
             &nbsp;&nbsp;
             <Nav.Item>
-              <Link to="/test2" style={{color: "white"}}>CitationTree</Link>
+              <Link to="/citationTree" style={{color: "white"}}>CitationTree</Link>
             </Nav.Item>
             &nbsp;&nbsp;
             <Nav.Item>
@@ -57,14 +57,14 @@ function App() {
           <Route path="/citedResult">
             <CitedResult/>
           </Route>
-          <Route path="/test2">
-            <Test2/>
+          <Route path="/citationTree">
+            <CitationTree/>
           </Route>
           <Route path="/beta">
             <Beta/>
           </Route>
           <Route path="/">
-            <Test1/>
+            <Search/>
           </Route>
         </Switch>
       </div>

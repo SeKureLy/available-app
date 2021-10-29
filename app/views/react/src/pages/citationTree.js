@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import { Button, Navbar, Nav } from 'react-bootstrap'
 import logo from './../logo.svg';
 
-function Test2() {
+function CitationTree() {
 
   const StyledNode = styled.div`
   padding: 5px;
@@ -49,4 +49,4 @@ function Test2() {
   );
 }
 
-export default Test2;
+export default CitationTree;
