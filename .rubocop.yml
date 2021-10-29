@@ -8,6 +8,7 @@ AllCops:
   Include:
   - 'Gemfile'
   - 'Rakefile'
+  - '**/*.rb'
 
 
 # ignore block length in test code only
