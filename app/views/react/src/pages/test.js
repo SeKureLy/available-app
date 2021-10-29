@@ -10,7 +10,7 @@ import {
 import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container,Table } from 'react-bootstrap'
 import logo from './../logo.svg';
 
-function Test() {
+function Test(props) {
     const { search } = useLocation()
     const urlparams = queryString.parse(search)
     const [init, setinit] = useState(false)
@@ -38,17 +38,18 @@ function Test() {
             },
             body: JSON.stringify({ keyword: keyword })
         };
+        props.setLoading(true)
         try {
             fetch('http://localhost:9292/project', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     // console.log(result)
                     setData(result)
+                    props.setLoading(false)
                 })
         } catch (e) {
             console.log(e.message)
         }
-
     }
 
     async function GetTest() {
@@ -62,6 +63,8 @@ function Test() {
     }
     return (
         <>
+ 
+            
             <br />
             <div className="App">
                 <h1>Paper Search</h1>
@@ -113,6 +116,7 @@ function Test() {
                     </Table>
                 </Row>
             </Container>
+
         </>
     );
 }

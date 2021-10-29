@@ -11,15 +11,23 @@ import logo from './logo.jpg';
 import Test1 from './pages/test'
 import Test2 from './pages/test2'
 import CitedResult from './pages/citedResult'
+import LoadingOverlay from 'react-loading-overlay';
 
 import './App.css';
 
 function App() {
+  const [loading,setLoading] = useState(false)
+
   return (
     <>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
     <Router> 
-      <div>
+    <LoadingOverlay
+            active={loading}
+            spinner
+            text='Loading...'
+            >
+      <div style={{ height: "100vh"}}>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="/">
           <img
@@ -50,16 +58,19 @@ function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/citedResult">
-            <CitedResult/>
+            <CitedResult setLoading={setLoading}/>
           </Route>
           <Route path="/test2">
-            <Test2/>
+            <Test2 setLoading={setLoading}/>
           </Route>
           <Route path="/">
-            <Test1/>
+            <Test1 setLoading={setLoading}/>
           </Route>
         </Switch>
-      </div>
+    </div>
+      
+      </LoadingOverlay>
+
     </Router>
     
     </>

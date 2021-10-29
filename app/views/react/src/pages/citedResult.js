@@ -11,14 +11,14 @@ import {
 import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container,Table } from 'react-bootstrap'
 import logo from './../logo.svg';
 
-function CitedResult() {
+function CitedResult(props) {
     const { search } = useLocation()
     const urlparams = queryString.parse(search)
     const [init, setinit] = useState(false)
     const [query, setQuery] = useState("")
     const [data, setData] = useState([])
 
-    
+
     useEffect(() => {
         console.log(urlparams.query)
         if(urlparams.query){
@@ -39,12 +39,14 @@ function CitedResult() {
             },
             body: JSON.stringify({ keyword: keyword })
         };
+        props.setLoading(true)
         try {
             fetch('http://localhost:9292/project', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     // console.log(result)
                     setData(result)
+                    props.setLoading(false)
                 })
         } catch (e) {
             console.log(e.message)

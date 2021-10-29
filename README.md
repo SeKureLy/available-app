@@ -15,6 +15,10 @@ cd app/views/react
 npm init
 npm i
 ```
+if npm i fail
+```
+npm i react-loading-overlay --legacy-peer-deps
+```
 ### Develop when building front-end
 ```
 cd app/views/react
