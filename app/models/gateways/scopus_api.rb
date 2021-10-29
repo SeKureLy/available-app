@@ -4,10 +4,8 @@ require 'http'
 require 'json'
 require 'yaml'
 
-
-# module for the paperdeep project 
+# module for the paperdeep project
 module PaperDeep
-
   # class for the scopus API
   class ScopusAPI
     attr_reader :search_result, :uri
@@ -24,7 +22,6 @@ module PaperDeep
       401 => Errors::Unauthorized,
       404 => Errors::NotFound
     }.freeze
-
 
     def initialize(api_key)
       @api_key = api_key
