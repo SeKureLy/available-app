@@ -1,25 +1,36 @@
 import React, { useState, useEffect } from "react";
-
+import queryString from 'query-string'
+import { useLocation } from 'react-router-dom'
 import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container,Table } from 'react-bootstrap'
 import logo from './../logo.svg';
 
 function Test() {
-    const [test1, settest1] = useState(null)
+    const { search } = useLocation()
+    const urlparams = queryString.parse(search)
+    const [init, setinit] = useState(false)
     const [query, setQuery] = useState("")
     const [data, setData] = useState([])
 
 
     useEffect(() => {
+        console.log(urlparams.query)
+        if(urlparams.query){
+            PostTest(urlparams.query)
+            setQuery(urlparams.query)
+        }
+    },[init]);
 
-    });
-
-    async function PostTest() {
+    async function PostTest(keyword) {
+        if(!keyword){
+            alert("query con not be null!")
+            return
+        }
         const requestOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ keyword: query })
+            body: JSON.stringify({ keyword: keyword })
         };
         try {
             fetch('http://localhost:9292/project', requestOptions)
@@ -57,10 +68,10 @@ function Test() {
                         <Form>
                             <Row>
                                 <Col sm="9">
-                                    <FormControl type="text" placeholder="Search Study Fields" onChange={(e) => { setQuery(e.target.value) }} />
+                                    <FormControl type="text" placeholder="Search Study Fields" value={query} onChange={(e) => { setQuery(e.target.value) }} />
                                 </Col>
                                 <Col sm="3">
-                                    <Button variant="outline-primary" onClick={PostTest}>Search</Button>
+                                    <Button variant="outline-primary" onClick={() =>{PostTest(query)}}>Search</Button>
                                 </Col>
                             </Row>
                         </Form>
