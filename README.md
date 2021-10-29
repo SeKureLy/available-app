@@ -1,4 +1,39 @@
 # PaperDeep  
+## front-end
+### set-up
+* install nvm
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+```
+reopen terminal and install nodejs
+```
+nvm install --lts
+```
+open project,init npm and download packages
+```
+cd app/views/react
+npm init
+npm i
+```
+if npm i fail
+```
+npm i react-loading-overlay --legacy-peer-deps
+```
+### Develop when building front-end
+```
+cd app/views/react
+npm run start
+```
+
+### Develop when building back-end
+```
+rackup || bundle exec rackup
+```
+### Develop End, build react as static files
+```
+npm run build
+```
+this command will build the view-app static code to app/views/built
 
 ## Overview
 When you are drowning in enormous papers, PaperDeep advances paper search, recommending the  most relevant and significant ones.

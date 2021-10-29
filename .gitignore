@@ -8,11 +8,11 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
-/config/
+/config/secrets.yml
 coverage/*
 !coverage/.resultset.json
 _snippets/
-
+/app/views/react/node_modules/*
 # Used by dotenv library to load environment variables.
 # .env
 
