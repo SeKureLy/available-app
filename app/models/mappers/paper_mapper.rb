@@ -37,41 +37,61 @@ module PaperDeep
     
         def eid
           origin_hash[:eid]
+        rescue
+          "NULL"
         end
     
         def title
           origin_hash[:'dc:title']
+        rescue
+          "NULL"
         end
     
         def paper_link
           scopus_part = origin_hash[:link].select { |item| item[:@ref] == 'scopus'}
           scopus_part[0][:@href]
+        rescue
+          "NULL"
         end
 
         def citedby_link
           citedby_part = origin_hash[:link].select { |item| item[:@ref] == 'scopus-citedby'}
           citedby_part[0][:@href]
+        rescue
+          "NULL"
         end
     
         def publication_name
           origin_hash[:'prism:publicationName']
+        rescue
+          "NULL"
         end
     
         def date
           origin_hash[:'prism:coverDate']
+        rescue
+          "NULL"
         end
     
         def organization
+          # if origin_hash[:affiliation].nil?
           organization_list = origin_hash[:affiliation].map { |item| item[:affilname]}
-          organization_list.join(',')
+          return organization_list.join(',')
+
+          rescue
+            "NULL"
         end
     
         def citedby
           origin_hash[:'citedby-count'].to_i
+        rescue
+          "NULL"
         end
     
         def author
           origin_hash[:'dc:creator']
+        rescue
+          "NULL"
         end
     
         def build_entity
@@ -91,7 +111,8 @@ module PaperDeep
 end
 
 # instance = PaperDeep::PaperMapper.new('c04c47e12dff67bb111f066d47f54115')
-# instance.search('blockchain')
-# # puts instance.origin_hash
+# instance.search('ml')
+# # puts instance.raw_data
 # QAQ = instance.parse
-# puts QAQ[0].content
+# # puts QAQ[0].content
+# QAQ.each { |item| puts item.content}

@@ -89,13 +89,13 @@ function Search(props) {
 
                 </Row>
                 <Row>
-                    <Table striped bordered hover size="sm" style={{ width: '85%', margin: "auto", marginTop: "1%"}}>
+                    <Table striped bordered hover size="sm" style={{ width: '100%', margin: "auto", marginTop: "1%"}}>
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Title</th>
                                 <th>Lead Author</th>
-                                {/* <th>Publication</th> */}
+                                <th>Organization</th>
                                 <th>Paper Link</th>
                                 <th>Citedby</th>
                             </tr>
@@ -106,8 +106,8 @@ function Search(props) {
                                 {/* name */}
                                 <td>{self.title}</td>
                                 {/* type */}
-                                <td width="15%">{self.author}</td>
-                                {/* <td width="3%" overflow="hidden">{self.publication_name}</td> */}
+                                <td width="10%">{self.author}</td>
+                                <td width="15%" overflow="hidden">{self.organization}</td>
                                 <td width="10%"><a href={self.paper_link} target="_blank">Scopus link</a></td>
                                 {/* <td width="10%">{self.citedby}<br/><a href={self.citedby_link} target="_blank">Detail</a></td> */}
                                 <td width="10%"><Link to={`/citedResult/?query=ref(${self.eid})`}>{self.citedby}</Link></td>
