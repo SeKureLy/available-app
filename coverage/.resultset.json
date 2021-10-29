@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/su/PaperDeep/init.rb": {
+      "/home/sycheng/rb_project/PaperDeep/init.rb": {
         "lines": [
           null,
           null,
@@ -10,14 +10,14 @@
           null
         ]
       },
-      "/home/su/PaperDeep/config/init.rb": {
+      "/home/sycheng/rb_project/PaperDeep/config/init.rb": {
         "lines": [
           null,
           null,
           1
         ]
       },
-      "/home/su/PaperDeep/config/environment.rb": {
+      "/home/sycheng/rb_project/PaperDeep/config/environment.rb": {
         "lines": [
           null,
           null,
@@ -33,7 +33,7 @@
           null
         ]
       },
-      "/home/su/PaperDeep/app/init.rb": {
+      "/home/sycheng/rb_project/PaperDeep/app/init.rb": {
         "lines": [
           null,
           null,
@@ -42,7 +42,7 @@
           null
         ]
       },
-      "/home/su/PaperDeep/app/models/init.rb": {
+      "/home/sycheng/rb_project/PaperDeep/app/models/init.rb": {
         "lines": [
           null,
           null,
@@ -54,7 +54,7 @@
           null
         ]
       },
-      "/home/su/PaperDeep/app/models/entities/paper.rb": {
+      "/home/sycheng/rb_project/PaperDeep/app/models/entities/paper.rb": {
         "lines": [
           null,
           null,
@@ -64,6 +64,7 @@
           1,
           1,
           null,
+          1,
           1,
           1,
           1,
@@ -89,10 +90,11 @@
           null,
           null,
           null,
+          null,
           null
         ]
       },
-      "/home/su/PaperDeep/app/models/gateways/scopus_api.rb": {
+      "/home/sycheng/rb_project/PaperDeep/app/models/gateways/scopus_api.rb": {
         "lines": [
           null,
           null,
@@ -102,14 +104,11 @@
           null,
           null,
           null,
-          null,
           1,
-          null,
           null,
           null,
           1,
           1,
-          null,
           null,
           null,
           1,
@@ -124,18 +123,11 @@
           null,
           null,
           null,
-          1,
           null,
           1,
           2,
           null,
           null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
           1,
           9,
           null,
@@ -144,6 +136,7 @@
           9,
           null,
           9,
+          null,
           null,
           null,
           null,
@@ -166,11 +159,16 @@
           null,
           null,
           null,
+          null,
+          null,
           null
         ]
       },
-      "/home/su/PaperDeep/app/models/mappers/paper_mapper.rb": {
+      "/home/sycheng/rb_project/PaperDeep/app/models/mappers/paper_mapper.rb": {
         "lines": [
+          null,
+          1,
+          1,
           null,
           1,
           1,
@@ -214,6 +212,12 @@
           null,
           null,
           1,
+          516,
+          100,
+          null,
+          null,
+          1,
+          516,
           100,
           null,
           null,
@@ -226,7 +230,7 @@
           null,
           null,
           1,
-          400,
+          204,
           100,
           null,
           null,
@@ -240,6 +244,7 @@
           null,
           1,
           100,
+          null,
           null,
           null,
           null,
@@ -260,16 +265,17 @@
           null
         ]
       },
-      "/home/su/PaperDeep/app/controllers/init.rb": {
+      "/home/sycheng/rb_project/PaperDeep/app/controllers/init.rb": {
         "lines": [
           null,
           null,
           1,
           2,
+          2,
           null
         ]
       },
-      "/home/su/PaperDeep/app/controllers/app.rb": {
+      "/home/sycheng/rb_project/PaperDeep/app/controllers/app.rb": {
         "lines": [
           null,
           null,
@@ -289,15 +295,27 @@
           null,
           null,
           1,
+          null,
           1,
           1,
-          1,
+          null,
+          null,
+          0,
+          null,
           null,
           null,
           0,
           0,
           null,
           null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           0,
           0,
           null,
@@ -310,13 +328,20 @@
           0,
           0,
           0,
+          0,
+          0,
+          null,
           null,
           null,
           null,
           0,
           null,
-          0,
-          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           null,
           null,
@@ -327,6 +352,6 @@
         ]
       }
     },
-    "timestamp": 1635401604
+    "timestamp": 1635450066
   }
 }
