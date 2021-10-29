@@ -18,7 +18,7 @@ function CitedResult() {
     const [query, setQuery] = useState("")
     const [data, setData] = useState([])
 
-
+    
     useEffect(() => {
         console.log(urlparams.query)
         if(urlparams.query){
@@ -61,6 +61,12 @@ function CitedResult() {
     async function Search() {
         console.log(query)
     }
+
+    function reloadnewurl(url,eid){
+        setQuery(eid)
+        PostTest(eid)
+    }
+
     return (
         <>
             <br />
@@ -108,7 +114,7 @@ function CitedResult() {
                                 {/* <td width="3%" overflow="hidden">{self.publication_name}</td> */}
                                 <td width="10%"><a href={self.paper_link} target="_blank">Scopus link</a></td>
                                 {/* <td width="10%">{self.citedby}<br/><a href={self.citedby_link} target="_blank">Detail</a></td> */}
-                                <td width="10%"><Link to={`/citedResult/?query=ref(${self.eid})`}>{self.citedby}</Link></td>
+                                <td width="10%"><Link to={`/citedResult/?query=ref(${self.eid})`} onClick={()=>{reloadnewurl(`/citedResult/?query=ref(${self.eid})`,`ref(${self.eid})`)}}>{self.citedby}</Link></td>
                             </tr>)}
                         </tbody>
                     </Table>

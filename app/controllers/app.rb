@@ -25,7 +25,15 @@ module PaperDeep
         # routing.assets
     
     #   GET /
-        routing.get ["","test2"] do
+        routing.root do
+          File.read("app/views/built/index.html")
+        end
+
+        routing.on 'test2'do
+          File.read("app/views/built/index.html")
+        end
+
+        routing.on 'citedResult'do
           File.read("app/views/built/index.html")
         end
 
