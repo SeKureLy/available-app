@@ -10,6 +10,7 @@ import {Button, Navbar,Nav} from 'react-bootstrap'
 import logo from './logo.jpg';
 import Test1 from './pages/test'
 import Test2 from './pages/test2'
+import CitedResult from './pages/citedResult'
 
 import './App.css';
 
@@ -36,6 +37,10 @@ function App() {
             </Nav.Item>
             &nbsp;&nbsp;
             <Nav.Item>
+              <Link to="/citedResult" style={{color: "white"}}>CitedResult</Link>
+            </Nav.Item>
+            &nbsp;&nbsp;
+            <Nav.Item>
               <Link to="/test2" style={{color: "white"}}>CitationTree</Link>
             </Nav.Item>
         </Nav>
@@ -44,7 +49,9 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          
+          <Route path="/citedResult">
+            <CitedResult/>
+          </Route>
           <Route path="/test2">
             <Test2/>
           </Route>

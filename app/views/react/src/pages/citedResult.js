@@ -4,13 +4,14 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect,
     useLocation,
     Link
   } from "react-router-dom";
 import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container,Table } from 'react-bootstrap'
 import logo from './../logo.svg';
 
-function Test() {
+function CitedResult() {
     const { search } = useLocation()
     const urlparams = queryString.parse(search)
     const [init, setinit] = useState(false)
@@ -64,7 +65,7 @@ function Test() {
         <>
             <br />
             <div className="App">
-                <h1>Paper Search</h1>
+                <h1>Cited Papers</h1>
             </div>
             <br />
             <Container>
@@ -117,4 +118,4 @@ function Test() {
     );
 }
 
-export default Test;
+export default CitedResult;
