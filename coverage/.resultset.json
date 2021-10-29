@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/sycheng/rb_project/PaperDeep/init.rb": {
+      "/Users/juihungkao/PaperDeep/init.rb": {
         "lines": [
           null,
           null,
@@ -10,14 +10,14 @@
           null
         ]
       },
-      "/home/sycheng/rb_project/PaperDeep/config/init.rb": {
+      "/Users/juihungkao/PaperDeep/config/init.rb": {
         "lines": [
           null,
           null,
           1
         ]
       },
-      "/home/sycheng/rb_project/PaperDeep/config/environment.rb": {
+      "/Users/juihungkao/PaperDeep/config/environment.rb": {
         "lines": [
           null,
           null,
@@ -33,7 +33,7 @@
           null
         ]
       },
-      "/home/sycheng/rb_project/PaperDeep/app/init.rb": {
+      "/Users/juihungkao/PaperDeep/app/init.rb": {
         "lines": [
           null,
           null,
@@ -42,7 +42,7 @@
           null
         ]
       },
-      "/home/sycheng/rb_project/PaperDeep/app/models/init.rb": {
+      "/Users/juihungkao/PaperDeep/app/models/init.rb": {
         "lines": [
           null,
           null,
@@ -54,7 +54,7 @@
           null
         ]
       },
-      "/home/sycheng/rb_project/PaperDeep/app/models/entities/paper.rb": {
+      "/Users/juihungkao/PaperDeep/app/models/entities/paper.rb": {
         "lines": [
           null,
           null,
@@ -92,7 +92,7 @@
           null
         ]
       },
-      "/home/sycheng/rb_project/PaperDeep/app/models/gateways/scopus_api.rb": {
+      "/Users/juihungkao/PaperDeep/app/models/gateways/scopus_api.rb": {
         "lines": [
           null,
           null,
@@ -159,7 +159,7 @@
           null
         ]
       },
-      "/home/sycheng/rb_project/PaperDeep/app/models/mappers/paper_mapper.rb": {
+      "/Users/juihungkao/PaperDeep/app/models/mappers/paper_mapper.rb": {
         "lines": [
           null,
           null,
@@ -193,7 +193,6 @@
           null,
           null,
           1,
-          null,
           1,
           100,
           null,
@@ -285,7 +284,7 @@
           null
         ]
       },
-      "/home/sycheng/rb_project/PaperDeep/app/controllers/init.rb": {
+      "/Users/juihungkao/PaperDeep/app/controllers/init.rb": {
         "lines": [
           null,
           null,
@@ -295,7 +294,7 @@
           null
         ]
       },
-      "/home/sycheng/rb_project/PaperDeep/app/controllers/app.rb": {
+      "/Users/juihungkao/PaperDeep/app/controllers/app.rb": {
         "lines": [
           null,
           null,
