@@ -8,8 +8,9 @@ import {
 } from "react-router-dom";
 import {Button, Navbar,Nav} from 'react-bootstrap'
 import logo from './logo.jpg';
-import Test1 from './pages/test'
-import Test2 from './pages/test2'
+import Search from './pages/search'
+import CitationTree from './pages/citationTree'
+import Beta from './pages/beta'
 import CitedResult from './pages/citedResult'
 import LoadingOverlay from 'react-loading-overlay';
 
@@ -49,7 +50,11 @@ function App() {
             </Nav.Item>
             &nbsp;&nbsp;
             <Nav.Item>
-              <Link to="/test2" style={{color: "white"}}>CitationTree</Link>
+              <Link to="/citationTree" style={{color: "white"}}>CitationTree</Link>
+            </Nav.Item>
+            &nbsp;&nbsp;
+            <Nav.Item>
+              <Link to="/beta" style={{color: "white"}}>Beta</Link>
             </Nav.Item>
         </Nav>
       </Navbar>
@@ -60,11 +65,14 @@ function App() {
           <Route path="/citedResult">
             <CitedResult setLoading={setLoading}/>
           </Route>
-          <Route path="/test2">
-            <Test2 setLoading={setLoading}/>
+          <Route path="/citationTree">
+            <CitationTree setLoading={setLoading}/>
+          </Route>
+          <Route path="/beta">
+            <Beta setLoading={setLoading}/>
           </Route>
           <Route path="/">
-            <Test1 setLoading={setLoading}/>
+            <Search setLoading={setLoading}/>
           </Route>
         </Switch>
     </div>
