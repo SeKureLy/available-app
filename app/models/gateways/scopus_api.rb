@@ -56,7 +56,7 @@ module PaperDeep
   end
 end
 
-# test = PaperDeep::ScopusAPI.new('c04c47e12dff67bb111f066d47f54115')
+# test = PaperDeep::ScopusAPI.new(API_TOKEN)
 # tmp = test.search("blockchain")
 # # puts tmp[:link].select { |item| item[:@ref] == 'scopus-citedby'}
 # a = tmp[0][:link].select { |item| item[:@ref] == 'scopus-citedby'}

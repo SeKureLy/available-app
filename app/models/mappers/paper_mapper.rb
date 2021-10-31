@@ -110,7 +110,7 @@ module PaperDeep
   end
 end
 
-# instance = PaperDeep::PaperMapper.new('c04c47e12dff67bb111f066d47f54115')
+# instance = PaperDeep::PaperMapper.new(API_TOKEN)
 # instance.search('ml')
 # # puts instance.raw_data
 # QAQ = instance.parse

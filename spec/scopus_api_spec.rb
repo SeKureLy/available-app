@@ -18,8 +18,8 @@ describe 'Tests Scopus API library with cassette' do
     c.cassette_library_dir = CASSETTES_FOLDER
     c.hook_into :webmock
 
-    c.filter_sensitive_data('<SCOPUS_API_TOKEN>') { API_TOKEN }
-    c.filter_sensitive_data('<SCOPUS_API_TOKEN_ESC>') { CGI.escape(API_TOKEN) }
+    c.filter_sensitive_data('SCOPUS_API_TOKEN') { API_TOKEN }
+    c.filter_sensitive_data('SCOPUS_API_TOKEN_ESC') { CGI.escape(API_TOKEN) }
   end
 
   before do
