@@ -2,262 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.elsevier.com/content/search/scopus?field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname&query=Blockchain&sort=citedby-count
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      X-Els-Apikey:
-      - bad token
-      Connection:
-      - close
-      Host:
-      - api.elsevier.com
-      User-Agent:
-      - http.rb/5.0.4
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      Date:
-      - Fri, 22 Oct 2021 14:33:44 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '100'
-      Connection:
-      - close
-      X-Els-Reqid:
-      - 0f0b4fbfba0e0486
-      X-Els-Transid:
-      - '089e72a121753d9c'
-      Cf-Cache-Status:
-      - DYNAMIC
-      Expect-Ct:
-      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 6a23713c78416a8a-TPE
-    body:
-      encoding: ASCII-8BIT
-      string: '{"error-response":{"error-code":"APIKEY_INVALID","error-message":"The
-        provided apiKey is invalid."}}'
-  recorded_at: Fri, 22 Oct 2021 14:33:43 GMT
-- request:
-    method: get
-    uri: https://api.elsevier.com/content/search/scopus?field=dc:creator,dc:title,eid,citedby-count,prism:url,prism:publicationName,prism:coverDate,affilname&query=blockchain&sort=citedby-count
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      X-Els-Apikey:
-      - "<SCOPUS_API_TOKEN>"
-      Connection:
-      - close
-      Host:
-      - api.elsevier.com
-      User-Agent:
-      - http.rb/5.0.4
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 22 Oct 2021 14:33:46 GMT
-      Content-Type:
-      - application/json;charset=UTF-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - close
-      Allow:
-      - GET
-      Vary:
-      - Accept-Encoding
-      - Access-Control-Request-Headers
-      - Access-Control-Request-Method
-      - Origin
-      X-Els-Apikey:
-      - "<SCOPUS_API_TOKEN>"
-      X-Els-Reqid:
-      - d1c0454f58665b06
-      X-Els-Resourceversion:
-      - default
-      X-Els-Status:
-      - OK
-      X-Els-Transid:
-      - d5ad89093c8084b9
-      X-Ratelimit-Limit:
-      - '20000'
-      X-Ratelimit-Remaining:
-      - '19989'
-      X-Ratelimit-Reset:
-      - '1635470767000'
-      Cf-Cache-Status:
-      - DYNAMIC
-      Expect-Ct:
-      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 6a2371436e9b4105-TPE
-    body:
-      encoding: UTF-8
-      string: '{"search-results":{"opensearch:totalResults":"48202","opensearch:startIndex":"0","opensearch:itemsPerPage":"25","opensearch:Query":{"@role":
-        "request", "@searchTerms": "blockchain", "@startPage": "0"},"link": [{"@_fa":
-        "true", "@ref": "self", "@href": "https://api.elsevier.com/content/search/scopus?start=0&count=25&query=blockchain&sort=citedby-count&field=dc%3Acreator%2Cdc%3Atitle%2Ceid%2Ccitedby-count%2Cprism%3Aurl%2Cprism%3ApublicationName%2Cprism%3AcoverDate%2Caffilname",
-        "@type": "application/json"},{"@_fa": "true", "@ref": "first", "@href": "https://api.elsevier.com/content/search/scopus?start=0&count=25&query=blockchain&sort=citedby-count&field=dc%3Acreator%2Cdc%3Atitle%2Ceid%2Ccitedby-count%2Cprism%3Aurl%2Cprism%3ApublicationName%2Cprism%3AcoverDate%2Caffilname",
-        "@type": "application/json"},{"@_fa": "true", "@ref": "next", "@href": "https://api.elsevier.com/content/search/scopus?start=25&count=25&query=blockchain&sort=citedby-count&field=dc%3Acreator%2Cdc%3Atitle%2Ceid%2Ccitedby-count%2Cprism%3Aurl%2Cprism%3ApublicationName%2Cprism%3AcoverDate%2Caffilname",
-        "@type": "application/json"},{"@_fa": "true", "@ref": "last", "@href": "https://api.elsevier.com/content/search/scopus?start=4975&count=25&query=blockchain&sort=citedby-count&field=dc%3Acreator%2Cdc%3Atitle%2Ceid%2Ccitedby-count%2Cprism%3Aurl%2Cprism%3ApublicationName%2Cprism%3AcoverDate%2Caffilname",
-        "@type": "application/json"}],"entry": [{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84979828304","eid":"2-s2.0-84979828304","dc:title":"Blockchains
-        and Smart Contracts for the Internet of Things","dc:creator":"Christidis K.","prism:publicationName":"IEEE
-        Access","prism:coverDate":"2016-01-01","citedby-count":"1802","affiliation":
-        [{"@_fa": "true", "affilname":"NC State University"}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85019665012","eid":"2-s2.0-85019665012","dc:title":"An
-        Overview of Blockchain Technology: Architecture, Consensus, and Future Trends","dc:creator":"Zheng
-        Z.","prism:publicationName":"Proceedings - 2017 IEEE 6th International Congress
-        on Big Data, BigData Congress 2017","prism:coverDate":"2017-09-07","citedby-count":"1275","affiliation":
-        [{"@_fa": "true", "affilname":"National Key Laboratory for Parallel and Distributed
-        Processing"},{"@_fa": "true", "affilname":"Macau University of Science and
-        Technology"},{"@_fa": "true", "affilname":"Sun Yat-Sen University"}]},{"@_fa":
-        "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84945945234","eid":"2-s2.0-84945945234","dc:title":"Decentralizing
-        privacy: Using blockchain to protect personal data","dc:creator":"Zyskind
-        G.","prism:publicationName":"Proceedings - 2015 IEEE Security and Privacy
-        Workshops, SPW 2015","prism:coverDate":"2015-07-17","citedby-count":"1205","affiliation":
-        [{"@_fa": "true", "affilname":"Tel Aviv University"},{"@_fa": "true", "affilname":"MIT
-        Media Lab"}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84987677692","eid":"2-s2.0-84987677692","dc:title":"Hawk:
-        The Blockchain Model of Cryptography and Privacy-Preserving Smart Contracts","dc:creator":"Kosba
-        A.","prism:publicationName":"Proceedings - 2016 IEEE Symposium on Security
-        and Privacy, SP 2016","prism:coverDate":"2016-08-16","citedby-count":"1014","affiliation":
-        [{"@_fa": "true", "affilname":"University of Maryland, College Park"},{"@_fa":
-        "true", "affilname":"Cornell University"}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85035321551","eid":"2-s2.0-85035321551","dc:title":"IoT
-        security: Review, blockchain solutions, and open challenges","dc:creator":"Khan
-        M.A.","prism:publicationName":"Future Generation Computer Systems","prism:coverDate":"2018-05-01","citedby-count":"868","affiliation":
-        [{"@_fa": "true", "affilname":"Khalifa University of Science and Technology"},{"@_fa":
-        "true", "affilname":"Bahauddin Zakariya University"}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85050874028","eid":"2-s2.0-85050874028","dc:title":"Hyperledger
-        Fabric: A Distributed Operating System for Permissioned Blockchains","dc:creator":"Androulaki
-        E.","prism:publicationName":"Proceedings of the 13th EuroSys Conference, EuroSys
-        2018","prism:coverDate":"2018-04-23","citedby-count":"867","affiliation":
-        [{"@_fa": "true", "affilname":"International Business Machines"}]},{"@_fa":
-        "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84991717011","eid":"2-s2.0-84991717011","dc:title":"MedRec:
-        Using blockchain for medical data access and permission management","dc:creator":"Azaria
-        A.","prism:publicationName":"Proceedings - 2016 2nd International Conference
-        on Open and Big Data, OBD 2016","prism:coverDate":"2016-09-21","citedby-count":"863","affiliation":
-        [{"@_fa": "true", "affilname":"Massachusetts Institute of Technology"}]},{"@_fa":
-        "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85064005739","eid":"2-s2.0-85064005739","dc:title":"Industry
-        4.0: State of the art and future trends","dc:creator":"Xu L.D.","prism:publicationName":"International
-        Journal of Production Research","prism:coverDate":"2018-01-01","citedby-count":"861","affiliation":
-        [{"@_fa": "true", "affilname":"Carlson School of Management"},{"@_fa": "true",
-        "affilname":"Old Dominion University"}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85055257106","eid":"2-s2.0-85055257106","dc:title":"Blockchain
-        challenges and opportunities: A survey","dc:creator":"Zheng Z.","prism:publicationName":"International
-        Journal of Web and Grid Services","prism:coverDate":"2018-01-01","citedby-count":"813","affiliation":
-        [{"@_fa": "true", "affilname":"National Key Laboratory for Parallel and Distributed
-        Processing"},{"@_fa": "true", "affilname":"Macau University of Science and
-        Technology"},{"@_fa": "true", "affilname":"Sun Yat-Sen University"}]},{"@_fa":
-        "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85019031448","eid":"2-s2.0-85019031448","dc:title":"Blockchain
-        for IoT security and privacy: The case study of a smart home","dc:creator":"Dorri
-        A.","prism:publicationName":"2017 IEEE International Conference on Pervasive
-        Computing and Communications Workshops, PerCom Workshops 2017","prism:coverDate":"2017-05-02","citedby-count":"782","affiliation":
-        [{"@_fa": "true", "affilname":"Tata Consultancy Services India"},{"@_fa":
-        "true", "affilname":"Commonwealth Scientific and Industrial Research Organization"},{"@_fa":
-        "true", "affilname":"UNSW Sydney"}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84991447929","eid":"2-s2.0-84991447929","dc:title":"Where
-        is current research on Blockchain technology? - A systematic review","dc:creator":"Yli-Huumo
-        J.","prism:publicationName":"PLoS ONE","prism:coverDate":"2016-10-01","citedby-count":"766","affiliation":
-        [{"@_fa": "true", "affilname":"Aalto University"},{"@_fa": "true", "affilname":"Sogang
-        University"},{"@_fa": "true", "affilname":"LUT University"}]},{"@_fa": "true",
-        "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84985991912","eid":"2-s2.0-84985991912","dc:title":"Bitcoin
-        and beyond: A technical survey on decentralized digital currencies","dc:creator":"Tschorsch
-        F.","prism:publicationName":"IEEE Communications Surveys and Tutorials","prism:coverDate":"2016-07-01","citedby-count":"744","affiliation":
-        [{"@_fa": "true", "affilname":"Humboldt-Universität zu Berlin"}]},{"@_fa":
-        "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84995404927","eid":"2-s2.0-84995404927","dc:title":"Making
-        smart contracts smarter","dc:creator":"Luu L.","prism:publicationName":"Proceedings
-        of the ACM Conference on Computer and Communications Security","prism:coverDate":"2016-10-24","citedby-count":"735","affiliation":
-        [{"@_fa": "true", "affilname":"Yale NUS College"},{"@_fa": "true", "affilname":"National
-        University of Singapore"}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85061188595","eid":"2-s2.0-85061188595","dc:title":"Federated
-        machine learning: Concept and applications","dc:creator":"Yang Q.","prism:publicationName":"ACM
-        Transactions on Intelligent Systems and Technology","prism:coverDate":"2019-01-01","citedby-count":"684","affiliation":
-        [{"@_fa": "true", "affilname":"Beihang University"},{"@_fa": "true", "affilname":"Hong
-        Kong University of Science and Technology"}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85071147013","eid":"2-s2.0-85071147013","dc:title":"Bitcoin-NG:
-        A scalable blockchain protocol","dc:creator":"Eyal I.","prism:publicationName":"Proceedings
-        of the 13th USENIX Symposium on Networked Systems Design and Implementation,
-        NSDI 2016","prism:coverDate":"2016-01-01","citedby-count":"609","affiliation":
-        [{"@_fa": "true", "affilname":"Cornell University"}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85018630011","eid":"2-s2.0-85018630011","dc:title":"A
-        survey of attacks on Ethereum smart contracts (SoK)","dc:creator":"Atzei N.","prism:publicationName":"Lecture
-        Notes in Computer Science (including subseries Lecture Notes in Artificial
-        Intelligence and Lecture Notes in Bioinformatics)","prism:coverDate":"2017-01-01","citedby-count":"609","affiliation":
-        [{"@_fa": "true", "affilname":"Università degli Studi di Cagliari"}]},{"@_fa":
-        "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85018292153","eid":"2-s2.0-85018292153","dc:title":"The
-        truth about blockchain","dc:creator":"Iansiti M.","prism:publicationName":"Harvard
-        Business Review","prism:coverDate":"2017-01-01","citedby-count":"603","affiliation":
-        [{"@_fa": "true", "affilname":"Harvard Business School"}]},{"@_fa": "true",
-        "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85021106763","eid":"2-s2.0-85021106763","dc:title":"Designing
-        microgrid energy markets: A case study: The Brooklyn Microgrid","dc:creator":"Mengelkamp
-        E.","prism:publicationName":"Applied Energy","prism:coverDate":"2018-01-15","citedby-count":"593","affiliation":
-        [{"@_fa": "true", "affilname":"Karlsruher Institut für Technologie"}]},{"@_fa":
-        "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85045190865","eid":"2-s2.0-85045190865","dc:title":"Opportunities
-        and obstacles for deep learning in biology and medicine","dc:creator":"Ching
-        T.","prism:publicationName":"Journal of the Royal Society Interface","prism:coverDate":"2018-01-01","citedby-count":"592","affiliation":
-        [{"@_fa": "true", "affilname":"Toyota Technological Institute at Chicago"},{"@_fa":
-        "true", "affilname":"University of Michigan Medical School"},{"@_fa": "true",
-        "affilname":"University of Wisconsin-Madison"},{"@_fa": "true", "affilname":"National
-        Institute of Environmental Health Sciences (NIEHS)"},{"@_fa": "true", "affilname":"University
-        of Colorado School of Medicine"},{"@_fa": "true", "affilname":"Carnegie Mellon
-        University"},{"@_fa": "true", "affilname":"Trinity University"},{"@_fa": "true",
-        "affilname":"University of Virginia"},{"@_fa": "true", "affilname":"GlaxoSmithKline
-        plc."},{"@_fa": "true", "affilname":"University of Toronto"},{"@_fa": "true",
-        "affilname":"Imperial College London"},{"@_fa": "true", "affilname":"Drexel
-        University"},{"@_fa": "true", "affilname":"University of Florida"},{"@_fa":
-        "true", "affilname":"University of Hawaiʻi at Mānoa"},{"@_fa": "true", "affilname":"Stanford
-        University"},{"@_fa": "true", "affilname":"Brown University"},{"@_fa": "true",
-        "affilname":"Washington University in St. Louis"},{"@_fa": "true", "affilname":"Ontario
-        Cancer Institute University of Toronto"},{"@_fa": "true", "affilname":"National
-        Institutes of Health (NIH)"},{"@_fa": "true", "affilname":"Vanderbilt University"},{"@_fa":
-        "true", "affilname":"University of Pennsylvania Perelman School of Medicine"},{"@_fa":
-        "true", "affilname":"Princeton University"},{"@_fa": "true", "affilname":"Harvard
-        Medical School"},{"@_fa": "true", "affilname":"Howard Hughes Medical Institute
-        Janelia Farm Research Campus"},{"@_fa": "true", "affilname":"Broad Institute"},{"@_fa":
-        "true", "affilname":"Westfälische Wilhelms-Universität Münster"},{"@_fa":
-        "true", "affilname":"ClosedLoop.ai"},{"@_fa": "true", "affilname":"Innovation
-        Center for Biomedical Informatics"},{"@_fa": "true", "affilname":"Morgridge
-        Institute for Research"}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84995482126","eid":"2-s2.0-84995482126","dc:title":"On
-        the security and performance of Proof of Work blockchains","dc:creator":"Gervais
-        A.","prism:publicationName":"Proceedings of the ACM Conference on Computer
-        and Communications Security","prism:coverDate":"2016-10-24","citedby-count":"585","affiliation":
-        [{"@_fa": "true", "affilname":"ETH Zürich"},{"@_fa": "true", "affilname":"NEC
-        Laboratories America, Inc."}]},{"@_fa": "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85048498829","eid":"2-s2.0-85048498829","dc:title":"On
-        blockchain and its integration with IoT. Challenges and opportunities","dc:creator":"Reyna
-        A.","prism:publicationName":"Future Generation Computer Systems","prism:coverDate":"2018-11-01","citedby-count":"572","affiliation":
-        [{"@_fa": "true", "affilname":"Universidad de Málaga"}]},{"@_fa": "true",
-        "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84966577745","eid":"2-s2.0-84966577745","dc:title":"Blockchain:
-        The state of the art and future trends","dc:creator":"Yuan Y.","prism:publicationName":"Zidonghua
-        Xuebao/Acta Automatica Sinica","prism:coverDate":"2016-04-01","citedby-count":"568","affiliation":
-        [{"@_fa": "true", "affilname":"National University of Defense Technology"},{"@_fa":
-        "true", "affilname":"Institute of Automation Chinese Academy of Sciences"},{"@_fa":
-        "true", "affilname":"Qingdao Academy of Intelligent Industries"}]},{"@_fa":
-        "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85055874134","eid":"2-s2.0-85055874134","dc:title":"Blockchain
-        technology in the energy sector: A systematic review of challenges and opportunities","dc:creator":"Andoni
-        M.","prism:publicationName":"Renewable and Sustainable Energy Reviews","prism:coverDate":"2019-02-01","citedby-count":"561","affiliation":
-        [{"@_fa": "true", "affilname":"Durham University"},{"@_fa": "true", "affilname":"Heriot-Watt
-        University"},{"@_fa": "true", "affilname":"Siemens Energy Management"}]},{"@_fa":
-        "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84929077014","eid":"2-s2.0-84929077014","dc:title":"Bitcoin:
-        Economics, technology, and governance","dc:creator":"Böhme R.","prism:publicationName":"Journal
-        of Economic Perspectives","prism:coverDate":"2015-01-01","citedby-count":"548","affiliation":
-        [{"@_fa": "true", "affilname":"Carnegie Mellon University"},{"@_fa": "true",
-        "affilname":"Harvard Business School"},{"@_fa": "true", "affilname":"Southern
-        Methodist University"},{"@_fa": "true", "affilname":"Universität Innsbruck"}]},{"@_fa":
-        "true", "prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85055168966","eid":"2-s2.0-85055168966","dc:title":"Blockchain
-        technology and its relationships to sustainable supply chain management","dc:creator":"Saberi
-        S.","prism:publicationName":"International Journal of Production Research","prism:coverDate":"2019-04-03","citedby-count":"543","affiliation":
-        [{"@_fa": "true", "affilname":"Foisie Business School"}]}]}}'
-  recorded_at: Fri, 22 Oct 2021 14:33:45 GMT
-- request:
-    method: get
     uri: https://api.elsevier.com/content/search/scopus?query=blockchain&sort=citedby-count
     body:
       encoding: UTF-8
@@ -266,7 +10,7 @@ http_interactions:
       Accept:
       - application/json
       X-Els-Apikey:
-      - "<SCOPUS_API_TOKEN>"
+      - SCOPUS_API_TOKEN
       Connection:
       - close
       Host:
@@ -279,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 29 Oct 2021 11:33:36 GMT
+      - Sun, 31 Oct 2021 08:46:38 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -294,21 +38,21 @@ http_interactions:
       - Access-Control-Request-Method
       - Origin
       X-Els-Apikey:
-      - "<SCOPUS_API_TOKEN>"
+      - SCOPUS_API_TOKEN
       X-Els-Reqid:
-      - 73fb83f30eeaf928
+      - 97d8e4df51a30a5a
       X-Els-Resourceversion:
       - default
       X-Els-Status:
       - OK
       X-Els-Transid:
-      - 19809b68d3087238
+      - f0cb1a95c52bec80
       X-Ratelimit-Limit:
       - '20000'
       X-Ratelimit-Remaining:
-      - '19838'
+      - '19995'
       X-Ratelimit-Reset:
-      - '1635996624000'
+      - '1636194522000'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -316,10 +60,10 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 6a5c17025b5756e8-TPE
+      - 6a6b9d26eea66a8a-TPE
     body:
       encoding: UTF-8
-      string: '{"search-results":{"opensearch:totalResults":"48831","opensearch:startIndex":"0","opensearch:itemsPerPage":"25","opensearch:Query":{"@role":
+      string: '{"search-results":{"opensearch:totalResults":"48901","opensearch:startIndex":"0","opensearch:itemsPerPage":"25","opensearch:Query":{"@role":
         "request", "@searchTerms": "blockchain", "@startPage": "0"},"link": [{"@_fa":
         "true", "@ref": "self", "@href": "https://api.elsevier.com/content/search/scopus?start=0&count=25&query=blockchain&sort=citedby-count",
         "@type": "application/json"},{"@_fa": "true", "@ref": "first", "@href": "https://api.elsevier.com/content/search/scopus?start=0&count=25&query=blockchain&sort=citedby-count",
@@ -353,7 +97,7 @@ http_interactions:
         privacy: Using blockchain to protect personal data","dc:creator":"Zyskind
         G.","prism:publicationName":"Proceedings - 2015 IEEE Security and Privacy
         Workshops, SPW 2015","prism:isbn": [{"@_fa": "true", "$" :"9781479999330"}],"prism:pageRange":"180-184","prism:coverDate":"2015-07-17","prism:coverDisplayDate":"17
-        July 2015","prism:doi":"10.1109/SPW.2015.27","citedby-count":"1210","affiliation":
+        July 2015","prism:doi":"10.1109/SPW.2015.27","citedby-count":"1211","affiliation":
         [{"@_fa": "true", "affilname":"MIT Media Lab","affiliation-city":"Cambridge","affiliation-country":"United
         States"}],"prism:aggregationType":"Conference Proceeding","subtype":"cp","subtypeDescription":"Conference
         Paper","article-number":"7163223","source-id":"21100421715","openaccess":"0","openaccessFlag":false},{"@_fa":
@@ -375,7 +119,7 @@ http_interactions:
         Fabric: A Distributed Operating System for Permissioned Blockchains","dc:creator":"Androulaki
         E.","prism:publicationName":"Proceedings of the 13th EuroSys Conference, EuroSys
         2018","prism:isbn": [{"@_fa": "true", "$" :"9781450355841"}],"prism:volume":"2018-January","prism:pageRange":null,"prism:coverDate":"2018-04-23","prism:coverDisplayDate":"23
-        April 2018","prism:doi":"10.1145/3190508.3190538","citedby-count":"882","affiliation":
+        April 2018","prism:doi":"10.1145/3190508.3190538","citedby-count":"884","affiliation":
         [{"@_fa": "true", "affilname":"International Business Machines","affiliation-city":"Armonk","affiliation-country":"United
         States"}],"prism:aggregationType":"Conference Proceeding","subtype":"cp","subtypeDescription":"Conference
         Paper","source-id":"21100870914","openaccess":"1","openaccessFlag":true,"freetoread":{"value":
@@ -386,7 +130,7 @@ http_interactions:
         "true", "@ref": "scopus", "@href": "https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85064005739&origin=inward"},{"@_fa":
         "true", "@ref": "scopus-citedby", "@href": "https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85064005739&origin=inward"}],"prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85064005739","dc:identifier":"SCOPUS_ID:85064005739","eid":"2-s2.0-85064005739","dc:title":"Industry
         4.0: State of the art and future trends","dc:creator":"Xu L.D.","prism:publicationName":"International
-        Journal of Production Research","prism:issn":"00207543","prism:eIssn":"1366588X","prism:volume":"56","prism:issueIdentifier":"8","prism:pageRange":"2941-2962","prism:coverDate":"2018-01-01","prism:coverDisplayDate":"2018","prism:doi":"10.1080/00207543.2018.1444806","citedby-count":"871","affiliation":
+        Journal of Production Research","prism:issn":"00207543","prism:eIssn":"1366588X","prism:volume":"56","prism:issueIdentifier":"8","prism:pageRange":"2941-2962","prism:coverDate":"2018-01-01","prism:coverDisplayDate":"2018","prism:doi":"10.1080/00207543.2018.1444806","citedby-count":"872","affiliation":
         [{"@_fa": "true", "affilname":"Old Dominion University","affiliation-city":"Norfolk","affiliation-country":"United
         States"}],"prism:aggregationType":"Journal","subtype":"ar","subtypeDescription":"Article","source-id":"27656","openaccess":"0","openaccessFlag":false},{"@_fa":
         "true", "link": [{"@_fa": "true", "@ref": "self", "@href": "https://api.elsevier.com/content/abstract/scopus_id/85035321551"},{"@_fa":
@@ -396,7 +140,7 @@ http_interactions:
         "true", "@ref": "full-text", "@href": "https://api.elsevier.com/content/article/eid/1-s2.0-S0167739X17315765"}],"prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85035321551","dc:identifier":"SCOPUS_ID:85035321551","eid":"2-s2.0-85035321551","dc:title":"IoT
         security: Review, blockchain solutions, and open challenges","dc:creator":"Khan
         M.A.","prism:publicationName":"Future Generation Computer Systems","prism:issn":"0167739X","prism:volume":"82","prism:pageRange":"395-411","prism:coverDate":"2018-05-01","prism:coverDisplayDate":"May
-        2018","prism:doi":"10.1016/j.future.2017.11.022","pii":"S0167739X17315765","citedby-count":"871","affiliation":
+        2018","prism:doi":"10.1016/j.future.2017.11.022","pii":"S0167739X17315765","citedby-count":"872","affiliation":
         [{"@_fa": "true", "affilname":"Bahauddin Zakariya University","affiliation-city":"Multan","affiliation-country":"Pakistan"}],"prism:aggregationType":"Journal","subtype":"ar","subtypeDescription":"Article","source-id":"12264","openaccess":"0","openaccessFlag":false},{"@_fa":
         "true", "link": [{"@_fa": "true", "@ref": "self", "@href": "https://api.elsevier.com/content/abstract/scopus_id/84991717011"},{"@_fa":
         "true", "@ref": "author-affiliation", "@href": "https://api.elsevier.com/content/abstract/scopus_id/84991717011?field=author,affiliation"},{"@_fa":
@@ -414,7 +158,7 @@ http_interactions:
         "true", "@ref": "scopus", "@href": "https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85055257106&origin=inward"},{"@_fa":
         "true", "@ref": "scopus-citedby", "@href": "https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85055257106&origin=inward"}],"prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85055257106","dc:identifier":"SCOPUS_ID:85055257106","eid":"2-s2.0-85055257106","dc:title":"Blockchain
         challenges and opportunities: A survey","dc:creator":"Zheng Z.","prism:publicationName":"International
-        Journal of Web and Grid Services","prism:issn":"17411106","prism:eIssn":"17411114","prism:volume":"14","prism:issueIdentifier":"4","prism:pageRange":"352-375","prism:coverDate":"2018-01-01","prism:coverDisplayDate":"2018","prism:doi":"10.1504/IJWGS.2018.095647","citedby-count":"820","affiliation":
+        Journal of Web and Grid Services","prism:issn":"17411106","prism:eIssn":"17411114","prism:volume":"14","prism:issueIdentifier":"4","prism:pageRange":"352-375","prism:coverDate":"2018-01-01","prism:coverDisplayDate":"2018","prism:doi":"10.1504/IJWGS.2018.095647","citedby-count":"821","affiliation":
         [{"@_fa": "true", "affilname":"Sun Yat-Sen University","affiliation-city":"Guangzhou","affiliation-country":"China"}],"prism:aggregationType":"Journal","subtype":"ar","subtypeDescription":"Article","source-id":"6700153282","openaccess":"0","openaccessFlag":false},{"@_fa":
         "true", "link": [{"@_fa": "true", "@ref": "self", "@href": "https://api.elsevier.com/content/abstract/scopus_id/85019031448"},{"@_fa":
         "true", "@ref": "author-affiliation", "@href": "https://api.elsevier.com/content/abstract/scopus_id/85019031448?field=author,affiliation"},{"@_fa":
@@ -433,7 +177,7 @@ http_interactions:
         "true", "@ref": "scopus-citedby", "@href": "https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84991447929&origin=inward"}],"prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84991447929","dc:identifier":"SCOPUS_ID:84991447929","eid":"2-s2.0-84991447929","dc:title":"Where
         is current research on Blockchain technology? - A systematic review","dc:creator":"Yli-Huumo
         J.","prism:publicationName":"PLoS ONE","prism:eIssn":"19326203","prism:volume":"11","prism:issueIdentifier":"10","prism:pageRange":null,"prism:coverDate":"2016-10-01","prism:coverDisplayDate":"1
-        October 2016","prism:doi":"10.1371/journal.pone.0163477","citedby-count":"768","affiliation":
+        October 2016","prism:doi":"10.1371/journal.pone.0163477","citedby-count":"770","affiliation":
         [{"@_fa": "true", "affilname":"LUT University","affiliation-city":"Lappeenranta","affiliation-country":"Finland"}],"pubmed-id":"27695049","prism:aggregationType":"Journal","subtype":"ar","subtypeDescription":"Article","article-number":"e0163477","source-id":"10600153309","openaccess":"1","openaccessFlag":true,"freetoread":{"value":
         [{"$" :"all"},{"$" :"publisherfullgold"},{"$" :"repository"},{"$" :"repositoryvor"},{"$"
         :"repositoryam"}]},"freetoreadLabel":{"value": [{"$" :"All Open Access"},{"$"
@@ -444,7 +188,7 @@ http_interactions:
         "true", "@ref": "scopus-citedby", "@href": "https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84985991912&origin=inward"}],"prism:url":"https://api.elsevier.com/content/abstract/scopus_id/84985991912","dc:identifier":"SCOPUS_ID:84985991912","eid":"2-s2.0-84985991912","dc:title":"Bitcoin
         and beyond: A technical survey on decentralized digital currencies","dc:creator":"Tschorsch
         F.","prism:publicationName":"IEEE Communications Surveys and Tutorials","prism:eIssn":"1553877X","prism:volume":"18","prism:issueIdentifier":"3","prism:pageRange":"2084-2123","prism:coverDate":"2016-07-01","prism:coverDisplayDate":"Third
-        Quarter 2016","prism:doi":"10.1109/COMST.2016.2535718","citedby-count":"746","affiliation":
+        Quarter 2016","prism:doi":"10.1109/COMST.2016.2535718","citedby-count":"748","affiliation":
         [{"@_fa": "true", "affilname":"Humboldt-Universität zu Berlin","affiliation-city":"Berlin","affiliation-country":"Germany"}],"prism:aggregationType":"Journal","subtype":"ar","subtypeDescription":"Article","article-number":"7423672","source-id":"17900156715","openaccess":"0","openaccessFlag":false},{"@_fa":
         "true", "link": [{"@_fa": "true", "@ref": "self", "@href": "https://api.elsevier.com/content/abstract/scopus_id/84995404927"},{"@_fa":
         "true", "@ref": "author-affiliation", "@href": "https://api.elsevier.com/content/abstract/scopus_id/84995404927?field=author,affiliation"},{"@_fa":
@@ -463,7 +207,7 @@ http_interactions:
         "true", "@ref": "scopus-citedby", "@href": "https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85061188595&origin=inward"}],"prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85061188595","dc:identifier":"SCOPUS_ID:85061188595","eid":"2-s2.0-85061188595","dc:title":"Federated
         machine learning: Concept and applications","dc:creator":"Yang Q.","prism:publicationName":"ACM
         Transactions on Intelligent Systems and Technology","prism:issn":"21576904","prism:eIssn":"21576912","prism:volume":"10","prism:issueIdentifier":"2","prism:pageRange":null,"prism:coverDate":"2019-01-01","prism:coverDisplayDate":"January
-        2019","prism:doi":"10.1145/3298981","citedby-count":"697","affiliation": [{"@_fa":
+        2019","prism:doi":"10.1145/3298981","citedby-count":"698","affiliation": [{"@_fa":
         "true", "affilname":"Hong Kong University of Science and Technology","affiliation-city":"Hong
         Kong","affiliation-country":"Hong Kong"}],"prism:aggregationType":"Journal","subtype":"ar","subtypeDescription":"Article","article-number":"12","source-id":"19700190323","openaccess":"0","openaccessFlag":false},{"@_fa":
         "true", "link": [{"@_fa": "true", "@ref": "self", "@href": "https://api.elsevier.com/content/abstract/scopus_id/85018630011"},{"@_fa":
@@ -502,7 +246,7 @@ http_interactions:
         "true", "@ref": "full-text", "@href": "https://api.elsevier.com/content/article/eid/1-s2.0-S030626191730805X"}],"prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85021106763","dc:identifier":"SCOPUS_ID:85021106763","eid":"2-s2.0-85021106763","dc:title":"Designing
         microgrid energy markets: A case study: The Brooklyn Microgrid","dc:creator":"Mengelkamp
         E.","prism:publicationName":"Applied Energy","prism:issn":"03062619","prism:volume":"210","prism:pageRange":"870-880","prism:coverDate":"2018-01-15","prism:coverDisplayDate":"15
-        January 2018","prism:doi":"10.1016/j.apenergy.2017.06.054","pii":"S030626191730805X","citedby-count":"602","affiliation":
+        January 2018","prism:doi":"10.1016/j.apenergy.2017.06.054","pii":"S030626191730805X","citedby-count":"604","affiliation":
         [{"@_fa": "true", "affilname":"Karlsruher Institut für Technologie","affiliation-city":"Karlsruhe","affiliation-country":"Germany"}],"prism:aggregationType":"Journal","subtype":"ar","subtypeDescription":"Article","source-id":"28801","openaccess":"0","openaccessFlag":false},{"@_fa":
         "true", "link": [{"@_fa": "true", "@ref": "self", "@href": "https://api.elsevier.com/content/abstract/scopus_id/85045190865"},{"@_fa":
         "true", "@ref": "author-affiliation", "@href": "https://api.elsevier.com/content/abstract/scopus_id/85045190865?field=author,affiliation"},{"@_fa":
@@ -533,7 +277,7 @@ http_interactions:
         "true", "@ref": "full-text", "@href": "https://api.elsevier.com/content/article/eid/1-s2.0-S0167739X17329205"}],"prism:url":"https://api.elsevier.com/content/abstract/scopus_id/85048498829","dc:identifier":"SCOPUS_ID:85048498829","eid":"2-s2.0-85048498829","dc:title":"On
         blockchain and its integration with IoT. Challenges and opportunities","dc:creator":"Reyna
         A.","prism:publicationName":"Future Generation Computer Systems","prism:issn":"0167739X","prism:volume":"88","prism:pageRange":"173-190","prism:coverDate":"2018-11-01","prism:coverDisplayDate":"November
-        2018","prism:doi":"10.1016/j.future.2018.05.046","pii":"S0167739X17329205","citedby-count":"575","affiliation":
+        2018","prism:doi":"10.1016/j.future.2018.05.046","pii":"S0167739X17329205","citedby-count":"576","affiliation":
         [{"@_fa": "true", "affilname":"Universidad de Málaga","affiliation-city":"Malaga","affiliation-country":"Spain"}],"prism:aggregationType":"Journal","subtype":"ar","subtypeDescription":"Article","source-id":"12264","openaccess":"1","openaccessFlag":true,"freetoread":{"value":
         [{"$" :"all"},{"$" :"publisherhybridgold"}]},"freetoreadLabel":{"value": [{"$"
         :"All Open Access"},{"$" :"Hybrid Gold"}]}},{"@_fa": "true", "link": [{"@_fa":
@@ -578,7 +322,7 @@ http_interactions:
         [{"@_fa": "true", "affilname":"Universität Innsbruck","affiliation-city":"Innsbruck","affiliation-country":"Austria"}],"prism:aggregationType":"Journal","subtype":"ar","subtypeDescription":"Article","source-id":"28980","openaccess":"1","openaccessFlag":true,"freetoread":{"value":
         [{"$" :"all"},{"$" :"publisherfree2read"},{"$" :"repository"},{"$" :"repositoryam"}]},"freetoreadLabel":{"value":
         [{"$" :"All Open Access"},{"$" :"Bronze"},{"$" :"Green"}]}}]}}'
-  recorded_at: Fri, 29 Oct 2021 11:33:38 GMT
+  recorded_at: Sun, 31 Oct 2021 08:46:39 GMT
 - request:
     method: get
     uri: https://api.elsevier.com/content/search/scopus?query=Blockchain&sort=citedby-count
@@ -602,7 +346,7 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Fri, 29 Oct 2021 11:33:37 GMT
+      - Sun, 31 Oct 2021 08:46:39 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -610,9 +354,9 @@ http_interactions:
       Connection:
       - close
       X-Els-Reqid:
-      - e636d4947b679381
+      - 460f7f7ec1753228
       X-Els-Transid:
-      - 255159faf80816ba
+      - dbbc394468287827
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -620,10 +364,10 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 6a5c170aaef26b6c-TPE
+      - 6a6b9d32fb416b6c-TPE
     body:
       encoding: ASCII-8BIT
       string: '{"error-response":{"error-code":"APIKEY_INVALID","error-message":"The
         provided apiKey is invalid."}}'
-  recorded_at: Fri, 29 Oct 2021 11:33:38 GMT
+  recorded_at: Sun, 31 Oct 2021 08:46:40 GMT
 recorded_with: VCR 6.0.0
