@@ -7,14 +7,14 @@ Sequel.migration do
     create_table(:papers) do
       primary_key :id
 
-      String      :eid, unique: true, null: false
-      String      :title, unique: true, null: false
+      String      :eid, unique: true, null: true
+      String      :title, unique: true, null: true
       String      :paper_link, unique: true, null: false
       String      :citedby_link, unique: true, null: false
-      String      :publication_name, unique: true, null: true
-      String      :date, unique: true, null: true
-      String      :organization, unique: true, null: true
-      String      :author, unique: true, null: true
+      String      :publication_name, unique: true, null: false
+      String      :date, unique: true, null: false
+      String      :organization, unique: true, null: false
+      String      :author, unique: true, null: false
 
       Integer     :citedby
 
