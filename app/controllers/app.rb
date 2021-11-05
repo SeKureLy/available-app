@@ -51,8 +51,11 @@ module PaperDeep
             scopus.search(params['keyword'])
             scopus_parse_project = scopus.parse
 
+            # puts scopus_parse_project
+
             # Add a result to database
             scopus_parse_project.map do |paper|
+              puts paper
               Repository::For.entity(paper).db_find_or_create(paper)
             end
             scopus_parse_project.map(&:content).to_json

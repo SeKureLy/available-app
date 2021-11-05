@@ -117,9 +117,9 @@ module PaperDeep
 end
 
 
-instance = PaperDeep::PaperMapper.new('7f59af901d2d86f78a1fd60c1bf9426a')
-instance.search('blockchain')
-# puts instance.raw_data
-QAQ = instance.parse
-# puts QAQ[0].content
-QAQ.each { |item| puts item.content}
+# instance = PaperDeep::PaperMapper.new('7f59af901d2d86f78a1fd60c1bf9426a')
+# instance.search('blockchain')
+# # puts instance.raw_data
+# QAQ = instance.parse
+# # puts QAQ[0].content
+# QAQ.each { |item| puts item.content}
