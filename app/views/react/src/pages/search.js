@@ -110,7 +110,7 @@ function Search(props) {
                                 <td width="15%" overflow="hidden">{self.organization}</td>
                                 <td width="10%"><a href={self.paper_link} target="_blank">Scopus link</a></td>
                                 {/* <td width="10%">{self.citedby}<br/><a href={self.citedby_link} target="_blank">Detail</a></td> */}
-                                <td width="10%"><Link to={`/citedResult/?query=ref(${self.eid})`}>{self.citedby}</Link></td>
+                                <td width="10%"><Link to={`/citedResult/?query=${self.eid}`}>{self.citedby}</Link></td>
                             </tr>)}
                         </tbody>
                     </Table>

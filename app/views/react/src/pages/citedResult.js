@@ -17,11 +17,13 @@ function CitedResult(props) {
     const [init, setinit] = useState(false)
     const [query, setQuery] = useState("")
     const [data, setData] = useState([])
+    const [originPaper, setOrigin] = useState(null)
 
 
     useEffect(() => {
         console.log(urlparams.query)
         if(urlparams.query){
+            GetPaperByEid(urlparams.query)
             PostTest(urlparams.query)
             setQuery(urlparams.query)
         }
@@ -69,27 +71,44 @@ function CitedResult(props) {
         PostTest(eid)
     }
 
+    async function GetPaperByEid(keyword) {
+        if(!keyword){
+            alert("query con not be null!")
+            return
+        }
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ eid: keyword })
+        };
+        props.setLoading(true)
+        try {
+            fetch('http://localhost:9292/db/eid', requestOptions)
+                .then(async response => {
+                    let result = await response.json()
+                    setOrigin(result)
+                    console.log(result)
+                    props.setLoading(false)
+                })
+        } catch (e) {
+            console.log(e.message)
+        }
+    }
+
     return (
         <>
             <br />
             <div className="App">
-                <h1>Cited Papers</h1>
+                <h1>Cited Papers of</h1>
             </div>
             <br />
             <Container>
                 <Row>
                     <Col></Col>
-                    <Col xs={8}>
-                        <Form>
-                            <Row>
-                                <Col sm="9">
-                                    <FormControl type="text" placeholder="Search Study Fields" value={query} onChange={(e) => { setQuery(e.target.value) }} />
-                                </Col>
-                                <Col sm="3">
-                                    <Button variant="outline-primary" onClick={() =>{PostTest(query)}}>Search</Button>
-                                </Col>
-                            </Row>
-                        </Form>
+                    <Col xs={10}>
+                        <h2><a href={originPaper.paper_link} target="_blank">{originPaper.title}</a></h2>
                     </Col>
                     <Col></Col>
 
