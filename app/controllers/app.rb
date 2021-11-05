@@ -72,6 +72,16 @@ module PaperDeep
             paper.map(&:content).to_json
           end
         end
+        routing.on 'eid' do
+          routing.is do
+            routing.post do
+              params = JSON.parse(routing.body.read)
+              paper = Repository::For.klass(Entity::Paper).find_eid(params['eid'])
+              return { result: false }.to_json if paper.nil?
+              paper.content.to_json
+            end
+          end
+        end
       end
 
       #########################################
