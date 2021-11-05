@@ -38,7 +38,7 @@ module PaperDeep
       routing.on 'project' do
         routing.is do
           routing.get do
-            scopus = PaperDeep::PaperMapper.new(API_TOKEN)
+            scopus = PaperDeep::PaperMapper.new(App.config.api_key)
             scopus.search('blockchain')
             scopus_parse_project = scopus.parse
             scopus_parse_project.map(&:content).to_json
@@ -48,9 +48,15 @@ module PaperDeep
           routing.post do
             params = JSON.parse(routing.body.read)
 
-            scopus = PaperDeep::PaperMapper.new(API_TOKEN)
+            scopus = PaperDeep::PaperMapper.new(App.config.api_key)
             scopus.search(params['keyword'])
             scopus_parse_project = scopus.parse
+
+            # Add a result to database
+            scopus_parse_project.map do |paper| 
+              puts paper
+              Repository::For.entity(paper).db_find_or_create(paper)
+            end
             scopus_parse_project.map(&:content).to_json
           end
         end
@@ -62,6 +68,16 @@ module PaperDeep
         # end
         # end
       end
+      ######################################
+      routing.on 'db' do
+        routing.is do
+          routing.get do
+            paper = Repository::For.klass(Entity::Paper).all
+            paper.map(&:content).to_json
+          end
+        end
+      end
+      
       #########################################
     end
   end

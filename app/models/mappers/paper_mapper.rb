@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../gateways/scopus_api'
+require_relative '../../infrastructure/gateways/scopus_api'
 require_relative '../entities/paper'
 
 # Module for PaperDeep Module
