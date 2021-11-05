@@ -16,13 +16,11 @@ module PaperDeep
       end
     end
     plugin :public, root: 'app/views/built', gzip: true
-    # plugin :assets, js_dir:'app/views/static/js'#,css_dir:'app/views/static/css'
     plugin :halt
     route do |routing|
       #########################################
       #   For render react static files
       routing.public
-      # routing.assets
 
       #   GET /
       routing.root do
@@ -37,6 +35,7 @@ module PaperDeep
       #   For Apis
       routing.on 'project' do
         routing.is do
+          # GET /project/
           routing.get do
             scopus = PaperDeep::PaperMapper.new(App.config.api_key)
             scopus.search('blockchain')
@@ -53,31 +52,25 @@ module PaperDeep
             scopus_parse_project = scopus.parse
 
             # Add a result to database
-            scopus_parse_project.map do |paper| 
-              puts paper
+            scopus_parse_project.map do |paper|
               Repository::For.entity(paper).db_find_or_create(paper)
             end
             scopus_parse_project.map(&:content).to_json
           end
         end
-
-        # routing.on do
-        # routing.on String, String do |owner, project|
-        # GET /project/owner/project
-        # routing.get do
-        # end
-        # end
       end
+
       ######################################
       routing.on 'db' do
         routing.is do
+          # GET /project/
           routing.get do
             paper = Repository::For.klass(Entity::Paper).all
             paper.map(&:content).to_json
           end
         end
       end
-      
+
       #########################################
     end
   end

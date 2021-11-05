@@ -35,10 +35,7 @@ module PaperDeep
       uri = URI('https://api.elsevier.com/content/search/scopus?')
       params = {
         query: query,
-        # count: 2,
         sort: 'citedby-count'
-        # field: ['dc:creator', 'dc:title', 'eid', 'citedby-count', 'prism:url', 'prism:publicationName',
-        #         'prism:coverDate', 'affilname'].join(',')
       }
       uri.query = URI.encode_www_form(params)
       write_uri(uri)
@@ -55,9 +52,3 @@ module PaperDeep
     end
   end
 end
-
-# test = PaperDeep::ScopusAPI.new(API_TOKEN)
-# tmp = test.search("blockchain")
-# # puts tmp[:link].select { |item| item[:@ref] == 'scopus-citedby'}
-# a = tmp[0][:link].select { |item| item[:@ref] == 'scopus-citedby'}
-# puts a[0][:@href]

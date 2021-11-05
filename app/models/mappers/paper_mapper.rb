@@ -109,10 +109,3 @@ module PaperDeep
     end
   end
 end
-
-# instance = PaperDeep::PaperMapper.new(API_TOKEN)
-# instance.search('ml')
-# # puts instance.raw_data
-# QAQ = instance.parse
-# # puts QAQ[0].content
-# QAQ.each { |item| puts item.content}
