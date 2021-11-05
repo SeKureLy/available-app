@@ -29,7 +29,7 @@ module PaperDeep
             date:               db_record.date,
             organization:       db_record.organization,
             author:             db_record.author,
-            citedby:             db_record.citedby,
+            citedby:            db_record.citedby,
             publication_id:     db_record.publication_id
           )
         end
