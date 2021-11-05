@@ -4,6 +4,10 @@ module PaperDeep
     module Repository
       # Repository for Members
       class Papers
+        def self.all
+          Database::PaperOrm.all.map { |db_project| rebuild_entity(db_project) }
+        end
+
         def self.find_eid(eid)
           rebuild_entity Database::PaperOrm.first(eid: eid)
         end
@@ -36,8 +40,11 @@ module PaperDeep
         end
   
         def self.db_find_or_create(entity)
-          Database::PaperOrm.find_or_create(entity.to_attr_hash)
+          Database::PaperOrm.find_or_create(entity.content)
         end
       end
     end
   end
+
+
+  
