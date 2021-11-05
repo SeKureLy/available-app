@@ -24,8 +24,5 @@ module PaperDeep
       DB = Sequel.connect(ENV['DATABASE_URL'])
       def self.DB() = DB
     end
-    # CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-    # API_TOKEN = CONFIG['api_key']
-
   end
 end
