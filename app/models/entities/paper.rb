@@ -16,6 +16,7 @@ module PaperDeep
       attribute :date, Strict::String
       attribute :organization, Strict::String
       attribute :citedby, Strict::Integer
+      attribute :publication_id, Strict::String
       attribute :author,  Strict::String
 
       def content
@@ -26,6 +27,7 @@ module PaperDeep
           publication_name: publication_name,
           date: date,
           organization: organization,
+          publication_id: publication_id,
           citedby: citedby,
           author: author }
       end

@@ -49,6 +49,11 @@ module PaperDeep
     rescue StandardError
       'NULL'
     end
+    def publication_id
+      origin_hash[:'dc:identifier'].split(':')[1]
+    rescue StandardError
+      'NULL'
+    end
 
     def paper_link
       scopus_part = origin_hash[:link].select { |item| item[:@ref] == 'scopus' }
@@ -105,7 +110,16 @@ module PaperDeep
                                    citedby: citedby,
                                    author: author,
                                    paper_link: paper_link,
-                                   citedby_link: citedby_link)
+                                   citedby_link: citedby_link,
+                                   publication_id: publication_id)
     end
   end
 end
+
+
+# instance = PaperDeep::PaperMapper.new('7f59af901d2d86f78a1fd60c1bf9426a')
+# instance.search('blockchain')
+# # puts instance.raw_data
+# QAQ = instance.parse
+# # puts QAQ[0].content
+# QAQ.each { |item| puts item.content}

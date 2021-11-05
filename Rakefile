@@ -26,6 +26,7 @@ namespace :db do
     require_relative 'config/environment' # load config info
     require_relative 'spec/helpers/database_helper'
     require_relative './init'
+
     def app() = PaperDeep::App
   end
 
