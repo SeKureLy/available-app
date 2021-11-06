@@ -16,13 +16,11 @@ module PaperDeep
       end
     end
     plugin :public, root: 'app/views/built', gzip: true
-    # plugin :assets, js_dir:'app/views/static/js'#,css_dir:'app/views/static/css'
     plugin :halt
     route do |routing|
       #########################################
       #   For render react static files
       routing.public
-      # routing.assets
 
       #   GET /
       routing.root do
@@ -37,8 +35,9 @@ module PaperDeep
       #   For Apis
       routing.on 'project' do
         routing.is do
+          # GET /project/
           routing.get do
-            scopus = PaperDeep::PaperMapper.new(API_TOKEN)
+            scopus = PaperDeep::PaperMapper.new(App.config.api_key)
             scopus.search('blockchain')
             scopus_parse_project = scopus.parse
             scopus_parse_project.map(&:content).to_json
@@ -48,20 +47,43 @@ module PaperDeep
           routing.post do
             params = JSON.parse(routing.body.read)
 
-            scopus = PaperDeep::PaperMapper.new(API_TOKEN)
+            scopus = PaperDeep::PaperMapper.new(App.config.api_key)
             scopus.search(params['keyword'])
             scopus_parse_project = scopus.parse
+
+            # puts scopus_parse_project
+
+            # Add a result to database
+            scopus_parse_project.map do |paper|
+              puts paper
+              Repository::For.entity(paper).db_find_or_create(paper)
+            end
             scopus_parse_project.map(&:content).to_json
           end
         end
-
-        # routing.on do
-        # routing.on String, String do |owner, project|
-        # GET /project/owner/project
-        # routing.get do
-        # end
-        # end
       end
+
+      ######################################
+      routing.on 'db' do
+        routing.is do
+          # GET /project/
+          routing.get do
+            paper = Repository::For.klass(Entity::Paper).all
+            paper.map(&:content).to_json
+          end
+        end
+        routing.on 'eid' do
+          routing.is do
+            routing.post do
+              params = JSON.parse(routing.body.read)
+              paper = Repository::For.klass(Entity::Paper).find_eid(params['eid'])
+              return { result: false }.to_json if paper.nil?
+              paper.content.to_json
+            end
+          end
+        end
+      end
+
       #########################################
     end
   end

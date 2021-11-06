@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../gateways/scopus_api'
+require_relative '../../infrastructure/gateways/scopus_api'
 require_relative '../entities/paper'
 
 # Module for PaperDeep Module
@@ -46,6 +46,12 @@ module PaperDeep
 
     def title
       origin_hash[:'dc:title']
+    rescue StandardError
+      'NULL'
+    end
+    
+    def publication_id
+      origin_hash[:'dc:identifier'].split(':')[1]
     rescue StandardError
       'NULL'
     end
@@ -105,13 +111,16 @@ module PaperDeep
                                    citedby: citedby,
                                    author: author,
                                    paper_link: paper_link,
-                                   citedby_link: citedby_link)
+                                   citedby_link: citedby_link,
+                                   publication_id: publication_id,
+                                   publication: nil)
     end
   end
 end
 
-# instance = PaperDeep::PaperMapper.new(API_TOKEN)
-# instance.search('ml')
+
+# instance = PaperDeep::PaperMapper.new('7f59af901d2d86f78a1fd60c1bf9426a')
+# instance.search('blockchain')
 # # puts instance.raw_data
 # QAQ = instance.parse
 # # puts QAQ[0].content
