@@ -1,4 +1,5 @@
 # PaperDeep  
+PublicationOrm.create(publicationId: 84979828304,journalImpact:3.5,viewsCount:1,citationCount:2,publicationYear:2000,sourceTitle:"IEEE")
 ## front-end
 ### set-up
 * install nvm

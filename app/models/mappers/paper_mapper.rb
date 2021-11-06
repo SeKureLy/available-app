@@ -49,6 +49,7 @@ module PaperDeep
     rescue StandardError
       'NULL'
     end
+    
     def publication_id
       origin_hash[:'dc:identifier'].split(':')[1]
     rescue StandardError
@@ -111,7 +112,8 @@ module PaperDeep
                                    author: author,
                                    paper_link: paper_link,
                                    citedby_link: citedby_link,
-                                   publication_id: publication_id)
+                                   publication_id: publication_id,
+                                   publication: nil)
     end
   end
 end
