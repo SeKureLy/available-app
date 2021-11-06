@@ -3,6 +3,8 @@
 require 'dry-types'
 require 'dry-struct'
 
+require_relative 'publication'
+
 module PaperDeep
   module Entity
     # Domain entity for team members
@@ -18,6 +20,7 @@ module PaperDeep
       attribute :citedby, Strict::Integer
       attribute :publication_id, Strict::String
       attribute :author,  Strict::String
+      attribute :publication , Publication.optional
 
       def content
         { eid: eid,

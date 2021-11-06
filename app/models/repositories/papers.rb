@@ -15,6 +15,33 @@ module PaperDeep
         def self.find_author(author)
           rebuild_entity Database::PaperOrm.first(author: author)
         end
+
+        def self.find_publication_by_id(publication_Id)
+          # SELECT * FROM `papers` 
+          # LEFT JOIN `publications` ON (`publications`.`publicationId` = `papers`.`publication_id`) 
+          # WHERE (`publication_id` = publication_id)
+          # db_record = PaperOrm.left_join(:publications, publicationId: :publication_id).where(publication_id:publication_id).all
+          publication_record = Database::PublicationOrm.first(publicationId: publication_Id)
+          paper_record = Database::PaperOrm.first(publication_id: publication_Id)
+          rebuild_entity_with_publication(publication_record,paper_record)
+        end
+  
+        def self.rebuild_entity_with_publication(publication_record,paper_record)
+          return nil unless paper_record
+          publication_hash = {
+              publication_id:     publication_record.publicationId,
+              journalImpact:      publication_record.journalImpact,
+              viewsCount:         publication_record.viewsCount,
+              citationCount:      publication_record.citationCount,
+              sourceTitle:        publication_record.sourceTitle,
+              publicationYear:    publication_record.publicationYear
+          }
+          Entity::Paper.new(
+            paper_record.to_hash.merge(
+              publication: publication_hash
+            )
+          )
+        end
   
         def self.rebuild_entity(db_record)
           return nil unless db_record
@@ -30,7 +57,8 @@ module PaperDeep
             organization:       db_record.organization,
             author:             db_record.author,
             citedby:            db_record.citedby,
-            publication_id:     db_record.publication_id
+            publication_id:     db_record.publication_id,
+            publication:       nil
           )
         end
   
@@ -49,3 +77,18 @@ module PaperDeep
 
 
   
+# # testing script in rake console
+# # 輸入測試資料
+# 0. 清空db
+# 1. rackup 打postman 一次,Papers就有資料
+# 2. 使用rake console輸入publication資料
+# rake console
+# cd PaperDeep/Database
+# PublicationOrm.create(publicationId: 84979828304,journalImpact:3.5,viewsCount:1,citationCount:2,publicationYear:2000,sourceTitle:"IEEE")
+
+# # 測試left join
+# rake console
+# cd PaperDeep/Repository
+# Papers.all.first
+# Papers.find_publication_by_id(84979828304)
+# Papers.find_publication_by_id(84979828304).publication.content
