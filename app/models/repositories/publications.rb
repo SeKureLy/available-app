@@ -3,7 +3,7 @@
 module PaperDeep
     module Repository
       # Repository for Members
-      class Publication
+      class Publications
         def self.all
           Database::PublicationOrm.all.map { |db_project| rebuild_entity(db_project) }
         end
@@ -12,12 +12,12 @@ module PaperDeep
           return nil unless db_record
           puts db_record.to_hash
           Entity::Publication.new(
-            publication_id:     db_record.publicationId,
-            journalImpact:      db_record.journalImpact,
-            viewsCount:         db_record.viewsCount,
-            citationCount:      db_record.citationCount,
-            sourceTitle:        db_record.sourceTitle,
-            publicationYear:    db_record.publicationYear
+            pid:                db_record.pid,
+            journalImpact:      db_record.journal_impact,
+            viewsCount:         db_record.views_count,
+            citationCount:      db_record.citation_count,
+            sourceTitle:        db_record.source_title,
+            publicationYear:    db_record.publication_year
           )
         end
   

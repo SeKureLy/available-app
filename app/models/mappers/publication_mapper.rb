@@ -21,7 +21,6 @@ module PaperDeep
 
     def parse
       raw_data.map do |origin_hash|
-        # puts origin_hash[:publication]
         PublicationMapper.build_entity(origin_hash)
       end
     end
@@ -82,11 +81,3 @@ module PaperDeep
     end
   end
 end
-
-
-# instance = PaperDeep::PublicationMapper.new('7f59af901d2d86f78a1fd60c1bf9426a')
-# instance.search('84979828304,84979828302')
-# # puts instance.raw_data
-# QAQ = instance.parse
-# # puts QAQ[0].content
-# QAQ.each { |item| puts item.content}

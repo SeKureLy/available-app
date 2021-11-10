@@ -55,9 +55,3 @@ module PaperDeep
     end
   end
 end
-
-# instance = PaperDeep::PublicationAPI.new('7f59af901d2d86f78a1fd60c1bf9426a')
-# puts instance.search('84979828304')
-# puts instance
-# puts QAQ[0].content
-# QAQ.each { |item| puts item.content}
