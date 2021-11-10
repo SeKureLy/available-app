@@ -10,7 +10,6 @@ module PaperDeep
   
         def self.rebuild_entity(db_record)
           return nil unless db_record
-          puts db_record.to_hash
           Entity::Publication.new(
             pid:                db_record.pid,
             journalImpact:      db_record.journal_impact,
@@ -23,12 +22,12 @@ module PaperDeep
   
         def self.rebuild_many(db_records)
           db_records.map do |db_member|
-            Papers.rebuild_entity(db_member)
+            Publications.rebuild_entity(db_member)
           end
         end
   
         def self.db_find_or_create(entity)
-          Database::PaperOrm.find_or_create(entity.content)
+          Database::PublicationOrm.find_or_create(entity.content)
         end
       end
     end

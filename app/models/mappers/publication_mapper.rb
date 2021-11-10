@@ -38,46 +38,55 @@ module PaperDeep
 
     attr_reader :origin_hash
 
-    def journalImpact
+    def pid
+      origin_hash[:publication][:id].to_i
+    end
+
+    def journal_impact
       journal_impact = origin_hash[:metrics].select { |item| item[:metricType] == 'JournalImpact' }
       journal_impact[0][:value].to_f
     rescue StandardError
       'NULL'
     end
 
-    def viewsCount
+    def views_count
       views_count = origin_hash[:metrics].select { |item| item[:metricType] == 'ViewsCount' }
       views_count[0][:value].to_i
     rescue StandardError
       'NULL'
     end
 
-    def citationCount
+    def citation_count
       citation_count = origin_hash[:metrics].select { |item| item[:metricType] == 'CitationCount' }
       citation_count[0][:value].to_i
     rescue StandardError
       'NULL'
     end
 
-    def publicationYear
+    def publication_year
       origin_hash[:publication][:publicationYear].to_i
     rescue StandardError
       'NULL'
     end
 
-    def sourceTitle
+    def source_title
       origin_hash[:publication][:sourceTitle]
     rescue StandardError
       'NULL'
     end
 
     def build_entity
-      # puts origin_hash
-      PaperDeep::Entity::Publication.new(journalImpact: journalImpact,
-                                   viewsCount: viewsCount,
-                                   citationCount: citationCount,
-                                   sourceTitle: sourceTitle,
-                                   publicationYear: publicationYear)
+      PaperDeep::Entity::Publication.new(pid: pid,
+                                   journal_impact: journal_impact,
+                                   views_count: views_count,
+                                   citation_count: citation_count,
+                                   source_title: source_title,
+                                   publication_year: publication_year)
     end
   end
 end
+
+# instance = PaperDeep::PublicationMapper.new('7f59af901d2d86f78a1fd60c1bf9426a')
+# instance.search('84979828304,84979828302')
+# qaq = instance.parse
+# puts qaq[0].content

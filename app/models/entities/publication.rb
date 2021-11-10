@@ -9,20 +9,20 @@ module PaperDeep
     class Publication < Dry::Struct
       include Dry.Types
       attribute :pid, Strict::Integer
-      attribute :journalImpact, Strict::Float
-      attribute :viewsCount, Strict::Integer
-      attribute :citationCount, Strict::Integer
-      attribute :publicationYear, Strict::Integer
-      attribute :sourceTitle, Strict::String
+      attribute :journal_impact, Strict::Float
+      attribute :views_count, Strict::Integer
+      attribute :citation_count, Strict::Integer
+      attribute :publication_year, Strict::Integer
+      attribute :source_title, Strict::String
 
       def content
         { 
           pid: pid,
-          journalImpact: journalImpact,
-          viewsCount: viewsCount,
-          citationCount: citationCount,
-          publicationYear: publicationYear,
-          sourceTitle: sourceTitle
+          journal_impact: journal_impact,
+          views_count: views_count,
+          citation_count: citation_count,
+          publication_year: publication_year,
+          source_title: source_title
         }
       end
     end
