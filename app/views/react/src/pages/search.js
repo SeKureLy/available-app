@@ -40,7 +40,7 @@ function Search(props) {
         };
         props.setLoading(true)
         try {
-            fetch('http://localhost:9292/project', requestOptions)
+            fetch('http://localhost:9292/search', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     // console.log(result)
@@ -53,7 +53,7 @@ function Search(props) {
     }
 
     async function GetTest() {
-        var result = await fetch('http://localhost:9292/project/www/qqq');
+        var result = await fetch('http://localhost:9292/search/www/qqq');
         var content = await result.text()
         console.log(content)
     }
