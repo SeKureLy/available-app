@@ -51,8 +51,6 @@ module PaperDeep
             scopus.search(params['keyword'])
             scopus_parse_project = scopus.parse
 
-            # puts scopus_parse_project
-
             # Add a result to database
             scopus_parse_project.map do |paper|
               puts paper

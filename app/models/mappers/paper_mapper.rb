@@ -51,7 +51,7 @@ module PaperDeep
     end
     
     def publication_id
-      origin_hash[:'dc:identifier'].split(':')[1]
+      origin_hash[:'dc:identifier'].split(':')[1].to_i
     rescue StandardError
       'NULL'
     end
@@ -105,7 +105,6 @@ module PaperDeep
     def build_entity
       PaperDeep::Entity::Paper.new(eid: eid,
                                    title: title,
-                                   publication_name: publication_name,
                                    date: date,
                                    organization: organization,
                                    citedby: citedby,
