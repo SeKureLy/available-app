@@ -16,7 +16,7 @@ module PaperDeep
       attribute :source_title, Strict::String
 
       def content
-        { 
+        {
           pid: pid,
           journal_impact: journal_impact,
           views_count: views_count,

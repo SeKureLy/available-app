@@ -18,8 +18,8 @@ module PaperDeep
       attribute :organization, Strict::String
       attribute :citedby, Strict::Integer
       attribute :publication_id, Strict::Integer
-      attribute :author,  Strict::String
-      attribute :publication , Publication.optional
+      attribute :author, Strict::String
+      attribute :publication, Publication.optional
 
       def content
         { eid: eid,

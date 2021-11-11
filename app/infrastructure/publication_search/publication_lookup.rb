@@ -45,7 +45,7 @@ module PaperDeep
 
     def search(query)
       make_uri(query)
-      result = HTTP.headers('Accept' => 'application/json',
+      result = HTTP.headers('Accept'       => 'application/json',
                             'X-ELS-APIKey' => @api_key.to_s).get(uri)
       response_code = result.code
       raise(HTTP_ERROR[response_code]) if HTTP_ERROR.keys.include?(response_code)

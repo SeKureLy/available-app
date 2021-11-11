@@ -64,7 +64,7 @@ module PaperDeep
             routing.post do
               params = JSON.parse(routing.body.read)
               scopus = PaperDeep::PublicationMapper.new(App.config.api_key)
-              scopus.search(params["pid"])
+              scopus.search(params['pid'])
               publications = scopus.parse
               publications.map do |publication|
                 Repository::For.entity(publication).db_find_or_create(publication)
@@ -91,6 +91,7 @@ module PaperDeep
               params = JSON.parse(routing.body.read)
               paper = Repository::For.klass(Entity::Paper).find_eid(params['eid'])
               return { result: false }.to_json if paper.nil?
+
               paper.content.to_json
             end
           end

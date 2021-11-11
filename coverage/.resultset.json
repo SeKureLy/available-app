@@ -316,8 +316,6 @@
           null,
           null,
           null,
-          null,
-          null,
           1,
           null,
           1,
@@ -442,8 +440,6 @@
       },
       "/home/sycheng/rb_project/PaperDeep/app/domain/papers/mappers/publication_mapper.rb": {
         "lines": [
-          null,
-          null,
           null,
           null,
           null,
@@ -913,7 +909,7 @@
         ]
       }
     },
-    "timestamp": 1636645594
+    "timestamp": 1636650464
   },
   "Minitest": {
     "coverage": {
