@@ -87,6 +87,6 @@ module PaperDeep
 end
 
 # instance = PaperDeep::PublicationMapper.new('7f59af901d2d86f78a1fd60c1bf9426a')
-# instance.search('84979828304,84979828302')
+# instance.search('84979828304')
 # qaq = instance.parse
 # puts qaq[0].content

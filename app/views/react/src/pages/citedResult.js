@@ -68,7 +68,7 @@ function CitedResult(props) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ pid: originPaper.publication_id.toString() })
+            body: JSON.stringify({ pid: originPaper.publication_id })
         };
         console.log(requestOptions)
         if(loading) props.setLoading(true)
@@ -178,7 +178,7 @@ function CitedResult(props) {
                                 <td width="15%" overflow="hidden">{self.organization}</td>
                                 <td width="10%"><a href={self.paper_link} target="_blank">Scopus link</a></td>
                                 {/* <td width="10%">{self.citedby}<br/><a href={self.citedby_link} target="_blank">Detail</a></td> */}
-                                <td width="10%"><Link to={`/citedResult/?query=ref(${self.eid})`} onClick={()=>{reloadnewurl(`/citedResult/?query=ref(${self.eid})`,`ref(${self.eid})`)}}>{self.citedby}</Link></td>
+                                <td width="10%">{self.citedby}</td>
                             </tr>)}
                         </tbody>
                     </Table>
