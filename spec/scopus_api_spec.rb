@@ -1,35 +1,31 @@
 # frozen_string_literal: true
 
-# require 'minitest/autorun'
-# require 'minitest/rg'
-# require 'yaml'
-# require_relative '../lib/scopus_api'
-require_relative 'spec_helper'
+require_relative 'helpers/spec_helper'
+require_relative 'helpers/vcr_helper'
+require_relative 'helpers/database_helper'
 
-# RAW_CORRECT = YAML.safe_load(File.read('spec/fixtures/raw_scopus.yml'), [Symbol])
-# PARSE_CORRECT = YAML.safe_load(File.read('spec/fixtures/parse_scopus.yml'), [Symbol])
-# CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-# API_TOKEN = CONFIG['api_key']
 
 API = PaperDeep::PaperMapper.new(API_TOKEN)
 
 describe 'Tests Scopus API library with cassette' do
-  VCR.configure do |c|
-    c.cassette_library_dir = CASSETTES_FOLDER
-    c.hook_into :webmock
+  VcrHelper.setup_vcr
+  # VCR.configure do |c|
+  #   c.cassette_library_dir = CASSETTES_FOLDER
+  #   c.hook_into :webmock
 
-    c.filter_sensitive_data('SCOPUS_API_TOKEN') { API_TOKEN }
-    c.filter_sensitive_data('SCOPUS_API_TOKEN_ESC') { CGI.escape(API_TOKEN) }
-  end
+  #   c.filter_sensitive_data('SCOPUS_API_TOKEN') { API_TOKEN }
+  #   c.filter_sensitive_data('SCOPUS_API_TOKEN_ESC') { CGI.escape(API_TOKEN) }
+  # end
 
   before do
-    VCR.insert_cassette CASSETTE_FILE,
-                        record: :new_episodes,
-                        match_requests_on: %i[method uri headers]
+    VcrHelper.configure_vcr
+    # VCR.insert_cassette CASSETTE_FILE,
+    #                     record: :new_episodes,
+    #                     match_requests_on: %i[method uri headers]
   end
 
   after do
-    VCR.eject_cassette
+    VcrHelper.eject_vcr
   end
 
   describe 'Tests Scopus API library' do
