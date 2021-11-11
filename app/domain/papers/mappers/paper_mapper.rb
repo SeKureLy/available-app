@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 # Module for PaperDeep Module
 module PaperDeep
   # Data parsing from gateway"
@@ -47,7 +46,7 @@ module PaperDeep
     rescue StandardError
       'NULL'
     end
-    
+
     def publication_id
       origin_hash[:'dc:identifier'].split(':')[1].to_i
     rescue StandardError
@@ -114,11 +113,3 @@ module PaperDeep
     end
   end
 end
-
-
-# instance = PaperDeep::PaperMapper.new('7f59af901d2d86f78a1fd60c1bf9426a')
-# instance.search('blockchain')
-# # puts instance.raw_data
-# QAQ = instance.parse
-# # puts QAQ[0].content
-# QAQ.each { |item| puts item.content}

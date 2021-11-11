@@ -9,6 +9,7 @@ module PaperDeep
   # Configuration for the App
   class App < Roda
     plugin :environments
+    # rubocop:disable Lint/ConstantDefinitionInBlock
     configure do
       # Environment variables setup
       Figaro.application = Figaro::Application.new(
@@ -22,7 +23,9 @@ module PaperDeep
       end
       # Database Setup
       DB = Sequel.connect(ENV['DATABASE_URL'])
-      def self.DB() = DB
+      # deliberately :reek:UncommunicativeMethodName calling method DB
+      def self.DB() = DB # rubocop:disable Naming/MethodName
     end
+    # rubocop:enable Lint/ConstantDefinitionInBlock
   end
 end

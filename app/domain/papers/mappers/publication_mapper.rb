@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 # Module for PaperDeep Module
 module PaperDeep
   # Data parsing from gateway"
@@ -75,16 +74,11 @@ module PaperDeep
 
     def build_entity
       PaperDeep::Entity::Publication.new(pid: pid,
-                                   journal_impact: journal_impact,
-                                   views_count: views_count,
-                                   citation_count: citation_count,
-                                   source_title: source_title,
-                                   publication_year: publication_year)
+                                         journal_impact: journal_impact,
+                                         views_count: views_count,
+                                         citation_count: citation_count,
+                                         source_title: source_title,
+                                         publication_year: publication_year)
     end
   end
 end
-
-# instance = PaperDeep::PublicationMapper.new('7f59af901d2d86f78a1fd60c1bf9426a')
-# instance.search('84979828304')
-# qaq = instance.parse
-# puts qaq[0].content

@@ -13,4 +13,3 @@ File.write('spec/fixtures/raw_scopus.yml', raw_data.to_yaml)
 parsed_data = instance.parse
 result = parsed_data.map(&:content)
 File.write('spec/fixtures/parse_scopus.yml', result.to_yaml)
-# puts QAQ[0].content
