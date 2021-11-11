@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../../infrastructure/gateways/publication_lookup'
-require_relative '../entities/publication'
 
 # Module for PaperDeep Module
 module PaperDeep
