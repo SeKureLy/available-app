@@ -36,7 +36,7 @@ module PaperDeep
     attr_reader :origin_hash
 
     def pid
-      origin_hash[:publication][:id]
+      origin_hash[:publication][:id].to_s
     end
 
     def journal_impact
