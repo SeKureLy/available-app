@@ -19,7 +19,7 @@ describe 'Tests Scival API library for publication info with cassette' do
 
   describe 'Tests Scival API library' do
     before do
-      @search_result = SCIVAL_API.search(84979828304)
+      @search_result = SCIVAL_API.search(84_979_828_304)
     end
     describe 'Check Raw Search Result' do
       it '[raw]HAPPY: should provide correct length' do
@@ -29,10 +29,12 @@ describe 'Tests Scival API library for publication info with cassette' do
         _(@search_result[0][:metrics][1][:value]).must_equal RAW_CORRECT_PUBLICATION[0][:metrics][1][:value]
       end
       it '[raw]HAPPY: sourceTitle should be same' do
-        _(@search_result[0][:publication][:sourceTitle]).must_equal RAW_CORRECT_PUBLICATION[0][:publication][:sourceTitle]
+        _(@search_result[0][:publication][:sourceTitle])
+          .must_equal RAW_CORRECT_PUBLICATION[0][:publication][:sourceTitle]
       end
       it '[raw]HAPPY: publicationYear should be same' do
-        _(@search_result[0][:publication][:publicationYear]).must_equal RAW_CORRECT_PUBLICATION[0][:publication][:publicationYear]
+        _(@search_result[0][:publication][:publicationYear])
+          .must_equal RAW_CORRECT_PUBLICATION[0][:publication][:publicationYear]
       end
     end
   end

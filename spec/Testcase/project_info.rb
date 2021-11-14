@@ -5,7 +5,7 @@ require_relative '../../init'
 CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
 API_TOKEN = CONFIG['api_key']
 
-#Paper info
+# Paper info
 instance = PaperDeep::PaperMapper.new(API_TOKEN)
 
 raw_data = instance.search('blockchain')
