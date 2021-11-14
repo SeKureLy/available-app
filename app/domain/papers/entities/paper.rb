@@ -17,7 +17,7 @@ module PaperDeep
       attribute :date, Strict::String
       attribute :organization, Strict::String
       attribute :citedby, Strict::Integer
-      attribute :publication_id, Strict::Integer
+      attribute :publication_id, Strict::String
       attribute :author, Strict::String
       attribute :publication, Publication.optional
 

@@ -60,7 +60,7 @@ describe 'Integration Tests of API and Database' do
     end
     it 'HAPPY[publication]: should be able to save paper from Scival to database' do
       publications = PaperDeep::PublicationMapper.new(API_TOKEN)
-      publications.search('84979828304')
+      publications.search("84979828304")
       publications_parse_result = publications.parse
 
       PaperDeep::Repository::For.entity(publications_parse_result.first)

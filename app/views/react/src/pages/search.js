@@ -8,7 +8,7 @@ import {
     Link
   } from "react-router-dom";
 import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container,Table } from 'react-bootstrap'
-import logo from './../logo.svg';
+import { baseUrl } from '../config'
 
 function Search(props) {
     const { search } = useLocation()
@@ -20,6 +20,7 @@ function Search(props) {
 
     useEffect(() => {
         console.log(urlparams.query)
+        console.log(process.env)
         if(urlparams.query){
             PostTest(urlparams.query)
             setQuery(urlparams.query)
@@ -40,7 +41,7 @@ function Search(props) {
         };
         props.setLoading(true)
         try {
-            fetch('http://localhost:9292/search', requestOptions)
+            fetch(baseUrl+'/search', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     // console.log(result)
@@ -53,7 +54,7 @@ function Search(props) {
     }
 
     async function GetTest() {
-        var result = await fetch('http://localhost:9292/search/www/qqq');
+        var result = await fetch(baseUrl+'/search/www/qqq');
         var content = await result.text()
         console.log(content)
     }

@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 14 Nov 2021 08:44:04 GMT
+      - Sun, 14 Nov 2021 11:57:04 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -40,13 +40,13 @@ http_interactions:
       X-Els-Apikey:
       - SCOPUS_API_TOKEN
       X-Els-Reqid:
-      - aa721e1083d7d8f7
+      - e8d6be2845bac010
       X-Els-Resourceversion:
       - default
       X-Els-Status:
       - OK
       X-Els-Transid:
-      - 14a46820ae99737d
+      - 9523c5c0b104d7b6
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -54,60 +54,13 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 6adef4adff476a9c-TPE
+      - 6ae00f606bcc6a8a-TPE
     body:
       encoding: UTF-8
       string: '{"link":{"@ref":"self","@href":"https://api.elsevier.com/analytics/scival/publication/metrics?metricTypes=JournalImpact,ViewsCount,CitationCount&publicationIds=84979828304&apiKey=SCOPUS_API_TOKEN&httpAccept=application/json&byYear=false&sort=citedby-count","@type":"application/json"},"dataSource":{"sourceName":"Scopus","lastUpdated":"2021-11-03","metricStartYear":2016,"metricEndYear":2020},"results":[{"metrics":[{"metricType":"JournalImpact","value":3.5,"impactType":"CiteScore"},{"metricType":"ViewsCount","value":2872},{"metricType":"CitationCount","value":1810}],"publication":{"link":{"@ref":"self","@href":"https://api.elsevier.com/analytics/scival/publication/84979828304?apiKey=SCOPUS_API_TOKEN&httpAccept=application/json","@type":"application/json"},"title":"Blockchains
         and Smart Contracts for the Internet of Things","id":84979828304,"doi":"10.1109/ACCESS.2016.2566339","publicationYear":2016,"type":"Review","sourceTitle":"IEEE
         Access"}}]}'
-  recorded_at: Sun, 14 Nov 2021 08:44:04 GMT
-- request:
-    method: get
-    uri: https://api.elsevier.com/content/search/scopus?query=Blockchain&sort=citedby-count
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      X-Els-Apikey:
-      - bad token
-      Connection:
-      - close
-      Host:
-      - api.elsevier.com
-      User-Agent:
-      - http.rb/5.0.4
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      Date:
-      - Sun, 14 Nov 2021 08:44:05 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '100'
-      Connection:
-      - close
-      X-Els-Reqid:
-      - 9107734c6154542b
-      X-Els-Transid:
-      - 3d4cd420d5a5a0d2
-      Cf-Cache-Status:
-      - DYNAMIC
-      Expect-Ct:
-      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 6adef4b40fb96b6c-TPE
-    body:
-      encoding: ASCII-8BIT
-      string: '{"error-response":{"error-code":"APIKEY_INVALID","error-message":"The
-        provided apiKey is invalid."}}'
-  recorded_at: Sun, 14 Nov 2021 08:44:05 GMT
+  recorded_at: Sun, 14 Nov 2021 11:57:03 GMT
 - request:
     method: get
     uri: https://api.elsevier.com/content/search/scopus?query=blockchain&sort=citedby-count
@@ -131,7 +84,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 14 Nov 2021 08:44:06 GMT
+      - Sun, 14 Nov 2021 11:57:05 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -148,13 +101,13 @@ http_interactions:
       X-Els-Apikey:
       - SCOPUS_API_TOKEN
       X-Els-Reqid:
-      - '0199c78659b3d8ff'
+      - e966f62b236cd84f
       X-Els-Resourceversion:
       - default
       X-Els-Status:
       - OK
       X-Els-Transid:
-      - '0908b7e1c015c956'
+      - b3b03096178987be
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -162,7 +115,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 6adef4b66c000728-TPE
+      - 6ae00f647c6856fa-TPE
     body:
       encoding: UTF-8
       string: '{"search-results":{"opensearch:totalResults":"49954","opensearch:startIndex":"0","opensearch:itemsPerPage":"25","opensearch:Query":{"@role":
@@ -424,7 +377,54 @@ http_interactions:
         [{"@_fa": "true", "affilname":"Universität Innsbruck","affiliation-city":"Innsbruck","affiliation-country":"Austria"}],"prism:aggregationType":"Journal","subtype":"ar","subtypeDescription":"Article","source-id":"28980","openaccess":"1","openaccessFlag":true,"freetoread":{"value":
         [{"$" :"all"},{"$" :"publisherfree2read"},{"$" :"repository"},{"$" :"repositoryam"}]},"freetoreadLabel":{"value":
         [{"$" :"All Open Access"},{"$" :"Bronze"},{"$" :"Green"}]}}]}}'
-  recorded_at: Sun, 14 Nov 2021 08:44:06 GMT
+  recorded_at: Sun, 14 Nov 2021 11:57:05 GMT
+- request:
+    method: get
+    uri: https://api.elsevier.com/content/search/scopus?query=Blockchain&sort=citedby-count
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      X-Els-Apikey:
+      - bad token
+      Connection:
+      - close
+      Host:
+      - api.elsevier.com
+      User-Agent:
+      - http.rb/5.0.4
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sun, 14 Nov 2021 11:57:06 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '100'
+      Connection:
+      - close
+      X-Els-Reqid:
+      - 416ce320e157e5c8
+      X-Els-Transid:
+      - 32a21d0c06ad6fd6
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6ae00f70d9c85701-TPE
+    body:
+      encoding: ASCII-8BIT
+      string: '{"error-response":{"error-code":"APIKEY_INVALID","error-message":"The
+        provided apiKey is invalid."}}'
+  recorded_at: Sun, 14 Nov 2021 11:57:05 GMT
 - request:
     method: get
     uri: https://api.elsevier.com/analytics/scival/publication/metrics?byYear=false&metricTypes=JournalImpact,ViewsCount,CitationCount&publicationIds=84979828304&sort=citedby-count
@@ -448,7 +448,7 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Sun, 14 Nov 2021 08:44:06 GMT
+      - Sun, 14 Nov 2021 11:57:07 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -456,9 +456,9 @@ http_interactions:
       Connection:
       - close
       X-Els-Reqid:
-      - 75f04d96923e3b3e
+      - 27c3a5d8cf86f67c
       X-Els-Transid:
-      - 1a9a6b6c0c193d43
+      - eb46ac9704a1c613
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
@@ -466,10 +466,10 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 6adef4bdb9386b72-TPE
+      - 6ae00f731f6b56e9-TPE
     body:
       encoding: ASCII-8BIT
       string: '{"error-response":{"error-code":"APIKEY_INVALID","error-message":"The
         provided apiKey is invalid."}}'
-  recorded_at: Sun, 14 Nov 2021 08:44:06 GMT
+  recorded_at: Sun, 14 Nov 2021 11:57:06 GMT
 recorded_with: VCR 6.0.0
