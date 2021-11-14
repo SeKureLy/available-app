@@ -48,7 +48,7 @@ module PaperDeep
     end
 
     def publication_id
-      origin_hash[:'dc:identifier'].split(':')[1].to_i
+      origin_hash[:'dc:identifier'].split(':')[1]
     rescue StandardError
       'NULL'
     end

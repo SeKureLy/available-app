@@ -8,7 +8,7 @@ module PaperDeep
     # Domain entity for team members
     class Publication < Dry::Struct
       include Dry.Types
-      attribute :pid, Strict::Integer
+      attribute :pid, Strict::String
       attribute :journal_impact, Strict::Float
       attribute :views_count, Strict::Integer
       attribute :citation_count, Strict::Integer
