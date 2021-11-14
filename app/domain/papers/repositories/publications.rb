@@ -13,18 +13,12 @@ module PaperDeep
 
         Entity::Publication.new(
           pid: db_record.pid,
-          journalImpact: db_record.journal_impact,
-          viewsCount: db_record.views_count,
-          citationCount: db_record.citation_count,
-          sourceTitle: db_record.source_title,
-          publicationYear: db_record.publication_year
+          journal_impact: db_record.journal_impact,
+          views_count: db_record.views_count,
+          citation_count: db_record.citation_count,
+          source_title: db_record.source_title,
+          publication_year: db_record.publication_year
         )
-      end
-
-      def self.rebuild_many(db_records)
-        db_records.map do |db_member|
-          Publications.rebuild_entity(db_member)
-        end
       end
 
       def self.db_find_or_create(entity)

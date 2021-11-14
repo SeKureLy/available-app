@@ -12,10 +12,6 @@ module PaperDeep
         rebuild_entity Database::PaperOrm.first(eid: eid)
       end
 
-      def self.find_author(author)
-        rebuild_entity Database::PaperOrm.first(author: author)
-      end
-
       def self.find_publication_by_id(publication_id)
         # SELECT * FROM `papers`
         # LEFT JOIN `publications` ON (`publications`.`pid` = `papers`.`publication_id`)
@@ -34,11 +30,11 @@ module PaperDeep
 
         publication_hash = {
           pid: record[:pid],
-          journalImpact: record[:journal_impact],
-          viewsCount: record[:views_count],
-          citationCount: record[:citation_count],
-          sourceTitle: record[:source_title],
-          publicationYear: record[:publication_year]
+          journal_impact: record[:journal_impact],
+          views_count: record[:views_count],
+          citation_count: record[:citation_count],
+          source_title: record[:source_title],
+          publication_year: record[:publication_year]
         }
         paper_hash = record.except(publication_hash.keys)
         Entity::Paper.new(paper_hash.merge(publication: publication_hash))

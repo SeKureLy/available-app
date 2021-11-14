@@ -6,9 +6,10 @@ task :default do
   puts `rake -T`
 end
 
-desc 'run tests'
-task :spec do
-  sh 'ruby spec/scopus_api_spec.rb'
+desc 'Run tests once'
+Rake::TestTask.new(:spec) do |t|
+  t.pattern = 'spec/*_spec.rb'
+  t.warning = false
 end
 
 desc 'Keep rerunning tests upon changes'

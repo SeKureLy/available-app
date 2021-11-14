@@ -67,12 +67,6 @@ module PaperDeep
       'NULL'
     end
 
-    def publication_name
-      origin_hash[:'prism:publicationName']
-    rescue StandardError
-      'NULL'
-    end
-
     def date
       origin_hash[:'prism:coverDate']
     rescue StandardError
