@@ -10,6 +10,8 @@ import {
   } from "react-router-dom";
 import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container,Table } from 'react-bootstrap'
 import logo from './../logo.svg';
+import { baseUrl } from '../config'
+
 
 function CitedResult(props) {
     const { search } = useLocation()
@@ -45,7 +47,7 @@ function CitedResult(props) {
         };
         if(loading) props.setLoading(true)
         try {
-            fetch('http://localhost:9292/search', requestOptions)
+            fetch(baseUrl+'/search', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     // console.log(result)
@@ -73,7 +75,7 @@ function CitedResult(props) {
         console.log(requestOptions)
         if(loading) props.setLoading(true)
         try {
-            fetch('http://localhost:9292/search/publication', requestOptions)
+            fetch(baseUrl+'/search/publication', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     console.log(result)
@@ -109,7 +111,7 @@ function CitedResult(props) {
         };
         if(loading) props.setLoading(true)
         try {
-            fetch('http://localhost:9292/db/eid', requestOptions)
+            fetch(baseUrl+'/db/eid', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     setOrigin(result)

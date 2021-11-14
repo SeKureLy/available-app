@@ -13,7 +13,7 @@
       :@href: https://api.elsevier.com/analytics/scival/publication/84979828304?apiKey=7f59af901d2d86f78a1fd60c1bf9426a&httpAccept=application/json
       :@type: application/json
     :title: Blockchains and Smart Contracts for the Internet of Things
-    :id: 84979828304
+    :id: "84979828304"
     :doi: 10.1109/ACCESS.2016.2566339
     :publicationYear: 2016
     :type: Review
