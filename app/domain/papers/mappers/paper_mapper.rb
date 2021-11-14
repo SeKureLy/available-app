@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../../infrastructure/gateways/scopus_api'
-require_relative '../entities/paper'
-
 # Module for PaperDeep Module
 module PaperDeep
   # Data parsing from gateway"
@@ -49,9 +46,9 @@ module PaperDeep
     rescue StandardError
       'NULL'
     end
-    
+
     def publication_id
-      origin_hash[:'dc:identifier'].split(':')[1]
+      origin_hash[:'dc:identifier'].split(':')[1].to_i
     rescue StandardError
       'NULL'
     end
@@ -66,12 +63,6 @@ module PaperDeep
     def citedby_link
       citedby_part = origin_hash[:link].select { |item| item[:@ref] == 'scopus-citedby' }
       citedby_part[0][:@href]
-    rescue StandardError
-      'NULL'
-    end
-
-    def publication_name
-      origin_hash[:'prism:publicationName']
     rescue StandardError
       'NULL'
     end
@@ -105,7 +96,6 @@ module PaperDeep
     def build_entity
       PaperDeep::Entity::Paper.new(eid: eid,
                                    title: title,
-                                   publication_name: publication_name,
                                    date: date,
                                    organization: organization,
                                    citedby: citedby,
@@ -117,11 +107,3 @@ module PaperDeep
     end
   end
 end
-
-
-# instance = PaperDeep::PaperMapper.new('7f59af901d2d86f78a1fd60c1bf9426a')
-# instance.search('blockchain')
-# # puts instance.raw_data
-# QAQ = instance.parse
-# # puts QAQ[0].content
-# QAQ.each { |item| puts item.content}

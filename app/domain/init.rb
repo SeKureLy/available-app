@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-folders = %w[orms]
+folders = %w[papers]
 folders.each do |folder|
-  require_relative "#{folder}/init.rb"
+  require_relative "#{folder}/init"
 end

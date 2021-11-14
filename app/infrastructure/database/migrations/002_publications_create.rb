@@ -5,16 +5,15 @@ require 'sequel'
 Sequel.migration do
   change do
     create_table(:publications) do
-      primary_key :id
-      # 感覺錯錯的
-      # foreign_key  :publicationId, :papers
-      
-      Integer      :publicationId, unique: true, null: false
-      Float        :journalImpact, unique: false, null: false
-      Integer      :viewsCount, unique: false, null: false
-      Integer      :citationCount, unique: false, null: false
-      Integer      :publicationYear, unique: false, null: true
-      String       :sourceTitle, unique: false, null: true
+      primary_key  :id
+
+      # pid equals to publication_id
+      Integer      :pid, unique: true, null: false
+      Float        :journal_impact, unique: false, null: false
+      Integer      :views_count, unique: false, null: false
+      Integer      :citation_count, unique: false, null: false
+      Integer      :publication_year, unique: false, null: true
+      String       :source_title, unique: false, null: true
 
       DateTime :created_at
       DateTime :updated_at

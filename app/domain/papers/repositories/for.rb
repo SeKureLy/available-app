@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 require_relative 'papers'
-# require_relative 'projects'
+require_relative 'publications'
 
 module PaperDeep
   module Repository
     # Finds the right repository for an entity object or class
     module For
       ENTITY_REPOSITORY = {
-        # Entity::Project => Projects,
-        Entity::Paper => Papers
+        Entity::Publication => Publications,
+        Entity::Paper       => Papers
       }.freeze
 
       def self.klass(entity_klass)

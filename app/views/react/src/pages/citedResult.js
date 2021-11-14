@@ -18,18 +18,20 @@ function CitedResult(props) {
     const [query, setQuery] = useState("")
     const [data, setData] = useState([])
     const [originPaper, setOrigin] = useState(null)
-
+    const [Publication, setPublication] = useState(null)
 
     useEffect(() => {
         console.log(urlparams.query)
-        if(urlparams.query){
-            GetPaperByEid(urlparams.query)
-            PostTest(urlparams.query)
-            setQuery(urlparams.query)
+        if(!init && urlparams.query){
+            reloadnewurl("",urlparams.query)
+            setinit(true)
         }
-    },[init]);
+        if(originPaper){
+            GetPublicationInfo(true);
+        }
+    },[init,originPaper]);
 
-    async function PostTest(keyword) {
+    async function PostTest(keyword, loading=true) {
         if(!keyword){
             alert("query con not be null!")
             return
@@ -41,14 +43,14 @@ function CitedResult(props) {
             },
             body: JSON.stringify({ keyword: keyword })
         };
-        props.setLoading(true)
+        if(loading) props.setLoading(true)
         try {
-            fetch('http://localhost:9292/project', requestOptions)
+            fetch('http://localhost:9292/search', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     // console.log(result)
                     setData(result)
-                    props.setLoading(false)
+                    if(loading) props.setLoading(false)
                 })
         } catch (e) {
             console.log(e.message)
@@ -56,22 +58,44 @@ function CitedResult(props) {
 
     }
 
-    async function GetTest() {
-        var result = await fetch('http://localhost:9292/project/www/qqq');
-        var content = await result.text()
-        console.log(content)
+    async function GetPublicationInfo(loading=true) {
+        if(!originPaper){
+            alert("originPaper con not be null!")
+            return
+        }
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ pid: originPaper.publication_id })
+        };
+        console.log(requestOptions)
+        if(loading) props.setLoading(true)
+        try {
+            fetch('http://localhost:9292/search/publication', requestOptions)
+                .then(async response => {
+                    let result = await response.json()
+                    console.log(result)
+                    setPublication(result[0])
+                    if(loading) props.setLoading(false)
+                })
+        } catch (e) {
+            console.log(e.message)
+        }
     }
 
-    async function Search() {
-        console.log(query)
-    }
 
-    function reloadnewurl(url,eid){
+    async function reloadnewurl(url,eid){
+        props.setLoading(true)
+        await PostTest(eid,false)
+        await GetPaperByEid(eid,false)
+        props.setLoading(false)
         setQuery(eid)
-        PostTest(eid)
+
     }
 
-    async function GetPaperByEid(keyword) {
+    async function GetPaperByEid(keyword, loading=true) {
         if(!keyword){
             alert("query con not be null!")
             return
@@ -83,14 +107,14 @@ function CitedResult(props) {
             },
             body: JSON.stringify({ eid: keyword })
         };
-        props.setLoading(true)
+        if(loading) props.setLoading(true)
         try {
             fetch('http://localhost:9292/db/eid', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     setOrigin(result)
                     console.log(result)
-                    props.setLoading(false)
+                    if(loading) props.setLoading(false)
                 })
         } catch (e) {
             console.log(e.message)
@@ -107,12 +131,31 @@ function CitedResult(props) {
             <Container>
                 <Row>
                     <Col></Col>
+                    {(originPaper)?
                     <Col xs={10}>
                         <h2><a href={originPaper.paper_link} target="_blank">{originPaper.title}</a></h2>
                     </Col>
+                    :""}
                     <Col></Col>
 
                 </Row>
+                {(Publication)?
+                    <>
+                    <Row>
+                    <Col></Col>
+                    <Col><b>Citation Count</b> : {Publication.citation_count}</Col>
+                    <Col><b>View Count</b> : {Publication.views_count}</Col>
+                    <Col><b>publication year</b> : {Publication.publication_year}</Col>
+                    <Col></Col>
+                    </Row>
+                    <Row>
+                    <Col></Col>
+                    <Col><b>Publication</b> : {Publication.source_title}</Col>
+                    <Col><b>journal impact</b> : {Publication.journal_impact}</Col>
+                    <Col></Col>
+                    </Row>
+                    </>
+                :<></>}
                 <Row>
                     <Table striped bordered hover size="sm" style={{ width: '85%', margin: "auto", marginTop: "1%"}}>
                         <thead>
@@ -135,7 +178,7 @@ function CitedResult(props) {
                                 <td width="15%" overflow="hidden">{self.organization}</td>
                                 <td width="10%"><a href={self.paper_link} target="_blank">Scopus link</a></td>
                                 {/* <td width="10%">{self.citedby}<br/><a href={self.citedby_link} target="_blank">Detail</a></td> */}
-                                <td width="10%"><Link to={`/citedResult/?query=ref(${self.eid})`} onClick={()=>{reloadnewurl(`/citedResult/?query=ref(${self.eid})`,`ref(${self.eid})`)}}>{self.citedby}</Link></td>
+                                <td width="10%">{self.citedby}</td>
                             </tr>)}
                         </tbody>
                     </Table>
