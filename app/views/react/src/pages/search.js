@@ -48,8 +48,11 @@ function Search(props) {
                 .then(async response => {
                     let result = await response.json()
                     props.setLoading(false)
-                    if (result.result == false)props.alertFunction(result.error)
-                    else setData(result)
+                    if (result.result == false) props.alertFunction(result.error)
+                    else {
+                        setData(result)
+                        props.alertSuccessFunction("Searching results as follows!")
+                    }
                 })
         } catch (e) {
             console.log(e.message)

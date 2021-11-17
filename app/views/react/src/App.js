@@ -19,12 +19,19 @@ import './App.css';
 function App() {
   const [loading,setLoading] = useState(false)
   const [alertMessage, setAlertMessage] = useState(false)
+  const [successMessage, setSuccessMessage] = useState(false)
 
   function alertFunction(data){
     setAlertMessage(data)
     setTimeout(()=>{
         setAlertMessage(null)
     },3000)
+  }
+  function alertSuccessFunction(data){
+    setSuccessMessage(data)
+    setTimeout(()=>{
+      setSuccessMessage(null)
+    },5000)
   }
   return (
     <>
@@ -72,12 +79,18 @@ function App() {
         </Alert>
         :""
       }
+      {successMessage ?
+        <Alert variant={'info'} style={{marginLeft:"20%",marginRight:"20%"}}>
+            {successMessage}
+        </Alert>
+        :""
+      }
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/citedResult">
-            <CitedResult setLoading={setLoading} alertFunction={alertFunction}/>
+            <CitedResult setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
           <Route path="/citationTree">
             <CitationTree setLoading={setLoading} alertFunction={alertFunction}/>
@@ -86,7 +99,7 @@ function App() {
             <Beta setLoading={setLoading} alertFunction={alertFunction}/>
           </Route>
           <Route path="/">
-            <Search setLoading={setLoading} alertFunction={alertFunction}/>
+            <Search setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
         </Switch>
     </div>
