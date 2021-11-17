@@ -47,24 +47,15 @@ function Search(props) {
             fetch(baseUrl + '/search', requestOptions)
                 .then(async response => {
                     let result = await response.json()
-                    // console.log(result)
-                    setData(result)
                     props.setLoading(false)
+                    if (result.result == false)props.alertFunction(result.error)
+                    else setData(result)
                 })
         } catch (e) {
             console.log(e.message)
         }
     }
 
-    async function GetTest() {
-        var result = await fetch(baseUrl + '/search/www/qqq');
-        var content = await result.text()
-        console.log(content)
-    }
-
-    async function Search() {
-        console.log(query)
-    }
     return (
         <>
 
