@@ -6,7 +6,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import {Button, Navbar,Nav} from 'react-bootstrap'
+import {Alert, Navbar,Nav} from 'react-bootstrap'
 import logo from './logo.jpg';
 import Search from './pages/search'
 import CitationTree from './pages/citationTree'
@@ -18,7 +18,14 @@ import './App.css';
 
 function App() {
   const [loading,setLoading] = useState(false)
+  const [alertMessage, setAlertMessage] = useState(false)
 
+  function alertFunction(data){
+    setAlertMessage(data)
+    setTimeout(()=>{
+        setAlertMessage(null)
+    },1000)
+  }
   return (
     <>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
@@ -58,21 +65,28 @@ function App() {
             </Nav.Item>
         </Nav>
       </Navbar>
+      <br />
+      {alertMessage ?
+        <Alert variant={'danger'} style={{marginLeft:"20%",marginRight:"20%"}}>
+            {alertMessage}
+        </Alert>
+        :""
+      }
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/citedResult">
-            <CitedResult setLoading={setLoading}/>
+            <CitedResult setLoading={setLoading} alertFunction={alertFunction}/>
           </Route>
           <Route path="/citationTree">
-            <CitationTree setLoading={setLoading}/>
+            <CitationTree setLoading={setLoading} alertFunction={alertFunction}/>
           </Route>
           <Route path="/beta">
-            <Beta setLoading={setLoading}/>
+            <Beta setLoading={setLoading} alertFunction={alertFunction}/>
           </Route>
           <Route path="/">
-            <Search setLoading={setLoading}/>
+            <Search setLoading={setLoading} alertFunction={alertFunction}/>
           </Route>
         </Switch>
     </div>

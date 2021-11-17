@@ -6,9 +6,11 @@ import {
     Route,
     useLocation,
     Link
-  } from "react-router-dom";
-import { Button, Navbar, Nav, Form, Col, InputGroup, Row, FormControl, Container,Table } from 'react-bootstrap'
+} from "react-router-dom";
+import { Button, Alert, Nav, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
 import { baseUrl } from '../config'
+
+
 
 function Search(props) {
     const { search } = useLocation()
@@ -21,15 +23,16 @@ function Search(props) {
     useEffect(() => {
         console.log(urlparams.query)
         console.log(process.env)
-        if(urlparams.query){
+        if (urlparams.query) {
             PostTest(urlparams.query)
             setQuery(urlparams.query)
         }
-    },[init]);
+    }, [init]);
 
     async function PostTest(keyword) {
-        if(!keyword){
-            alert("query con not be null!")
+        if (!keyword) {
+            // alert("query con not be null!")
+            props.alertFunction("query con not be null!")
             return
         }
         const requestOptions = {
@@ -41,7 +44,7 @@ function Search(props) {
         };
         props.setLoading(true)
         try {
-            fetch(baseUrl+'/search', requestOptions)
+            fetch(baseUrl + '/search', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     // console.log(result)
@@ -54,7 +57,7 @@ function Search(props) {
     }
 
     async function GetTest() {
-        var result = await fetch(baseUrl+'/search/www/qqq');
+        var result = await fetch(baseUrl + '/search/www/qqq');
         var content = await result.text()
         console.log(content)
     }
@@ -64,9 +67,7 @@ function Search(props) {
     }
     return (
         <>
- 
-            
-            <br />
+
             <div className="App">
                 <h1>Paper Search</h1>
             </div>
@@ -81,7 +82,7 @@ function Search(props) {
                                     <FormControl type="text" placeholder="Search Study Fields" value={query} onChange={(e) => { setQuery(e.target.value) }} />
                                 </Col>
                                 <Col sm="3">
-                                    <Button variant="outline-primary" onClick={() =>{PostTest(query)}}>Search</Button>
+                                    <Button variant="outline-primary" onClick={() => { PostTest(query) }}>Search</Button>
                                 </Col>
                             </Row>
                         </Form>
@@ -90,7 +91,7 @@ function Search(props) {
 
                 </Row>
                 <Row>
-                    <Table striped bordered hover size="sm" style={{ width: '100%', margin: "auto", marginTop: "1%"}}>
+                    <Table striped bordered hover size="sm" style={{ width: '100%', margin: "auto", marginTop: "1%" }}>
                         <thead>
                             <tr>
                                 <th>#</th>
