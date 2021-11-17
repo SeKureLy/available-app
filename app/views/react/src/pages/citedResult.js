@@ -79,7 +79,10 @@ function CitedResult(props) {
                 .then(async response => {
                     let result = await response.json()
                     if (result.result == false)props.alertFunction(result.error)
-                    else setPublication(result[0])
+                    else {
+                        setPublication(result[0])
+                        props.alertSuccessFunction("Searching results as follows!")
+                    }
                     if(loading) props.setLoading(false)
                 })
         } catch (e) {
