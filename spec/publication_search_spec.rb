@@ -19,7 +19,7 @@ describe 'Tests Scival API library for publication info with cassette' do
 
   describe 'Tests Scival API library' do
     before do
-      @search_result = SCIVAL_API.search("84979828304")
+      @search_result = SCIVAL_API.search('84979828304')
     end
     describe 'Check Raw Search Result' do
       it '[raw]HAPPY: should provide correct length' do
