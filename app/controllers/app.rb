@@ -72,9 +72,12 @@ module PaperDeep
             routing.post do
               params = JSON.parse(routing.body.read)
               scopus = PaperDeep::PublicationMapper.new(App.config.api_key)
-              result = scopus.search(params['pid'])
-              return { result: false, error: 'Having trouble searching publication' }.to_json if result.nil?
-
+              begin
+                result = scopus.search(params['pid'])
+                return { result: false, error: 'Publication search result is nil' }.to_json if result.nil?
+              rescue StandardError => err
+                return { result: false, error: 'Having trouble searching publication' }.to_json
+              end
               publications = scopus.parse
 
               # Add a result to database

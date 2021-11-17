@@ -50,8 +50,8 @@ function CitedResult(props) {
             fetch(baseUrl+'/search', requestOptions)
                 .then(async response => {
                     let result = await response.json()
-                    // console.log(result)
-                    setData(result)
+                    if (result.result == false)props.alertFunction(result.error)
+                    else setData(result)
                     if(loading) props.setLoading(false)
                 })
         } catch (e) {
@@ -114,8 +114,8 @@ function CitedResult(props) {
             fetch(baseUrl+'/db/eid', requestOptions)
                 .then(async response => {
                     let result = await response.json()
-                    setOrigin(result)
-                    console.log(result)
+                    if (result.result == false)props.alertFunction(result.error)
+                    else setOrigin(result)
                     if(loading) props.setLoading(false)
                 })
         } catch (e) {
