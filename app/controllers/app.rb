@@ -46,30 +46,24 @@ module PaperDeep
 
           # POST /search/
           routing.post do
-            begin
               params = JSON.parse(routing.body.read)
               scopus = PaperDeep::PaperMapper.new(App.config.api_key)
-              result = scopus.search(params['keyword'])
-              puts result
-              puts result.error
-              return if (result.error == "Result set was empty")
-              scopus_parse_project = scopus.parse 
-
-            rescue StandardError => err
-              puts err.backtrace.join("\n")
-              flash[:error] = 'Having trouble searching'
-            end
+              result = scopus.search(params['keyword'])[0]
+              if (result[:error] == "Result set was empty")
+                return {result: false,error:'Having trouble searching'}.to_json
+              else
+                scopus_parse_project = scopus.parse 
+              end
 
             # Add a result to database
             begin
-              puts scopus_parse_project
               scopus_parse_project.map do |paper|
                 Repository::For.entity(paper).db_find_or_create(paper)
               end
               scopus_parse_project.map(&:content).to_json
             rescue StandardError => err
-              puts err.backtrace.join("\n")
               flash[:error] = 'Having trouble accessing to database'
+              return {result: false,error:flash[:error]}.to_json
             end
           end
         end
@@ -79,8 +73,12 @@ module PaperDeep
             routing.post do
               params = JSON.parse(routing.body.read)
               scopus = PaperDeep::PublicationMapper.new(App.config.api_key)
-              scopus.search(params['pid'])
-              publications = scopus.parse
+              result = scopus.search(params['pid'])
+              if (result.nil?)
+                return {result: false,error:'Having trouble searching publication'}.to_json
+              else
+                publications = scopus.parse 
+              end
               publications.map do |publication|
                 Repository::For.entity(publication).db_find_or_create(publication)
               end
