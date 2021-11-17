@@ -17,6 +17,7 @@ module PaperDeep
     end
     plugin :public, root: 'app/views/built', gzip: true
     plugin :halt
+    plugin :flash
     route do |routing|
       #########################################
       #   For render react static files
@@ -45,17 +46,31 @@ module PaperDeep
 
           # POST /search/
           routing.post do
-            params = JSON.parse(routing.body.read)
+            begin
+              params = JSON.parse(routing.body.read)
+              scopus = PaperDeep::PaperMapper.new(App.config.api_key)
+              result = scopus.search(params['keyword'])
+              puts result
+              puts result.error
+              return if (result.error == "Result set was empty")
+              scopus_parse_project = scopus.parse 
 
-            scopus = PaperDeep::PaperMapper.new(App.config.api_key)
-            scopus.search(params['keyword'])
-            scopus_parse_project = scopus.parse
+            rescue StandardError => err
+              puts err.backtrace.join("\n")
+              flash[:error] = 'Having trouble searching'
+            end
 
             # Add a result to database
-            scopus_parse_project.map do |paper|
-              Repository::For.entity(paper).db_find_or_create(paper)
+            begin
+              puts scopus_parse_project
+              scopus_parse_project.map do |paper|
+                Repository::For.entity(paper).db_find_or_create(paper)
+              end
+              scopus_parse_project.map(&:content).to_json
+            rescue StandardError => err
+              puts err.backtrace.join("\n")
+              flash[:error] = 'Having trouble accessing to database'
             end
-            scopus_parse_project.map(&:content).to_json
           end
         end
         routing.on 'publication' do
