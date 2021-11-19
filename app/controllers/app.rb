@@ -15,7 +15,7 @@ module PaperDeep
         resource '*', headers: :any, methods: allowed_methods
       end
     end
-    plugin :public, root: 'app/views/built', gzip: true
+    plugin :public, root: 'app/presentation/built', gzip: true
     plugin :halt
     plugin :flash
     route do |routing|
