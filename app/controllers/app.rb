@@ -15,7 +15,7 @@ module PaperDeep
         resource '*', headers: :any, methods: allowed_methods
       end
     end
-    plugin :public, root: 'app/views/built', gzip: true
+    plugin :public, root: 'app/presentation/built', gzip: true
     plugin :halt
     plugin :flash
     route do |routing|
@@ -25,25 +25,17 @@ module PaperDeep
 
       #   GET /
       routing.root do
-        File.read('app/views/built/index.html')
+        File.read('app/presentation/built/index.html')
       end
 
       routing.on ['test2', 'citedResult'] do
-        File.read('app/views/built/index.html')
+        File.read('app/presentation/built/index.html')
       end
 
       #########################################
       #   For Apis
       routing.on 'search' do
         routing.is do
-          # GET /search/
-          routing.get do
-            scopus = PaperDeep::PaperMapper.new(App.config.api_key)
-            scopus.search('blockchain')
-            scopus_parse_project = scopus.parse
-            scopus_parse_project.map(&:content).to_json
-          end
-
           # POST /search/
           routing.post do
             params = JSON.parse(routing.body.read)
@@ -53,13 +45,17 @@ module PaperDeep
               return { result: false, error: 'Having trouble searching' }.to_json; end
 
             scopus_parse_project = scopus.parse
+            
+            # scopus_parse_project.each { |item| puts item.content }
 
-            # Add a result to database
             begin
+              # Add a result to database
               scopus_parse_project.map do |paper|
                 Repository::For.entity(paper).db_find_or_create(paper)
               end
-              scopus_parse_project.map(&:content).to_json
+              
+              papers_content = Views::PapersList.new(scopus_parse_project).content
+
             rescue StandardError
               flash[:error] = 'Having trouble accessing to database paper'
               return { result: false, error: flash[:error] }.to_json
@@ -80,12 +76,14 @@ module PaperDeep
               end
               publications = scopus.parse
 
-              # Add a result to database
+              
               begin
+                # Add a result to database
                 publications.map do |publication|
                   Repository::For.entity(publication).db_find_or_create(publication)
                 end
-                publications.map(&:content).to_json
+                
+                publications_content = Views::PapersList.new(publications).content
               rescue StandardError
                 flash[:error] = 'Having trouble accessing to database publication'
                 return { result: false, error: flash[:error] }.to_json
