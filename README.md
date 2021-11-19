@@ -34,7 +34,7 @@
   <h3 align="center">SCK Team</h3>
 
   <p align="center">
-    A startup in SOA
+    PaperDeep Project Repo
     <br />
     <a href="/doc"><strong>Explore the docs »</strong></a>
     <br />
@@ -53,30 +53,17 @@ Application that advances researsh article searching and plays a role of literat
 
 
 <!-- TABLE OF CONTENTS -->
-<!-- <details>
+<details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#overview">Overview</a>
-      <ul>
-        <li><a href="#citation-tree">Citation Tree</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#domain-specific-words">Domain-Specific Words</a></li>
+    <li><a href="#features">Features</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
-</details> -->
+</details>
 
 
 
@@ -99,89 +86,8 @@ Paperdeep will pull data from Scopus API, based on user's keywords, to provide
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Citation Tree
-PaperDeep constructs a literature review map for researchers. This map can also become a study path for novices in a certain domain.
 
 
-### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-## Paper Cluster
-Clusters of papers.
-PaperDeep clusters highly relevant papers and then sorts these papers, according to significance metrics (e.g. citations, journal impact), for each user from various kinds of academic disciplines and backgrounds.
-
-# Long-term Goals
-
-## Publication Cluster
-Searching result sorted by publication's journal impact and clustered by different field.
-
-## Recommendation of Masterpiece
-PaperDeep automatically recommends impactful papers according to user’s study field.
-
----
----
----
-# How to use
-PublicationOrm.create(publicationId: 84979828304,journalImpact:3.5,viewsCount:1,citationCount:2,publicationYear:2000,sourceTitle:"IEEE")
-## front-end
-### set-up
-* install nvm
-```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-```
-reopen terminal and install nodejs
-```
-nvm install --lts
-```
-open project,init npm and download packages
-```
-cd app/views/react
-npm init
-npm i
-```
-if npm i fail
-```
-npm i react-loading-overlay --legacy-peer-deps
-```
-### Develop when building front-end
-```
-cd app/views/react
-npm run start
-```
-
-### Develop when building back-end
-```
-rackup || bundle exec rackup
-```
-### Develop End, build react as static files
-```
-npm run build
-```
-this command will build the view-app static code to app/views/built
-
-## Overview
-When you are drowning in enormous papers, PaperDeep advances paper search, recommending the  most relevant and significant ones.
-
-## Features (developing)
-1. Clustering of papers
-2. Automatically recommend impactful papers according user’s study field
-3. For papers from at least one year ago, base on citations and web of science. Otherwise, base on Conference. 
-4. Citation tree : a study path for novices in certain domain
-5. Booming paper: Track and report the citation growth of papers
 ## Domain-Specific Words
 * **Title**: title of the paper
 * **eid**: paper id in scopus database
@@ -192,32 +98,50 @@ When you are drowning in enormous papers, PaperDeep advances paper search, recom
 * **citedby**: a citation count of the paper
 * **author**: Lead authorname
 
+<p align="right">(<a href="#top">back to top</a>)</p>
 
+## Features
 
-## Resource
-Elsevier Scopus API
-
-## Entities
-* paper_info
-
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Feature 1
-- [x] Feature 2
-- [ ] Feature 3
-    - [ ] sub
-    - [ ] sub
+- [x] Search paper via keyword
+- [x] view all cited papers
+- [x] Show the impact factor of the publication
+- [ ] Clustering of papers
+- [ ] Automatically recommend impactful papers according user’s study field
+- [ ] For papers from at least one year ago, base on citations and web of science. Otherwise, base on Conference.
+- [ ] Citation tree : a study path for novices in certain domain
+- [ ] Booming paper: Track and report the citation growth of papers
 
 See the [open issues](https://github.com/SOA-SCK/PaperDeep/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+---
+## Citation Tree
+PaperDeep constructs a literature review map for researchers. This map can also become a study path for novices in a certain domain.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
+
+
+## Paper Cluster
+Clusters of papers.
+PaperDeep clusters highly relevant papers and then sorts these papers, according to significance metrics (e.g. citations, journal impact), for each user from various kinds of academic disciplines and backgrounds.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Long-term Goals
+
+### Publication Cluster
+Searching result sorted by publication's journal impact and clustered by different field.
+
+### Recommendation of Masterpiece
+PaperDeep automatically recommends impactful papers according to user’s study field.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+---
 
 <!-- CONTRIBUTING -->
 ## Contributing
