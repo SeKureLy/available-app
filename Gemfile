@@ -41,6 +41,7 @@ group :test do
   gem 'headless', '~> 2.3'
   gem 'watir', '~> 7.0'
   gem 'webdrivers', '~> 5.0'
+  gem 'watir-webdriver'
 end
 
 group :development do
