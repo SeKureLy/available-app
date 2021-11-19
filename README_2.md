@@ -36,7 +36,7 @@
   <p align="center">
     A startup in SOA
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="/doc"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://paperdeep.herokuapp.com/">View Demo</a>
