@@ -37,7 +37,7 @@ module PaperDeep
         #   flash.now[:notice] = 'Add a Github project to get started'
         # end
 
-        File.read('app/views/built/index.html')
+        File.read('app/presentation/built/index.html')
       end
 
       routing.on ['test2', 'citedResult'] do
