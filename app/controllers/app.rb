@@ -25,7 +25,19 @@ module PaperDeep
 
       #   GET /
       routing.root do
-        File.read('app/presentation/built/index.html')
+        # Get cookie viewer's previously seen projects
+        session[:watching] ||= []
+      
+        # # Load previously viewed projects
+        # publication =  Repository::For.klass(Entity::Publication).db_find_or_create(session[:watching])
+        # puts session[:watching]
+        # session[:watching] = publication
+
+        # if projects.none?
+        #   flash.now[:notice] = 'Add a Github project to get started'
+        # end
+
+        File.read('app/views/built/index.html')
       end
 
       routing.on ['test2', 'citedResult'] do
@@ -34,6 +46,18 @@ module PaperDeep
 
       #########################################
       #   For Apis
+      routing.on 'cookie' do
+        routing.is do
+          routing.get do
+            # Load previously viewed projects
+            # publication =  Repository::For.klass(Entity::Publication).db_find_or_create(session[:watching])
+            # puts session[:watching]
+            # session[:watching] = publication
+            puts session[:watching]
+            session[:watching] || []
+          end
+        end
+      end
       routing.on 'search' do
         routing.is do
           # POST /search/
@@ -84,10 +108,17 @@ module PaperDeep
                 end
                 
                 publications_content = Views::PapersList.new(publications).content
+
+                # Add new keyword to watched set in cookies
+                session[:watching].insert(0, publications).uniq!
+
+                publications.map(&:content).to_json
               rescue StandardError
                 flash[:error] = 'Having trouble accessing to database publication'
                 return { result: false, error: flash[:error] }.to_json
               end
+
+              
             end
           end
         end
