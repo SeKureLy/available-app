@@ -94,7 +94,7 @@ module PaperDeep
                   Repository::For.entity(publication).db_find_or_create(publication)
                 end
                 
-                publications_content = Views::Papers.new(publications).content
+                publications_content = Views::Publications.new(publications).content
 
                 publications.map(&:content).to_json
               rescue StandardError
