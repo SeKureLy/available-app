@@ -26,12 +26,21 @@ module PaperDeep
       #   GET /
       routing.root do
         # Get cookie viewer's previously seen projects
-        session[:watching] ||= []
-      
+        puts session[:paper]
+        session[:paper] = "iot" if session[:paper].nil?
+        session[:publication] ||= []
+
+        puts "root: "
+        puts session[:paper]
+        
         # # Load previously viewed projects
-        # publication =  Repository::For.klass(Entity::Publication).db_find_or_create(session[:watching])
-        # puts session[:watching]
-        # session[:watching] = publication
+        # publication =  Repository::For.entity(Entity::Publication).all.first.db_find_or_create(session[:publication])
+        # # db_publication = PaperDeep::Repository::For.entity(publications_parse_result.first).all.first
+
+        # puts publication
+        # puts session[:publication]
+        # session[:publication] = publication
+        # puts session[:publication]
 
         # if projects.none?
         #   flash.now[:notice] = 'Add a Github project to get started'
@@ -53,8 +62,16 @@ module PaperDeep
             # publication =  Repository::For.klass(Entity::Publication).db_find_or_create(session[:watching])
             # puts session[:watching]
             # session[:watching] = publication
-            puts session[:watching]
-            session[:watching] || []
+            # puts session[:watching]
+            # puts session[:qqq]
+            # ppp = session
+
+            puts "cookie: "
+            puts session[:paper]
+            puts session[:publication]
+            # puts ppp
+            # puts session
+            # return qqq
           end
         end
       end
@@ -64,13 +81,16 @@ module PaperDeep
           routing.post do
             params = JSON.parse(routing.body.read)
             scopus = PaperDeep::PaperMapper.new(App.config.api_key)
-            result = scopus.search(params['keyword'])[0]
+            result = scopus.search(params['keyword'])[0] if session[:paper].nil?
             if result[:error] == 'Result set was empty'
               return { result: false, error: 'Having trouble searching' }.to_json; end
 
             scopus_parse_project = scopus.parse
-            
-            # scopus_parse_project.each { |item| puts item.content }
+
+            puts "search paper: "
+            puts session[:paper]
+            session[:paper] = "blockchain"
+            puts session[:paper]
 
             begin
               # Add a result to database
@@ -79,6 +99,11 @@ module PaperDeep
               end
               
               papers_content = Views::PapersList.new(scopus_parse_project).content
+
+              # puts "search paper: "
+              # session[:paper] = "block"
+              # puts session[:paper]
+              # session[:paper].insert(0, "blockchain").uniq!
 
             rescue StandardError
               flash[:error] = 'Having trouble accessing to database paper'
@@ -110,7 +135,9 @@ module PaperDeep
                 publications_content = Views::PapersList.new(publications).content
 
                 # Add new keyword to watched set in cookies
-                session[:watching].insert(0, publications).uniq!
+                session[:publication].insert(0, "publication").uniq!
+                puts "search publication"
+                puts session[:publication]
 
                 publications.map(&:content).to_json
               rescue StandardError
