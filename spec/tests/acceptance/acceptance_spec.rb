@@ -5,13 +5,11 @@ require_relative '../../helpers/database_helper'
 require_relative '../../helpers/vcr_helper'
 require 'headless'
 require 'webdrivers/chromedriver'
-# require 'watir'
-require 'watir-webdriver'
+require "watir-webdriver/wait"
+require 'watir'
 
 describe 'Acceptance Tests' do
   before do
-    # DatabaseHelper.wipe_database
-    # @headless = Headless.new
     options = Selenium::WebDriver::Chrome::Options.new
     options.add_argument('--headless')
     @browser = Watir::Browser.new :chrome, options: options
@@ -19,7 +17,6 @@ describe 'Acceptance Tests' do
 
   after do
     @browser.close
-    # @headless.destroy
   end
   describe 'Homepage' do
     describe 'Visit Home page' do
@@ -40,7 +37,8 @@ describe 'Acceptance Tests' do
         @browser.input(placeholder: 'Search Study Fields').set('blockchain')
         @browser.button(text: 'Search').click
         _(@browser.table.tds.length).must_equal 0
-        sleep(3)
+  
+        Watir::Wait.until(timeout: 10) { @browser.table.tds.length == 150 }
         #then
         _(@browser.table.tds.length).must_equal 150
       end
