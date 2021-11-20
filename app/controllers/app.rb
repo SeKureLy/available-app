@@ -36,25 +36,24 @@ module PaperDeep
       #   For Apis
       routing.on 'search' do
         routing.is do
+          # puts "test"
           # POST /search/
           routing.post do
             params = JSON.parse(routing.body.read)
             scopus = PaperDeep::PaperMapper.new(App.config.api_key)
             result = scopus.search(params['keyword'])[0]
+
             if result[:error] == 'Result set was empty'
               return { result: false, error: 'Having trouble searching' }.to_json; end
 
             scopus_parse_project = scopus.parse
-            
-            # scopus_parse_project.each { |item| puts item.content }
 
             begin
               # Add a result to database
               scopus_parse_project.map do |paper|
                 Repository::For.entity(paper).db_find_or_create(paper)
               end
-              
-              papers_content = Views::PapersList.new(scopus_parse_project).content
+              papers_content = Views::Papers.new(scopus_parse_project).content
 
             rescue StandardError
               flash[:error] = 'Having trouble accessing to database paper'
@@ -71,19 +70,19 @@ module PaperDeep
               begin
                 result = scopus.search(params['pid'])
                 return { result: false, error: 'Publication search result is nil' }.to_json if result.nil?
-              rescue StandardError => err
+              rescue StandardError
                 return { result: false, error: 'Having trouble searching publication' }.to_json
               end
               publications = scopus.parse
 
-              
               begin
                 # Add a result to database
                 publications.map do |publication|
                   Repository::For.entity(publication).db_find_or_create(publication)
                 end
-                
-                publications_content = Views::PapersList.new(publications).content
+
+                publications_content = Views::Publications.new(publications).content
+
               rescue StandardError
                 flash[:error] = 'Having trouble accessing to database publication'
                 return { result: false, error: flash[:error] }.to_json
@@ -110,10 +109,15 @@ module PaperDeep
           routing.is do
             # POST /db/
             routing.post do
+              session[:paper] ||= []
               params = JSON.parse(routing.body.read)
+
               paper = Repository::For.klass(Entity::Paper).find_eid(params['eid'])
               return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
 
+              # puts paper.content.to_json
+              session[:paper].insert(0, paper.content.to_json)
+              puts session[:paper]
               paper.content.to_json
             end
           end
