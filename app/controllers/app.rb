@@ -36,7 +36,6 @@ module PaperDeep
       #   For Apis
       routing.on 'search' do
         routing.is do
-          # puts "test"
           # POST /search/
           routing.post do
             params = JSON.parse(routing.body.read)
@@ -107,7 +106,7 @@ module PaperDeep
         end
         routing.on 'eid' do
           routing.is do
-            # POST /db/
+            # POST /db/eid
             routing.post do
               session[:paper] ||= []
               params = JSON.parse(routing.body.read)
@@ -115,7 +114,6 @@ module PaperDeep
               paper = Repository::For.klass(Entity::Paper).find_eid(params['eid'])
               return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
 
-              # puts paper.content.to_json
               session[:paper].insert(0, paper.content.to_json)
               puts session[:paper]
               paper.content.to_json
