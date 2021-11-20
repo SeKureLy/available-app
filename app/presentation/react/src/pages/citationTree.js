@@ -17,7 +17,10 @@ const testTreeData = {
             {
               content:{NodeName:"paper5",eid:""},
               next:[
-                
+                {
+                  content:{NodeName:"paper4",eid:""},
+                  next: []
+                }
               ]
             },
             {

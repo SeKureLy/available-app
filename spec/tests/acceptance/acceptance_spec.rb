@@ -5,7 +5,7 @@ require_relative '../../helpers/database_helper'
 require_relative '../../helpers/vcr_helper'
 require 'headless'
 require 'webdrivers/chromedriver'
-require "watir-webdriver/wait"
+require 'watir-webdriver/wait'
 require 'watir'
 
 describe 'Acceptance Tests' do
@@ -27,7 +27,6 @@ describe 'Acceptance Tests' do
         _(@browser.title).must_equal 'Paper Deep'
         _(@browser.input(placeholder: 'Search Study Fields').present?).must_equal true
         _(@browser.button(text: 'Search').present?).must_equal true
-        
       end
       it '(HAPPY) should have search result' do
         # GIVEN: user is on the home page without any projects
@@ -37,9 +36,9 @@ describe 'Acceptance Tests' do
         @browser.input(placeholder: 'Search Study Fields').set('blockchain')
         @browser.button(text: 'Search').click
         _(@browser.table.tds.length).must_equal 0
-  
+
         Watir::Wait.until(timeout: 10) { @browser.table.tds.length == 150 }
-        #then
+        # then
         _(@browser.table.tds.length).must_equal 150
       end
     end

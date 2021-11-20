@@ -25,7 +25,6 @@ module PaperDeep
 
       #   GET /
       routing.root do
-
         File.read('app/presentation/built/index.html')
       end
 
@@ -35,13 +34,6 @@ module PaperDeep
 
       #########################################
       #   For Apis
-      routing.on 'cookie' do
-        routing.is do
-          routing.get do
-            
-          end
-        end
-      end
       routing.on 'search' do
         routing.is do
           # puts "test"
@@ -50,22 +42,18 @@ module PaperDeep
             params = JSON.parse(routing.body.read)
             scopus = PaperDeep::PaperMapper.new(App.config.api_key)
             result = scopus.search(params['keyword'])[0]
-            
-            if result[:error] == 'Result set was empty' 
+
+            if result[:error] == 'Result set was empty'
               return { result: false, error: 'Having trouble searching' }.to_json; end
 
             scopus_parse_project = scopus.parse
 
             begin
-              
               # Add a result to database
               scopus_parse_project.map do |paper|
                 Repository::For.entity(paper).db_find_or_create(paper)
               end
               papers_content = Views::Papers.new(scopus_parse_project).content
-
-              return papers_content
-
 
             rescue StandardError
               flash[:error] = 'Having trouble accessing to database paper'
@@ -82,27 +70,23 @@ module PaperDeep
               begin
                 result = scopus.search(params['pid'])
                 return { result: false, error: 'Publication search result is nil' }.to_json if result.nil?
-              rescue StandardError => err
+              rescue StandardError
                 return { result: false, error: 'Having trouble searching publication' }.to_json
               end
               publications = scopus.parse
 
-              
               begin
                 # Add a result to database
                 publications.map do |publication|
                   Repository::For.entity(publication).db_find_or_create(publication)
                 end
-                
+
                 publications_content = Views::Publications.new(publications).content
 
-                publications.map(&:content).to_json
               rescue StandardError
                 flash[:error] = 'Having trouble accessing to database publication'
                 return { result: false, error: flash[:error] }.to_json
               end
-
-              
             end
           end
         end
@@ -127,7 +111,7 @@ module PaperDeep
             routing.post do
               session[:paper] ||= []
               params = JSON.parse(routing.body.read)
-              
+
               paper = Repository::For.klass(Entity::Paper).find_eid(params['eid'])
               return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
 
