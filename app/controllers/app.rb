@@ -52,7 +52,7 @@ module PaperDeep
               scopus_parse_project.map do |paper|
                 Repository::For.entity(paper).db_find_or_create(paper)
               end
-              papers_content = Views::Papers.new(scopus_parse_project).content
+              papers_content = Views::Papers.new(scopus_parse_project).content.to_json
 
             rescue StandardError
               flash[:error] = 'Having trouble accessing to database paper'
@@ -80,10 +80,61 @@ module PaperDeep
                   Repository::For.entity(publication).db_find_or_create(publication)
                 end
 
-                publications_content = Views::Publications.new(publications).content
+                publications_content = Views::Publications.new(publications).content.to_json
 
               rescue StandardError
                 flash[:error] = 'Having trouble accessing to database publication'
+                return { result: false, error: flash[:error] }.to_json
+              end
+            end
+          end
+        end
+        routing.on 'citationtree' do
+          routing.is do
+            # GET /search/citationtree
+            routing.get do
+              puts "test1"
+              puts session[:paper]
+              root_paper = JSON.parse(session[:paper][0], symbolize_names: true)
+              puts "test2"
+              scopus = PaperDeep::PaperMapper.new(App.config.api_key)
+
+              result = scopus.search(root_paper[:eid])[0]
+
+              if result[:error] == 'Result set was empty'
+                return { result: false, error: 'Having trouble searching' }.to_json; end
+
+              scopus_parse_project = scopus.parse.first(3)
+
+              begin
+                # Add a result to database
+                scopus_parse_project.map do |paper|
+                  Repository::For.entity(paper).db_find_or_create(paper)
+                end
+                papers_content = Views::Papers.new(scopus_parse_project).content
+
+                puts papers_content
+
+                json_result = JSON.dump({
+                  content: {NodeName: root_paper[:title], link: root_paper[:paper_link]},
+                  next: [
+                    {
+                      content: {NodeName: papers_content[0][:title], link: papers_content[0][:paper_link]},
+                      next: []
+                    },
+                    {
+                      content: {NodeName: papers_content[1][:title], link: papers_content[1][:paper_link]},
+                      next: []
+                    },
+                    {
+                      content: {NodeName: papers_content[2][:title], link: papers_content[2][:paper_link]},
+                      next: []
+                    },
+                  ]
+                })
+
+              rescue StandardError
+                flash[:error] = 'Having trouble accessing to database paper'
                 return { result: false, error: flash[:error] }.to_json
               end
             end
@@ -108,14 +159,14 @@ module PaperDeep
           routing.is do
             # POST /db/eid
             routing.post do
+              session.clear
               session[:paper] ||= []
               params = JSON.parse(routing.body.read)
 
               paper = Repository::For.klass(Entity::Paper).find_eid(params['eid'])
               return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
 
-              session[:paper].insert(0, paper.content.to_json)
-              puts session[:paper]
+              session[:paper].insert(0, paper.content)
               paper.content.to_json
             end
           end

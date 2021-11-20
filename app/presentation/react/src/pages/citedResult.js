@@ -162,6 +162,16 @@ function CitedResult(props) {
                     </>
                 :<></>}
                 <Row>
+                    <Col></Col>
+                    {(originPaper)?
+                    <Col xs={10}>
+                        <center><h3><Link to={`/citationTree`}>Citation Tree</Link></h3></center>
+                    </Col>
+                    :""}
+                    <Col></Col>
+
+                </Row>
+                <Row>
                     <Table striped bordered hover size="sm" style={{ width: '85%', margin: "auto", marginTop: "1%"}}>
                         <thead>
                             <tr>

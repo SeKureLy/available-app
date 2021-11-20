@@ -4,8 +4,9 @@ import styled, { css } from 'styled-components'
 
 import { Button, Navbar, Nav } from 'react-bootstrap'
 import logo from './../logo.svg';
+import { baseUrl } from '../config'
 const testTreeData = {
-  content:{NodeName:"paper1",eid:""},
+  content:{NodeName:"paper1",eid:"",paper_link:""},
   next:
   [
     {
@@ -97,9 +98,38 @@ const StyledTreeExample = () => (
     </TreeNode>
   </Tree>
 );
-function CitationTree() {
+function CitationTree(props) {
+  const [init, setinit] = useState(false)
+  const [query, setQuery] = useState("")
+  const [data, setData] = useState([])
+  const [tree, setTree] = useState({})
 
+  useEffect(() => {
+      GetTest()
+  }, [init]);
 
+  async function GetTest() {
+
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    try {
+        fetch(baseUrl + '/search/citationtree', requestOptions)
+            .then(async response => {
+                let result = await response.json()
+                if (result.result == false) props.alertFunction(result.error)
+                else {
+                    setTree(result)
+                    props.alertSuccessFunction("Searching results as follows!")
+                }
+            })
+    } catch (e) {
+        console.log(e.message)
+    }
+}
 
   return (
     <>
