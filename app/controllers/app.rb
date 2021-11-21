@@ -93,11 +93,7 @@ module PaperDeep
           routing.is do
             # GET /search/citationtree
             routing.get do
-              puts "test1"
-              puts session[:paper]
-              # root_paper = JSON.parse(session[:paper].first, symbolize_names: true)
               root_paper = session[:paper].first
-              puts "test2"
               scopus = PaperDeep::PaperMapper.new(App.config.api_key)
 
               result = scopus.search(root_paper[:eid])[0]
@@ -114,7 +110,6 @@ module PaperDeep
                 end
                 papers_content = Views::Papers.new(scopus_parse_project).content
 
-                puts papers_content
 
                 json_result = JSON.dump({
                   content: {NodeName: root_paper[:title], link: root_paper[:paper_link]},
