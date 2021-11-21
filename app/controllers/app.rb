@@ -11,8 +11,8 @@ module PaperDeep
     use Rack::Cors, debug: true, logger: Logger.new($stdout) do
       allowed_methods = %i[get post put delete options head]
       allow do
-        origins '*'
-        resource '*', headers: :any, methods: allowed_methods
+        origins 'localhost:3000'
+        resource '*', headers: :any, methods: allowed_methods, credentials: true
       end
     end
     plugin :public, root: 'app/presentation/built', gzip: true
@@ -95,7 +95,8 @@ module PaperDeep
             routing.get do
               puts "test1"
               puts session[:paper]
-              root_paper = JSON.parse(session[:paper][0], symbolize_names: true)
+              # root_paper = JSON.parse(session[:paper].first, symbolize_names: true)
+              root_paper = session[:paper].first
               puts "test2"
               scopus = PaperDeep::PaperMapper.new(App.config.api_key)
 
@@ -129,10 +130,10 @@ module PaperDeep
                     {
                       content: {NodeName: papers_content[2][:title], link: papers_content[2][:paper_link]},
                       next: []
-                    },
+                    }
                   ]
                 })
-
+                return json_result
               rescue StandardError
                 flash[:error] = 'Having trouble accessing to database paper'
                 return { result: false, error: flash[:error] }.to_json

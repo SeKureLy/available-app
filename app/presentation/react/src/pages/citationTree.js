@@ -50,13 +50,13 @@ const StyledNode = styled.div`
 `;
 
 const TreeRoot = (data)=>{
-
+  if (!data) return <></>
   return (
   <Tree
     lineWidth={'2px'}
     lineColor={'green'}
     lineBorderRadius={'10px'}
-    label={<StyledNode>{data.content.NodeName}</StyledNode>}
+    label={<StyledNode><a href={data.content.link} target="_blank">{data.content.NodeName}</a></StyledNode>}
   >
   {data.next.map((unit)=>{
     return recursiveTree(unit)
@@ -67,7 +67,7 @@ const TreeRoot = (data)=>{
 const recursiveTree = (data) => {
   if (!data) return 
   return (<>
-      <TreeNode label={<StyledNode>{data.content.NodeName}</StyledNode>}>
+      <TreeNode label={<StyledNode><a href={data.content.link} target="_blank">{data.content.NodeName}</a></StyledNode>}>
       {data.next.map((unit)=>{
         return recursiveTree(unit)
       })}
@@ -102,7 +102,7 @@ function CitationTree(props) {
   const [init, setinit] = useState(false)
   const [query, setQuery] = useState("")
   const [data, setData] = useState([])
-  const [tree, setTree] = useState({})
+  const [tree, setTree] = useState(null)
 
   useEffect(() => {
       GetTest()
@@ -113,8 +113,9 @@ function CitationTree(props) {
     const requestOptions = {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include'
     };
     try {
         fetch(baseUrl + '/search/citationtree', requestOptions)
@@ -137,7 +138,7 @@ function CitationTree(props) {
         <h1>CitationTree</h1>
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* <StyledTreeExample /> */}
-        {TreeRoot(testTreeData)}
+        {TreeRoot(tree)}
       </div>
     </>
   );

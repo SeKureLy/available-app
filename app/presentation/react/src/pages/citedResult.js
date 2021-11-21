@@ -110,6 +110,7 @@ function CitedResult(props) {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: "include",
             body: JSON.stringify({ eid: keyword })
         };
         if(loading) props.setLoading(true)
