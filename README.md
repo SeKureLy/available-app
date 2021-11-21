@@ -68,7 +68,7 @@ Application that advances researsh article searching and plays a role of literat
 
 ## Live Demo
 <div align="center">
-<img src="doc/img/livedemo.gif"/>
+<img src="doc/img/livedemo.gif" style="border:2px solid black"/>
 </div>
 ## Overview
 When researchers are drowning in enormous paper mess, they are afraid of omitting any papers relevant to their research topic. Even though Google Scholar, Scopus, Web of Science, etc. with a bunch of fancy and powerful features on their websites can be utilized, researchers still have one simple question: 
