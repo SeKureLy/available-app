@@ -4,6 +4,7 @@ require 'figaro'
 require 'roda'
 require 'sequel'
 require 'yaml'
+require 'delegate' # needed until Rack 2.3 fixes delegateclass bug
 
 module PaperDeep
   # Configuration for the App
@@ -21,6 +22,9 @@ module PaperDeep
       configure :development, :test do
         ENV['DATABASE_URL'] = "sqlite://#{config.DB_FILENAME}"
       end
+
+      use Rack::Session::Cookie, secret: config.SESSION_SECRET
+
       # Database Setup
       DB = Sequel.connect(ENV['DATABASE_URL'])
       # deliberately :reek:UncommunicativeMethodName calling method DB
