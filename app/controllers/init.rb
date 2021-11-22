@@ -5,7 +5,7 @@ Dir.glob("#{__dir__}/*.rb").each do |file|
   require file
 end
 
-folders = %w[utilities]
+folders = %w[services]
 folders.each do |folder|
   require_relative "#{folder}/init"
 end

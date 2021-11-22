@@ -7,12 +7,12 @@ require 'json'
 # PaperDeep Module
 module PaperDeep
   # Utilities Module to add feature
-  module Utilities
+  module Services
     # create citation tree class
     class CreateCitationTree
       def initialize(gateway, root_paper)
         @root_paper = root_paper
-        @gateway = gateway  # PaperMapper instance
+        @gateway = gateway # PaperMapper instance
         @content = {}
       end
 
@@ -26,24 +26,21 @@ module PaperDeep
         nil
       end
 
-      def create_tree(subtree, height)
-        return [] if height == 3
-
+      def node_content(subtree)
         @gateway.search(subtree[:content][:eid])
         parsed = @gateway.parse.first(3)
 
-        subtree[:next][0] = {
-          content: { NodeName: parsed[0][:title], link: parsed[0][:paper_link], eid: parsed[0][:eid] },
-          next: []
-        }
-        subtree[:next][1] = {
-          content: { NodeName: parsed[1][:title], link: parsed[1][:paper_link], eid: parsed[1][:eid] },
-          next: []
-        }
-        subtree[:next][2] = {
-          content: { NodeName: parsed[2][:title], link: parsed[2][:paper_link], eid: parsed[2][:eid] },
-          next: []
-        }
+        subtree[:next] = (0..2).map do |index|
+          { content:
+            { NodeName: parsed[index][:title], link: parsed[index][:paper_link], eid: parsed[index][:eid] },
+            next: [] }
+        end
+      end
+
+      def create_tree(subtree, height)
+        return [] if height == 3
+
+        node_content(subtree)
 
         create_tree(subtree[:next][0], height + 1)
         create_tree(subtree[:next][1], height + 1)
