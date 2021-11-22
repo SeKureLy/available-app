@@ -93,10 +93,10 @@ function App() {
             <CitedResult setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
           <Route path="/citationTree">
-            <CitationTree setLoading={setLoading} alertFunction={alertFunction}/>
+            <CitationTree setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
           <Route path="/beta">
-            <Beta setLoading={setLoading} alertFunction={alertFunction}/>
+            <Beta setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
           <Route path="/">
             <Search setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>

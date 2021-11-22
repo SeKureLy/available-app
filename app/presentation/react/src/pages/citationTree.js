@@ -4,8 +4,9 @@ import styled, { css } from 'styled-components'
 
 import { Button, Navbar, Nav } from 'react-bootstrap'
 import logo from './../logo.svg';
+import { baseUrl } from '../config'
 const testTreeData = {
-  content:{NodeName:"paper1",eid:""},
+  content:{NodeName:"paper1",eid:"",paper_link:""},
   next:
   [
     {
@@ -49,13 +50,13 @@ const StyledNode = styled.div`
 `;
 
 const TreeRoot = (data)=>{
-
+  if (!data) return <></>
   return (
   <Tree
     lineWidth={'2px'}
     lineColor={'green'}
     lineBorderRadius={'10px'}
-    label={<StyledNode>{data.content.NodeName}</StyledNode>}
+    label={<StyledNode><a href={data.content.link} target="_blank">{data.content.NodeName}</a></StyledNode>}
   >
   {data.next.map((unit)=>{
     return recursiveTree(unit)
@@ -66,7 +67,7 @@ const TreeRoot = (data)=>{
 const recursiveTree = (data) => {
   if (!data) return 
   return (<>
-      <TreeNode label={<StyledNode>{data.content.NodeName}</StyledNode>}>
+      <TreeNode label={<StyledNode><a href={data.content.link} target="_blank">{data.content.NodeName}</a></StyledNode>}>
       {data.next.map((unit)=>{
         return recursiveTree(unit)
       })}
@@ -97,9 +98,39 @@ const StyledTreeExample = () => (
     </TreeNode>
   </Tree>
 );
-function CitationTree() {
+function CitationTree(props) {
+  const [init, setinit] = useState(false)
+  const [query, setQuery] = useState("")
+  const [data, setData] = useState([])
+  const [tree, setTree] = useState(null)
 
+  useEffect(() => {
+      GetTest()
+  }, [init]);
 
+  async function GetTest() {
+
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+    };
+    try {
+        fetch(baseUrl + '/search/citationtree', requestOptions)
+            .then(async response => {
+                let result = await response.json()
+                if (result.result == false) props.alertFunction(result.error)
+                else {
+                    setTree(result)
+                    props.alertSuccessFunction("Searching results as follows!")
+                }
+            })
+    } catch (e) {
+        console.log(e.message)
+    }
+}
 
   return (
     <>
@@ -107,7 +138,7 @@ function CitationTree() {
         <h1>CitationTree</h1>
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* <StyledTreeExample /> */}
-        {TreeRoot(testTreeData)}
+        {TreeRoot(tree)}
       </div>
     </>
   );

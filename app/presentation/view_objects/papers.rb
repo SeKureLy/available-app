@@ -8,7 +8,7 @@ module Views
     end
 
     def content
-      @papers.map(&:content).to_json
+      @papers.map(&:content)
     end
   end
 end
