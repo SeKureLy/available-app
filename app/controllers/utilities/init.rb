@@ -4,8 +4,3 @@ Dir.glob("#{__dir__}/*.rb").each do |file|
   puts "app init#{file}"
   require file
 end
-
-folders = %w[utilities]
-folders.each do |folder|
-  require_relative "#{folder}/init"
-end
