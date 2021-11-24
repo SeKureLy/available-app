@@ -2,46 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled, { css } from 'styled-components'
 
-import { Button, Navbar, Nav } from 'react-bootstrap'
-import logo from './../logo.svg';
 import { baseUrl } from '../config'
-const testTreeData = {
-  content:{NodeName:"paper1",eid:"",paper_link:""},
-  next:
-  [
-    {
-      content:{NodeName:"paper2",eid:""},
-      next:[
-        {
-          content:{NodeName:"paper4",eid:""},
-          next:[
-            {
-              content:{NodeName:"paper5",eid:""},
-              next:[
-                {
-                  content:{NodeName:"paper4",eid:""},
-                  next: []
-                }
-              ]
-            },
-            {
-              content:{NodeName:"paper6",eid:""},
-              next:[
-                
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      content:{NodeName:"paper3",eid:""},
-      next:[
 
-      ]
-    }
-  ]
-}
 const StyledNode = styled.div`
   padding: 5px;
   border-radius: 8px;
@@ -76,39 +38,16 @@ const recursiveTree = (data) => {
   </>)
 }
 
-const StyledTreeExample = () => (
-  <Tree
-    lineWidth={'2px'}
-    lineColor={'green'}
-    lineBorderRadius={'10px'}
-    label={<StyledNode>Root</StyledNode>}
-  >
-    <TreeNode label={<StyledNode>Child 1</StyledNode>}>
-      <TreeNode label={<StyledNode>Grand Child</StyledNode>} />
-    </TreeNode>
-    <TreeNode label={<StyledNode>Child 2</StyledNode>}>
-      <TreeNode label={<StyledNode>Grand Child</StyledNode>}>
-        <TreeNode label={<StyledNode>Great Grand Child 1</StyledNode>} />
-        <TreeNode label={<StyledNode>Great Grand Child 2</StyledNode>} />
-      </TreeNode>
-    </TreeNode>
-    <TreeNode label={<StyledNode>Child 3</StyledNode>}>
-      <TreeNode label={<StyledNode>Grand Child 1</StyledNode>} />
-      <TreeNode label={<StyledNode>Grand Child 2</StyledNode>} />
-    </TreeNode>
-  </Tree>
-);
+
 function CitationTree(props) {
   const [init, setinit] = useState(false)
-  const [query, setQuery] = useState("")
-  const [data, setData] = useState([])
   const [tree, setTree] = useState(null)
 
   useEffect(() => {
       GetTest()
   }, [init]);
 
-  async function GetTest() {
+  async function GetTest(loading = true) {
 
     const requestOptions = {
         method: 'GET',
@@ -117,6 +56,7 @@ function CitationTree(props) {
         },
         credentials: 'include'
     };
+    if(loading) props.setLoading(true)
     try {
         fetch(baseUrl + '/search/citationtree', requestOptions)
             .then(async response => {
@@ -125,6 +65,7 @@ function CitationTree(props) {
                 else {
                     setTree(result)
                     props.alertSuccessFunction("Searching results as follows!")
+                    if(loading) props.setLoading(false)
                 }
             })
     } catch (e) {

@@ -11,7 +11,7 @@ module PaperDeep
     use Rack::Cors, debug: true, logger: Logger.new($stdout) do
       allowed_methods = %i[get post put delete options head]
       allow do
-        origins 'localhost:3000'
+        origins '*'
         resource '*', headers: :any, methods: allowed_methods, credentials: true
       end
     end
@@ -96,43 +96,12 @@ module PaperDeep
               root_paper = session[:paper].first
               scopus = PaperDeep::PaperMapper.new(App.config.api_key)
 
-              result = scopus.search(root_paper[:eid])[0]
+              tree = PaperDeep::Services::CreateCitationTree.new(scopus, root_paper)
+              tree.create
+              tree_hash = tree.return_tree
 
-              if result[:error] == 'Result set was empty'
-                return { result: false, error: 'Having trouble searching' }.to_json; end
+              tree_json = tree_hash.to_json
 
-              scopus_parse_project = scopus.parse.first(3)
-
-              begin
-                # Add a result to database
-                scopus_parse_project.map do |paper|
-                  Repository::For.entity(paper).db_find_or_create(paper)
-                end
-                papers_content = Views::Papers.new(scopus_parse_project).content
-
-
-                json_result = JSON.dump({
-                  content: {NodeName: root_paper[:title], link: root_paper[:paper_link]},
-                  next: [
-                    {
-                      content: {NodeName: papers_content[0][:title], link: papers_content[0][:paper_link]},
-                      next: []
-                    },
-                    {
-                      content: {NodeName: papers_content[1][:title], link: papers_content[1][:paper_link]},
-                      next: []
-                    },
-                    {
-                      content: {NodeName: papers_content[2][:title], link: papers_content[2][:paper_link]},
-                      next: []
-                    }
-                  ]
-                })
-                return json_result
-              rescue StandardError
-                flash[:error] = 'Having trouble accessing to database paper'
-                return { result: false, error: flash[:error] }.to_json
-              end
             end
           end
         end
