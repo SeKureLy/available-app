@@ -11,7 +11,7 @@ module PaperDeep
     use Rack::Cors, debug: true, logger: Logger.new($stdout) do
       allowed_methods = %i[get post put delete options head]
       allow do
-        origins '*'
+        origins 'localhost:*'
         resource '*', headers: :any, methods: allowed_methods, credentials: true
       end
     end
