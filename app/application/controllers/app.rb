@@ -39,12 +39,11 @@ module PaperDeep
           # POST /search/
           routing.post do
             params = JSON.parse(routing.body.read)
-            #params = {"keyword"=>"iot"}
             search_request = PaperDeep::Forms::NewSearch.new.call(params)
             result = PaperDeep::Service::AddPaper.new.call(search_request)
 
             if result.failure?
-              flash[:error] = 'Having trouble accessing to database paper'
+              flash[:error] = result.failure
               return { result: false, error: flash[:error] }.to_json
             end
             
@@ -57,27 +56,18 @@ module PaperDeep
             # POST /search/publication
             routing.post do
               params = JSON.parse(routing.body.read)
-              scopus = PaperDeep::PublicationMapper.new(App.config.api_key)
-              begin
-                result = scopus.search(params['pid'])
-                return { result: false, error: 'Publication search result is nil' }.to_json if result.nil?
-              rescue StandardError
-                return { result: false, error: 'Having trouble searching publication' }.to_json
-              end
-              publications = scopus.parse
+              result = PaperDeep::Service::SearchPublication.new.call(params)
 
-              begin
-                # Add a result to database
-                publications.map do |publication|
-                  Repository::For.entity(publication).db_find_or_create(publication)
-                end
-
-                publications_content = Views::Publications.new(publications).content.to_json
-
-              rescue StandardError
-                flash[:error] = 'Having trouble accessing to database publication'
+              if result.failure?
+                flash[:error] = result.failure
                 return { result: false, error: flash[:error] }.to_json
               end
+              
+              if result.value![:publication].empty?
+                return { result: false, error: 'Publication search result is nil' }.to_json
+              end
+              
+              publication_content = Views::Publications.new(result.value![:publication]).content.to_json
             end
           end
         end

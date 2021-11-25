@@ -46,7 +46,7 @@ module PaperDeep
         result = scopus.search(input[:keyword])[0]
         scopus_parse_project = scopus.parse
       rescue StandardError
-        raise 'Could not find that search result on Scopus'
+        raise 'Having trouble searching papers'
       end
     end
   end
