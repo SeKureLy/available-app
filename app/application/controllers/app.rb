@@ -39,25 +39,17 @@ module PaperDeep
           # POST /search/
           routing.post do
             params = JSON.parse(routing.body.read)
-            scopus = PaperDeep::PaperMapper.new(App.config.api_key)
-            result = scopus.search(params['keyword'])[0]
+            #params = {"keyword"=>"iot"}
+            search_request = PaperDeep::Forms::NewSearch.new.call(params)
+            result = PaperDeep::Service::AddPaper.new.call(search_request)
 
-            if result[:error] == 'Result set was empty'
-              return { result: false, error: 'Having trouble searching' }.to_json; end
-
-            scopus_parse_project = scopus.parse
-
-            begin
-              # Add a result to database
-              scopus_parse_project.map do |paper|
-                Repository::For.entity(paper).db_find_or_create(paper)
-              end
-              papers_content = Views::Papers.new(scopus_parse_project).content.to_json
-
-            rescue StandardError
+            if result.failure?
               flash[:error] = 'Having trouble accessing to database paper'
               return { result: false, error: flash[:error] }.to_json
             end
+            
+            papers_content = Views::Papers.new(result.value![:paper]).content.to_json
+
           end
         end
         routing.on 'publication' do
