@@ -25,17 +25,17 @@ module PaperDeep
       def find_paper(input)
         input[:paper] = paper_from_scopus(input)
         Success(input)
-      rescue StandardError => error
-        Failure(error.to_s)
+      rescue StandardError => e
+        Failure(e.to_s)
       end
 
       def store_paper(input)
         input[:storage] = input[:paper].map do |paper|
-                  Repository::For.entity(paper).db_find_or_create(paper)
-                end
+          Repository::For.entity(paper).db_find_or_create(paper)
+        end
         Success(input)
-      rescue StandardError => error
-        puts error.backtrace.join("\n")
+      rescue StandardError => e
+        puts e.backtrace.join("\n")
         Failure('Having trouble accessing the database')
       end
 
