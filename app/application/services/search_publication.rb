@@ -16,17 +16,17 @@ module PaperDeep
       def find_publication(input)
         input[:publication] = publication_from_scopus(input)
         Success(input)
-      rescue StandardError => error
-        Failure(error.to_s)
+      rescue StandardError => e
+        Failure(e.to_s)
       end
 
       def store_publication(input)
         input[:storage] = input[:publication].map do |publication|
-                            Repository::For.entity(publication).db_find_or_create(publication)
-                          end
+          Repository::For.entity(publication).db_find_or_create(publication)
+        end
         Success(input)
-      rescue StandardError => error
-        puts error.backtrace.join("\n")
+      rescue StandardError => e
+        puts e.backtrace.join("\n")
         Failure('Having trouble accessing the database publication')
       end
 

@@ -46,9 +46,8 @@ module PaperDeep
               flash[:error] = result.failure
               return { result: false, error: flash[:error] }.to_json
             end
-            
-            papers_content = Views::Papers.new(result.value![:paper]).content.to_json
 
+            papers_content = Views::Papers.new(result.value![:paper]).content.to_json
           end
         end
         routing.on 'publication' do
@@ -62,11 +61,11 @@ module PaperDeep
                 flash[:error] = result.failure
                 return { result: false, error: flash[:error] }.to_json
               end
-              
+
               if result.value![:publication].empty?
                 return { result: false, error: 'Publication search result is nil' }.to_json
               end
-              
+
               publication_content = Views::Publications.new(result.value![:publication]).content.to_json
             end
           end
@@ -83,7 +82,6 @@ module PaperDeep
               tree_hash = tree.return_tree
 
               tree_json = tree_hash.to_json
-
             end
           end
         end
@@ -110,7 +108,7 @@ module PaperDeep
               session[:paper] ||= []
               params = JSON.parse(routing.body.read)
 
-              paper = Repository::For.klass(Entity::Paper).find_eid(params['eid'])
+              paper = PaperDeep::Repository::For.klass(PaperDeep::Entity::Paper).find_eid(params['eid'])
               return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
 
               session[:paper].insert(0, paper.content)
