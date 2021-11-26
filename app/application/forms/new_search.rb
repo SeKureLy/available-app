@@ -5,7 +5,7 @@ require 'dry-validation'
 module PaperDeep
   module Forms
     class NewSearch < Dry::Validation::Contract
-      KEYWORD_REGEX = /^[A-Za-z]+/
+      KEYWORD_REGEX = /^[A-Za-z]+ || {2-s2\.0-\d+}/
 
       params do
         required(:keyword).filled(:string)
