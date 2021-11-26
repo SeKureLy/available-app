@@ -34,7 +34,8 @@ module PaperDeep
 
       def publication_from_scopus(input)
         scopus = PaperDeep::PublicationMapper.new(App.config.api_key)
-        result = scopus.search(input[:pid])
+        puts 
+        result = scopus.search(input['pid'])
         publications = scopus.parse
       rescue StandardError
         raise 'Having trouble searching publication'
