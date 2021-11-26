@@ -10,4 +10,4 @@ RACK_ENV=test rackup -p 9090 &
 ruby spec/tests/acceptance/acceptance_spec.rb;
 
 # After run frontend in test mode, build back with production mode
-cd app/presentation/react/ && npm run build && cd ../../../
+# cd app/presentation/react/ && npm run build && cd ../../../
