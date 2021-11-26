@@ -7,7 +7,7 @@ trap "kill 0" EXIT
 RACK_ENV=test rackup -p 9090 &
 
 # Run acceptance tests on browser
-ruby spec/tests/acceptance/acceptance_spec.rb;
+ruby spec/tests/acceptance/home_page_spec.rb;
 
 # After run frontend in test mode, build back with production mode
 # cd app/presentation/react/ && npm run build && cd ../../../
