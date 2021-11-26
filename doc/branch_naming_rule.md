@@ -8,6 +8,7 @@
     * **BugFix**: use when we found bug and we fix it
     * **Refactor**: use when we need to modify our structure
     * **WIP**: use when the work is in progress, and we are aware it would not complete soon
+    * **Patch**: use when the work is a not bug, but we want to improve the feature 
 * **[NAME]**: Just pick your name of the feature/bug/refactor/WIP
 
 ## For example:
