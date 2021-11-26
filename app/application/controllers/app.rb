@@ -77,7 +77,7 @@ module PaperDeep
               root_paper = session[:paper].first
               scopus = PaperDeep::PaperMapper.new(App.config.api_key)
 
-              tree = PaperDeep::Services::CreateCitationTree.new(scopus, root_paper)
+              tree = PaperDeep::Service::CreateCitationTree.new(scopus, root_paper)
               tree.create
               tree_hash = tree.return_tree
 
