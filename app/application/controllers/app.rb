@@ -47,7 +47,7 @@ module PaperDeep
               return { result: false, error: flash[:error] }.to_json
             end
 
-            papers_content = Views::Papers.new(result.value![:paper]).content.to_json
+            Views::Papers.new(result.value![:paper]).content.to_json
           end
         end
         routing.on 'publication' do
@@ -66,7 +66,7 @@ module PaperDeep
                 return { result: false, error: 'Publication search result is nil' }.to_json
               end
 
-              publication_content = Views::Publications.new(result.value![:publication]).content.to_json
+              Views::Publications.new(result.value![:publication]).content.to_json
             end
           end
         end
@@ -81,7 +81,7 @@ module PaperDeep
               tree.create
               tree_hash = tree.return_tree
 
-              tree_json = tree_hash.to_json
+              tree_hash.to_json
             end
           end
         end

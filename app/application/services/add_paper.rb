@@ -43,8 +43,8 @@ module PaperDeep
 
       def paper_from_scopus(input)
         scopus = PaperDeep::PaperMapper.new(App.config.api_key)
-        result = scopus.search(input[:keyword])[0]
-        scopus_parse_project = scopus.parse
+        scopus.search(input[:keyword])[0]
+        scopus.parse
       rescue StandardError
         raise 'Having trouble searching papers'
       end
