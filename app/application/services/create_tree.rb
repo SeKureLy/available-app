@@ -7,7 +7,7 @@ require 'json'
 # PaperDeep Module
 module PaperDeep
   # Utilities Module to add feature
-  module Services
+  module Service
     # create citation tree class
     class CreateCitationTree
       def initialize(gateway, root_paper)

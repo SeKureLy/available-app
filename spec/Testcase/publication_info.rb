@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'helpers/spec_helper'
+require_relative '../helpers/spec_helper'
 
 # CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
 # API_TOKEN = CONFIG['api_key']

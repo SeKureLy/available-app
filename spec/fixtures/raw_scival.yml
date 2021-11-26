@@ -4,9 +4,9 @@
     :value: 3.5
     :impactType: CiteScore
   - :metricType: ViewsCount
-    :value: 2872
+    :value: 2934
   - :metricType: CitationCount
-    :value: 1810
+    :value: 1829
   :publication:
     :link:
       :@ref: self

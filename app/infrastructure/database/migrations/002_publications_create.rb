@@ -8,7 +8,7 @@ Sequel.migration do
       primary_key :id
 
       # pid equals to publication_id
-      String :pid, unique: true, null: false
+      String       :pid, unique: true, null: false
       Float        :journal_impact, unique: false, null: false
       Integer      :views_count, unique: false, null: false
       Integer      :citation_count, unique: false, null: false

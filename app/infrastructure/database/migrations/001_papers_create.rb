@@ -14,7 +14,7 @@ Sequel.migration do
       String      :date, unique: false, null: true
       String      :organization, unique: false, null: true
       String      :author, unique: false, null: true
-      String :publication_id, unique: true, null: false
+      String      :publication_id, unique: true, null: false
 
       Integer :citedby
 

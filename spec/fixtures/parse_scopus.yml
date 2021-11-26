@@ -3,237 +3,230 @@
   :title: Blockchains and Smart Contracts for the Internet of Things
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84979828304&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84979828304&origin=inward
-  :publication_name: IEEE Access
   :date: '2016-01-01'
   :organization: NC State University
-  :citedby: 1808
+  :publication_id: '84979828304'
+  :citedby: 1839
   :author: Christidis K.
 - :eid: 2-s2.0-85019665012
   :title: 'An Overview of Blockchain Technology: Architecture, Consensus, and Future
     Trends'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85019665012&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85019665012&origin=inward
-  :publication_name: Proceedings - 2017 IEEE 6th International Congress on Big Data,
-    BigData Congress 2017
   :date: '2017-09-07'
   :organization: Sun Yat-Sen University
-  :citedby: 1285
+  :publication_id: '85019665012'
+  :citedby: 1337
   :author: Zheng Z.
 - :eid: 2-s2.0-84945945234
   :title: 'Decentralizing privacy: Using blockchain to protect personal data'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84945945234&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84945945234&origin=inward
-  :publication_name: Proceedings - 2015 IEEE Security and Privacy Workshops, SPW 2015
   :date: '2015-07-17'
   :organization: MIT Media Lab
-  :citedby: 1210
+  :publication_id: '84945945234'
+  :citedby: 1244
   :author: Zyskind G.
 - :eid: 2-s2.0-84987677692
   :title: 'Hawk: The Blockchain Model of Cryptography and Privacy-Preserving Smart
     Contracts'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84987677692&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84987677692&origin=inward
-  :publication_name: Proceedings - 2016 IEEE Symposium on Security and Privacy, SP
-    2016
   :date: '2016-08-16'
   :organization: University of Maryland, College Park
-  :citedby: 1017
+  :publication_id: '84987677692'
+  :citedby: 1048
   :author: Kosba A.
 - :eid: 2-s2.0-85050874028
   :title: 'Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85050874028&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85050874028&origin=inward
-  :publication_name: Proceedings of the 13th EuroSys Conference, EuroSys 2018
   :date: '2018-04-23'
   :organization: International Business Machines
-  :citedby: 882
+  :publication_id: '85050874028'
+  :citedby: 988
   :author: Androulaki E.
+- :eid: 2-s2.0-84991717011
+  :title: 'MedRec: Using blockchain for medical data access and permission management'
+  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84991717011&origin=inward
+  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84991717011&origin=inward
+  :date: '2016-09-21'
+  :organization: Massachusetts Institute of Technology
+  :publication_id: '84991717011'
+  :citedby: 911
+  :author: Azaria A.
 - :eid: 2-s2.0-85064005739
   :title: 'Industry 4.0: State of the art and future trends'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85064005739&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85064005739&origin=inward
-  :publication_name: International Journal of Production Research
   :date: '2018-01-01'
   :organization: Old Dominion University
-  :citedby: 871
+  :publication_id: '85064005739'
+  :citedby: 910
   :author: Xu L.D.
 - :eid: 2-s2.0-85035321551
   :title: 'IoT security: Review, blockchain solutions, and open challenges'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85035321551&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85035321551&origin=inward
-  :publication_name: Future Generation Computer Systems
   :date: '2018-05-01'
   :organization: Bahauddin Zakariya University
-  :citedby: 871
+  :publication_id: '85035321551'
+  :citedby: 892
   :author: Khan M.A.
-- :eid: 2-s2.0-84991717011
-  :title: 'MedRec: Using blockchain for medical data access and permission management'
-  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84991717011&origin=inward
-  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84991717011&origin=inward
-  :publication_name: Proceedings - 2016 2nd International Conference on Open and Big
-    Data, OBD 2016
-  :date: '2016-09-21'
-  :organization: Massachusetts Institute of Technology
-  :citedby: 869
-  :author: Azaria A.
 - :eid: 2-s2.0-85055257106
   :title: 'Blockchain challenges and opportunities: A survey'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85055257106&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85055257106&origin=inward
-  :publication_name: International Journal of Web and Grid Services
   :date: '2018-01-01'
   :organization: Sun Yat-Sen University
-  :citedby: 820
+  :publication_id: '85055257106'
+  :citedby: 860
   :author: Zheng Z.
 - :eid: 2-s2.0-85019031448
   :title: 'Blockchain for IoT security and privacy: The case study of a smart home'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85019031448&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85019031448&origin=inward
-  :publication_name: 2017 IEEE International Conference on Pervasive Computing and
-    Communications Workshops, PerCom Workshops 2017
   :date: '2017-05-02'
   :organization: UNSW Sydney
-  :citedby: 783
+  :publication_id: '85019031448'
+  :citedby: 816
   :author: Dorri A.
 - :eid: 2-s2.0-84991447929
   :title: Where is current research on Blockchain technology? - A systematic review
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84991447929&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84991447929&origin=inward
-  :publication_name: PLoS ONE
   :date: '2016-10-01'
   :organization: LUT University
-  :citedby: 768
+  :publication_id: '84991447929'
+  :citedby: 786
   :author: Yli-Huumo J.
-- :eid: 2-s2.0-84985991912
-  :title: 'Bitcoin and beyond: A technical survey on decentralized digital currencies'
-  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84985991912&origin=inward
-  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84985991912&origin=inward
-  :publication_name: IEEE Communications Surveys and Tutorials
-  :date: '2016-07-01'
-  :organization: Humboldt-Universität zu Berlin
-  :citedby: 746
-  :author: Tschorsch F.
 - :eid: 2-s2.0-84995404927
   :title: Making smart contracts smarter
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84995404927&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84995404927&origin=inward
-  :publication_name: Proceedings of the ACM Conference on Computer and Communications
-    Security
   :date: '2016-10-24'
   :organization: National University of Singapore
-  :citedby: 742
+  :publication_id: '84995404927'
+  :citedby: 769
   :author: Luu L.
+- :eid: 2-s2.0-84985991912
+  :title: 'Bitcoin and beyond: A technical survey on decentralized digital currencies'
+  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84985991912&origin=inward
+  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84985991912&origin=inward
+  :date: '2016-07-01'
+  :organization: Humboldt-Universität zu Berlin
+  :publication_id: '84985991912'
+  :citedby: 762
+  :author: Tschorsch F.
 - :eid: 2-s2.0-85061188595
   :title: 'Federated machine learning: Concept and applications'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85061188595&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85061188595&origin=inward
-  :publication_name: ACM Transactions on Intelligent Systems and Technology
   :date: '2019-01-01'
   :organization: Hong Kong University of Science and Technology
-  :citedby: 697
+  :publication_id: '85061188595'
+  :citedby: 746
   :author: Yang Q.
-- :eid: 2-s2.0-85018630011
-  :title: A survey of attacks on Ethereum smart contracts (SoK)
-  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85018630011&origin=inward
-  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85018630011&origin=inward
-  :publication_name: Lecture Notes in Computer Science (including subseries Lecture
-    Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)
-  :date: '2017-01-01'
-  :organization: Università degli Studi di Cagliari
-  :citedby: 614
-  :author: Atzei N.
-- :eid: 2-s2.0-85071147013
-  :title: 'Bitcoin-NG: A scalable blockchain protocol'
-  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85071147013&origin=inward
-  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85071147013&origin=inward
-  :publication_name: Proceedings of the 13th USENIX Symposium on Networked Systems
-    Design and Implementation, NSDI 2016
-  :date: '2016-01-01'
-  :organization: Cornell University
-  :citedby: 613
-  :author: Eyal I.
 - :eid: 2-s2.0-85018292153
   :title: The truth about blockchain
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85018292153&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85018292153&origin=inward
-  :publication_name: Harvard Business Review
   :date: '2017-01-01'
   :organization: Harvard Business School
-  :citedby: 605
+  :publication_id: '85018292153'
+  :citedby: 651
   :author: Iansiti M.
+- :eid: 2-s2.0-85071147013
+  :title: 'Bitcoin-NG: A scalable blockchain protocol'
+  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85071147013&origin=inward
+  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85071147013&origin=inward
+  :date: '2016-01-01'
+  :organization: Cornell University
+  :publication_id: '85071147013'
+  :citedby: 641
+  :author: Eyal I.
+- :eid: 2-s2.0-85018630011
+  :title: A survey of attacks on Ethereum smart contracts (SoK)
+  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85018630011&origin=inward
+  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85018630011&origin=inward
+  :date: '2017-01-01'
+  :organization: Università degli Studi di Cagliari
+  :publication_id: '85018630011'
+  :citedby: 631
+  :author: Atzei N.
 - :eid: 2-s2.0-85021106763
   :title: 'Designing microgrid energy markets: A case study: The Brooklyn Microgrid'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85021106763&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85021106763&origin=inward
-  :publication_name: Applied Energy
   :date: '2018-01-15'
   :organization: Karlsruher Institut für Technologie
-  :citedby: 602
+  :publication_id: '85021106763'
+  :citedby: 628
   :author: Mengelkamp E.
 - :eid: 2-s2.0-85045190865
   :title: Opportunities and obstacles for deep learning in biology and medicine
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85045190865&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85045190865&origin=inward
-  :publication_name: Journal of the Royal Society Interface
   :date: '2018-01-01'
   :organization: University of Hawaiʻi at Mānoa
-  :citedby: 599
+  :publication_id: '85045190865'
+  :citedby: 620
   :author: Ching T.
 - :eid: 2-s2.0-84995482126
   :title: On the security and performance of Proof of Work blockchains
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84995482126&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84995482126&origin=inward
-  :publication_name: Proceedings of the ACM Conference on Computer and Communications
-    Security
   :date: '2016-10-24'
   :organization: ETH Zürich
-  :citedby: 587
+  :publication_id: '84995482126'
+  :citedby: 618
   :author: Gervais A.
-- :eid: 2-s2.0-85048498829
-  :title: On blockchain and its integration with IoT. Challenges and opportunities
-  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85048498829&origin=inward
-  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85048498829&origin=inward
-  :publication_name: Future Generation Computer Systems
-  :date: '2018-11-01'
-  :organization: Universidad de Málaga
-  :citedby: 575
-  :author: Reyna A.
 - :eid: 2-s2.0-85055874134
   :title: 'Blockchain technology in the energy sector: A systematic review of challenges
     and opportunities'
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85055874134&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85055874134&origin=inward
-  :publication_name: Renewable and Sustainable Energy Reviews
   :date: '2019-02-01'
   :organization: Heriot-Watt University
-  :citedby: 573
+  :publication_id: '85055874134'
+  :citedby: 594
   :author: Andoni M.
-- :eid: 2-s2.0-84966577745
-  :title: 'Blockchain: The state of the art and future trends'
-  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84966577745&origin=inward
-  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84966577745&origin=inward
-  :publication_name: Zidonghua Xuebao/Acta Automatica Sinica
-  :date: '2016-04-01'
-  :organization: Institute of Automation Chinese Academy of Sciences,Qingdao Academy
-    of Intelligent Industries
-  :citedby: 571
-  :author: Yuan Y.
 - :eid: 2-s2.0-85055168966
   :title: Blockchain technology and its relationships to sustainable supply chain
     management
   :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85055168966&origin=inward
   :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85055168966&origin=inward
-  :publication_name: International Journal of Production Research
   :date: '2019-04-03'
   :organization: Foisie Business School
-  :citedby: 554
+  :publication_id: '85055168966'
+  :citedby: 590
   :author: Saberi S.
-- :eid: 2-s2.0-84929077014
-  :title: 'Bitcoin: Economics, technology, and governance'
-  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84929077014&origin=inward
-  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84929077014&origin=inward
-  :publication_name: Journal of Economic Perspectives
-  :date: '2015-01-01'
-  :organization: Universität Innsbruck
-  :citedby: 551
-  :author: Böhme R.
+- :eid: 2-s2.0-85048498829
+  :title: On blockchain and its integration with IoT. Challenges and opportunities
+  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85048498829&origin=inward
+  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85048498829&origin=inward
+  :date: '2018-11-01'
+  :organization: Universidad de Málaga
+  :publication_id: '85048498829'
+  :citedby: 587
+  :author: Reyna A.
+- :eid: 2-s2.0-84966577745
+  :title: 'Blockchain: The state of the art and future trends'
+  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84966577745&origin=inward
+  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84966577745&origin=inward
+  :date: '2016-04-01'
+  :organization: Institute of Automation Chinese Academy of Sciences,Qingdao Academy
+    of Intelligent Industries
+  :publication_id: '84966577745'
+  :citedby: 584
+  :author: Yuan Y.
+- :eid: 2-s2.0-84986571280
+  :title: An agri-food supply chain traceability system for China based on RFID &amp;
+    blockchain technology
+  :paper_link: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84986571280&origin=inward
+  :citedby_link: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84986571280&origin=inward
+  :date: '2016-08-09'
+  :organization: Wirtschaftsuniversität Wien
+  :publication_id: '84986571280'
+  :citedby: 570
+  :author: Tian F.
