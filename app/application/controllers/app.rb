@@ -39,25 +39,15 @@ module PaperDeep
           # POST /search/
           routing.post do
             params = JSON.parse(routing.body.read)
-            scopus = PaperDeep::PaperMapper.new(App.config.api_key)
-            result = scopus.search(params['keyword'])[0]
+            search_request = PaperDeep::Forms::NewSearch.new.call(params)
+            result = PaperDeep::Service::AddPaper.new.call(search_request)
 
-            if result[:error] == 'Result set was empty'
-              return { result: false, error: 'Having trouble searching' }.to_json; end
-
-            scopus_parse_project = scopus.parse
-
-            begin
-              # Add a result to database
-              scopus_parse_project.map do |paper|
-                Repository::For.entity(paper).db_find_or_create(paper)
-              end
-              papers_content = Views::Papers.new(scopus_parse_project).content.to_json
-
-            rescue StandardError
-              flash[:error] = 'Having trouble accessing to database paper'
+            if result.failure?
+              flash[:error] = result.failure
               return { result: false, error: flash[:error] }.to_json
             end
+
+            papers_content = Views::Papers.new(result.value![:paper]).content.to_json
           end
         end
         routing.on 'publication' do
@@ -65,27 +55,18 @@ module PaperDeep
             # POST /search/publication
             routing.post do
               params = JSON.parse(routing.body.read)
-              scopus = PaperDeep::PublicationMapper.new(App.config.api_key)
-              begin
-                result = scopus.search(params['pid'])
-                return { result: false, error: 'Publication search result is nil' }.to_json if result.nil?
-              rescue StandardError
-                return { result: false, error: 'Having trouble searching publication' }.to_json
-              end
-              publications = scopus.parse
+              result = PaperDeep::Service::SearchPublication.new.call(params)
 
-              begin
-                # Add a result to database
-                publications.map do |publication|
-                  Repository::For.entity(publication).db_find_or_create(publication)
-                end
-
-                publications_content = Views::Publications.new(publications).content.to_json
-
-              rescue StandardError
-                flash[:error] = 'Having trouble accessing to database publication'
+              if result.failure?
+                flash[:error] = result.failure
                 return { result: false, error: flash[:error] }.to_json
               end
+
+              if result.value![:publication].empty?
+                return { result: false, error: 'Publication search result is nil' }.to_json
+              end
+
+              publication_content = Views::Publications.new(result.value![:publication]).content.to_json
             end
           end
         end
@@ -96,12 +77,11 @@ module PaperDeep
               root_paper = session[:paper].first
               scopus = PaperDeep::PaperMapper.new(App.config.api_key)
 
-              tree = PaperDeep::Services::CreateCitationTree.new(scopus, root_paper)
+              tree = PaperDeep::Service::CreateCitationTree.new(scopus, root_paper)
               tree.create
               tree_hash = tree.return_tree
 
               tree_json = tree_hash.to_json
-
             end
           end
         end
@@ -128,7 +108,7 @@ module PaperDeep
               session[:paper] ||= []
               params = JSON.parse(routing.body.read)
 
-              paper = Repository::For.klass(Entity::Paper).find_eid(params['eid'])
+              paper = PaperDeep::Repository::For.klass(PaperDeep::Entity::Paper).find_eid(params['eid'])
               return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
 
               session[:paper].insert(0, paper.content)
