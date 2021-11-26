@@ -11,6 +11,7 @@ describe 'Tests Scival API library for publication info with cassette' do
 
   before do
     VcrHelper.configure_vcr
+    DatabaseHelper.wipe_database
   end
 
   after do

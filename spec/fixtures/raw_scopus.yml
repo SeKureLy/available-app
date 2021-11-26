@@ -25,7 +25,7 @@
   :prism:coverDate: '2016-01-01'
   :prism:coverDisplayDate: '2016'
   :prism:doi: 10.1109/ACCESS.2016.2566339
-  :citedby-count: '1823'
+  :citedby-count: '1839'
   :affiliation:
   - :@_fa: 'true'
     :affilname: NC State University
@@ -75,7 +75,7 @@
   :prism:coverDate: '2017-09-07'
   :prism:coverDisplayDate: 7 September 2017
   :prism:doi: 10.1109/BigDataCongress.2017.85
-  :citedby-count: '1285'
+  :citedby-count: '1337'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Sun Yat-Sen University
@@ -116,7 +116,7 @@
   :prism:coverDate: '2015-07-17'
   :prism:coverDisplayDate: 17 July 2015
   :prism:doi: 10.1109/SPW.2015.27
-  :citedby-count: '1210'
+  :citedby-count: '1244'
   :affiliation:
   - :@_fa: 'true'
     :affilname: MIT Media Lab
@@ -158,7 +158,7 @@
   :prism:coverDate: '2016-08-16'
   :prism:coverDisplayDate: 16 August 2016
   :prism:doi: 10.1109/SP.2016.55
-  :citedby-count: '1017'
+  :citedby-count: '1048'
   :affiliation:
   - :@_fa: 'true'
     :affilname: University of Maryland, College Park
@@ -200,7 +200,7 @@
   :prism:coverDate: '2018-04-23'
   :prism:coverDisplayDate: 23 April 2018
   :prism:doi: 10.1145/3190508.3190538
-  :citedby-count: '882'
+  :citedby-count: '988'
   :affiliation:
   - :@_fa: 'true'
     :affilname: International Business Machines
@@ -223,6 +223,47 @@
     - :$: All Open Access
     - :$: Bronze
     - :$: Green
+- :@_fa: 'true'
+  :link:
+  - :@_fa: 'true'
+    :@ref: self
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/84991717011
+  - :@_fa: 'true'
+    :@ref: author-affiliation
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/84991717011?field=author,affiliation
+  - :@_fa: 'true'
+    :@ref: scopus
+    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84991717011&origin=inward
+  - :@_fa: 'true'
+    :@ref: scopus-citedby
+    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84991717011&origin=inward
+  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84991717011
+  :dc:identifier: SCOPUS_ID:84991717011
+  :eid: 2-s2.0-84991717011
+  :dc:title: 'MedRec: Using blockchain for medical data access and permission management'
+  :dc:creator: Azaria A.
+  :prism:publicationName: Proceedings - 2016 2nd International Conference on Open
+    and Big Data, OBD 2016
+  :prism:isbn:
+  - :@_fa: 'true'
+    :$: '9781509040544'
+  :prism:pageRange: 25-30
+  :prism:coverDate: '2016-09-21'
+  :prism:coverDisplayDate: 21 September 2016
+  :prism:doi: 10.1109/OBD.2016.11
+  :citedby-count: '911'
+  :affiliation:
+  - :@_fa: 'true'
+    :affilname: Massachusetts Institute of Technology
+    :affiliation-city: Cambridge
+    :affiliation-country: United States
+  :prism:aggregationType: Conference Proceeding
+  :subtype: cp
+  :subtypeDescription: Conference Paper
+  :article-number: '7573685'
+  :source-id: '21100782391'
+  :openaccess: '0'
+  :openaccessFlag: false
 - :@_fa: 'true'
   :link:
   - :@_fa: 'true'
@@ -251,7 +292,7 @@
   :prism:coverDate: '2018-01-01'
   :prism:coverDisplayDate: '2018'
   :prism:doi: 10.1080/00207543.2018.1444806
-  :citedby-count: '871'
+  :citedby-count: '910'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Old Dominion University
@@ -293,7 +334,7 @@
   :prism:coverDisplayDate: May 2018
   :prism:doi: 10.1016/j.future.2017.11.022
   :pii: S0167739X17315765
-  :citedby-count: '871'
+  :citedby-count: '892'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Bahauddin Zakariya University
@@ -303,47 +344,6 @@
   :subtype: ar
   :subtypeDescription: Article
   :source-id: '12264'
-  :openaccess: '0'
-  :openaccessFlag: false
-- :@_fa: 'true'
-  :link:
-  - :@_fa: 'true'
-    :@ref: self
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/84991717011
-  - :@_fa: 'true'
-    :@ref: author-affiliation
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/84991717011?field=author,affiliation
-  - :@_fa: 'true'
-    :@ref: scopus
-    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84991717011&origin=inward
-  - :@_fa: 'true'
-    :@ref: scopus-citedby
-    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84991717011&origin=inward
-  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84991717011
-  :dc:identifier: SCOPUS_ID:84991717011
-  :eid: 2-s2.0-84991717011
-  :dc:title: 'MedRec: Using blockchain for medical data access and permission management'
-  :dc:creator: Azaria A.
-  :prism:publicationName: Proceedings - 2016 2nd International Conference on Open
-    and Big Data, OBD 2016
-  :prism:isbn:
-  - :@_fa: 'true'
-    :$: '9781509040544'
-  :prism:pageRange: 25-30
-  :prism:coverDate: '2016-09-21'
-  :prism:coverDisplayDate: 21 September 2016
-  :prism:doi: 10.1109/OBD.2016.11
-  :citedby-count: '869'
-  :affiliation:
-  - :@_fa: 'true'
-    :affilname: Massachusetts Institute of Technology
-    :affiliation-city: Cambridge
-    :affiliation-country: United States
-  :prism:aggregationType: Conference Proceeding
-  :subtype: cp
-  :subtypeDescription: Conference Paper
-  :article-number: '7573685'
-  :source-id: '21100782391'
   :openaccess: '0'
   :openaccessFlag: false
 - :@_fa: 'true'
@@ -374,7 +374,7 @@
   :prism:coverDate: '2018-01-01'
   :prism:coverDisplayDate: '2018'
   :prism:doi: 10.1504/IJWGS.2018.095647
-  :citedby-count: '820'
+  :citedby-count: '860'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Sun Yat-Sen University
@@ -414,7 +414,7 @@
   :prism:coverDate: '2017-05-02'
   :prism:coverDisplayDate: 2 May 2017
   :prism:doi: 10.1109/PERCOMW.2017.7917634
-  :citedby-count: '783'
+  :citedby-count: '816'
   :affiliation:
   - :@_fa: 'true'
     :affilname: UNSW Sydney
@@ -454,7 +454,7 @@
   :prism:coverDate: '2016-10-01'
   :prism:coverDisplayDate: 1 October 2016
   :prism:doi: 10.1371/journal.pone.0163477
-  :citedby-count: '768'
+  :citedby-count: '786'
   :affiliation:
   - :@_fa: 'true'
     :affilname: LUT University
@@ -480,46 +480,6 @@
     - :$: All Open Access
     - :$: Gold
     - :$: Green
-- :@_fa: 'true'
-  :link:
-  - :@_fa: 'true'
-    :@ref: self
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/84985991912
-  - :@_fa: 'true'
-    :@ref: author-affiliation
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/84985991912?field=author,affiliation
-  - :@_fa: 'true'
-    :@ref: scopus
-    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84985991912&origin=inward
-  - :@_fa: 'true'
-    :@ref: scopus-citedby
-    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84985991912&origin=inward
-  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84985991912
-  :dc:identifier: SCOPUS_ID:84985991912
-  :eid: 2-s2.0-84985991912
-  :dc:title: 'Bitcoin and beyond: A technical survey on decentralized digital currencies'
-  :dc:creator: Tschorsch F.
-  :prism:publicationName: IEEE Communications Surveys and Tutorials
-  :prism:eIssn: 1553877X
-  :prism:volume: '18'
-  :prism:issueIdentifier: '3'
-  :prism:pageRange: 2084-2123
-  :prism:coverDate: '2016-07-01'
-  :prism:coverDisplayDate: Third Quarter 2016
-  :prism:doi: 10.1109/COMST.2016.2535718
-  :citedby-count: '746'
-  :affiliation:
-  - :@_fa: 'true'
-    :affilname: Humboldt-Universität zu Berlin
-    :affiliation-city: Berlin
-    :affiliation-country: Germany
-  :prism:aggregationType: Journal
-  :subtype: ar
-  :subtypeDescription: Article
-  :article-number: '7423672'
-  :source-id: '17900156715'
-  :openaccess: '0'
-  :openaccessFlag: false
 - :@_fa: 'true'
   :link:
   - :@_fa: 'true'
@@ -550,7 +510,7 @@
   :prism:coverDate: '2016-10-24'
   :prism:coverDisplayDate: 24 October 2016
   :prism:doi: 10.1145/2976749.2978309
-  :citedby-count: '742'
+  :citedby-count: '769'
   :affiliation:
   - :@_fa: 'true'
     :affilname: National University of Singapore
@@ -560,6 +520,46 @@
   :subtype: cp
   :subtypeDescription: Conference Paper
   :source-id: '110362'
+  :openaccess: '0'
+  :openaccessFlag: false
+- :@_fa: 'true'
+  :link:
+  - :@_fa: 'true'
+    :@ref: self
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/84985991912
+  - :@_fa: 'true'
+    :@ref: author-affiliation
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/84985991912?field=author,affiliation
+  - :@_fa: 'true'
+    :@ref: scopus
+    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84985991912&origin=inward
+  - :@_fa: 'true'
+    :@ref: scopus-citedby
+    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84985991912&origin=inward
+  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84985991912
+  :dc:identifier: SCOPUS_ID:84985991912
+  :eid: 2-s2.0-84985991912
+  :dc:title: 'Bitcoin and beyond: A technical survey on decentralized digital currencies'
+  :dc:creator: Tschorsch F.
+  :prism:publicationName: IEEE Communications Surveys and Tutorials
+  :prism:eIssn: 1553877X
+  :prism:volume: '18'
+  :prism:issueIdentifier: '3'
+  :prism:pageRange: 2084-2123
+  :prism:coverDate: '2016-07-01'
+  :prism:coverDisplayDate: Third Quarter 2016
+  :prism:doi: 10.1109/COMST.2016.2535718
+  :citedby-count: '762'
+  :affiliation:
+  - :@_fa: 'true'
+    :affilname: Humboldt-Universität zu Berlin
+    :affiliation-city: Berlin
+    :affiliation-country: Germany
+  :prism:aggregationType: Journal
+  :subtype: ar
+  :subtypeDescription: Article
+  :article-number: '7423672'
+  :source-id: '17900156715'
   :openaccess: '0'
   :openaccessFlag: false
 - :@_fa: 'true'
@@ -590,7 +590,7 @@
   :prism:coverDate: '2019-01-01'
   :prism:coverDisplayDate: January 2019
   :prism:doi: 10.1145/3298981
-  :citedby-count: '697'
+  :citedby-count: '746'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Hong Kong University of Science and Technology
@@ -601,6 +601,83 @@
   :subtypeDescription: Article
   :article-number: '12'
   :source-id: '19700190323'
+  :openaccess: '0'
+  :openaccessFlag: false
+- :@_fa: 'true'
+  :link:
+  - :@_fa: 'true'
+    :@ref: self
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/85018292153
+  - :@_fa: 'true'
+    :@ref: author-affiliation
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/85018292153?field=author,affiliation
+  - :@_fa: 'true'
+    :@ref: scopus
+    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85018292153&origin=inward
+  - :@_fa: 'true'
+    :@ref: scopus-citedby
+    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85018292153&origin=inward
+  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85018292153
+  :dc:identifier: SCOPUS_ID:85018292153
+  :eid: 2-s2.0-85018292153
+  :dc:title: The truth about blockchain
+  :dc:creator: Iansiti M.
+  :prism:publicationName: Harvard Business Review
+  :prism:issn: '00178012'
+  :prism:volume: '2017'
+  :prism:issueIdentifier: January-February
+  :prism:pageRange:
+  :prism:coverDate: '2017-01-01'
+  :prism:coverDisplayDate: January-February 2017
+  :citedby-count: '651'
+  :affiliation:
+  - :@_fa: 'true'
+    :affilname: Harvard Business School
+    :affiliation-city: Boston
+    :affiliation-country: United States
+  :prism:aggregationType: Journal
+  :subtype: 'no'
+  :subtypeDescription: Note
+  :source-id: '22336'
+  :openaccess: '0'
+  :openaccessFlag: false
+- :@_fa: 'true'
+  :link:
+  - :@_fa: 'true'
+    :@ref: self
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/85071147013
+  - :@_fa: 'true'
+    :@ref: author-affiliation
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/85071147013?field=author,affiliation
+  - :@_fa: 'true'
+    :@ref: scopus
+    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85071147013&origin=inward
+  - :@_fa: 'true'
+    :@ref: scopus-citedby
+    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85071147013&origin=inward
+  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85071147013
+  :dc:identifier: SCOPUS_ID:85071147013
+  :eid: 2-s2.0-85071147013
+  :dc:title: 'Bitcoin-NG: A scalable blockchain protocol'
+  :dc:creator: Eyal I.
+  :prism:publicationName: Proceedings of the 13th USENIX Symposium on Networked Systems
+    Design and Implementation, NSDI 2016
+  :prism:isbn:
+  - :@_fa: 'true'
+    :$: '9781931971294'
+  :prism:pageRange: 45-59
+  :prism:coverDate: '2016-01-01'
+  :prism:coverDisplayDate: '2016'
+  :citedby-count: '641'
+  :affiliation:
+  - :@_fa: 'true'
+    :affilname: Cornell University
+    :affiliation-city: Ithaca
+    :affiliation-country: United States
+  :prism:aggregationType: Conference Proceeding
+  :subtype: cp
+  :subtypeDescription: Conference Paper
+  :source-id: '21100962603'
   :openaccess: '0'
   :openaccessFlag: false
 - :@_fa: 'true'
@@ -634,7 +711,7 @@
   :prism:coverDate: '2017-01-01'
   :prism:coverDisplayDate: '2017'
   :prism:doi: 10.1007/978-3-662-54455-6_8
-  :citedby-count: '614'
+  :citedby-count: '631'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Università degli Studi di Cagliari
@@ -644,83 +721,6 @@
   :subtype: cp
   :subtypeDescription: Conference Paper
   :source-id: '25674'
-  :openaccess: '0'
-  :openaccessFlag: false
-- :@_fa: 'true'
-  :link:
-  - :@_fa: 'true'
-    :@ref: self
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/85071147013
-  - :@_fa: 'true'
-    :@ref: author-affiliation
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/85071147013?field=author,affiliation
-  - :@_fa: 'true'
-    :@ref: scopus
-    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85071147013&origin=inward
-  - :@_fa: 'true'
-    :@ref: scopus-citedby
-    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85071147013&origin=inward
-  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85071147013
-  :dc:identifier: SCOPUS_ID:85071147013
-  :eid: 2-s2.0-85071147013
-  :dc:title: 'Bitcoin-NG: A scalable blockchain protocol'
-  :dc:creator: Eyal I.
-  :prism:publicationName: Proceedings of the 13th USENIX Symposium on Networked Systems
-    Design and Implementation, NSDI 2016
-  :prism:isbn:
-  - :@_fa: 'true'
-    :$: '9781931971294'
-  :prism:pageRange: 45-59
-  :prism:coverDate: '2016-01-01'
-  :prism:coverDisplayDate: '2016'
-  :citedby-count: '613'
-  :affiliation:
-  - :@_fa: 'true'
-    :affilname: Cornell University
-    :affiliation-city: Ithaca
-    :affiliation-country: United States
-  :prism:aggregationType: Conference Proceeding
-  :subtype: cp
-  :subtypeDescription: Conference Paper
-  :source-id: '21100962603'
-  :openaccess: '0'
-  :openaccessFlag: false
-- :@_fa: 'true'
-  :link:
-  - :@_fa: 'true'
-    :@ref: self
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/85018292153
-  - :@_fa: 'true'
-    :@ref: author-affiliation
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/85018292153?field=author,affiliation
-  - :@_fa: 'true'
-    :@ref: scopus
-    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85018292153&origin=inward
-  - :@_fa: 'true'
-    :@ref: scopus-citedby
-    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85018292153&origin=inward
-  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85018292153
-  :dc:identifier: SCOPUS_ID:85018292153
-  :eid: 2-s2.0-85018292153
-  :dc:title: The truth about blockchain
-  :dc:creator: Iansiti M.
-  :prism:publicationName: Harvard Business Review
-  :prism:issn: '00178012'
-  :prism:volume: '2017'
-  :prism:issueIdentifier: January-February
-  :prism:pageRange:
-  :prism:coverDate: '2017-01-01'
-  :prism:coverDisplayDate: January-February 2017
-  :citedby-count: '605'
-  :affiliation:
-  - :@_fa: 'true'
-    :affilname: Harvard Business School
-    :affiliation-city: Boston
-    :affiliation-country: United States
-  :prism:aggregationType: Journal
-  :subtype: 'no'
-  :subtypeDescription: Note
-  :source-id: '22336'
   :openaccess: '0'
   :openaccessFlag: false
 - :@_fa: 'true'
@@ -753,7 +753,7 @@
   :prism:coverDisplayDate: 15 January 2018
   :prism:doi: 10.1016/j.apenergy.2017.06.054
   :pii: S030626191730805X
-  :citedby-count: '602'
+  :citedby-count: '628'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Karlsruher Institut für Technologie
@@ -793,7 +793,7 @@
   :prism:coverDate: '2018-01-01'
   :prism:coverDisplayDate: '2018'
   :prism:doi: 10.1098/rsif.2017.0387
-  :citedby-count: '599'
+  :citedby-count: '620'
   :affiliation:
   - :@_fa: 'true'
     :affilname: University of Hawaiʻi at Mānoa
@@ -849,7 +849,7 @@
   :prism:coverDate: '2016-10-24'
   :prism:coverDisplayDate: 24 October 2016
   :prism:doi: 10.1145/2976749.2978341
-  :citedby-count: '587'
+  :citedby-count: '618'
   :affiliation:
   - :@_fa: 'true'
     :affilname: ETH Zürich
@@ -861,56 +861,6 @@
   :source-id: '110362'
   :openaccess: '0'
   :openaccessFlag: false
-- :@_fa: 'true'
-  :link:
-  - :@_fa: 'true'
-    :@ref: self
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/85048498829
-  - :@_fa: 'true'
-    :@ref: author-affiliation
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/85048498829?field=author,affiliation
-  - :@_fa: 'true'
-    :@ref: scopus
-    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85048498829&origin=inward
-  - :@_fa: 'true'
-    :@ref: scopus-citedby
-    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85048498829&origin=inward
-  - :@_fa: 'true'
-    :@ref: full-text
-    :@href: https://api.elsevier.com/content/article/eid/1-s2.0-S0167739X17329205
-  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85048498829
-  :dc:identifier: SCOPUS_ID:85048498829
-  :eid: 2-s2.0-85048498829
-  :dc:title: On blockchain and its integration with IoT. Challenges and opportunities
-  :dc:creator: Reyna A.
-  :prism:publicationName: Future Generation Computer Systems
-  :prism:issn: '0167739X'
-  :prism:volume: '88'
-  :prism:pageRange: 173-190
-  :prism:coverDate: '2018-11-01'
-  :prism:coverDisplayDate: November 2018
-  :prism:doi: 10.1016/j.future.2018.05.046
-  :pii: S0167739X17329205
-  :citedby-count: '575'
-  :affiliation:
-  - :@_fa: 'true'
-    :affilname: Universidad de Málaga
-    :affiliation-city: Malaga
-    :affiliation-country: Spain
-  :prism:aggregationType: Journal
-  :subtype: ar
-  :subtypeDescription: Article
-  :source-id: '12264'
-  :openaccess: '1'
-  :openaccessFlag: true
-  :freetoread:
-    :value:
-    - :$: all
-    - :$: publisherhybridgold
-  :freetoreadLabel:
-    :value:
-    - :$: All Open Access
-    - :$: Hybrid Gold
 - :@_fa: 'true'
   :link:
   - :@_fa: 'true'
@@ -943,7 +893,7 @@
   :prism:coverDisplayDate: February 2019
   :prism:doi: 10.1016/j.rser.2018.10.014
   :pii: S1364032118307184
-  :citedby-count: '573'
+  :citedby-count: '594'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Heriot-Watt University
@@ -966,49 +916,6 @@
     - :$: All Open Access
     - :$: Hybrid Gold
     - :$: Green
-- :@_fa: 'true'
-  :link:
-  - :@_fa: 'true'
-    :@ref: self
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/84966577745
-  - :@_fa: 'true'
-    :@ref: author-affiliation
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/84966577745?field=author,affiliation
-  - :@_fa: 'true'
-    :@ref: scopus
-    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84966577745&origin=inward
-  - :@_fa: 'true'
-    :@ref: scopus-citedby
-    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84966577745&origin=inward
-  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84966577745
-  :dc:identifier: SCOPUS_ID:84966577745
-  :eid: 2-s2.0-84966577745
-  :dc:title: 'Blockchain: The state of the art and future trends'
-  :dc:creator: Yuan Y.
-  :prism:publicationName: Zidonghua Xuebao/Acta Automatica Sinica
-  :prism:issn: '02544156'
-  :prism:volume: '42'
-  :prism:issueIdentifier: '4'
-  :prism:pageRange: 481-494
-  :prism:coverDate: '2016-04-01'
-  :prism:coverDisplayDate: 1 April 2016
-  :prism:doi: 10.16383/j.aas.2016.c160158
-  :citedby-count: '571'
-  :affiliation:
-  - :@_fa: 'true'
-    :affilname: Institute of Automation Chinese Academy of Sciences
-    :affiliation-city: Beijing
-    :affiliation-country: China
-  - :@_fa: 'true'
-    :affilname: Qingdao Academy of Intelligent Industries
-    :affiliation-city: Qingdao
-    :affiliation-country: China
-  :prism:aggregationType: Journal
-  :subtype: ar
-  :subtypeDescription: Article
-  :source-id: '25566'
-  :openaccess: '0'
-  :openaccessFlag: false
 - :@_fa: 'true'
   :link:
   - :@_fa: 'true'
@@ -1038,7 +945,7 @@
   :prism:coverDate: '2019-04-03'
   :prism:coverDisplayDate: 3 April 2019
   :prism:doi: 10.1080/00207543.2018.1533261
-  :citedby-count: '554'
+  :citedby-count: '590'
   :affiliation:
   - :@_fa: 'true'
     :affilname: Foisie Business School
@@ -1054,49 +961,134 @@
   :link:
   - :@_fa: 'true'
     :@ref: self
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/84929077014
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/85048498829
   - :@_fa: 'true'
     :@ref: author-affiliation
-    :@href: https://api.elsevier.com/content/abstract/scopus_id/84929077014?field=author,affiliation
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/85048498829?field=author,affiliation
   - :@_fa: 'true'
     :@ref: scopus
-    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84929077014&origin=inward
+    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=85048498829&origin=inward
   - :@_fa: 'true'
     :@ref: scopus-citedby
-    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84929077014&origin=inward
-  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84929077014
-  :dc:identifier: SCOPUS_ID:84929077014
-  :eid: 2-s2.0-84929077014
-  :dc:title: 'Bitcoin: Economics, technology, and governance'
-  :dc:creator: Böhme R.
-  :prism:publicationName: Journal of Economic Perspectives
-  :prism:eIssn: '08953309'
-  :prism:volume: '29'
-  :prism:issueIdentifier: '2'
-  :prism:pageRange: 213-238
-  :prism:coverDate: '2015-01-01'
-  :prism:coverDisplayDate: 1 March 2015
-  :prism:doi: 10.1257/jep.29.2.213
-  :citedby-count: '551'
+    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=85048498829&origin=inward
+  - :@_fa: 'true'
+    :@ref: full-text
+    :@href: https://api.elsevier.com/content/article/eid/1-s2.0-S0167739X17329205
+  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/85048498829
+  :dc:identifier: SCOPUS_ID:85048498829
+  :eid: 2-s2.0-85048498829
+  :dc:title: On blockchain and its integration with IoT. Challenges and opportunities
+  :dc:creator: Reyna A.
+  :prism:publicationName: Future Generation Computer Systems
+  :prism:issn: '0167739X'
+  :prism:volume: '88'
+  :prism:pageRange: 173-190
+  :prism:coverDate: '2018-11-01'
+  :prism:coverDisplayDate: November 2018
+  :prism:doi: 10.1016/j.future.2018.05.046
+  :pii: S0167739X17329205
+  :citedby-count: '587'
   :affiliation:
   - :@_fa: 'true'
-    :affilname: Universität Innsbruck
-    :affiliation-city: Innsbruck
-    :affiliation-country: Austria
+    :affilname: Universidad de Málaga
+    :affiliation-city: Malaga
+    :affiliation-country: Spain
   :prism:aggregationType: Journal
   :subtype: ar
   :subtypeDescription: Article
-  :source-id: '28980'
+  :source-id: '12264'
   :openaccess: '1'
   :openaccessFlag: true
   :freetoread:
     :value:
     - :$: all
-    - :$: publisherfree2read
-    - :$: repository
-    - :$: repositoryam
+    - :$: publisherhybridgold
   :freetoreadLabel:
     :value:
     - :$: All Open Access
-    - :$: Bronze
-    - :$: Green
+    - :$: Hybrid Gold
+- :@_fa: 'true'
+  :link:
+  - :@_fa: 'true'
+    :@ref: self
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/84966577745
+  - :@_fa: 'true'
+    :@ref: author-affiliation
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/84966577745?field=author,affiliation
+  - :@_fa: 'true'
+    :@ref: scopus
+    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84966577745&origin=inward
+  - :@_fa: 'true'
+    :@ref: scopus-citedby
+    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84966577745&origin=inward
+  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84966577745
+  :dc:identifier: SCOPUS_ID:84966577745
+  :eid: 2-s2.0-84966577745
+  :dc:title: 'Blockchain: The state of the art and future trends'
+  :dc:creator: Yuan Y.
+  :prism:publicationName: Zidonghua Xuebao/Acta Automatica Sinica
+  :prism:issn: '02544156'
+  :prism:volume: '42'
+  :prism:issueIdentifier: '4'
+  :prism:pageRange: 481-494
+  :prism:coverDate: '2016-04-01'
+  :prism:coverDisplayDate: 1 April 2016
+  :prism:doi: 10.16383/j.aas.2016.c160158
+  :citedby-count: '584'
+  :affiliation:
+  - :@_fa: 'true'
+    :affilname: Institute of Automation Chinese Academy of Sciences
+    :affiliation-city: Beijing
+    :affiliation-country: China
+  - :@_fa: 'true'
+    :affilname: Qingdao Academy of Intelligent Industries
+    :affiliation-city: Qingdao
+    :affiliation-country: China
+  :prism:aggregationType: Journal
+  :subtype: ar
+  :subtypeDescription: Article
+  :source-id: '25566'
+  :openaccess: '0'
+  :openaccessFlag: false
+- :@_fa: 'true'
+  :link:
+  - :@_fa: 'true'
+    :@ref: self
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/84986571280
+  - :@_fa: 'true'
+    :@ref: author-affiliation
+    :@href: https://api.elsevier.com/content/abstract/scopus_id/84986571280?field=author,affiliation
+  - :@_fa: 'true'
+    :@ref: scopus
+    :@href: https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&scp=84986571280&origin=inward
+  - :@_fa: 'true'
+    :@ref: scopus-citedby
+    :@href: https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&scp=84986571280&origin=inward
+  :prism:url: https://api.elsevier.com/content/abstract/scopus_id/84986571280
+  :dc:identifier: SCOPUS_ID:84986571280
+  :eid: 2-s2.0-84986571280
+  :dc:title: An agri-food supply chain traceability system for China based on RFID
+    &amp; blockchain technology
+  :dc:creator: Tian F.
+  :prism:publicationName: 2016 13th International Conference on Service Systems and
+    Service Management, ICSSSM 2016
+  :prism:isbn:
+  - :@_fa: 'true'
+    :$: '9781509028429'
+  :prism:pageRange:
+  :prism:coverDate: '2016-08-09'
+  :prism:coverDisplayDate: 9 August 2016
+  :prism:doi: 10.1109/ICSSSM.2016.7538424
+  :citedby-count: '570'
+  :affiliation:
+  - :@_fa: 'true'
+    :affilname: Wirtschaftsuniversität Wien
+    :affiliation-city: Vienna
+    :affiliation-country: Austria
+  :prism:aggregationType: Conference Proceeding
+  :subtype: cp
+  :subtypeDescription: Conference Paper
+  :article-number: '7538424'
+  :source-id: '21100778000'
+  :openaccess: '0'
+  :openaccessFlag: false
