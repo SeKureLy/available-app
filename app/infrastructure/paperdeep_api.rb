@@ -115,11 +115,14 @@ module PaperDeep
   end
 end
 
-# puts PaperDeep::App.config.API_HOST
-qqq = PaperDeep::Gateway::Api.new({ API_HOST: 'http://localhost:9292' })
-puts qqq.alive?
+
+# qqq = PaperDeep::Gateway::Api.new(PaperDeep::App.config)
+
+# qqq = PaperDeep::Gateway::Api.new({ API_HOST: 'http://localhost:9292' })
+# puts qqq.alive?
 
 # puts qqq.search("iot")
+# puts qqq.search('2-s2.0-84876943063')
 # puts qqq.publication("84979828304")
 # puts qqq.db_paper()
 # puts qqq.db_publication("2-s2.0-84876943063")
