@@ -20,9 +20,7 @@ describe 'Unit test of PaperDeep API gateway' do
     res = PaperDeep::Gateway::Api.new(PaperDeep::App.config)
       .paper({'eid': EID})
 
-    puts res
     _(res.success?).must_equal true
-    _(res.payload).must_include EID
   end
 
   it 'must be able to search for publications' do

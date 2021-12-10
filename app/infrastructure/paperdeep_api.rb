@@ -83,8 +83,7 @@ module PaperDeep
         def post_api(_method, resources = [], params = {})
           api_path = resources.empty? ? @api_host : @api_root
           url = [api_path, resources].flatten.join('/')
-          puts url
-          puts params.to_json
+
           HTTP.headers('Accept' => 'application/json').post(url, body: params.to_json)
             .then { |http_response| Response.new(http_response) }
         rescue StandardError
@@ -113,15 +112,3 @@ module PaperDeep
     end
   end
 end
-
-
-# qqq = PaperDeep::Gateway::Api.new(PaperDeep::App.config)
-
-# qqq = PaperDeep::Gateway::Api.new({ API_HOST: 'http://localhost:9292' })
-# puts qqq.alive?
-
-# puts qqq.search("iot")
-# puts qqq.search('2-s2.0-84876943063')
-# puts qqq.publication("84979828304")
-# puts qqq.db_paper()
-# puts qqq.db_publication("2-s2.0-84876943063")
