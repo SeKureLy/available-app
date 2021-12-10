@@ -88,7 +88,7 @@ module PaperDeep
           puts url
           puts params["keyword"].to_json
           HTTP.headers('Accept' => 'application/json').post(url, body: params["keyword"].to_json)
-            .then { |http_response| puts http_response; Response.new(http_response[:paper]) }
+            .then { |http_response| Response.new(http_response) }
         rescue StandardError
           raise "Invalid URL request: #{url}"
         end

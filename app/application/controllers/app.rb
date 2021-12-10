@@ -46,8 +46,8 @@ module PaperDeep
               flash[:error] = result.failure
               return { result: false, error: flash[:error] }.to_json
             end
-
-            Views::Papers.new(result.value![:paper]).content.to_json
+            paper_list = Representer::Papers.new(result.value!['keyword'], result.value!["paper"])
+            return Representer::PaperList.new(paper_list).to_json
           end
         end
         routing.on 'publication' do

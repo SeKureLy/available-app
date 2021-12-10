@@ -22,9 +22,8 @@ module PaperDeep
       end
 
       def find_paper(input)
-        input[:paper] = Gateway::Api.new(App.config).paper(input)
-        puts input
-        Success(input)
+        result =JSON.parse(Gateway::Api.new(App.config).paper(input))
+        Success(result)
       rescue StandardError => e
         Failure(e.to_s)
       end
