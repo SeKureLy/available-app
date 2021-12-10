@@ -34,20 +34,45 @@ module PaperDeep
 
       #########################################
       #   For Apis
-      routing.on 'search' do
+      routing.on 'api/v1' do
         routing.is do
-          # POST /search/
-          routing.post do
-            params = JSON.parse(routing.body.read)
-            search_request = PaperDeep::Forms::NewSearch.new.call(params)
-            result = PaperDeep::Service::AddPaper.new.call(search_request)
+          routing.get do
 
-            if result.failure?
-              flash[:error] = result.failure
-              return { result: false, error: flash[:error] }.to_json
+            message = "PaperDeep API v1 at /api/v1/ in #{App.environment} mode"
+    
+            result_response = Representer::HttpResponse.new(
+              Response::ApiResult.new(status: :ok, message: message)
+            )
+    
+            api_v1_link = [
+              paper: 'api/v1/paper',
+              citationtree: 'api/v1/citationtree',
+              publication: 'api/v1/publication',
+              db_eid: 'api/v1/db/eid'
+            ]
+    
+            full_response = JSON.parse(result_response.to_json)
+            full_response['link'] = api_v1_link
+    
+            response.status = result_response.http_status_code
+            full_response.to_json
+          end
+        end
+        routing.on 'paper' do
+          routing.is do
+            # POST /search/
+            routing.post do
+              params = JSON.parse(routing.body.read)
+              search_request = PaperDeep::Forms::NewSearch.new.call(params)
+              result = PaperDeep::Service::AddPaper.new.call(search_request)
+
+              if result.failure?
+                flash[:error] = result.failure
+                return { result: false, error: flash[:error] }.to_json
+              end
+              paper_list = Representer::Papers.new(result.value!['keyword'], result.value!["paper"])
+              return Representer::PaperList.new(paper_list).to_json
             end
-            paper_list = Representer::Papers.new(result.value!['keyword'], result.value!["paper"])
-            return Representer::PaperList.new(paper_list).to_json
           end
         end
         routing.on 'publication' do
@@ -90,39 +115,37 @@ module PaperDeep
             end
           end
         end
-      end
-
-      ######################################
-      routing.on 'db' do
-        routing.is do
-          # GET /db/
-          routing.get do
-            paper = JSON.parse(Gateway::Api.new(App.config).db_paper())
-            paper.to_json
-          end
-        rescue StandardError
-          flash[:error] = 'Having trouble getting papers from database'
-          return { result: false, error: flash[:error] }.to_json
-        end
-        routing.on 'eid' do
+        ######################################
+        routing.on 'db' do
           routing.is do
-            # POST /db/eid
-            routing.post do
-              session.clear
-              session[:paper] ||= []
-              params = JSON.parse(routing.body.read)
-              
-              paper = JSON.parse(Gateway::Api.new(App.config).db_publication(params['eid']))
-
-              return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
-
-              session[:paper].insert(0, paper)
+            # GET /db/
+            routing.get do
+              paper = JSON.parse(Gateway::Api.new(App.config).db_paper())
               paper.to_json
+            end
+          rescue StandardError
+            flash[:error] = 'Having trouble getting papers from database'
+            return { result: false, error: flash[:error] }.to_json
+          end
+          routing.on 'eid' do
+            routing.is do
+              # POST /db/eid
+              routing.post do
+                session.clear
+                session[:paper] ||= []
+                params = JSON.parse(routing.body.read)
+                
+                paper = JSON.parse(Gateway::Api.new(App.config).db_publication(params['eid']))
+
+                return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
+
+                session[:paper].insert(0, paper)
+                paper.to_json
+              end
             end
           end
         end
       end
-
       #########################################
     end
   end
