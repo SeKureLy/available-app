@@ -24,8 +24,8 @@ module PaperDeep
         @request.publication(pid)
       end
 
-      def citation_tree
-        @request.citation_tree
+      def citationtree(list)
+        @request.citationtree(list)
       end
 
       def db_paper
@@ -64,17 +64,17 @@ module PaperDeep
                    'eid' => eid)
         end
 
-        def citation_tree
-          get_api('get', ['citation_tree'])
+        def citationtree(list)
+          get_api('post', ['citationtree'], list)
         end
 
         private
 
-        def get_api(method, resources = [], _params = {})
+        def get_api(method, resources = [], params = {})
           api_path = resources.empty? ? @api_host : @api_root
           url = [api_path, resources].flatten.join('/')
 
-          HTTP.headers('Accept' => 'application/json').send(method, url)
+          HTTP.headers('Accept' => 'application/json').get(url, params: params)
             .then { |http_response| Response.new(http_response) }
         rescue StandardError
           raise "Invalid URL request: #{url}"
