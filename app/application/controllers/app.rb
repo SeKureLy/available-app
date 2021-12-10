@@ -46,8 +46,8 @@ module PaperDeep
               flash[:error] = result.failure
               return { result: false, error: flash[:error] }.to_json
             end
-
-            Views::Papers.new(result.value![:paper]).content.to_json
+            paper_list = Representer::Papers.new(result.value!['keyword'], result.value!["paper"])
+            return Representer::PaperList.new(paper_list).to_json
           end
         end
         routing.on 'publication' do
@@ -61,12 +61,17 @@ module PaperDeep
                 flash[:error] = result.failure
                 return { result: false, error: flash[:error] }.to_json
               end
-
+              
+              # puts result.value!
               if result.value![:publication].empty?
                 return { result: false, error: 'Publication search result is nil' }.to_json
               end
 
-              Views::Publications.new(result.value![:publication]).content.to_json
+              # Views::Publications.new(result.value![:publication]).content.to_json
+              publication_list = Representer::Publications.new(result.value![:publication])
+              # publication_list = OpenStruct.new(publication: result.value![:publication])
+              # puts publication_list
+              Representer::PublicationList.new(publication_list).to_json
             end
           end
         end
@@ -91,10 +96,9 @@ module PaperDeep
       routing.on 'db' do
         routing.is do
           # GET /db/
-
           routing.get do
-            paper = Repository::For.klass(Entity::Paper).all
-            paper.map(&:content).to_json
+            paper = JSON.parse(Gateway::Api.new(App.config).db_paper())
+            paper.to_json
           end
         rescue StandardError
           flash[:error] = 'Having trouble getting papers from database'
@@ -107,12 +111,13 @@ module PaperDeep
               session.clear
               session[:paper] ||= []
               params = JSON.parse(routing.body.read)
+              
+              paper = JSON.parse(Gateway::Api.new(App.config).db_publication(params['eid']))
 
-              paper = PaperDeep::Repository::For.klass(PaperDeep::Entity::Paper).find_eid(params['eid'])
               return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
 
-              session[:paper].insert(0, paper.content)
-              paper.content.to_json
+              session[:paper].insert(0, paper)
+              paper.to_json
             end
           end
         end

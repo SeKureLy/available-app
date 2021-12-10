@@ -10,8 +10,29 @@ module PaperDeep
     # Represents list of projects for API output
     class PaperList < Roar::Decorator
       include Roar::JSON
+      include Roar::Hypermedia
+      include Roar::Decorator::HypermediaConsumer
 
-      collection :papers, extend: Representer::Paper
+      property :keyword
+      collection :paper, extend: Representer::Paper, class: OpenStruct
+
+      link :self do
+        '/api/v1/search'
+      end
+    end
+
+    # papers class
+    class Papers
+      def initialize(keyword, paper)
+        @paper = paper
+        @keyword = keyword
+      end
+
+      attr_reader :keyword
+
+      def paper
+        @paper.map{ |p| OpenStruct.new(p)}
+      end
     end
   end
 end

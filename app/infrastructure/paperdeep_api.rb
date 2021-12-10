@@ -16,8 +16,8 @@ module PaperDeep
         @request.get_root.success?
       end
 
-      def search(keyword)
-        @request.search(keyword)
+      def paper(keyword)
+        @request.paper(keyword)
       end
 
       def publication(pid)
@@ -39,22 +39,20 @@ module PaperDeep
       # HTTP request transmitter
       class Request
         def initialize(config)
-          @api_host = config[:API_HOST]
-          @api_root = "#{config[:API_HOST]}/api/v1"
+          @api_host = config.API_HOST
+          @api_root = "#{config.API_HOST}/api/v1"
         end
 
         def get_root # rubocop:disable Naming/AccessorMethodName
           get_api('get')
         end
 
-        def search(keyword)
-          post_api('post', ['search'],
-                   'keyword' => keyword)
+        def paper(keyword)
+          post_api('post', ['paper'], keyword)
         end
 
         def publication(pid)
-          post_api('post', ['publication'],
-                   'pid' => pid)
+          post_api('post', ['publication'], pid)
         end
 
         def db_paper
@@ -85,7 +83,8 @@ module PaperDeep
         def post_api(_method, resources = [], params = {})
           api_path = resources.empty? ? @api_host : @api_root
           url = [api_path, resources].flatten.join('/')
-
+          puts url
+          puts params.to_json
           HTTP.headers('Accept' => 'application/json').post(url, body: params.to_json)
             .then { |http_response| Response.new(http_response) }
         rescue StandardError
