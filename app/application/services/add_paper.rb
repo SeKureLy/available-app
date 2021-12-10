@@ -10,7 +10,6 @@ module PaperDeep
 
       step :parse_keyword
       step :find_paper
-      step :store_paper
 
       private
 
@@ -23,30 +22,11 @@ module PaperDeep
       end
 
       def find_paper(input)
-        input[:paper] = paper_from_scopus(input)
+        input[:paper] = Gateway::Api.new(App.config).paper(input)
+        puts input
         Success(input)
       rescue StandardError => e
         Failure(e.to_s)
-      end
-
-      def store_paper(input)
-        input[:storage] = input[:paper].map do |paper|
-          Repository::For.entity(paper).db_find_or_create(paper)
-        end
-        Success(input)
-      rescue StandardError => e
-        puts e.backtrace.join("\n")
-        Failure('Having trouble accessing the database')
-      end
-
-      # following are support methods that other services could use
-
-      def paper_from_scopus(input)
-        scopus = PaperDeep::PaperMapper.new(App.config.api_key)
-        scopus.search(input[:keyword])[0]
-        scopus.parse
-      rescue StandardError
-        raise 'Having trouble searching papers'
       end
     end
   end
