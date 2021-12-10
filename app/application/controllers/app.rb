@@ -105,13 +105,18 @@ module PaperDeep
             # GET /search/citationtree
             routing.get do
               root_paper = session[:paper].first
-              scopus = PaperDeep::PaperMapper.new(App.config.api_key)
 
-              tree = PaperDeep::Service::CreateCitationTree.new(scopus, root_paper)
-              tree.create
-              tree_hash = tree.return_tree
+              result = PaperDeep::Service::CitationTree.new.call(root_paper)
 
-              tree_hash.to_json
+              puts result.value!.to_json
+
+
+              if result.failure?
+                flash[:error] = result.failure
+                return { result: false, error: flash[:error] }.to_json
+              end
+
+              result.value!.to_json
             end
           end
         end
