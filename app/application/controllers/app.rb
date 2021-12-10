@@ -96,10 +96,9 @@ module PaperDeep
       routing.on 'db' do
         routing.is do
           # GET /db/
-
           routing.get do
-            paper = Repository::For.klass(Entity::Paper).all
-            paper.map(&:content).to_json
+            paper = JSON.parse(Gateway::Api.new(App.config).db_paper())
+            paper.to_json
           end
         rescue StandardError
           flash[:error] = 'Having trouble getting papers from database'
@@ -112,12 +111,13 @@ module PaperDeep
               session.clear
               session[:paper] ||= []
               params = JSON.parse(routing.body.read)
+              
+              paper = JSON.parse(Gateway::Api.new(App.config).db_publication(params['eid']))
 
-              paper = PaperDeep::Repository::For.klass(PaperDeep::Entity::Paper).find_eid(params['eid'])
               return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
 
-              session[:paper].insert(0, paper.content)
-              paper.content.to_json
+              session[:paper].insert(0, paper)
+              paper.to_json
             end
           end
         end
