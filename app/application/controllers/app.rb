@@ -61,12 +61,17 @@ module PaperDeep
                 flash[:error] = result.failure
                 return { result: false, error: flash[:error] }.to_json
               end
-
+              
+              # puts result.value!
               if result.value![:publication].empty?
                 return { result: false, error: 'Publication search result is nil' }.to_json
               end
 
-              Views::Publications.new(result.value![:publication]).content.to_json
+              # Views::Publications.new(result.value![:publication]).content.to_json
+              publication_list = Representer::Publications.new(result.value![:publication])
+              # publication_list = OpenStruct.new(publication: result.value![:publication])
+              # puts publication_list
+              Representer::PublicationList.new(publication_list).to_json
             end
           end
         end

@@ -48,13 +48,11 @@ module PaperDeep
         end
 
         def paper(keyword)
-          post_api('post', ['paper'],
-                   'keyword' => keyword)
+          post_api('post', ['paper'], keyword)
         end
 
         def publication(pid)
-          post_api('post', ['publication'],
-                   'pid' => pid)
+          post_api('post', ['publication'], pid)
         end
 
         def db_paper
@@ -86,8 +84,8 @@ module PaperDeep
           api_path = resources.empty? ? @api_host : @api_root
           url = [api_path, resources].flatten.join('/')
           puts url
-          puts params["keyword"].to_json
-          HTTP.headers('Accept' => 'application/json').post(url, body: params["keyword"].to_json)
+          puts params.to_json
+          HTTP.headers('Accept' => 'application/json').post(url, body: params.to_json)
             .then { |http_response| Response.new(http_response) }
         rescue StandardError
           raise "Invalid URL request: #{url}"
