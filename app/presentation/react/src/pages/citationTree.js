@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled, { css } from 'styled-components'
 
@@ -58,7 +59,7 @@ function CitationTree(props) {
     };
     if(loading) props.setLoading(true)
     try {
-        fetch(baseUrl + '/search/citationtree', requestOptions)
+        fetch(baseUrl + '/api/v1/citationtree', requestOptions)
             .then(async response => {
                 let result = await response.json()
                 if (result.result == false) props.alertFunction(result.error)
@@ -79,7 +80,10 @@ function CitationTree(props) {
         <h1>CitationTree</h1>
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* <StyledTreeExample /> */}
-        {TreeRoot(tree)}
+        <Container style={{overflowX:"scroll",border:"2px solid gray", justifyContent:"center"}}>
+          {TreeRoot(tree)}
+        </Container>
+        
       </div>
     </>
   );
