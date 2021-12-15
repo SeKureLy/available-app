@@ -22,7 +22,7 @@ module PaperDeep
       end
 
       def find_paper(input)
-        result =JSON.parse(Gateway::Api.new(App.config).paper(input))
+        result = JSON.parse(Gateway::Api.new(App.config).paper(input))
         Success(result)
       rescue StandardError => e
         Failure(e.to_s)

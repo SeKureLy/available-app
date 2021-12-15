@@ -27,7 +27,7 @@ module PaperDeep
       end
 
       def publication
-        @publication.map{|p| OpenStruct.new(p)}
+        @publication.map { |paper| OpenStruct.new(paper) }
       end
     end
   end
