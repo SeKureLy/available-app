@@ -14,7 +14,7 @@ module PaperDeep
       private
 
       def extract_paper_root(root_paper)
-        list = { eid: root_paper["eid"] }
+        list = { eid: root_paper['eid'] }
         Success(list)
       rescue StandardError => e
         Failure(e.to_s)
@@ -22,9 +22,8 @@ module PaperDeep
 
       def call_citationtree_api(list)
         puts list
-        result =JSON.parse(Gateway::Api.new(App.config).citationtree(list))
+        result = JSON.parse(Gateway::Api.new(App.config).citationtree(list))
         Success(result)
- 
       rescue StandardError => e
         puts e.to_s
         Failure(e.to_s)
