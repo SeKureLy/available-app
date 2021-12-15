@@ -44,13 +44,13 @@ function Search(props) {
         };
         props.setLoading(true)
         try {
-            fetch(baseUrl + '/search', requestOptions)
+            fetch(baseUrl + '/api/v1/paper', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     props.setLoading(false)
                     if (result.result == false) props.alertFunction(result.error)
                     else {
-                        setData(result)
+                        setData(result.paper)
                         props.alertSuccessFunction("Searching results as follows!")
                     }
                 })
