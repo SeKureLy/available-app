@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled, { css } from 'styled-components'
+import Faye, { Client } from 'faye'
 
 import { baseUrl } from '../config'
+
 
 const StyledNode = styled.div`
   padding: 5px;
@@ -43,12 +45,29 @@ const recursiveTree = (data) => {
 function CitationTree(props) {
   const [init, setinit] = useState(false)
   const [tree, setTree] = useState(null)
+  const [ws, setWs] = useState(null)
+  const [client,setClient] = useState(null)
 
   useEffect(() => {
-      GetTest()
-  }, [init]);
+      if(!init)GetTest(true,true)
+      // if(ws){
+        
 
-  async function GetTest(loading = true) {
+      //   if(client){
+      //     console.log("trigger")
+      //     console.log(ws.channel_id)
+      //     client.subscribe(`/${ws.channel_id}`, function(message) {
+      //       console.log('Got a message: ' + message);
+      //     });
+      //   }
+      //   else{
+      //     console.log(ws.ws_route)
+      //     setClient(new Faye.Client(ws.ws_route));
+      //   }
+      // }
+  }, [init,ws,client]);
+
+  async function GetTest(loading = true,initial=false) {
 
     const requestOptions = {
         method: 'GET',
@@ -59,16 +78,26 @@ function CitationTree(props) {
     };
     if(loading) props.setLoading(true)
     try {
-        fetch(baseUrl + '/api/v1/citationtree', requestOptions)
-            .then(async response => {
-                let result = await response.json()
-                if (result.result == false) props.alertFunction(result.error)
-                else {
-                    setTree(result)
-                    props.alertSuccessFunction("Searching results as follows!")
-                    if(loading) props.setLoading(false)
-                }
-            })
+        let response = await fetch(baseUrl + '/api/v1/citationtree', requestOptions)
+        let result = await response.json()
+        if(initial)setinit(true)
+        if (result.result == false){
+          // props.alertFunction(result.error)
+          console.log(result)
+          // setWs(result)
+          var c = new Faye.Client(result.ws_route);
+          setClient(c)
+          c.subscribe(`/${result.channel_id}`, function(message) {
+            console.log('Got a message: ' + message);
+          });
+          console.log(c)
+        } 
+        else {
+            let tree = JSON.parse(result.data)
+            setTree(tree)
+            props.alertSuccessFunction("Searching results as follows!")
+        }
+        if(loading) props.setLoading(false)
     } catch (e) {
         console.log(e.message)
     }
