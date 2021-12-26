@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container,ProgressBar } from "react-bootstrap";
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled, { css } from 'styled-components'
 import Faye, { Client } from 'faye'
@@ -13,6 +13,8 @@ const StyledNode = styled.div`
   display: inline-block;
   border: 1px solid red;
 `;
+
+// var client = new Faye.Client("http://localhost:9090/faye/faye")
 
 const TreeRoot = (data)=>{
   if (!data) return <></>
@@ -41,31 +43,15 @@ const recursiveTree = (data) => {
   </>)
 }
 
-
 function CitationTree(props) {
   const [init, setinit] = useState(false)
   const [tree, setTree] = useState(null)
-  const [ws, setWs] = useState(null)
-  const [client,setClient] = useState(null)
+  // const [client,setClient] = useState(new Faye.Client("http://localhost:9090/faye/faye"))
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
       if(!init)GetTest(true,true)
-      // if(ws){
-        
-
-      //   if(client){
-      //     console.log("trigger")
-      //     console.log(ws.channel_id)
-      //     client.subscribe(`/${ws.channel_id}`, function(message) {
-      //       console.log('Got a message: ' + message);
-      //     });
-      //   }
-      //   else{
-      //     console.log(ws.ws_route)
-      //     setClient(new Faye.Client(ws.ws_route));
-      //   }
-      // }
-  }, [init,ws,client]);
+  },[init]);
 
   async function GetTest(loading = true,initial=false) {
 
@@ -83,18 +69,24 @@ function CitationTree(props) {
         if(initial)setinit(true)
         if (result.result == false){
           // props.alertFunction(result.error)
-          console.log(result)
-          // setWs(result)
-          var c = new Faye.Client(result.ws_route);
-          setClient(c)
-          c.subscribe(`/${result.channel_id}`, function(message) {
+          var client = new Faye.Client(result.ws_route);
+          client.disable('autodisconnect');
+          Faye.logger = window.console
+          client.subscribe(`/${result.channel_id}`, function(message) {
             console.log('Got a message: ' + message);
+            if(message){
+              let percent = parseInt(message)
+              setProgress(percent)
+              if(percent == 100){
+                window.location.reload();
+              }
+            }
           });
-          console.log(c)
         } 
         else {
             let tree = JSON.parse(result.data)
             setTree(tree)
+            setProgress(0)
             props.alertSuccessFunction("Searching results as follows!")
         }
         if(loading) props.setLoading(false)
@@ -109,7 +101,8 @@ function CitationTree(props) {
         <h1>CitationTree</h1>
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* <StyledTreeExample /> */}
-        <Container style={{overflowX:"scroll",border:"2px solid gray", justifyContent:"center"}}>
+        <Container style={{overflowX:(tree)?"scroll":"",border:(tree)?"2px solid gray":"", justifyContent:"center"}}>
+          {(!tree)?<ProgressBar animated variant="info" now={progress}/>:""}
           {TreeRoot(tree)}
         </Container>
         
