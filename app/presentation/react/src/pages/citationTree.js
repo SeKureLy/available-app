@@ -47,7 +47,7 @@ function CitationTree(props) {
   const [init, setinit] = useState(false)
   const [tree, setTree] = useState(null)
   // const [client,setClient] = useState(new Faye.Client("http://localhost:9090/faye/faye"))
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(10)
 
   useEffect(() => {
       if(!init)GetTest(true,true)
@@ -78,7 +78,11 @@ function CitationTree(props) {
               let percent = parseInt(message)
               setProgress(percent)
               if(percent == 100){
-                window.location.reload();
+                setTimeout(() => {
+                  // enjoy the happiness of 100% for 1 second
+                  window.location.reload();
+                }, 1000);
+                
               }
             }
           });
@@ -86,7 +90,7 @@ function CitationTree(props) {
         else {
             let tree = JSON.parse(result.data)
             setTree(tree)
-            setProgress(0)
+            setProgress(10)
             props.alertSuccessFunction("Searching results as follows!")
         }
         if(loading) props.setLoading(false)
