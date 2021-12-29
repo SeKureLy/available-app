@@ -58,6 +58,14 @@ function Search(props) {
             console.log(e.message)
         }
     }
+    function onKeyDown(event){
+        // 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          console.log("submit "+query)
+          PostTest(query)
+        }
+    }
 
     return (
         <>
@@ -73,7 +81,7 @@ function Search(props) {
                         <Form>
                             <Row>
                                 <Col sm="9">
-                                    <FormControl type="text" placeholder="Search Study Fields" value={query} onChange={(e) => { setQuery(e.target.value) }} />
+                                    <FormControl type="text" placeholder="Search Study Fields" value={query} onChange={(e) => { setQuery(e.target.value) }} onKeyDown={onKeyDown} />
                                 </Col>
                                 <Col sm="3">
                                     <Button variant="outline-primary" onClick={() => { PostTest(query) }}>Search</Button>
