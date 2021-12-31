@@ -70,7 +70,7 @@ module PaperDeep
 
         private
 
-        def get_api(method, resources = [], params = {})
+        def get_api(_method, resources = [], params = {})
           api_path = resources.empty? ? @api_host : @api_root
           url = [api_path, resources].flatten.join('/')
 

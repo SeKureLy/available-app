@@ -47,11 +47,11 @@ function CitedResult(props) {
         };
         if(loading) props.setLoading(true)
         try {
-            fetch(baseUrl+'/search', requestOptions)
+            fetch(baseUrl+'/api/v1/paper', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     if (result.result == false)props.alertFunction(result.error)
-                    else setData(result)
+                    else setData(result.paper)
                     if(loading) props.setLoading(false)
                 })
         } catch (e) {
@@ -75,12 +75,12 @@ function CitedResult(props) {
         console.log(requestOptions)
         if(loading) props.setLoading(true)
         try {
-            fetch(baseUrl+'/search/publication', requestOptions)
+            fetch(baseUrl+'/api/v1/publication', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     if (result.result == false)props.alertFunction(result.error)
                     else {
-                        setPublication(result[0])
+                        setPublication(result.publication[0])
                         props.alertSuccessFunction("Searching results as follows!")
                     }
                     if(loading) props.setLoading(false)
@@ -115,7 +115,7 @@ function CitedResult(props) {
         };
         if(loading) props.setLoading(true)
         try {
-            fetch(baseUrl+'/db/eid', requestOptions)
+            fetch(baseUrl+'/api/v1/db/eid', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     if (result.result == false)props.alertFunction(result.error)

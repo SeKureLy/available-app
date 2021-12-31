@@ -5,6 +5,7 @@ require 'slim'
 require 'rack/cors'
 require 'json'
 
+# rubocop:disable Metrics/ClassLength
 module PaperDeep
   # Web App
   class App < Roda
@@ -37,23 +38,22 @@ module PaperDeep
       routing.on 'api/v1' do
         routing.is do
           routing.get do
-
             message = "PaperDeep API v1 at /api/v1/ in #{App.environment} mode"
-    
+
             result_response = Representer::HttpResponse.new(
               Response::ApiResult.new(status: :ok, message: message)
             )
-    
+
             api_v1_link = [
               paper: 'api/v1/paper',
               citationtree: 'api/v1/citationtree',
               publication: 'api/v1/publication',
               db_eid: 'api/v1/db/eid'
             ]
-    
+
             full_response = JSON.parse(result_response.to_json)
             full_response['link'] = api_v1_link
-    
+
             response.status = result_response.http_status_code
             full_response.to_json
           end
@@ -70,7 +70,7 @@ module PaperDeep
                 flash[:error] = result.failure
                 return { result: false, error: flash[:error] }.to_json
               end
-              paper_list = Representer::Papers.new(result.value!['keyword'], result.value!["paper"])
+              paper_list = Representer::Papers.new(result.value!['keyword'], result.value!['paper'])
               return Representer::PaperList.new(paper_list).to_json
             end
           end
@@ -86,7 +86,7 @@ module PaperDeep
                 flash[:error] = result.failure
                 return { result: false, error: flash[:error] }.to_json
               end
-              
+
               # puts result.value!
               if result.value![:publication].empty?
                 return { result: false, error: 'Publication search result is nil' }.to_json
@@ -110,7 +110,6 @@ module PaperDeep
 
               puts result.value!.to_json
 
-
               if result.failure?
                 flash[:error] = result.failure
                 return { result: false, error: flash[:error] }.to_json
@@ -125,7 +124,7 @@ module PaperDeep
           routing.is do
             # GET /db/
             routing.get do
-              paper = JSON.parse(Gateway::Api.new(App.config).db_paper())
+              paper = JSON.parse(Gateway::Api.new(App.config).db_paper)
               paper.to_json
             end
           rescue StandardError
@@ -139,10 +138,13 @@ module PaperDeep
                 session.clear
                 session[:paper] ||= []
                 params = JSON.parse(routing.body.read)
-                
+
                 paper = JSON.parse(Gateway::Api.new(App.config).db_publication(params['eid']))
 
-                return { result: false, error: 'Having trouble getting publication from database' }.to_json if paper.nil?
+                if paper.nil?
+                  return { result: false,
+                           error: 'Having trouble getting publication from database' }.to_json
+                end
 
                 session[:paper].insert(0, paper)
                 paper.to_json
@@ -155,3 +157,4 @@ module PaperDeep
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

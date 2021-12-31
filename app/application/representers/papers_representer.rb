@@ -31,7 +31,7 @@ module PaperDeep
       attr_reader :keyword
 
       def paper
-        @paper.map{ |p| OpenStruct.new(p)}
+        @paper.map { |paper| OpenStruct.new(paper) }
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../spec_helper.rb'
+require_relative '../../spec_helper'
 
 describe 'Unit test of PaperDeep API gateway' do
   it 'must report alive status' do
@@ -10,7 +10,7 @@ describe 'Unit test of PaperDeep API gateway' do
 
   it 'must be able to search for papers with keyword' do
     res = PaperDeep::Gateway::Api.new(PaperDeep::App.config)
-      .paper({'keyword': KEYWORD})
+      .paper({ keyword: KEYWORD })
 
     _(res.success?).must_equal true
     _(res.payload).must_include KEYWORD
@@ -18,14 +18,14 @@ describe 'Unit test of PaperDeep API gateway' do
 
   it 'must be able to search for papers with EID' do
     res = PaperDeep::Gateway::Api.new(PaperDeep::App.config)
-      .paper({'eid': EID})
+      .paper({ eid: EID })
 
     _(res.success?).must_equal true
   end
 
   it 'must be able to search for publications' do
     res = PaperDeep::Gateway::Api.new(PaperDeep::App.config)
-      .publication({'pid': PID})
+      .publication({ pid: PID })
 
     _(res.success?).must_equal true
     _(res.payload).must_include PID
@@ -34,13 +34,13 @@ describe 'Unit test of PaperDeep API gateway' do
   it 'must be able to return all db papers' do
     # GIVEN a list of papers is added into the database
     PaperDeep::Gateway::Api.new(PaperDeep::App.config)
-      .paper({'keyword': KEYWORD})
-  
+      .paper({ keyword: KEYWORD })
+
     # WHEN we request the papers
     res = PaperDeep::Gateway::Api.new(PaperDeep::App.config)
-      .db_paper()
+      .db_paper
 
-    # THEN we should see the very EID in the list of papers 
+    # THEN we should see the very EID in the list of papers
     _(res.success?).must_equal true
     _(res.payload).must_include EID
   end
@@ -48,7 +48,7 @@ describe 'Unit test of PaperDeep API gateway' do
   it 'must be able to return db publications' do
     # GIVEN a publication is added into the database
     PaperDeep::Gateway::Api.new(PaperDeep::App.config)
-      .publication({'pid': PID})
+      .publication({ pid: PID })
 
     # WHEN we request the publications
     res = PaperDeep::Gateway::Api.new(PaperDeep::App.config)

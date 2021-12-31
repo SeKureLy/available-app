@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Container,ProgressBar } from "react-bootstrap";
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled, { css } from 'styled-components'
+import Faye, { Client } from 'faye'
 
 import { baseUrl } from '../config'
+
 
 const StyledNode = styled.div`
   padding: 5px;
@@ -10,6 +13,8 @@ const StyledNode = styled.div`
   display: inline-block;
   border: 1px solid red;
 `;
+
+// var client = new Faye.Client("http://localhost:9090/faye/faye")
 
 const TreeRoot = (data)=>{
   if (!data) return <></>
@@ -38,16 +43,17 @@ const recursiveTree = (data) => {
   </>)
 }
 
-
 function CitationTree(props) {
   const [init, setinit] = useState(false)
   const [tree, setTree] = useState(null)
+  // const [client,setClient] = useState(new Faye.Client("http://localhost:9090/faye/faye"))
+  const [progress, setProgress] = useState(10)
 
   useEffect(() => {
-      GetTest()
-  }, [init]);
+      if(!init)GetTest(true,true)
+  },[init]);
 
-  async function GetTest(loading = true) {
+  async function GetTest(loading = true,initial=false) {
 
     const requestOptions = {
         method: 'GET',
@@ -58,16 +64,36 @@ function CitationTree(props) {
     };
     if(loading) props.setLoading(true)
     try {
-        fetch(baseUrl + '/search/citationtree', requestOptions)
-            .then(async response => {
-                let result = await response.json()
-                if (result.result == false) props.alertFunction(result.error)
-                else {
-                    setTree(result)
-                    props.alertSuccessFunction("Searching results as follows!")
-                    if(loading) props.setLoading(false)
-                }
-            })
+        let response = await fetch(baseUrl + '/api/v1/citationtree', requestOptions)
+        let result = await response.json()
+        if(initial)setinit(true)
+        if (result.result == false){
+          // props.alertFunction(result.error)
+          var client = new Faye.Client(result.ws_route);
+          client.disable('autodisconnect');
+          Faye.logger = window.console
+          client.subscribe(`/${result.channel_id}`, function(message) {
+            console.log('Got a message: ' + message);
+            if(message){
+              let percent = parseInt(message)
+              setProgress(percent)
+              if(percent == 100){
+                setTimeout(() => {
+                  // enjoy the happiness of 100% for 1 second
+                  window.location.reload();
+                }, 1000);
+                
+              }
+            }
+          });
+        } 
+        else {
+            let tree = JSON.parse(result.data)
+            setTree(tree)
+            setProgress(10)
+            props.alertSuccessFunction("Searching results as follows!")
+        }
+        if(loading) props.setLoading(false)
     } catch (e) {
         console.log(e.message)
     }
@@ -79,7 +105,11 @@ function CitationTree(props) {
         <h1>CitationTree</h1>
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* <StyledTreeExample /> */}
-        {TreeRoot(tree)}
+        <Container style={{overflowX:(tree)?"scroll":"",border:(tree)?"2px solid gray":"", justifyContent:"center"}}>
+          {(!tree)?<ProgressBar animated variant="info" now={progress}/>:""}
+          {TreeRoot(tree)}
+        </Container>
+        
       </div>
     </>
   );

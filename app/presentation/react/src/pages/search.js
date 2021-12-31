@@ -44,18 +44,26 @@ function Search(props) {
         };
         props.setLoading(true)
         try {
-            fetch(baseUrl + '/search', requestOptions)
+            fetch(baseUrl + '/api/v1/paper', requestOptions)
                 .then(async response => {
                     let result = await response.json()
                     props.setLoading(false)
                     if (result.result == false) props.alertFunction(result.error)
                     else {
-                        setData(result)
+                        setData(result.paper)
                         props.alertSuccessFunction("Searching results as follows!")
                     }
                 })
         } catch (e) {
             console.log(e.message)
+        }
+    }
+    function onKeyDown(event){
+        // 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          console.log("submit "+query)
+          PostTest(query)
         }
     }
 
@@ -73,7 +81,7 @@ function Search(props) {
                         <Form>
                             <Row>
                                 <Col sm="9">
-                                    <FormControl type="text" placeholder="Search Study Fields" value={query} onChange={(e) => { setQuery(e.target.value) }} />
+                                    <FormControl type="text" placeholder="Search Study Fields" value={query} onChange={(e) => { setQuery(e.target.value) }} onKeyDown={onKeyDown} />
                                 </Col>
                                 <Col sm="3">
                                     <Button variant="outline-primary" onClick={() => { PostTest(query) }}>Search</Button>

@@ -13,9 +13,8 @@ module PaperDeep
       private
 
       def find_publication(input)
-        result =JSON.parse(Gateway::Api.new(App.config).publication(input))
-        puts result["publication"]
-        input[:publication] = result["publication"]
+        result = JSON.parse(Gateway::Api.new(App.config).publication(input))
+        input[:publication] = result['publication']
         Success(input)
       rescue StandardError => e
         Failure(e.to_s)
