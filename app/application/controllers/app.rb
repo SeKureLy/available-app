@@ -29,7 +29,7 @@ module PaperDeep
         File.read('app/presentation/built/index.html')
       end
 
-      routing.on ['test2', 'citedResult'] do
+      routing.on ['citationTree', 'citedResult'] do
         File.read('app/presentation/built/index.html')
       end
 
