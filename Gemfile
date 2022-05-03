@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 
 # Web
 gem 'puma'
-gem 'roda'
 gem 'rack-cors'
+gem 'roda'
 
 # Configuration
 gem 'figaro'
