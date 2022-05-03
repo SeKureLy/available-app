@@ -1,7 +1,0 @@
----
-  detectors:
-    IrresponsibleModule:
-      enabled: false
-  exclude_paths:
-    - _snippets
-    - spec/Testcase/*
