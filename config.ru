@@ -1,4 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './init.rb'
-run PaperDeep::App.freeze.app
+require './require_app'
+require_app
+
+run Available::App.freeze.app
