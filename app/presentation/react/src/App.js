@@ -8,10 +8,8 @@ import {
 } from "react-router-dom";
 import {Alert, Navbar,Nav} from 'react-bootstrap'
 import logo from './logo.jpg';
-import Search from './pages/search'
-import CitationTree from './pages/citationTree'
-import Beta from './pages/beta'
-import CitedResult from './pages/citedResult'
+import Home from './pages/Home'
+import Login from './pages/Login'
 import LoadingOverlay from 'react-loading-overlay';
 
 import './App.css';
@@ -52,23 +50,11 @@ function App() {
             height="30"
             className="d-inline-block align-top"
           />{' '}
-          PaperDeep
+          Available
         </Navbar.Brand>
         <Nav>
             <Nav.Item>
-              <Link to="/" style={{color: "white"}}>Search</Link>
-            </Nav.Item>
-            &nbsp;&nbsp;
-            <Nav.Item>
-              <Link to="/citedResult" style={{color: "white"}}>CitedResult</Link>
-            </Nav.Item>
-            &nbsp;&nbsp;
-            <Nav.Item>
-              <Link to="/citationTree" style={{color: "white"}}>CitationTree</Link>
-            </Nav.Item>
-            &nbsp;&nbsp;
-            <Nav.Item>
-              <Link to="/beta" style={{color: "white"}}>Beta</Link>
+              <Link to="/login" style={{color: "white"}}>Login</Link>
             </Nav.Item>
         </Nav>
       </Navbar>
@@ -89,17 +75,11 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/citedResult">
-            <CitedResult setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
-          </Route>
-          <Route path="/citationTree">
-            <CitationTree setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
-          </Route>
-          <Route path="/beta">
-            <Beta setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
+          <Route path="/login">
+            <Login setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
           <Route path="/">
-            <Search setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
+            <Home setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
         </Switch>
     </div>
