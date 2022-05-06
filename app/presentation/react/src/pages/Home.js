@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import queryString from 'query-string'
 import {
     BrowserRouter as Router,
@@ -9,25 +9,26 @@ import {
 } from "react-router-dom";
 import { Button, Alert, Nav, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
 import { baseUrl } from '../config'
-
-
+import { AuthContext } from "../contexts";
 
 function Home(props) {
     const { search } = useLocation()
     const urlparams = queryString.parse(search)
     const [init, setinit] = useState(false)
     const [query, setQuery] = useState("")
-
+    const { user, setUser } = useContext(AuthContext);
 
     useEffect(() => {
-
     }, []);
 
     return (
         <>
 
             <div className="App">
-                <h1>Available</h1>
+                {
+                    (user)?<h1>Hello, {user}</h1>:""
+                }
+                
             </div>
             <br />
             <Container>

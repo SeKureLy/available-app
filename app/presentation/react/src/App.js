@@ -1,5 +1,5 @@
 import React, { useState,useEffect} from "react";
-
+import {AuthContext} from "./contexts";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,11 +13,11 @@ import Login from './pages/Login'
 import LoadingOverlay from 'react-loading-overlay';
 
 import './App.css';
-
 function App() {
   const [loading,setLoading] = useState(false)
   const [alertMessage, setAlertMessage] = useState(false)
   const [successMessage, setSuccessMessage] = useState(false)
+  const [user, setUser] = useState(null);
 
   function alertFunction(data){
     setAlertMessage(data)
@@ -29,11 +29,12 @@ function App() {
     setSuccessMessage(data)
     setTimeout(()=>{
       setSuccessMessage(null)
-    },5000)
+    },3000)
   }
   return (
     <>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
+    <AuthContext.Provider value={{user, setUser}}>
     <Router> 
     <LoadingOverlay
             active={loading}
@@ -88,6 +89,7 @@ function App() {
 
     </Router>
     
+    </AuthContext.Provider>
     </>
   );
 }
