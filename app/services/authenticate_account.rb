@@ -14,10 +14,10 @@ module Available
     def call(username:, password:)
       response = HTTP.post("#{@config.API_URL}/auth/authenticate",
                            json: { username:, password: })
-
+      
       raise(UnauthorizedError) unless response.code == 200
 
-      response.parse['attributes']
+      JSON.parse(response)
     end
   end
 end

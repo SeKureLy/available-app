@@ -11,7 +11,7 @@ module Available
     use Rack::Cors, debug: true, logger: Logger.new($stdout) do
       allowed_methods = %i[get post put delete options head]
       allow do
-        origins 'localhost:3000'
+        origins 'localhost:3001'
         resource '*', headers: :any, methods: allowed_methods, credentials: true
       end
     end
@@ -34,6 +34,10 @@ module Available
       
       # GET /
       routing.root do
+        File.read('app/presentation/built/index.html')
+      end
+
+      routing.on ["login"] do
         File.read('app/presentation/built/index.html')
       end
 

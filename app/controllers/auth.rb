@@ -4,30 +4,27 @@ require 'roda'
 require_relative './app'
 
 module Available
-  # Web controller for Available API
+  # Web controller for Credence API
   class App < Roda
     route('auth') do |routing|
       @login_route = '/auth/login'
       routing.is 'login' do
-        # GET /auth/login
-        routing.get do
-          view :login
-        end
-
         # POST /auth/login
         routing.post do
+          params = JSON.parse(routing.body.read)
           account = AuthenticateAccount.new(App.config).call(
-            username: routing.params['username'],
-            password: routing.params['password']
+            username: params['username'],
+            password: params['password']
           )
 
           session[:current_account] = account
           flash[:notice] = "Welcome back #{account['username']}!"
-          routing.redirect '/'
+          response.status = 200
+          return {account: account['username'],message: flash[:notice]}.to_json
         rescue StandardError
-          flash.now[:error] = 'Username and password did not match our records'
+          flash[:error] = 'Username and password did not match our records'
           response.status = 400
-          view :login
+          return {message: flash[:error]}.to_json
         end
       end
 
