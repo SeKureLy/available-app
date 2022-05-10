@@ -4,7 +4,7 @@ require 'roda'
 require_relative './app'
 
 module Available
-  # Web controller for Credence API
+  # Web controller for Available API
   class App < Roda
     route('auth') do |routing|
       @login_route = '/auth/login'
@@ -22,9 +22,9 @@ module Available
           response.status = 200
           return {account: account['username'],message: flash[:notice]}.to_json
         rescue StandardError
-          flash[:error] = 'Username and password did not match our records'
+          flash[:error] = "Username and password did not match our records"
           response.status = 400
-          return {message: flash[:error]}.to_json
+          return {message: "Username and password did not match our records"}.to_json
         end
       end
 
@@ -32,6 +32,21 @@ module Available
         routing.get do
           session[:current_account] = nil
           routing.redirect @login_route
+        end
+      end
+      
+      routing.is 'register' do
+        routing.post do
+          account_data = JsonRequestBody.symbolize(JSON.parse(routing.body.read))
+          acc = CreateAccount.new(App.config).call(**account_data)
+          puts acc.to_json
+          response.status = 200
+          return {message: "Please login with your new account information"}.to_json
+        rescue StandardError => e
+          App.logger.error "ERROR CREATING ACCOUNT: #{e.inspect}"
+          App.logger.error e.backtrace
+          response.status = 400
+          return {message: "Could not create account / Account has exist"}.to_json
         end
       end
     end

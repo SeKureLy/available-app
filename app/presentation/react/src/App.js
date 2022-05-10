@@ -6,10 +6,11 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import {Alert, Navbar,Nav} from 'react-bootstrap'
+import {Alert, Navbar,Nav,NavDropdown} from 'react-bootstrap'
 import logo from './logo.jpg';
 import Home from './pages/Home'
 import Login from './pages/Login'
+import RegisterAccount from './pages/Register'
 import LoadingOverlay from 'react-loading-overlay';
 
 import './App.css';
@@ -54,9 +55,10 @@ function App() {
           Available
         </Navbar.Brand>
         <Nav>
-            <Nav.Item>
-              <Link to="/login" style={{color: "white"}}>Login</Link>
-            </Nav.Item>
+          <NavDropdown title="Account" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+            <NavDropdown.Item href="/register">Create Account</NavDropdown.Item>
+          </NavDropdown>
         </Nav>
       </Navbar>
       <br />
@@ -76,6 +78,9 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+          <Route path="/register">
+            <RegisterAccount setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
+          </Route>
           <Route path="/login">
             <Login setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
