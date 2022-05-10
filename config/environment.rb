@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
+# require 'delegate'
 require 'roda'
 require 'figaro'
 require 'logger'
+require 'rack/ssl-enforcer'
+require 'rack/session/redis'
+require_relative '../require_app'
+
+require_app('lib')
 
 module Available
   # Configuration for the API
@@ -20,7 +26,11 @@ module Available
     # Logger setup
     LOGGER = Logger.new($stderr)
     def self.logger = LOGGER
-
+    
+    configure :production do
+      use Rack::SslEnforcer, hsts: true
+    end
+    
     configure :development, :test do
       require 'pry'
 
