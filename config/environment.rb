@@ -5,10 +5,10 @@ require 'roda'
 require 'figaro'
 require 'logger'
 require 'rack/ssl-enforcer'
-# require 'rack/session/redis'
-# require_relative '../require_app'
+require 'rack/session/redis'
+require_relative '../require_app'
 
-# require_app('lib')
+require_app('lib')
 
 module Available
   # Configuration for the API
