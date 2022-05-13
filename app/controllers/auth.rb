@@ -20,7 +20,8 @@ module Available
           SecureSession.new(session).set(:current_account, account)
           flash[:notice] = "Welcome back #{account['username']}!"
           response.status = 200
-          return {account: account['username'],message: flash[:notice]}.to_json
+          puts account
+          return {account: account['data']['attributes']['username'],message: flash[:notice]}.to_json
         rescue StandardError
           flash[:error] = "Username and password did not match our records"
           response.status = 400
