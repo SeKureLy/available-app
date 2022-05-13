@@ -4,7 +4,6 @@ require 'roda'
 require 'rack/cors'
 require 'json'
 
-# rubocop:disable Metrics/ClassLength
 module Available
   # Web App
   class App < Roda
@@ -31,13 +30,13 @@ module Available
       @current_account = SecureSession.new(session).get(:current_account)
 
       routing.public
-      
+
       # GET /
       routing.root do
         File.read('app/presentation/built/index.html')
       end
 
-      routing.on ["login","register"] do
+      routing.on ['login', 'register'] do
         File.read('app/presentation/built/index.html')
       end
 
@@ -47,4 +46,3 @@ module Available
     end
   end
 end
-# rubocop:enable Metrics/ClassLength

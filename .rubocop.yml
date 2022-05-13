@@ -1,41 +1,31 @@
 ---
-# Apply latest Ruby style guide and newly introduced cops
+require:
+  - rubocop-performance
+
 AllCops:
-  TargetRubyVersion: 3.0
+  TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:
-    - '_snippets/*'
-  Include:
-  - 'Gemfile'
-  - 'Rakefile'
-  - '**/*.rb'
-
-
-# ignore block length in test code only
+    - _snippets/*
+  
 Metrics/BlockLength:
   Enabled: true
   Exclude:
-    - 'spec/**/*'
+    - spec/**/*
     - Rakefile
-    - app/application/controllers/*.rb # Roda's nested controllers require large blocks
-    - spec/**/* # Minitest's nested test structure requires large blocks
-    - Rakefile # Rake namespaces produce large blocks
 
-Layout/MultilineMethodCallIndentation:
-  Enabled: true
-  EnforcedStyle: indented
-
-Layout/HashAlignment:
-  Enabled: true
-  EnforcedHashRocketStyle: table
-
-Style/HashSyntax:
+Security/YAMLLoad:
   Enabled: true
   Exclude:
-    - Rakefile
+    - spec/**/*
+
+# Style/HashSyntax:
+#   Enabled: true
+#   Exclude:
+#     - Rakefile
 
 Style/SymbolArray:
   Enabled: true
   Exclude:
+    - db/migrations/**/*
     - Rakefile
-    - app/infrastructure/database/migrations/*.rb

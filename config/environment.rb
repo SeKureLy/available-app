@@ -27,13 +27,12 @@ module Available
     LOGGER = Logger.new($stderr)
     def self.logger = LOGGER
 
-
     ONE_MONTH = 30 * 24 * 60 * 60
 
     configure do
       SecureMessage.setup(ENV.delete('MSG_KEY'))
     end
-    
+
     configure :production do
       SecureSession.setup(ENV.fetch('REDIS_TLS_URL')) # REDIS_TLS_URL used again below
       use Rack::SslEnforcer, hsts: true
@@ -42,9 +41,9 @@ module Available
           redis_server: {
             url: ENV.delete('REDIS_TLS_URL'),
             ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
-      }
+          }
     end
-    
+
     configure :development, :test do
       SecureSession.setup(ENV.fetch('REDIS_URL', nil)) # REDIS_URL used again below
       use Rack::Session::Pool, expire_after: ONE_MONTH

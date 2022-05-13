@@ -62,12 +62,12 @@ end
 
 namespace :generate do
   desc 'Create rbnacl key'
-  task :msg_key => :load_lib do
+  task msg_key: :load_lib do
     puts "New MSG_KEY (base64): #{SecureMessage.generate_key}"
   end
 
   desc 'Create cookie secret'
-  task :session_secret => :load_lib do
+  task session_secret: :load_lib do
     puts "New SESSION_SECRET (base64): #{SecureSession.generate_secret}"
   end
 end
