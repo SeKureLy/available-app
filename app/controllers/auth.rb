@@ -17,7 +17,7 @@ module Available
             password: params['password']
           )
 
-          session[:current_account] = account
+          SecureSession.new(session).set(:current_account, account)
           flash[:notice] = "Welcome back #{account['username']}!"
           response.status = 200
           return {account: account['username'],message: flash[:notice]}.to_json
@@ -30,7 +30,7 @@ module Available
 
       routing.on 'logout' do
         routing.get do
-          session[:current_account] = nil
+          SecureSession.new(session).delete(:current_account)
           routing.redirect @login_route
         end
       end
