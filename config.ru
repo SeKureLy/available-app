@@ -3,4 +3,4 @@
 require './require_app'
 require_app
 
-run Available::App.freeze.app
+run Available::App.app

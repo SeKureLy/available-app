@@ -4,7 +4,6 @@ require 'roda'
 require 'rack/cors'
 require 'json'
 
-# rubocop:disable Metrics/ClassLength
 module Available
   # Web App
   class App < Roda
@@ -20,24 +19,22 @@ module Available
     plugin :multi_route
     plugin :flash
 
-    ONE_MONTH = 30 * 24 * 60 * 60
-
     use Rack::Session::Cookie,
         expire_after: ONE_MONTH,
         secret: config.SESSION_SECRET
 
     route do |routing|
       response['Content-Type'] = 'text/html; charset=utf-8'
-      @current_account = session[:current_account]
+      @current_account = SecureSession.new(session).get(:current_account)
 
       routing.public
-      
+
       # GET /
       routing.root do
         File.read('app/presentation/built/index.html')
       end
 
-      routing.on ["login"] do
+      routing.on ['login', 'register'] do
         File.read('app/presentation/built/index.html')
       end
 
@@ -47,4 +44,3 @@ module Available
     end
   end
 end
-# rubocop:enable Metrics/ClassLength
