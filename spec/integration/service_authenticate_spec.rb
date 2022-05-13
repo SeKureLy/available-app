@@ -24,8 +24,8 @@ describe 'Test Service Objects' do
 
       account = Available::AuthenticateAccount.new(app.config).call(**@credentials)
       _(account).wont_be_nil
-      _(account['username']).must_equal @api_account[:attributes][:username]
-      _(account['email']).must_equal @api_account[:attributes][:email]
+      _(account['attributes']['username']).must_equal @api_account[:attributes][:username]
+      _(account['attributes']['email']).must_equal @api_account[:attributes][:email]
     end
 
     it 'BAD: should not find a false authenticated account' do

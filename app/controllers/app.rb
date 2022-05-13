@@ -19,8 +19,6 @@ module Available
     plugin :multi_route
     plugin :flash
 
-    ONE_MONTH = 30 * 24 * 60 * 60
-
     use Rack::Session::Cookie,
         expire_after: ONE_MONTH,
         secret: config.SESSION_SECRET

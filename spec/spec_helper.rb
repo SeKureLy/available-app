@@ -2,18 +2,9 @@
 
 ENV['RACK_ENV'] = 'test'
 
-require 'simplecov'
-SimpleCov.start
-
-require 'yaml'
-
 require 'minitest/autorun'
 require 'minitest/rg'
-require 'vcr'
-require 'webmock'
 
-require_relative '../init'
+require_relative 'test_load_all'
 
-KEYWORD = 'blockchain'
-EID = '2-s2.0-84979828304'
-PID = '84979828304'
+API_URL = app.config.API_URL
