@@ -19,18 +19,19 @@ module Available
 
         # POST /account/<registration_token>
         routing.post String do |registration_token|
+          body = JSON.parse(routing.body.read)
           raise 'Passwords do not match or empty' if
-            routing.params['password'].empty? ||
-            routing.params['password'] != routing.params['password_confirm']
+            body['password'].empty? ||
+            body['password'] != body['password_confirm']
 
           new_account = SecureMessage.decrypt(registration_token)
           CreateAccount.new(App.config).call(
             email: new_account['email'],
             username: new_account['username'],
-            password: routing.params['password']
+            password: body['password']
           )
           flash[:notice] = 'Account created! Please login'
-          return {message:flash[:notice]}.to_json
+          return {message:'Account created! Please login'}.to_json
         rescue CreateAccount::InvalidAccount => e
           flash[:error] = e.message
           return {message:flash[:error]}.to_json

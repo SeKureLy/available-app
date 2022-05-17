@@ -16,7 +16,6 @@ module Available
             username: params['username'],
             password: params['password']
           )
-
           SecureSession.new(session).set(:current_account, account)
           flash[:notice] = "Welcome back #{account['username']}!"
           response.status = 200

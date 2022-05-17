@@ -66,7 +66,7 @@ function RegisterAccount(props) {
             },
             body: JSON.stringify({ password: password ,password_confirm:password2})
         };
-        fetch(baseUrl+'/api/v1/account', requestOptions)
+        fetch(baseUrl+'/api/v1/account/'+urlparams.token, requestOptions)
         .then(async response =>{
             let result = await response.json()
             console.log(result)
