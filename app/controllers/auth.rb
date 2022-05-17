@@ -12,7 +12,7 @@ module Available
         # POST /auth/login
         routing.post do
           params = JSON.parse(routing.body.read)
-          account = AuthenticateAccount.new(App.config).call(
+          account_info = AuthenticateAccount.new(App.config).call(
             username: params['username'],
             password: params['password']
           )
@@ -24,10 +24,10 @@ module Available
 
           CurrentSession.new(session).current_account = current_account
 
-          flash[:notice] = "Welcome back #{account['username']}!"
+          flash[:notice] = "Welcome back #{account_info['username']}!"
           response.status = 200
-          return { account: account['data']['attributes']['username'], message: flash[:notice] }.to_json
-          routing.redirect '/'
+          return { account: account_info['data']['attributes']['username'], message: flash[:notice] }.to_json
+          # routing.redirect '/'
         rescue AuthenticateAccount::UnauthorizedError
           # flash.now[:error] = 'Username and password did not match our records'
           response.status = 401
@@ -53,19 +53,22 @@ module Available
       @register_route = '/auth/register'
       routing.is 'register' do
         routing.post do
-          account_data = JsonRequestBody.symbolize(routing.params)
+          account_data = JsonRequestBody.symbolize(JSON.parse(routing.body.read))
           VerifyRegistration.new(App.config).call(account_data)
 
           flash[:notice] = 'Please check your email for a verification link'
-          routing.redirect '/'
+          # routing.redirect '/'
+          return {message: 'Please check your email for a verification link'}.to_json
         rescue VerifyRegistration::ApiServerError => e
           App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
           flash[:error] = 'Our servers are not responding -- please try later'
-          routing.redirect @register_route
+          # routing.redirect @register_route
+          return {message: 'Our servers are not responding -- please try later'}.to_json
         rescue StandardError => e
           App.logger.error "Could not verify registration: #{e.inspect}"
           flash[:error] = 'Registration details are not valid'
-          routing.redirect @register_route
+          # routing.redirect @register_route
+          return {message: 'Registration details are not valid'}.to_json
         end
       end
 
