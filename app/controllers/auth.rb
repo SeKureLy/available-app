@@ -38,15 +38,28 @@ module Available
       routing.is 'register' do
         routing.post do
           account_data = JsonRequestBody.symbolize(JSON.parse(routing.body.read))
-          acc = CreateAccount.new(App.config).call(**account_data)
-          puts acc.to_json
+          VerifyRegistration.new(App.config).call(account_data)
+          flash[:notice] = 'Please check your email for a verification link'
           response.status = 200
-          return { message: 'Please login with your new account information' }.to_json
+          return { message: 'Please check your email for a verification link' }.to_json
+        rescue VerifyRegistration::ApiServerError => e
+          App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
+          flash[:error] = 'Our servers are not responding -- please try later'
+          return { message: 'Our servers are not responding -- please try later' }.to_json
         rescue StandardError => e
           App.logger.error "ERROR CREATING ACCOUNT: #{e.inspect}"
           App.logger.error e.backtrace
           response.status = 400
           return { message: 'Could not create account / Account has exist' }.to_json
+        end
+
+        # GET /auth/register/<token>
+        routing.get(String) do |registration_token|
+          flash.now[:notice] = 'Email Verified! Please choose a new password'
+          new_account = SecureMessage.decrypt(registration_token)
+          view :register_confirm,
+               locals: { new_account:,
+                         registration_token: }
         end
       end
     end
