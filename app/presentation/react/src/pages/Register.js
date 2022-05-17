@@ -41,9 +41,9 @@ function RegisterAccount(props) {
             console.log(result)
             if (response.status == 200){
                 props.alertSuccessFunction(result.message)
-                setTimeout(()=>{
-                    history.push('/login')
-                },3000)
+                // setTimeout(()=>{
+                //     history.push('/login')
+                // },3000)
             }
             else{
                 props.alertFunction(`${result.message}`)
@@ -64,9 +64,9 @@ function RegisterAccount(props) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username: account ,email:email})
+            body: JSON.stringify({ password: password ,password_confirm:password2})
         };
-        fetch(baseUrl+'/api/v1/auth/register', requestOptions)
+        fetch(baseUrl+'/api/v1/account', requestOptions)
         .then(async response =>{
             let result = await response.json()
             console.log(result)
