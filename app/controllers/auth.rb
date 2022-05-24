@@ -26,7 +26,8 @@ module Available
 
           flash[:notice] = "Welcome back #{account_info['username']}!"
           response.status = 200
-          return { account: account_info['data']['attributes']['username'], message: flash[:notice] }.to_json
+          puts account_info
+          return { account: account_info['attributes']['account']['data']['attributes']['username'], message: flash[:notice] }.to_json
           # routing.redirect '/'
         rescue AuthenticateAccount::UnauthorizedError
           # flash.now[:error] = 'Username and password did not match our records'
