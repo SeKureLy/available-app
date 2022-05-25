@@ -5,7 +5,7 @@ require_relative 'calendar'
 module Available    
   # Behaviors of the currently logged in account
   class Event
-    attr_reader :id, :title, :start_time, :end_time, :description, :created_by, :share_id, # basic info
+    attr_reader :id, :title, :start_time, :end_time, :description, # basic info
                 :calendar # full details
 
     def initialize(info)
@@ -21,8 +21,6 @@ module Available
       @start_time       = attributes['start_time']
       @end_time         = attributes['end_time']
       @description      = attributes['description']
-      @created_by       = attributes['created_by']
-      @share_id         = attributes['share_id']
     end
 
     def process_included(included)
