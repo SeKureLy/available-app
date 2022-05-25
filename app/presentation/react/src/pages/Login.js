@@ -14,7 +14,7 @@ function Login(props) {
     const { search } = useLocation()
     const urlparams = queryString.parse(search)
     const history = useHistory();
-    const [init, setinit] = useState(false)
+    // const [init, setinit] = useState(false)
     const [account, setAccount] = useState("")
     const [password, setPassword] = useState("")
     const { setUser } = useContext(AuthContext);
@@ -23,7 +23,7 @@ function Login(props) {
 
     }, []);
 
-    async function login(event){
+    function login(event){
         // todo:  call login api
         event.preventDefault()
         const requestOptions = {
@@ -38,6 +38,7 @@ function Login(props) {
             let result = await response.json()
             if (response.status == 200){
                 props.alertSuccessFunction(`Welcome, ${result.account}`)
+                console.log(result.account)
                 setUser(result.account)
                 setTimeout(()=>{
                     history.push('/')
@@ -49,7 +50,6 @@ function Login(props) {
                     window.location.reload()
                 },3000)
             }
-            
         })
         .catch(error =>{
             props.alertFunction("unknown error")

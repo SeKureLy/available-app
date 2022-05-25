@@ -56,7 +56,9 @@ function App() {
         </Navbar.Brand>
         <Nav>
           <NavDropdown title="Account" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+            {
+              (user)?<NavDropdown.Item href="/">Logout</NavDropdown.Item>:<NavDropdown.Item href="/login">Login</NavDropdown.Item>
+            }
             <NavDropdown.Item href="/register">Create Account</NavDropdown.Item>
           </NavDropdown>
         </Nav>
