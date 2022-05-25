@@ -16,9 +16,15 @@ module Available
       response = HTTP.post("#{@config.API_URL}/auth/authenticate",
                            json: { username:, password: })
 
-      raise(UnauthorizedError) unless response.code == 200
+      raise(UnauthorizedError) if response.code == 403
+      raise(ApiServerError) if response.code != 200
 
-      JSON.parse(response)
+      account_info = JSON.parse(response.to_s)['attributes']
+
+      { account: account_info['account']['data']['attributes'],
+        auth_token: account_info['auth_token'] }
+    rescue HTTP::ConnectionError
+      raise ApiServerError
     end
   end
 end
