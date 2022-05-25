@@ -7,18 +7,16 @@ module Available
   class App < Roda
     route('calendars') do |routing|
       routing.on do
+        routing.redirect '/auth/login' unless @current_account.logged_in?
+        @calendars_route = '/calendars'
         # GET /calendars/
         routing.get do
-          if @current_account.logged_in?
             calendars_list = GetAllCalendars.new(App.config).call(@current_account)
 
             calendars = Calendars.new(calendars_list)
 
-            view :calendars_all,
-                 locals: { current_user: @current_account, calendars: }
-          else
-            routing.redirect '/auth/login'
-          end
+            # view :calendars_all,
+            #      locals: { current_user: @current_account, calendars: }
         end
       end
     end
