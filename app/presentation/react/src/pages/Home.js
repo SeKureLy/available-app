@@ -28,7 +28,7 @@ function Home(props) {
                 {
                     (user)?<h1>Hello, {user}</h1>:""
                 }
-                
+                <h1>Please log in</h1>
             </div>
             <br />
             <Container>

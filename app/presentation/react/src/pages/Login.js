@@ -41,7 +41,7 @@ function Login(props) {
                 console.log(result.account)
                 setUser(result.account)
                 setTimeout(()=>{
-                    history.push('/')
+                    history.push('/Account')
                 },3000)
             }
             else{

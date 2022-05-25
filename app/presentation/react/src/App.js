@@ -10,6 +10,7 @@ import {Alert, Navbar,Nav,NavDropdown} from 'react-bootstrap'
 import logo from './logo.jpg';
 import Home from './pages/Home'
 import Login from './pages/Login'
+import Account from './pages/Account'
 import RegisterAccount from './pages/Register'
 import LoadingOverlay from 'react-loading-overlay';
 
@@ -85,6 +86,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
+          </Route>
+          <Route path="/account">
+            <Account setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
           <Route path="/">
             <Home setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
