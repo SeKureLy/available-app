@@ -58,22 +58,31 @@ module Available
       routing.is 'register' do
         # POST /auth/register
         routing.post do
-          account_data = JsonRequestBody.symbolize(JSON.parse(routing.body.read))
+          data = JSON.parse(routing.body.read)
+          registration = Form::Registration.new.call(data)
+          
+          if registration.failure?
+            flash[:error] = Form.validation_errors(registration)
+            return {message: Form.validation_errors(registration)}.to_json
+            # routing.redirect @register_route
+          end
+          
+          account_data = JsonRequestBody.symbolize(data)
           VerifyRegistration.new(App.config).call(account_data)
 
           flash[:notice] = 'Please check your email for a verification link'
-          # routing.redirect '/'
           return {message: 'Please check your email for a verification link'}.to_json
+          # routing.redirect '/'
         rescue VerifyRegistration::ApiServerError => e
           App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
           flash[:error] = 'Our servers are not responding -- please try later'
-          # routing.redirect @register_route
           return {message: 'Our servers are not responding -- please try later'}.to_json
+          # routing.redirect @register_route
         rescue StandardError => e
           App.logger.error "Could not verify registration: #{e.inspect}"
-          flash[:error] = 'Registration details are not valid'
+          flash[:error] = 'Please use English characters for username only'
           # routing.redirect @register_route
-          return {message: 'Registration details are not valid'}.to_json
+          return {message: 'Please use English characters for username only'}.to_json
         end
       end
 
