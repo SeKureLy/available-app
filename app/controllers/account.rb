@@ -12,10 +12,10 @@ module Available
         routing.is do
           if @current_account.logged_in?
             response.status = 200
-            { current_account: @current_account.username, email: @current_account.email }.to_json
+            { username: @current_account.username, email: @current_account.email }.to_json
           else
             response.status = 401
-            routing.redirect '/login'
+            { message: "qq"}.to_json
           end
           end
 

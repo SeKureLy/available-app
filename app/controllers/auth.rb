@@ -47,7 +47,7 @@ module Available
       routing.is 'logout' do
         # GET /auth/logout
         routing.get do
-          SecureSession.new(session).delete(:current_account)
+          CurrentSession.new(session).delete
           flash[:notice] = "You've been logged out"
           # routing.redirect @login_route
           return { message: flash[:notice] }.to_json

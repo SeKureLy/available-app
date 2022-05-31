@@ -8,7 +8,7 @@ module Available
     route('calendars') do |routing|
       routing.on do
         puts @current_account.logged_in?
-        routing.redirect '/auth/login' unless @current_account.logged_in?
+        # routing.redirect '/auth/login' unless @current_account.logged_in?
         @calendars_route = '/calendars'
 
 
