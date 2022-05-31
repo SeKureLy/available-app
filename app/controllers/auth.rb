@@ -18,16 +18,14 @@ module Available
             password: params['password']
           )
 
-          @current_account = Account.new(
+          current_account = Account.new(
             account_info[:account],
             account_info[:auth_token]
           )
 
-          # @current_account = CurrentSession.new(session).set(:current_account, account_info)
-          # session[:current_account] = account_info
+
           CurrentSession.new(session).current_account = current_account
 
-          # puts CurrentSession.new(session).current_account.username
 
           flash[:notice] = "Welcome back #{account_info[:account]['username']}!"
           response.status = 200

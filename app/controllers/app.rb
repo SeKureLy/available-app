@@ -19,15 +19,9 @@ module Available
     plugin :multi_route
     plugin :flash
 
-    use Rack::Session::Cookie,
-        expire_after: ONE_MONTH,
-        secret: config.SESSION_SECRET
-
     route do |routing|
       response['Content-Type'] = 'text/html; charset=utf-8'
       @current_account = CurrentSession.new(session).current_account
-      # @current_account = session[:current_account]
-      # @current_account = CurrentSession.new(session).get(:current_account)
 
       routing.public
 
