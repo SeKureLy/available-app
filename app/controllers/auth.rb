@@ -13,6 +13,13 @@ module Available
         routing.post do
           params = JSON.parse(routing.body.read)
 
+          login = Form::LoginCredentials.new.call(params)
+
+          if login.failure?
+            response.status = 401
+            return {message: Form.validation_errors(login)}.to_json;
+          end
+
           account_info = AuthenticateAccount.new(App.config).call(
             username: params['username'],
             password: params['password']
