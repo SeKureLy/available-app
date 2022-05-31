@@ -10,10 +10,12 @@ module Available
       routing.on do
         # GET /account/<username>
         routing.get String do |username|
+          puts @current_account
+          # puts @current_account['username']
           if @current_account && @current_account['username'] == username
             return { current_account: @current_account }.to_json
           else
-            routing.redirect '/login'
+            routing.redirect '/auth/login'
           end
         end
 

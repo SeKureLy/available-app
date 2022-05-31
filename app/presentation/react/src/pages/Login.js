@@ -37,9 +37,8 @@ function Login(props) {
         .then(async response =>{
             let result = await response.json()
             if (response.status == 200){
-                props.alertSuccessFunction(`Welcome, ${result.account}`)
-                console.log(result.account)
-                setUser(result.account)
+                props.alertSuccessFunction(`Welcome, ${result.account.username}`)
+                setUser(result)
                 setTimeout(()=>{
                     history.push('/Account')
                 },3000)
