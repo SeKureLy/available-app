@@ -17,7 +17,7 @@ function Login(props) {
     // const [init, setinit] = useState(false)
     const [account, setAccount] = useState("")
     const [password, setPassword] = useState("")
-    const { setUser } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
 
     useEffect(() => {
 
@@ -38,7 +38,9 @@ function Login(props) {
             let result = await response.json()
             if (response.status == 200){
                 props.alertSuccessFunction(`Welcome, ${result.account.username}`)
-                setUser(result)
+                // const account = {username: result.account.username, email:result.account.email}
+                console.log(account)
+                setUser(result.account.username)
                 setTimeout(()=>{
                     history.push('/Account')
                 },3000)

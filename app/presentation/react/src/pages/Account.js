@@ -17,12 +17,14 @@ function Account(props) {
     const [init, setinit] = useState(false)
     const [query, setQuery] = useState("")
     const { user, setUser } = useContext(AuthContext);
-    const { calendars, setCalendars } = useState({})
+    const [ calendars, setCalendars ] = useState(null)
+    const [ userInfo, setUserInfo ] = useState(null)
+
 
     useEffect(() => {
-        displayCalendars()
+        if(user)displayAccount()
         // return 
-    }, []);
+    }, [user]);
 
     async function displayCalendars(){
         // todo:  call get calendars api
@@ -33,6 +35,7 @@ function Account(props) {
                 'Content-Type': 'application/json',
                 'Authorization': auth_token
             },
+            credentials: 'include'
         };
         fetch(baseUrl+'/api/v1/calendars', requestOptions)
         .then(async response =>{
@@ -53,16 +56,46 @@ function Account(props) {
         })
     }
 
+    async function displayAccount(){
+        // todo:  call get calendars api
+        // const auth_token = 'Bearer ' + user.auth_token
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        };
+        fetch(baseUrl+'/api/v1/account', requestOptions)
+        .then(async response =>{
+            let result = await response.json()
+            console.log(result)
+
+            if (response.status === 200){
+                // props.alertSuccessFunction(result.message)
+                // setCalendars(result)
+                setUserInfo(result)
+            }
+            else{
+                props.alertFunction(`${result.message}`)
+            }
+        })
+        .catch(error =>{
+            console.log("+++++++++++++++++")
+            props.alertFunction(error.message)
+        })
+    }
+
     return (
         <>
 
             <div className="App">
                 <h1>Account Info</h1>
                 {
-                    (user.account.username)?<p>Hello, {user.account.username}</p>:""
-                }
-                {
-                    (user.account.email)?<p>your email: {user.account.email}</p>:""
+                    (userInfo)?<>
+                        <p>Hello, {user}</p>
+                        <p>your email: {userInfo.email}</p>
+                    </>:""
                 }
                 {
                     (calendars)?<p>calendars: {calendars}</p>:"empty calendars"

@@ -13,13 +13,41 @@ import Login from './pages/Login'
 import Account from './pages/Account'
 import RegisterAccount from './pages/Register'
 import LoadingOverlay from 'react-loading-overlay';
+import { baseUrl } from './config'
 
 import './App.css';
 function App() {
   const [loading,setLoading] = useState(false)
   const [alertMessage, setAlertMessage] = useState(false)
   const [successMessage, setSuccessMessage] = useState(false)
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    account()
+}, [user]);
+
+async function account(){
+    if(user){
+      return
+    }
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      credentials: 'include'
+    };
+    fetch(`${baseUrl}/api/v1/account`, requestOptions)
+    .then(async response =>{
+        let result = await response.json()
+        if (response.status == 200){
+            setUser(result.username)
+        }
+    })
+    .catch(error =>{
+        // props.alertFunction("unknown error")
+    })
+}
 
   function alertFunction(data){
     setAlertMessage(data)
