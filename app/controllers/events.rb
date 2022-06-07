@@ -14,9 +14,7 @@ module Available
                               .call(@current_account, event_id)
         event = Event.new(event_info)
 
-        # view :document, locals: {
-        #   current_account: @current_account, document: document
-        # }
+        return {current_user: @current_account.username, event: event.to_json}.to_json
       end
     end
   end

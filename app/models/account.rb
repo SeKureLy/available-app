@@ -9,6 +9,13 @@ module Available
       end
   
       attr_reader :account_info, :auth_token
+
+      def to_json(options = {})
+        {
+          username:,
+          email:
+        }
+      end
   
       def username
         @account_info ? @account_info['username'] : nil

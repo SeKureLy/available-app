@@ -9,8 +9,18 @@ module Available
                 :calendar # full details
 
     def initialize(info)
-      process_attributes(info['attributes'])
-      process_included(info['include'])
+      process_attributes(info['data']['attributes'])
+      process_included(info['included'])
+    end
+
+    def to_json(options = {})
+      {
+        id:,
+        title:,
+        start_time:,
+        end_time:,
+        description:,
+      }
     end
 
     private
@@ -24,7 +34,7 @@ module Available
     end
 
     def process_included(included)
-      @calendar = Calendar.new(included['calendar'])
+      @calendar =(included['calendar'])
     end
   end
 end

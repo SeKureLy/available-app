@@ -20,7 +20,6 @@ module Available
           end
 
         routing.get String do |username|
-          puts @current_account
           if @current_account && @current_account.username == username
             return { current_account: @current_account }.to_json
           else

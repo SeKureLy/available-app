@@ -7,9 +7,21 @@ module Available
                 :owner, :members, :events, :policies # full details
 
     def initialize(calendar_info)
-      process_attributes(calendar_info['attributes'])
+      puts calendar_info
+      process_attributes(calendar_info['data']['attributes'])
       process_relationships(calendar_info['relationships'])
       process_policies(calendar_info['policies'])
+    end
+
+    def to_json(options = {})
+        { 
+          id:,
+          title:,
+          owner:owner.to_json,
+          members:members.map(&:to_json),
+          events:events.map(&:to_json),
+          policies:policies
+        }
     end
 
     private
@@ -22,13 +34,13 @@ module Available
     def process_relationships(relationships)
       return unless relationships
 
-      @owner = Account.new(relationships['owner'])
+      @owner = Account.new(relationships['owner']['data']['attributes'],'')
       @members = process_members(relationships['members'])
       @events = process_events(relationships['events'])
     end
 
     def process_policies(policies)
-      @policies = OpenStruct.new(policies)
+      @policies = (policies)
     end
 
     def process_events(events_info)
@@ -40,7 +52,7 @@ module Available
     def process_members(members)
       return nil unless members
 
-      members.map { |account_info| Account.new(account_info) }
+      members.map { |account_info| Account.new(account_info['data']['attributes'],'') }
     end
   end
 end
