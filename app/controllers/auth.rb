@@ -12,6 +12,7 @@ module Available
         # POST /auth/login
         routing.post do
           params = JSON.parse(routing.body.read)
+
           account_info = AuthenticateAccount.new(App.config).call(
             username: params['username'],
             password: params['password']
@@ -22,12 +23,13 @@ module Available
             account_info[:auth_token]
           )
 
+
           CurrentSession.new(session).current_account = current_account
 
-          flash[:notice] = "Welcome back #{account_info['username']}!"
+
+          flash[:notice] = "Welcome back #{account_info[:account]['username']}!"
           response.status = 200
-          puts account_info
-          return { account: account_info['attributes']['account']['data']['attributes']['username'], message: flash[:notice] }.to_json
+          return { account: account_info[:account], auth_token: account_info[:auth_token], message: flash[:notice] }.to_json
           # routing.redirect '/'
         rescue AuthenticateAccount::UnauthorizedError
           # flash.now[:error] = 'Username and password did not match our records'
@@ -37,7 +39,7 @@ module Available
           App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
           flash[:error] = 'Our servers are not responding -- please try later'
           response.status = 500
-          routing.redirect @login_route
+          # routing.redirect @login_route
         end
       end
 
@@ -45,14 +47,16 @@ module Available
       routing.is 'logout' do
         # GET /auth/logout
         routing.get do
-          SecureSession.new(session).delete(:current_account)
+          CurrentSession.new(session).delete
           flash[:notice] = "You've been logged out"
-          routing.redirect @login_route
+          # routing.redirect @login_route
+          return { message: flash[:notice] }.to_json
         end
       end
 
       @register_route = '/auth/register'
       routing.is 'register' do
+        # POST /auth/register
         routing.post do
           account_data = JsonRequestBody.symbolize(JSON.parse(routing.body.read))
           VerifyRegistration.new(App.config).call(account_data)
@@ -77,9 +81,9 @@ module Available
       routing.get(String) do |registration_token|
         flash.now[:notice] = 'Email Verified! Please choose a new password'
         new_account = SecureMessage.decrypt(registration_token)
-        view :register_confirm,
-             locals: { new_account:,
-                       registration_token: }
+        # view :register_confirm,
+        #      locals: { new_account:,
+        #                registration_token: }
     end
     end
   end

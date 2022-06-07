@@ -10,15 +10,44 @@ import {Alert, Navbar,Nav,NavDropdown} from 'react-bootstrap'
 import logo from './logo.jpg';
 import Home from './pages/Home'
 import Login from './pages/Login'
+import Account from './pages/Account'
 import RegisterAccount from './pages/Register'
 import LoadingOverlay from 'react-loading-overlay';
+import { baseUrl } from './config'
 
 import './App.css';
 function App() {
   const [loading,setLoading] = useState(false)
   const [alertMessage, setAlertMessage] = useState(false)
   const [successMessage, setSuccessMessage] = useState(false)
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    account()
+}, [user]);
+
+async function account(){
+    if(user){
+      return
+    }
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      credentials: 'include'
+    };
+    fetch(`${baseUrl}/api/v1/account`, requestOptions)
+    .then(async response =>{
+        let result = await response.json()
+        if (response.status == 200){
+            setUser(result.username)
+        }
+    })
+    .catch(error =>{
+        // props.alertFunction("unknown error")
+    })
+}
 
   function alertFunction(data){
     setAlertMessage(data)
@@ -56,7 +85,9 @@ function App() {
         </Navbar.Brand>
         <Nav>
           <NavDropdown title="Account" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+            {
+              (user)?<NavDropdown.Item href="/">Logout</NavDropdown.Item>:<NavDropdown.Item href="/login">Login</NavDropdown.Item>
+            }
             <NavDropdown.Item href="/register">Create Account</NavDropdown.Item>
           </NavDropdown>
         </Nav>
@@ -83,6 +114,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
+          </Route>
+          <Route path="/account">
+            <Account setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
           <Route path="/">
             <Home setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>

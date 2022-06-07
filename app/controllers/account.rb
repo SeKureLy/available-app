@@ -9,8 +9,19 @@ module Available
     route('account') do |routing|
       routing.on do
         # GET /account/<username>
+        routing.is do
+          if @current_account.logged_in?
+            response.status = 200
+            { username: @current_account.username, email: @current_account.email }.to_json
+          else
+            response.status = 401
+            { message: "qq"}.to_json
+          end
+          end
+
         routing.get String do |username|
-          if @current_account && @current_account['username'] == username
+          puts @current_account
+          if @current_account && @current_account.username == username
             return { current_account: @current_account }.to_json
           else
             routing.redirect '/login'
