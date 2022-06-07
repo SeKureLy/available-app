@@ -31,9 +31,17 @@ module Available
         # POST /account/<registration_token>
         routing.post String do |registration_token|
           body = JSON.parse(routing.body.read)
-          raise 'Passwords do not match or empty' if
-            body['password'].empty? ||
-            body['password'] != body['password_confirm']
+          puts body
+
+          password = Form::Passwords.new.call(body)
+          
+          puts password.errors(locale: :en).messages
+
+          if password.failure?
+            # raise 'Passwords do not match or empty'
+            response.status = 401
+            return{ message: Form.message_values(password) }.to_json
+          end
 
           new_account = SecureMessage.decrypt(registration_token)
           CreateAccount.new(App.config).call(
