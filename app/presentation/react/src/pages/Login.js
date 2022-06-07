@@ -31,7 +31,8 @@ function Login(props) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username: account, password:password })
+            body: JSON.stringify({ username: account, password:password }),
+            credentials: 'include'
         };
         fetch(baseUrl+'/api/v1/auth/login', requestOptions)
         .then(async response =>{
