@@ -24,9 +24,12 @@ function CalendarView(props) {
 
     useEffect(() => {
         if(user){
-            getCalendar()
+            if(urlparams.cid && !init){
+                getCalendar()
+                setinit(true)
+            }
         }
-    }, []);
+    }, [user,urlparams]);
 
 
     async function getCalendar(){
@@ -39,7 +42,7 @@ function CalendarView(props) {
             },
             credentials: 'include'
         };
-        fetch(baseUrl+'/api/v1/calendars/1', requestOptions)
+        fetch(`${baseUrl}/api/v1/calendars/${urlparams.cid}`, requestOptions)
         .then(async response =>{
             let result = await response.json()
             console.log(result)

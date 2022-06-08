@@ -24,7 +24,7 @@ function App() {
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    account()
+    if(!user)account()
 }, [user]);
 
 async function account(){
@@ -119,7 +119,10 @@ function logout(){
             {
               (user)?<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>:<NavDropdown.Item href="/login">Login</NavDropdown.Item>
             }
-            <NavDropdown.Item href="/register">Create Account</NavDropdown.Item>
+            {
+              (user)?<NavDropdown.Item href="/account">setting</NavDropdown.Item>:<NavDropdown.Item href="/register">Create Account</NavDropdown.Item>
+            }
+            
           </NavDropdown>
         </Nav>
       </Navbar>
