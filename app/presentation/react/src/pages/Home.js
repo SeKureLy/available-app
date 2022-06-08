@@ -18,17 +18,13 @@ function Home(props) {
     const [query, setQuery] = useState("")
     const { user, setUser } = useContext(AuthContext);
 
-    useEffect(() => {
-    }, []);
-
     return (
         <>
 
             <div className="App">
                 {
-                    (user)?<h1>Hello, {user}</h1>:""
+                    (user)?<h1>Hello, {user}</h1>:<h1>Please log in</h1>
                 }
-                
             </div>
             <br />
             <Container>

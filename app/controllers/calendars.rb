@@ -7,19 +7,27 @@ module Available
   class App < Roda
     route('calendars') do |routing|
       routing.on do
-        # GET /calendars/
-        routing.get do
-          if @current_account.logged_in?
-            calendars_list = GetAllCalendars.new(App.config).call(@current_account)
+        @calendars_route = '/calendars'
 
-            calendars = Calendars.new(calendars_list)
+        routing.is do
+          # GET /calendars/
+          routing.get do
+              calendars_list = GetAllCalendars.new(App.config).call(@current_account)
 
-            view :calendars_all,
-                 locals: { current_user: @current_account, calendars: }
-          else
-            routing.redirect '/auth/login'
+              return {current_user: @current_account.username, calendars: calendars_list}.to_json
           end
         end
+
+        routing.on String do |cal_id|
+          routing.get do
+            result = GetCalendar.new(App.config).call(@current_account, cal_id)
+            calendar = Calendar.new(result)
+            # puts calendar.to_json
+            return {current_user: @current_account.username, calendar: calendar.to_json}.to_json
+          end
+        end
+
+
       end
     end
   end

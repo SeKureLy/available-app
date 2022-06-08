@@ -19,10 +19,6 @@ module Available
     plugin :multi_route
     plugin :flash
 
-    use Rack::Session::Cookie,
-        expire_after: ONE_MONTH,
-        secret: config.SESSION_SECRET
-
     route do |routing|
       response['Content-Type'] = 'text/html; charset=utf-8'
       @current_account = CurrentSession.new(session).current_account
@@ -34,7 +30,7 @@ module Available
         File.read('app/presentation/built/index.html')
       end
 
-      routing.on ['login', 'register'] do
+      routing.on ['login', 'register', 'Account', 'logout'] do
         File.read('app/presentation/built/index.html')
       end
 

@@ -9,8 +9,18 @@ module Available
     route('account') do |routing|
       routing.on do
         # GET /account/<username>
+        routing.is do
+          if @current_account.logged_in?
+            response.status = 200
+            { username: @current_account.username, email: @current_account.email }.to_json
+          else
+            response.status = 401
+            { message: "qq"}.to_json
+          end
+          end
+
         routing.get String do |username|
-          if @current_account && @current_account['username'] == username
+          if @current_account && @current_account.username == username
             return { current_account: @current_account }.to_json
           else
             routing.redirect '/login'
@@ -20,9 +30,17 @@ module Available
         # POST /account/<registration_token>
         routing.post String do |registration_token|
           body = JSON.parse(routing.body.read)
-          raise 'Passwords do not match or empty' if
-            body['password'].empty? ||
-            body['password'] != body['password_confirm']
+          puts body
+
+          password = Form::Passwords.new.call(body)
+          
+          puts password.errors(locale: :en).messages
+
+          if password.failure?
+            # raise 'Passwords do not match or empty'
+            response.status = 401
+            return{ message: Form.message_values(password) }.to_json
+          end
 
           new_account = SecureMessage.decrypt(registration_token)
           CreateAccount.new(App.config).call(

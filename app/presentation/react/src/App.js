@@ -4,21 +4,81 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  useHistory
 } from "react-router-dom";
 import {Alert, Navbar,Nav,NavDropdown} from 'react-bootstrap'
 import logo from './logo.jpg';
 import Home from './pages/Home'
 import Login from './pages/Login'
+import Account from './pages/Account'
+import Calendar from "./pages/Calendar";
 import RegisterAccount from './pages/Register'
 import LoadingOverlay from 'react-loading-overlay';
-
+import { baseUrl } from './config'
 import './App.css';
 function App() {
+  const history = useHistory();
   const [loading,setLoading] = useState(false)
   const [alertMessage, setAlertMessage] = useState(false)
   const [successMessage, setSuccessMessage] = useState(false)
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    if(!user)account()
+}, [user]);
+
+async function account(){
+    if(user){
+      return
+    }
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      credentials: 'include'
+    };
+    fetch(`${baseUrl}/api/v1/account`, requestOptions)
+    .then(async response =>{
+        let result = await response.json()
+        if (response.status == 200){
+            setUser(result.username)
+        }
+    })
+    .catch(error =>{
+        // props.alertFunction("unknown error")
+    })
+}
+
+function logout(){
+  const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+  };
+  fetch(baseUrl+'/api/v1/auth/logout', requestOptions)
+  .then(async response =>{
+      let result = await response.json()
+      if (response.status == 200){
+          alertSuccessFunction(`log out successfully`)
+          setUser(null)
+          setTimeout(()=>{
+            window.location.replace("/login");
+          },3000)
+      }
+      else{
+          alertFunction(`${result.message}`)
+          setTimeout(()=>{
+              window.location.reload()
+          },3000)
+      }
+  })
+  .catch(error =>{
+    alertFunction("unknown error")
+  })
+}
 
   function alertFunction(data){
     setAlertMessage(data)
@@ -56,8 +116,13 @@ function App() {
         </Navbar.Brand>
         <Nav>
           <NavDropdown title="Account" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-            <NavDropdown.Item href="/register">Create Account</NavDropdown.Item>
+            {
+              (user)?<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>:<NavDropdown.Item href="/login">Login</NavDropdown.Item>
+            }
+            {
+              (user)?<NavDropdown.Item href="/account">setting</NavDropdown.Item>:<NavDropdown.Item href="/register">Create Account</NavDropdown.Item>
+            }
+            
           </NavDropdown>
         </Nav>
       </Navbar>
@@ -78,11 +143,17 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+          <Route path="/calendar">
+            <Calendar setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
+          </Route>
           <Route path="/register">
             <RegisterAccount setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
           <Route path="/login">
             <Login setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
+          </Route>
+          <Route path="/account">
+            <Account setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>
           </Route>
           <Route path="/">
             <Home setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction}/>

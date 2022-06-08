@@ -14,16 +14,16 @@ function Login(props) {
     const { search } = useLocation()
     const urlparams = queryString.parse(search)
     const history = useHistory();
-    const [init, setinit] = useState(false)
+    // const [init, setinit] = useState(false)
     const [account, setAccount] = useState("")
     const [password, setPassword] = useState("")
-    const { setUser } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
 
     useEffect(() => {
 
     }, []);
 
-    async function login(event){
+    function login(event){
         // todo:  call login api
         event.preventDefault()
         const requestOptions = {
@@ -31,16 +31,19 @@ function Login(props) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username: account, password:password })
+            body: JSON.stringify({ username: account, password:password }),
+            credentials: 'include'
         };
         fetch(baseUrl+'/api/v1/auth/login', requestOptions)
         .then(async response =>{
             let result = await response.json()
             if (response.status == 200){
-                props.alertSuccessFunction(`Welcome, ${result.account}`)
-                setUser(result.account)
+                props.alertSuccessFunction(`Welcome, ${result.account.username}`)
+                // const account = {username: result.account.username, email:result.account.email}
+                console.log(account)
+                setUser(result.account.username)
                 setTimeout(()=>{
-                    history.push('/')
+                    history.push('/Account')
                 },3000)
             }
             else{
@@ -49,7 +52,6 @@ function Login(props) {
                     window.location.reload()
                 },3000)
             }
-            
         })
         .catch(error =>{
             props.alertFunction("unknown error")
