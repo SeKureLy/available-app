@@ -7,7 +7,7 @@ import {
   useHistory
 } from "react-router-dom";
 import {Alert, Navbar,Nav,NavDropdown} from 'react-bootstrap'
-import logo from './logo.jpg';
+import logo from './logo2.png';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Account from './pages/Account'
