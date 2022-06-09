@@ -22,7 +22,6 @@ module Available
     route do |routing|
       response['Content-Type'] = 'text/html; charset=utf-8'
       @current_account = CurrentSession.new(session).current_account
-
       routing.public
 
       # GET /

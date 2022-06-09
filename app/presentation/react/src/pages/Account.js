@@ -7,7 +7,7 @@ import {
     useLocation,
     useHistory
 } from "react-router-dom";
-import { Button, Alert, Nav, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
+import { Button, Modal, Container, Table } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
 
@@ -20,7 +20,9 @@ function Account(props) {
     const { user, setUser } = useContext(AuthContext);
     const [calendars, setCalendars] = useState(null)
     const [userInfo, setUserInfo] = useState(null)
-
+    const [CalendarInfo, setCalendarInfo] = useState(null)
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
 
     useEffect(() => {
         if (user) {
@@ -90,15 +92,90 @@ function Account(props) {
         history.push(`/calendar?cid=${cid}`)
     }
 
+    function handleShow(cid){
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        };
+        fetch(baseUrl + `/api/v1/calendars/${cid}`, requestOptions)
+            .then(async response => {
+                let result = await response.json()
+                console.log(result)
+                setCalendarInfo(result)
+            })
+            .catch(error => {
+                console.log("+++++++++++++++++")
+                props.alertFunction(error.message)
+            })
+        setShow(true)
+    }
+
     return (
         <>
-
+            <Modal
+                size="lg"
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Calendar Members</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                {
+                    (CalendarInfo && CalendarInfo.calendar) ?
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>account</th>
+                                    <th>email</th>
+                                    <th>type</th>
+                                    <th>actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>{CalendarInfo.calendar.owner.username}</td>
+                                <td>{CalendarInfo.calendar.owner.email}</td>
+                                <td>owner</td>
+                                <td>
+                                </td>
+                                </tr>
+                                {CalendarInfo.calendar.members.map((member, id) => {
+                                    let c = member
+                                    return (
+                                        <tr key={id+1}>
+                                            <td>{c.username}</td>
+                                            <td>{c.email}</td>
+                                            <td>member</td>
+                                            <td>
+                                                <Button variant="danger" onClick={() => { }}>delete</Button>{' '}
+                                            </td>
+                                        </tr>)
+                                })}
+                            </tbody>
+                        </Table>
+                        : "empty calendars"
+                }
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary">Add member</Button>
+                    <Button variant="secondary" style={{float:'left'}} onClick={handleClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <div className="App">
                 <h1>Account Info</h1>
                 {
                     (userInfo) ? <>
                         <p>Hello, {user}</p>
                         <p>your email: {userInfo.email}</p>
+                        <p>API key: {userInfo.auth_token}</p>
                     </> : ""
                 }
             </div>
@@ -122,7 +199,7 @@ function Account(props) {
                                             <td>{c.id}</td>
                                             <td>{c.title}</td>
                                             <td>
-                                                <Button variant="primary">members</Button>{' '}
+                                                <Button variant="primary" onClick={() => { handleShow(c.id) }}>members</Button>{' '}
                                                 <Button variant="secondary" onClick={() => { view(c.id) }}>view</Button>{' '}
                                                 <Button variant="danger" onClick={() => { }}>delete</Button>{' '}
                                             </td>

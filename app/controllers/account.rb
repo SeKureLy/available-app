@@ -12,19 +12,24 @@ module Available
         routing.is do
           if @current_account.logged_in?
             response.status = 200
-            { username: @current_account.username, email: @current_account.email }.to_json
+            { username: @current_account.username, email: @current_account.email, auth_token: @current_account.auth_token  }.to_json
           else
             response.status = 401
             { message: "qq"}.to_json
           end
-          end
-
+        end
+        
         routing.get String do |username|
-          if @current_account && @current_account.username == username
-            return { current_account: @current_account }.to_json
-          else
-            routing.redirect '/login'
-          end
+          account = GetAccountDetails.new(App.config).call(
+            @current_account, username
+          )
+          return { username: account.username, email: account.email, auth_token: account.auth_token }.to_json
+        rescue GetAccountDetails::InvalidAccount => e
+          response.status = 403
+          return { message: e }.to_json
+        rescue StandardError => e
+          response.status = 500
+          return { message: e }.to_json
         end
 
         # POST /account/<registration_token>
