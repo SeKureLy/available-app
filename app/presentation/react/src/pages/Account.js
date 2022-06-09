@@ -99,6 +99,7 @@ function Account(props) {
                     (userInfo) ? <>
                         <p>Hello, {user}</p>
                         <p>your email: {userInfo.email}</p>
+                        <p>API key: {userInfo.auth_token}</p>
                     </> : ""
                 }
             </div>
