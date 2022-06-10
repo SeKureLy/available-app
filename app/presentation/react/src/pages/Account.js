@@ -112,6 +112,38 @@ function Account(props) {
             })
         setShow(true)
     }
+    function deleteMember(id){
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: CalendarInfo.calendar.members[id].email}),
+            credentials: 'include'
+        };
+        console.log(CalendarInfo.calendar['members'])
+        fetch(baseUrl+`/api/v1/calendars/${CalendarInfo.calendar.id}/members?action=remove`, requestOptions)
+        .then(async response =>{
+            let result = await response.json()
+            if (response.status == 200){
+                props.alertSuccessFunction(`delete member successfully`)
+                console.log(result)
+                setTimeout(()=>{
+                window.location.reload()
+                },3000)
+            }
+            else{
+                props.alertFunction(`${result.message}`)
+                console.log(result)
+                setTimeout(()=>{
+                    window.location.reload()
+                },3000)
+            }
+        })
+        .catch(error =>{
+          props.alertFunction("unknown error")
+        })
+    }
 
     return (
         <>
@@ -153,7 +185,7 @@ function Account(props) {
                                             <td>{c.email}</td>
                                             <td>member</td>
                                             <td>
-                                                <Button variant="danger" onClick={() => { }}>delete</Button>{' '}
+                                                <Button variant="danger" onClick={() => deleteMember(id)}>delete</Button>{' '}
                                             </td>
                                         </tr>)
                                 })}
@@ -163,7 +195,7 @@ function Account(props) {
                 }
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary">Add member</Button>
+                    <Button variant="primary" >Add member</Button>
                     <Button variant="secondary" style={{float:'left'}} onClick={handleClose}>
                         Close
                     </Button>
