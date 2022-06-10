@@ -55,6 +55,7 @@ module Available
             return { message: "member: #{member_info[:email]} removed from calendar"}.to_json if action=='remove'
           rescue StandardError
             flash[:error] = 'Could not find member'
+            return {message: 'Could not find member '}.to_json
           # ensure
           #   routing.redirect @calendars_route
           end

@@ -7,7 +7,7 @@ import {
     useLocation,
     useHistory
 } from "react-router-dom";
-import { Button, Modal, Container, Table } from 'react-bootstrap'
+import { Button, Form, Modal, Container, Table } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
 
@@ -23,6 +23,7 @@ function Account(props) {
     const [CalendarInfo, setCalendarInfo] = useState(null)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const [memberEmail, setMemberEmail] = useState("")
 
     useEffect(() => {
         if (user) {
@@ -145,6 +146,42 @@ function Account(props) {
         })
     }
 
+    function addMember(e){
+        e.preventDefault()
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: memberEmail}),
+            credentials: 'include'
+        };
+        console.log(memberEmail)
+        console.log(CalendarInfo.calendar.id)
+
+        fetch(baseUrl+`/api/v1/calendars/${CalendarInfo.calendar.id}/members?action=add`, requestOptions)
+        .then(async response =>{
+            let result = await response.json()
+            if (response.status == 200){
+                props.alertSuccessFunction(`add member successfully`)
+                console.log(result)
+                setTimeout(()=>{
+                    window.location.reload()
+                },3000)
+            }
+            else{
+                props.alertFunction(`${result.message}`)
+                console.log(result)
+                setTimeout(()=>{
+                    window.location.reload()
+                },3000)
+            }
+        })
+        .catch(error =>{
+          props.alertFunction("unknown error")
+        })
+    }
+
     return (
         <>
             <Modal
@@ -195,7 +232,10 @@ function Account(props) {
                 }
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" >Add member</Button>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Control type="email" value={memberEmail} onChange={(e) => { setMemberEmail(e.target.value) }} placeholder="New Member Email" />
+                    </Form.Group>
+                    <Button variant="primary" onClick={(e) => addMember(e)}>Add member</Button>
                     <Button variant="secondary" style={{float:'left'}} onClick={handleClose}>
                         Close
                     </Button>
