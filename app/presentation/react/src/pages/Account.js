@@ -56,7 +56,6 @@ function Account(props) {
                 }
             })
             .catch(error => {
-                console.log("+++++++++++++++++")
                 props.alertFunction(error.message)
             })
     }
@@ -74,8 +73,6 @@ function Account(props) {
         fetch(baseUrl + '/api/v1/account', requestOptions)
             .then(async response => {
                 let result = await response.json()
-                console.log(result)
-
                 if (response.status === 200) {
                     setUserInfo(result)
                 }
@@ -84,7 +81,6 @@ function Account(props) {
                 }
             })
             .catch(error => {
-                console.log("+++++++++++++++++")
                 props.alertFunction(error.message)
             })
     }
@@ -104,11 +100,9 @@ function Account(props) {
         fetch(baseUrl + `/api/v1/calendars/${cid}`, requestOptions)
             .then(async response => {
                 let result = await response.json()
-                console.log(result)
                 setCalendarInfo(result)
             })
             .catch(error => {
-                console.log("+++++++++++++++++")
                 props.alertFunction(error.message)
             })
         setShow(true)
@@ -122,28 +116,20 @@ function Account(props) {
             body: JSON.stringify({ email: CalendarInfo.calendar.members[id].email}),
             credentials: 'include'
         };
-        console.log(CalendarInfo.calendar['members'])
         fetch(baseUrl+`/api/v1/calendars/${CalendarInfo.calendar.id}/members?action=remove`, requestOptions)
         .then(async response =>{
             let result = await response.json()
             if (response.status == 200){
                 props.alertSuccessFunction(`delete member successfully`)
-                console.log(result)
-                setTimeout(()=>{
-                window.location.reload()
-                },3000)
             }
             else{
                 props.alertFunction(`${result.message}`)
-                console.log(result)
-                setTimeout(()=>{
-                    window.location.reload()
-                },3000)
             }
         })
         .catch(error =>{
           props.alertFunction("unknown error")
         })
+        setShow(false)
     }
 
     function addMember(e){
@@ -156,30 +142,22 @@ function Account(props) {
             body: JSON.stringify({ email: memberEmail}),
             credentials: 'include'
         };
-        console.log(memberEmail)
-        console.log(CalendarInfo.calendar.id)
 
         fetch(baseUrl+`/api/v1/calendars/${CalendarInfo.calendar.id}/members?action=add`, requestOptions)
         .then(async response =>{
             let result = await response.json()
             if (response.status == 200){
                 props.alertSuccessFunction(`add member successfully`)
-                console.log(result)
-                setTimeout(()=>{
-                    window.location.reload()
-                },3000)
             }
             else{
                 props.alertFunction(`${result.message}`)
-                console.log(result)
-                setTimeout(()=>{
-                    window.location.reload()
-                },3000)
             }
         })
         .catch(error =>{
           props.alertFunction("unknown error")
         })
+        setShow(false)
+        setMemberEmail("")
     }
 
     return (
@@ -232,7 +210,7 @@ function Account(props) {
                 }
                 </Modal.Body>
                 <Modal.Footer>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group>
                         <Form.Control type="email" value={memberEmail} onChange={(e) => { setMemberEmail(e.target.value) }} placeholder="New Member Email" />
                     </Form.Group>
                     <Button variant="primary" onClick={(e) => addMember(e)}>Add member</Button>
