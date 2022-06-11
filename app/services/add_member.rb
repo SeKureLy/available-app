@@ -17,8 +17,6 @@ module Available
         response = HTTP.auth("Bearer #{current_account.auth_token}")
                       .put("#{api_url}/calendars/#{calendar_id}/members",
                             json: { email: member[:email] })
-  
-        puts response
         raise MemberNotAdded unless response.code == 200
       end
     end

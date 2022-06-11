@@ -7,7 +7,6 @@ module Available
                 :owner, :members, :events, :policies # full details
 
     def initialize(calendar_info)
-      puts calendar_info
       process_attributes(calendar_info['data']['attributes'])
       process_relationships(calendar_info['relationships'])
       process_policies(calendar_info['policies'])

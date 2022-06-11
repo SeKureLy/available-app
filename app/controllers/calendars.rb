@@ -55,9 +55,20 @@ module Available
             return { message: "member: #{member_info[:email]} removed from calendar"}.to_json if action=='remove'
           rescue StandardError
             flash[:error] = 'Could not find member'
-            return {message: 'Could not find member '}.to_json
-          # ensure
-          #   routing.redirect @calendars_route
+            routing.halt 500, {message: 'Could not find member'}.to_json
+          end
+
+          routing.post('events') do
+            params = JSON.parse(routing.body.read)
+            CreateNewEvent.new(App.config).call(
+              current_account: @current_account, 
+              calendar_id: cal_id,
+              event_data: params
+            )
+
+            { message: "event added" }.to_json
+          rescue StandardError
+            routing.halt 500, {message: 'Could not add event'}.to_json
           end
         end
       end
