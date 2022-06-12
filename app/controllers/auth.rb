@@ -7,7 +7,9 @@ module Available
   # Web controller for Available API
   class App < Roda
     route('auth') do |routing|
+      @oauth_callback = '/auth/sso_callback'
       @login_route = '/auth/login'
+
       routing.is 'login' do
         # POST /auth/login
         routing.post do
@@ -47,6 +49,30 @@ module Available
           flash[:error] = 'Our servers are not responding -- please try later'
           response.status = 500
           # routing.redirect @login_route
+        end
+      end
+
+      routing.is 'sso_callback' do
+        # GET /auth/sso_callback
+        routing.get do
+          puts routing.params['code']
+
+          authorized = AuthorizeGoogleAccount
+                       .new(App.config)
+                       .call(routing.params['code'])
+
+          puts authorized
+
+          current_account = Account.new(
+            authorized[:account],
+            authorized[:auth_token]
+          )
+
+          CurrentSession.new(session).current_account = current_account
+
+          routing.redirect '/Account'
+          flash[:notice] = "Welcome #{current_account.username}!"
+          return{account: current_account[:account], auth_token: current_account[:auth_token], message: flash[:notice]}.to_json
         end
       end
 
