@@ -59,16 +59,26 @@ module Available
           end
 
           routing.post('events') do
-            params = JSON.parse(routing.body.read)
-            CreateNewEvent.new(App.config).call(
+            event_data = JSON.parse(routing.body.read)
+
+            action = routing.params['action']
+            task_list = {
+              'add' => { service: CreateNewEvent,
+                         message: 'Added new event to calendar' },
+              'remove' => { service: RemoveEvent,
+                            message: 'Removed event from calendar' }
+            }
+            task = task_list[action]
+
+            task[:service].new(App.config).call(
               current_account: @current_account, 
               calendar_id: cal_id,
-              event_data: params
+              event_data:
             )
 
-            { message: "event added" }.to_json
-          rescue StandardError
-            routing.halt 500, {message: 'Could not add event'}.to_json
+            { message: task[:message] }.to_json
+          rescue StandardError => e
+            routing.halt 500, {message: "Could not #{task[:message]}"}.to_json
           end
         end
       end

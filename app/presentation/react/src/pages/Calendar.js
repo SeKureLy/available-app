@@ -7,7 +7,7 @@ import {
     useLocation,
     Link
 } from "react-router-dom";
-import { Button, Tooltip, Nav, Form, Col, Modal, Row, OverlayTrigger, Container, Table } from 'react-bootstrap'
+import { Button, Tooltip, Nav, Form, Col, Modal, Row, OverlayTrigger, Container, CloseButton } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
 import { Calendar, momentLocalizer } from 'react-big-calendar'
@@ -54,9 +54,11 @@ function CalendarView(props) {
                     if (result.calendar) {
                         let events = result.calendar.events.map(e => ({
                             title: e.title,
+                            id: e.id,
                             description: e.description,
                             start: new Date(e.start_time),
-                            end: new Date(e.end_time)
+                            end: new Date(e.end_time),
+                            delete: deleteEvent
                         }));
                         setMyEventsList(events)
                     }
@@ -71,6 +73,12 @@ function CalendarView(props) {
     }
 
     async function addEvent(){
+        let start_time = moment(stime).toDate().getTime();
+        let end_time = moment(etime).toDate().getTime()
+        if(start_time > end_time){
+            window.alert("start time must be smaller than end time!")
+            return
+        }
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -79,12 +87,42 @@ function CalendarView(props) {
             credentials: 'include',
             body:JSON.stringify({
                 "title": title,
-                "start_time": moment(stime).toDate().getTime(),
-                "end_time": moment(etime).toDate().getTime(),
+                "start_time": start_time,
+                "end_time": end_time,
                 "description": description
             })
         };
-        fetch(`${baseUrl}/api/v1/calendars/${urlparams.cid}/events`, requestOptions)
+        fetch(`${baseUrl}/api/v1/calendars/${urlparams.cid}/events?action=add`, requestOptions)
+            .then(async response => {
+                let result = await response.json()
+                if (response.status === 200) {
+                    props.alertSuccessFunction(result.message)
+                }
+                else {
+                    props.alertFunction(`${result.message}`)
+                }
+            })
+            .catch(error => {
+                props.alertFunction(error.message)
+            })
+        setShow(false)
+        setinit(false)
+    }
+
+    async function deleteEvent(event_id){
+        let userConfirm = window.confirm("are you sure to delete events?")
+        if (!userConfirm) return
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body:JSON.stringify({
+                "event_id": event_id
+            })
+        };
+        fetch(`${baseUrl}/api/v1/calendars/${urlparams.cid}/events?action=remove`, requestOptions)
             .then(async response => {
                 let result = await response.json()
                 if (response.status === 200) {
@@ -176,7 +214,14 @@ function Event(event) {
     const [content,_] = useState(event.event)
     return (
         <OverlayTrigger
-          overlay={<Tooltip><div>detail:</div><div>{content.description}</div></Tooltip>}
+          trigger={"click"}
+          overlay={<Tooltip><>
+          <div>detail:<CloseButton style={{color:"white"}} onClick={()=>{content.delete(content.id)}}/></div>
+          <div>{content.description}</div>
+          <div>from: {content.start.toLocaleTimeString()}</div>
+          <div>until: {content.end.toLocaleTimeString()}</div>
+          {/* <div><Button size="sm" variant="secondary">remove</Button></div> */}
+          </></Tooltip>}
         >
           <span>{event.title}</span>
         </OverlayTrigger>
