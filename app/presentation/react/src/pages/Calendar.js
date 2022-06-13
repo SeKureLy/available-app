@@ -21,7 +21,9 @@ function CalendarView(props) {
     const [query, setQuery] = useState("")
     const [myEventsList, setMyEventsList] = useState([])
     const { user, setUser } = useContext(AuthContext);
+    const { userInfo, setUserInfo } = useContext(AuthContext);
     const [show, setShow] = useState(false);
+    const [show2, setShow2] = useState(false);
     const handleClose = () => setShow(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -139,52 +141,94 @@ function CalendarView(props) {
         setinit(false)
     }
 
+    async function shareCalendar(){
+        const requestOptions = {
+            method: 'Get',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+        };
+        fetch(`${baseUrl}/api/v1/calendars/${urlparams.cid}`, requestOptions)
+            .then(async response => {
+                let result = await response.json()
+                if (response.status === 200) {
+                    props.alertSuccessFunction(result.message)
+                }
+                else {
+                    props.alertFunction(`${result.message}`)
+                }
+            })
+            .catch(error => {
+                props.alertFunction(error.message)
+            })
+        setShow(false)
+        setinit(false)
+    }
+
     return (
         <>
-            <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title>Add Event</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" value={title} onChange={(e) => { setTitle(e.target.value) }} placeholder="title" />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Description</Form.Label>
-                            <Form.Control type="text" value={description} onChange={(e) => { setDescription(e.target.value) }} placeholder="description" />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Start Date</Form.Label>
-                            <Form.Control type="datetime-local" name="start time" onChange={(e)=>{setstime(e.target.value)}}/>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>End Date</Form.Label>
-                            <Form.Control type="datetime-local" name="end time" onChange={(e)=>{setetime(e.target.value)}}/>
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" style={{ float: 'left' }} onClick={addEvent}>
-                        Add
-                    </Button>
-                </Modal.Footer>
-            </Modal>
             <div className="App">
                 {
                     (user) ?
                         <>
                             <Row>
                                 <Col></Col>
-                                <Col><h1>Hello, {user}</h1></Col>
-                                <Col><br /><Button variant="secondary" onClick={() => { setShow(true) }}>add event</Button></Col>
+                                <Col><h1>Hello, {userInfo.username}</h1></Col>
+                                <Col>
+                                    <Button variant="secondary" onClick={() => { setShow(true) }}>add event</Button>
+                                    <Modal
+                                        show={show}
+                                        onHide={handleClose}
+                                        backdrop="static"
+                                        keyboard={false}
+                                    >
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Add Event</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                                    <Form.Label>Title</Form.Label>
+                                                    <Form.Control type="text" value={title} onChange={(e) => { setTitle(e.target.value) }} placeholder="title" />
+                                                </Form.Group>
+
+                                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                                    <Form.Label>Description</Form.Label>
+                                                    <Form.Control type="text" value={description} onChange={(e) => { setDescription(e.target.value) }} placeholder="description" />
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>Start Date</Form.Label>
+                                                    <Form.Control type="datetime-local" name="start time" onChange={(e)=>{setstime(e.target.value)}}/>
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>End Date</Form.Label>
+                                                    <Form.Control type="datetime-local" name="end time" onChange={(e)=>{setetime(e.target.value)}}/>
+                                                </Form.Group>
+                                            </Form>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                            <Button variant="primary" style={{ float: 'left' }} onClick={addEvent}>
+                                                Add
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Modal>
+                                    <Button variant="info" onClick={() => { setShow2(true) }}>share calendar</Button>  
+                                    <Modal
+                                        show={show2}
+                                        onHide={()=>{setShow2(false)}}
+                                        backdrop="static"
+                                        keyboard={false}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>share your calendar</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <a href={`/calendar?cid=${urlparams.cid}&api_key=${userInfo.auth_token}`}>visitor's link below</a>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                        </Modal.Footer>
+                                    </Modal>  
+                                </Col>
                             </Row>
                         </>
                         : <h1>Party time</h1>

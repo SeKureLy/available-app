@@ -22,10 +22,12 @@ function App() {
   const [alertMessage, setAlertMessage] = useState(false)
   const [successMessage, setSuccessMessage] = useState(false)
   const [user, setUser] = useState("");
+  const [userInfo, setUserInfo] = useState("");
 
   useEffect(() => {
     if(!user)account()
-}, [user]);
+    if(!userInfo)accountInfo()
+}, [user,userInfo]);
 
 async function account(){
     if(user){
@@ -48,6 +50,34 @@ async function account(){
     .catch(error =>{
         // props.alertFunction("unknown error")
     })
+}
+
+async function accountInfo(){
+  if(user == ""){
+    return
+  }
+  console.log(user)
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    credentials: 'include'
+  };
+  fetch(baseUrl + `/api/v1/account/${user}`, requestOptions)
+  .then(async response => {
+      let result = await response.json()
+      if (response.status === 200) {
+          setUserInfo(result)
+          console.log("first fetch account info")
+      }
+      else {
+          console.log(`${result.message}`)
+      }
+  })
+  .catch(error => {
+      console.log(error.message)
+  })
 }
 
 function logout(){
@@ -95,7 +125,7 @@ function logout(){
   return (
     <>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
-    <AuthContext.Provider value={{user, setUser}}>
+    <AuthContext.Provider value={{user, setUser, userInfo, setUserInfo}}>
     <Router> 
     <LoadingOverlay
             active={loading}

@@ -19,7 +19,7 @@ function Account(props) {
     const [query, setQuery] = useState("")
     const { user, setUser } = useContext(AuthContext);
     const [calendars, setCalendars] = useState(null)
-    const [userInfo, setUserInfo] = useState(null)
+    const { userInfo, setUserInfo } = useContext(AuthContext);
     const [CalendarInfo, setCalendarInfo] = useState(null)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -71,18 +71,18 @@ function Account(props) {
             credentials: 'include'
         };
         fetch(baseUrl + `/api/v1/account/${user}`, requestOptions)
-            .then(async response => {
-                let result = await response.json()
-                if (response.status === 200) {
-                    setUserInfo(result)
-                }
-                else {
-                    props.alertFunction(`${result.message}`)
-                }
-            })
-            .catch(error => {
-                props.alertFunction(error.message)
-            })
+        .then(async response => {
+            let result = await response.json()
+            if (response.status === 200) {
+                setUserInfo(result)
+            }
+            else {
+                props.alertFunction(`${result.message}`)
+            }
+        })
+        .catch(error => {
+            props.alertFunction(error.message)
+        })
     }
 
     function view(cid) {
@@ -223,7 +223,7 @@ function Account(props) {
                 <h1>Account Info</h1>
                 {
                     (userInfo) ? <>
-                        <p>Hello, {user}</p>
+                        <p>Hello, {userInfo.username}</p>
                         <p>your email: {userInfo.email}</p>
                         <p>API key: {userInfo.auth_token}</p>
                     </> : ""

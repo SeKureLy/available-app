@@ -8,7 +8,7 @@ module Available
   class App < Roda
     route('account') do |routing|
       routing.on do
-        # GET /account/<username>
+        # GET /account
         routing.is do
           if @current_account.logged_in?
             response.status = 200
@@ -18,7 +18,7 @@ module Available
             { message: "qq"}.to_json
           end
         end
-        
+        # GET api/v1/accounts/[username]
         routing.get String do |username|
           account = GetAccountDetails.new(App.config).call(
             @current_account, username
