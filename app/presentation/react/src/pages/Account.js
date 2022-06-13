@@ -70,7 +70,7 @@ function Account(props) {
             },
             credentials: 'include'
         };
-        fetch(baseUrl + '/api/v1/account', requestOptions)
+        fetch(baseUrl + `/api/v1/account/${user}`, requestOptions)
             .then(async response => {
                 let result = await response.json()
                 if (response.status === 200) {
