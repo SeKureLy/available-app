@@ -70,9 +70,9 @@ module Available
 
           CurrentSession.new(session).current_account = current_account
 
-          routing.redirect '/Account'
-          flash[:notice] = "Welcome #{current_account.username}!"
-          return{account: current_account[:account], auth_token: current_account[:auth_token], message: flash[:notice]}.to_json
+          # routing.redirect '/Account'
+          flash[:notice] = "Welcome #{authorized[:account]}!"
+          return{account: authorized[:account], auth_token: authorized[:auth_token], message: flash[:notice]}.to_json
         end
       end
 
