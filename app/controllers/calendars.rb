@@ -16,6 +16,13 @@ module Available
 
               return {current_user: @current_account.username, calendars: calendars_list}.to_json
           end
+          # POST /calendars/
+          routing.post do
+            params = JSON.parse(routing.body.read)
+            calendar = CreateNewCalendar.new(App.config).call(current_account:@current_account, calendar_data: params)
+
+            return {current_user: @current_account.username, message: calendar['message']}.to_json
+          end
         end
 
         routing.on String do |cal_id|

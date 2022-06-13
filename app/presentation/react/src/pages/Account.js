@@ -7,7 +7,7 @@ import {
     useLocation,
     useHistory
 } from "react-router-dom";
-import { Button, Form, Modal, Container, Table } from 'react-bootstrap'
+import { Button, Form, Modal, Container, Table, Row, Col } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
 
@@ -24,6 +24,7 @@ function Account(props) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const [memberEmail, setMemberEmail] = useState("")
+    const [calendarTitle, setCalendarTitle] = useState("")
 
     useEffect(() => {
         if (user) {
@@ -160,6 +161,36 @@ function Account(props) {
         setMemberEmail("")
     }
 
+    function addCalendar(e){
+        e.preventDefault()
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title: calendarTitle}),
+            credentials: 'include'
+        };
+
+        fetch(baseUrl+`/api/v1/calendars`, requestOptions)
+        .then(async response =>{
+            let result = await response.json()
+            if (response.status == 200){
+                props.alertSuccessFunction(`add calendar successfully`)
+                setTimeout(() => {
+                    displayCalendars()
+                }, 3000)
+            }
+            else{
+                props.alertFunction(`${result.message}`)
+            }
+        })
+        .catch(error =>{
+          props.alertFunction("unknown error")
+        })
+        setCalendarTitle("")
+    }
+
     return (
         <>
             <Modal
@@ -225,7 +256,16 @@ function Account(props) {
                     (userInfo) ? <>
                         <p>Hello, {userInfo.username}</p>
                         <p>your email: {userInfo.email}</p>
-                        <p>API key: {userInfo.auth_token}</p>
+                        <Row className="justify-content-center">
+                            <Col md="auto">
+                                <Form.Group>
+                                    <Form.Control type="title" value={calendarTitle} onChange={(e) => { setCalendarTitle(e.target.value) }} placeholder="New Calendar Title" />
+                                </Form.Group>
+                            </Col>
+                            <Col md="auto">
+                                <Button variant="info" onClick={(e) => addCalendar(e) }>Add Calendar</Button>{' '}
+                            </Col>
+                        </Row>
                     </> : ""
                 }
             </div>
