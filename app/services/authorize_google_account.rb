@@ -50,7 +50,7 @@ module Available
 
       puts "account_info = #{account_info}"
       {
-        account: account_info['account']['data']['attributes']['email'],
+        account: account_info['account']['data']['attributes'],
         auth_token: account_info['auth_token']
       }
     end

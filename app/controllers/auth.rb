@@ -61,18 +61,24 @@ module Available
                        .new(App.config)
                        .call(routing.params['code'])
 
-          puts authorized
+          puts "authorized = #{authorized}"
 
           current_account = Account.new(
             authorized[:account],
             authorized[:auth_token]
           )
+          
+          puts current_account.username
+          puts current_account.email
 
           CurrentSession.new(session).current_account = current_account
+          @current_account = current_account
 
-          # routing.redirect '/Account'
-          flash[:notice] = "Welcome #{authorized[:account]}!"
-          return{account: authorized[:account], auth_token: authorized[:auth_token], message: flash[:notice]}.to_json
+          # return { username: @current_account.username, email: @current_account.email }.to_json
+          routing.redirect '/Account'
+          # flash[:notice] = "Welcome #{authorized[:account]}!"
+          # return {current_account}.to_json
+          # return{account: authorized[:account], auth_token: authorized[:auth_token], message: flash[:notice]}.to_json
         end
       end
 
