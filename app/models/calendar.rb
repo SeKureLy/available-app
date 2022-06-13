@@ -7,13 +7,13 @@ module Available
                 :owner, :members, :events, :policies # full details
 
     def initialize(calendar_info)
-      puts calendar_info
       process_attributes(calendar_info['data']['attributes'])
       process_relationships(calendar_info['relationships'])
       process_policies(calendar_info['policies'])
     end
 
     def to_json(options = {})
+      if members && owner 
         { 
           id:,
           title:,
@@ -22,6 +22,16 @@ module Available
           events:events.map(&:to_json),
           policies:policies
         }
+      else
+        { 
+          id:,
+          title:,
+          owner:nil,
+          members:nil,
+          events:events.map(&:to_json),
+          policies:policies
+        }
+      end
     end
 
     private
@@ -33,9 +43,12 @@ module Available
 
     def process_relationships(relationships)
       return unless relationships
-
-      @owner = Account.new(relationships['owner']['data']['attributes'],'')
-      @members = process_members(relationships['members'])
+      if relationships['owner']
+        @owner = Account.new(relationships['owner']['data']['attributes'],'')
+      end
+      if relationships['members']
+        @members = process_members(relationships['members'])
+      end
       @events = process_events(relationships['events'])
     end
 

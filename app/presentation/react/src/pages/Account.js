@@ -7,7 +7,7 @@ import {
     useLocation,
     useHistory
 } from "react-router-dom";
-import { Button, Modal, Container, Table } from 'react-bootstrap'
+import { Button, Form, Modal, Container, Table } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
 
@@ -19,10 +19,11 @@ function Account(props) {
     const [query, setQuery] = useState("")
     const { user, setUser } = useContext(AuthContext);
     const [calendars, setCalendars] = useState(null)
-    const [userInfo, setUserInfo] = useState(null)
+    const { userInfo, setUserInfo } = useContext(AuthContext);
     const [CalendarInfo, setCalendarInfo] = useState(null)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const [memberEmail, setMemberEmail] = useState("")
 
     useEffect(() => {
         if (user) {
@@ -55,7 +56,6 @@ function Account(props) {
                 }
             })
             .catch(error => {
-                console.log("+++++++++++++++++")
                 props.alertFunction(error.message)
             })
     }
@@ -70,22 +70,19 @@ function Account(props) {
             },
             credentials: 'include'
         };
-        fetch(baseUrl + '/api/v1/account', requestOptions)
-            .then(async response => {
-                let result = await response.json()
-                console.log(result)
-
-                if (response.status === 200) {
-                    setUserInfo(result)
-                }
-                else {
-                    props.alertFunction(`${result.message}`)
-                }
-            })
-            .catch(error => {
-                console.log("+++++++++++++++++")
-                props.alertFunction(error.message)
-            })
+        fetch(baseUrl + `/api/v1/account/${user}`, requestOptions)
+        .then(async response => {
+            let result = await response.json()
+            if (response.status === 200) {
+                setUserInfo(result)
+            }
+            else {
+                props.alertFunction(`${result.message}`)
+            }
+        })
+        .catch(error => {
+            props.alertFunction(error.message)
+        })
     }
 
     function view(cid) {
@@ -103,14 +100,64 @@ function Account(props) {
         fetch(baseUrl + `/api/v1/calendars/${cid}`, requestOptions)
             .then(async response => {
                 let result = await response.json()
-                console.log(result)
                 setCalendarInfo(result)
             })
             .catch(error => {
-                console.log("+++++++++++++++++")
                 props.alertFunction(error.message)
             })
         setShow(true)
+    }
+    function deleteMember(id){
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: CalendarInfo.calendar.members[id].email}),
+            credentials: 'include'
+        };
+        fetch(baseUrl+`/api/v1/calendars/${CalendarInfo.calendar.id}/members?action=remove`, requestOptions)
+        .then(async response =>{
+            let result = await response.json()
+            if (response.status == 200){
+                props.alertSuccessFunction(`delete member successfully`)
+            }
+            else{
+                props.alertFunction(`${result.message}`)
+            }
+        })
+        .catch(error =>{
+          props.alertFunction("unknown error")
+        })
+        setShow(false)
+    }
+
+    function addMember(e){
+        e.preventDefault()
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: memberEmail}),
+            credentials: 'include'
+        };
+
+        fetch(baseUrl+`/api/v1/calendars/${CalendarInfo.calendar.id}/members?action=add`, requestOptions)
+        .then(async response =>{
+            let result = await response.json()
+            if (response.status == 200){
+                props.alertSuccessFunction(`add member successfully`)
+            }
+            else{
+                props.alertFunction(`${result.message}`)
+            }
+        })
+        .catch(error =>{
+          props.alertFunction("unknown error")
+        })
+        setShow(false)
+        setMemberEmail("")
     }
 
     return (
@@ -153,7 +200,7 @@ function Account(props) {
                                             <td>{c.email}</td>
                                             <td>member</td>
                                             <td>
-                                                <Button variant="danger" onClick={() => { }}>delete</Button>{' '}
+                                                <Button variant="danger" onClick={() => deleteMember(id)}>delete</Button>{' '}
                                             </td>
                                         </tr>)
                                 })}
@@ -163,7 +210,10 @@ function Account(props) {
                 }
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary">Add member</Button>
+                    <Form.Group>
+                        <Form.Control type="email" value={memberEmail} onChange={(e) => { setMemberEmail(e.target.value) }} placeholder="New Member Email" />
+                    </Form.Group>
+                    <Button variant="primary" onClick={(e) => addMember(e)}>Add member</Button>
                     <Button variant="secondary" style={{float:'left'}} onClick={handleClose}>
                         Close
                     </Button>
@@ -173,7 +223,7 @@ function Account(props) {
                 <h1>Account Info</h1>
                 {
                     (userInfo) ? <>
-                        <p>Hello, {user}</p>
+                        <p>Hello, {userInfo.username}</p>
                         <p>your email: {userInfo.email}</p>
                         <p>API key: {userInfo.auth_token}</p>
                     </> : ""

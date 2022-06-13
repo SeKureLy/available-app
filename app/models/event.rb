@@ -10,7 +10,9 @@ module Available
 
     def initialize(info)
       process_attributes(info['data']['attributes'])
-      process_included(info['included'])
+      if info['included']
+        process_included(info['included'])
+      end
     end
 
     def to_json(options = {})
