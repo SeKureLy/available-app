@@ -21,7 +21,13 @@ module Available
         routing.on String do |cal_id|
           # GET /calendars/[cal_id]
           routing.get do
-            result = GetCalendar.new(App.config).call(@current_account, cal_id)
+            if routing.headers['AUTHORIZATION'] != nil
+              scheme, auth_token = routing.headers['AUTHORIZATION'].split(' ')
+              temp_account = Account.new('temp', auth_token)
+            else
+              temp_account = @current_account
+            end
+            result = GetCalendar.new(App.config).call(temp_account, cal_id)
             calendar = Calendar.new(result)
             
             return {current_user: @current_account.username, calendar: calendar.to_json}.to_json

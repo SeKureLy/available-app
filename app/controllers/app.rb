@@ -17,6 +17,7 @@ module Available
     plugin :public, root: 'app/presentation/built', gzip: true
     plugin :halt
     plugin :multi_route
+    plugin :request_headers
     plugin :flash
 
     route do |routing|
@@ -29,7 +30,7 @@ module Available
         File.read('app/presentation/built/index.html')
       end
 
-      routing.on ['login', 'register', 'Account', 'logout'] do
+      routing.on ['login', 'register', 'Account', 'logout', 'calendar'] do
         File.read('app/presentation/built/index.html')
       end
 

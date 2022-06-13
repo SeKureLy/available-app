@@ -38,6 +38,12 @@ function CalendarView(props) {
                 setinit(true)
             }
         }
+        else{
+            if(urlparams.cid && !init && urlparams.api_key){
+                getCalendarWithKey()
+                setinit(true)
+            }
+        }
     }, [user, urlparams, init]);
 
 
@@ -141,11 +147,12 @@ function CalendarView(props) {
         setinit(false)
     }
 
-    async function shareCalendar(){
+    async function getCalendarWithKey(){
         const requestOptions = {
             method: 'Get',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${urlparams.api_key}`
             },
             credentials: 'include',
         };
@@ -153,7 +160,17 @@ function CalendarView(props) {
             .then(async response => {
                 let result = await response.json()
                 if (response.status === 200) {
-                    props.alertSuccessFunction(result.message)
+                    if (result.calendar) {
+                        let events = result.calendar.events.map(e => ({
+                            title: "busy",
+                            id: e.id,
+                            description: e.description,
+                            start: new Date(e.start_time),
+                            end: new Date(e.end_time),
+                            delete: deleteEvent
+                        }));
+                        setMyEventsList(events)
+                    }
                 }
                 else {
                     props.alertFunction(`${result.message}`)
@@ -162,8 +179,6 @@ function CalendarView(props) {
             .catch(error => {
                 props.alertFunction(error.message)
             })
-        setShow(false)
-        setinit(false)
     }
 
     return (
