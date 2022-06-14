@@ -32,10 +32,18 @@ function CalendarView(props) {
     const [stime, setstime] = useState("");
     const [etime, setetime] = useState("");
     const [selected, setSelected] = useState([])
+    const [curTitle, setCurTitle] = useState("")
 
     useEffect(() => {
-        if (user) {
-            if (urlparams.cid && !init) {
+        if(urlparams.cid && !init){
+            if(urlparams.api_key){
+                setMyEventsList([])
+                if (myEventsList.length == 0) {
+                    getCalendarWithKey(urlparams.cid, urlparams.api_key)
+                    setinit(true)
+                }
+            }
+            else if(user){
                 setMyEventsList([])
                 if (myEventsList.length == 0) {
                     getCalendar(urlparams.cid)
@@ -43,16 +51,8 @@ function CalendarView(props) {
                 }
             }
         }
-        else {
-            if (urlparams.cid && !init && urlparams.api_key) {
-                setMyEventsList([])
-                if (myEventsList.length == 0) {
-                    getCalendarWithKey(urlparams.cid, urlparams.api_key)
-                    setinit(true)
-                }
-            }
-        }
-        console.log(myEventsList)
+        
+        if(init && calendars && urlparams.cid) getCurrentCalendar()
     }, [user, urlparams, init, myEventsList]);
 
 
@@ -76,8 +76,8 @@ function CalendarView(props) {
                             id: e.id,
                             hexColor: c,
                             description: e.description,
-                            start: new Date(e.start_time),
-                            end: new Date(e.end_time),
+                            start: new Date(parseInt(e.start_time)),
+                            end: new Date(parseInt(e.end_time)),
                             delete: deleteEvent
                         }));
                         setMyEventsList([...myEventsList, ...events])
@@ -168,6 +168,7 @@ function CalendarView(props) {
             },
             credentials: 'include',
         };
+        let c = randomColor(cid)
         fetch(`${baseUrl}/api/v1/calendars/${cid}`, requestOptions)
             .then(async response => {
                 let result = await response.json()
@@ -176,9 +177,10 @@ function CalendarView(props) {
                         let events = result.calendar.events.map(e => ({
                             title: "busy",
                             id: e.id,
+                            hexColor: c,
                             description: e.description,
-                            start: new Date(e.start_time),
-                            end: new Date(e.end_time),
+                            start: new Date(parseInt(e.start_time)),
+                            end: new Date(parseInt(e.end_time)),
                             delete: deleteEvent
                         }));
                         setMyEventsList([...myEventsList, ...events])
@@ -210,17 +212,40 @@ function CalendarView(props) {
             tmp.delete(parseInt(urlparams.cid))
         }
         tmp = [...tmp]
-        console.log(tmp)
 
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        };
         try {
-            const res = await Promise.all(tmp.map((cid) => fetch(`${baseUrl}/api/v1/calendars/${cid}`, requestOptions)));
+            const res = await Promise.all(tmp.map((cid) => {
+                let match_cal = calendars.find((cal)=> { return cal.data.attributes.id == cid})
+                match_cal = match_cal.data.attributes
+                let requestOptions = ""
+                let fetch_cid = ""
+                if(match_cal.type == 1){
+                    let api_key = match_cal.guesturl.split('api_key=')[1]
+                    let qq = match_cal.guesturl.split('cid=')[1]
+                    fetch_cid = qq.split('&')[0]
+
+                    console.log(api_key)
+                    requestOptions = {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${api_key}`
+                        },
+                        credentials: 'include'
+                    };
+                }else{
+                    fetch_cid = cid
+                    console.log(fetch_cid)
+                    requestOptions = {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include'
+                    };
+                }
+                return fetch(`${baseUrl}/api/v1/calendars/${fetch_cid}`, requestOptions)
+            }));
             const data = await Promise.all(res.map(r => r.json()))
             console.log(data.flat());
             if (data.flat()) {
@@ -228,19 +253,21 @@ function CalendarView(props) {
                 data.flat().forEach(result => {
                     let c = randomColor(result.calendar.id)
                     let events = result.calendar.events.map(e => ({
-                        title: e.title,
+                        title: (e.title)?e.title:"busy",
                         id: e.id,
                         hexColor: c,
                         description: e.description,
-                        start: new Date(e.start_time),
-                        end: new Date(e.end_time),
+                        start: new Date(parseInt(e.start_time)),
+                        end: new Date(parseInt(e.end_time)),
                         delete: deleteEvent
                     }));
                     allevents = [...allevents, ...events]
                 });
+                console.log(allevents)
                 setMyEventsList([...myEventsList, ...allevents])
             }
-        } catch {
+        } catch(e) {
+            console.log(e.message)
             throw Error("Promise failed");
         }
         setShow3(false)
@@ -257,6 +284,19 @@ function CalendarView(props) {
         return str
     }
 
+    function getCurrentCalendar(){
+        let title = ""
+        if(urlparams.cid && calendars){
+            let match_cal = calendars.find((cal)=> { return cal.data.attributes.id == urlparams.cid})
+
+            title = (match_cal.data.attributes.title)
+        }
+        if(urlparams.api_key){
+            title += "@guest"
+        }
+        setCurTitle(title)
+    }
+
     return (
         <>
             <div className="App">
@@ -264,9 +304,9 @@ function CalendarView(props) {
                     (user) ?
                         <>
                             <Row>
-                                <Col></Col>
-                                <Col><h1>Hello, {userInfo.username}</h1></Col>
-                                <Col>
+                                <Col xs={2}></Col>
+                                <Col xs={6}>{<h2>calendar : {curTitle}</h2>}</Col>
+                                <Col >
                                     <Button variant="success" onClick={() => { setShow3(true); setinit(false) }}>Coordinate</Button>{' '}
                                     <Modal
                                         show={show3}
