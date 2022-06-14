@@ -55,28 +55,41 @@ function Account(props) {
             })
     }
 
-    function view(cid) {
-        history.push(`/calendar?cid=${cid}`)
+    function view(calendar) {
+        if(calendar.type == 0)history.push(`/calendar?cid=${calendar.id}`)
+        else{
+            let path = calendar.guesturl.split('calendar?')[1]
+            history.push(`/calendar?${path}`)
+        }
     }
 
-    function handleShow(cid) {
-        const requestOptions = {
+    async function getRequest(url, api_key= null){
+        var requestOptions = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
             credentials: 'include'
         };
-        fetch(baseUrl + `/api/v1/calendars/${cid}`, requestOptions)
-            .then(async response => {
-                let result = await response.json()
-                setCalendarInfo(result)
-            })
-            .catch(error => {
-                props.alertFunction(error.message)
-            })
+        if(api_key){
+            requestOptions.headers['Authorization'] = `Bearer ${api_key}`
+        }
+        try{
+            let response = await fetch(url, requestOptions)
+            let result = await response.json()
+            return result
+        }
+        catch(error){
+            props.alertFunction(error.message)
+        }
+    }
+
+    async function handleShow(cid) {
+        let result = await getRequest(baseUrl + `/api/v1/calendars/${cid}`)
+        setCalendarInfo(result)
         setShow(true)
     }
+
     function deleteMember(id) {
         const requestOptions = {
             method: 'POST',
@@ -160,8 +173,46 @@ function Account(props) {
         setCalendarTitle("")
     }
 
-    function addGuest(){
-        // setCalendarInfo
+    async function addGuest(e){
+        e.preventDefault()
+        // fetch result first
+        let qq = guestLink.split('cid=')[1]
+        let fetch_cid = qq.split('&')[0]
+        let api_key = guestLink.split('api_key=')[1]
+        try{
+            let result = await getRequest(baseUrl + `/api/v1/calendars/${fetch_cid}`, api_key)
+        
+        // then create title for guest calendar
+        console.log(result.calendar.title)
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title: result.calendar.title+"@guest", type: 1, guesturl: guestLink}),
+            credentials: 'include'
+        };
+        
+        fetch(baseUrl + `/api/v1/calendars`, requestOptions)
+            .then(async response => {
+                let result = await response.json()
+                if (response.status == 200) {
+                    props.alertSuccessFunction(`add guest calendar successfully`)
+                    setTimeout(() => {
+                        displayCalendars()
+                    }, 3000)
+                }
+                else {
+                    props.alertFunction(`${result.message}`)
+                }
+            })
+            .catch(error => {
+                props.alertFunction("unknown error")
+            })
+        }catch(e){
+            props.alertFunction("add Guest Calendar fail")
+            return
+        }
     }
 
     return (
@@ -245,7 +296,7 @@ function Account(props) {
                         </Form.Group>
                     </Col>
                     <Col md="auto">
-                        <Button variant="info" onClick={(e) => { }}>Import guest calendar</Button>{' '}
+                        <Button variant="info" onClick={(e) => {addGuest(e) }}>Import guest calendar</Button>{' '}
                     </Col>
                 </Row>
             </div>
@@ -271,10 +322,10 @@ function Account(props) {
                                             <tr key={id}>
                                                 <td>{id + 1}</td>
                                                 <td>{c.title}</td>
-                                                <td>my calendar</td>
+                                                <td>{(c.type == 1)?"guest calendar":"my calendar"}</td>
                                                 <td>
                                                     <Button variant="primary" onClick={() => { handleShow(c.id) }}>members</Button>{' '}
-                                                    <Button variant="secondary" onClick={() => { view(c.id) }}>view</Button>{' '}
+                                                    <Button variant="secondary" onClick={() => { view(c) }}>view</Button>{' '}
                                                     {/* <Button variant="danger" onClick={() => { }}>delete</Button>{' '} */}
                                                 </td>
                                             </tr>)
