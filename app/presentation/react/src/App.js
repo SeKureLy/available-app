@@ -13,7 +13,6 @@ import Login from './pages/Login'
 import Account from './pages/Account'
 import Calendar from "./pages/Calendar";
 import RegisterAccount from './pages/Register'
-import LoadingOverlay from 'react-loading-overlay';
 import { baseUrl } from './config'
 import './App.css';
 function App() {
@@ -127,11 +126,6 @@ function logout(){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
     <AuthContext.Provider value={{user, setUser, userInfo, setUserInfo}}>
     <Router> 
-    <LoadingOverlay
-            active={loading}
-            spinner
-            text='Loading...'
-            >
       <div style={{ height: "100vh"}}>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="/">
@@ -190,9 +184,6 @@ function logout(){
           </Route>
         </Switch>
     </div>
-      
-      </LoadingOverlay>
-
     </Router>
     
     </AuthContext.Provider>

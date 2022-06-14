@@ -10,7 +10,6 @@ import {
 import { Button, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
-import GoogleLogin from 'react-google-login';
 function Login(props) {
     const { search } = useLocation()
     const urlparams = queryString.parse(search)
