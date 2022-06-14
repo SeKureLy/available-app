@@ -95,8 +95,8 @@ function CalendarView(props) {
             credentials: 'include',
             body:JSON.stringify({
                 "title": title,
-                "start_time": start_time,
-                "end_time": end_time,
+                "start_time": start_time.toString(),
+                "end_time": end_time.toString(),
                 "description": description
             })
         };
