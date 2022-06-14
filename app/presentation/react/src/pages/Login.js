@@ -71,7 +71,7 @@ function Login(props) {
         // Parameters to pass to OAuth 2.0 endpoint.
         var params = {
             'client_id': '45920062800-06nvhbrsn45g72tsog13o6rfpo6bttcv.apps.googleusercontent.com',
-            'redirect_uri': 'http://localhost:9292/api/v1/auth/sso_callback',
+            'redirect_uri': `${baseUrl}/api/v1/auth/sso_callback`,
             'response_type': 'code',
             'scope': 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
             'include_granted_scopes': 'true',
