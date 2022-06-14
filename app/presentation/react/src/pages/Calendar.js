@@ -7,7 +7,7 @@ import {
     useLocation,
     Link
 } from "react-router-dom";
-import { Button, Tooltip, Nav, Form, Col, Modal, Row, OverlayTrigger, Container, CloseButton } from 'react-bootstrap'
+import { Button, Tooltip, Table, Form, Col, Modal, Row, OverlayTrigger, Container, CloseButton } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
 import { Calendar, momentLocalizer } from 'react-big-calendar'
@@ -24,30 +24,40 @@ function CalendarView(props) {
     const { userInfo, setUserInfo } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
+    const [show3, setShow3] = useState(false);
+    const { calendars, setCalendars } = useContext(AuthContext)
     const handleClose = () => setShow(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [stime, setstime] = useState("");
     const [etime, setetime] = useState("");
-
+    const [selected, setSelected] = useState([])
+    const [curTitle, setCurTitle] = useState("")
 
     useEffect(() => {
-        if (user) {
-            if (urlparams.cid && !init) {
-                getCalendar()
-                setinit(true)
+        if(urlparams.cid && !init){
+            if(urlparams.api_key){
+                setMyEventsList([])
+                if (myEventsList.length == 0) {
+                    getCalendarWithKey(urlparams.cid, urlparams.api_key)
+                    setinit(true)
+                }
+            }
+            else if(user){
+                setMyEventsList([])
+                if (myEventsList.length == 0) {
+                    getCalendar(urlparams.cid)
+                    setinit(true)
+                }
             }
         }
-        else{
-            if(urlparams.cid && !init && urlparams.api_key){
-                getCalendarWithKey()
-                setinit(true)
-            }
-        }
-    }, [user, urlparams, init]);
+        
+        if(init && calendars && urlparams.cid) getCurrentCalendar()
+    }, [user, urlparams, init, myEventsList]);
 
 
-    async function getCalendar() {
+    async function getCalendar(cid) {
+        console.log(cid)
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -55,7 +65,8 @@ function CalendarView(props) {
             },
             credentials: 'include'
         };
-        fetch(`${baseUrl}/api/v1/calendars/${urlparams.cid}`, requestOptions)
+        let c = randomColor(cid)
+        fetch(`${baseUrl}/api/v1/calendars/${cid}`, requestOptions)
             .then(async response => {
                 let result = await response.json()
                 if (response.status === 200) {
@@ -63,12 +74,13 @@ function CalendarView(props) {
                         let events = result.calendar.events.map(e => ({
                             title: e.title,
                             id: e.id,
+                            hexColor: c,
                             description: e.description,
-                            start: new Date(e.start_time),
-                            end: new Date(e.end_time),
+                            start: new Date(parseInt(e.start_time)),
+                            end: new Date(parseInt(e.end_time)),
                             delete: deleteEvent
                         }));
-                        setMyEventsList(events)
+                        setMyEventsList([...myEventsList, ...events])
                     }
                 }
                 else {
@@ -80,10 +92,10 @@ function CalendarView(props) {
             })
     }
 
-    async function addEvent(){
+    async function addEvent() {
         let start_time = moment(stime).toDate().getTime();
         let end_time = moment(etime).toDate().getTime()
-        if(start_time > end_time){
+        if (start_time > end_time) {
             window.alert("start time must be smaller than end time!")
             return
         }
@@ -93,7 +105,7 @@ function CalendarView(props) {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body:JSON.stringify({
+            body: JSON.stringify({
                 "title": title,
                 "start_time": start_time.toString(),
                 "end_time": end_time.toString(),
@@ -117,7 +129,7 @@ function CalendarView(props) {
         setinit(false)
     }
 
-    async function deleteEvent(event_id){
+    async function deleteEvent(event_id) {
         let userConfirm = window.confirm("are you sure to delete events?")
         if (!userConfirm) return
         const requestOptions = {
@@ -126,7 +138,7 @@ function CalendarView(props) {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body:JSON.stringify({
+            body: JSON.stringify({
                 "event_id": event_id
             })
         };
@@ -135,6 +147,7 @@ function CalendarView(props) {
                 let result = await response.json()
                 if (response.status === 200) {
                     props.alertSuccessFunction(result.message)
+                    setinit(false)
                 }
                 else {
                     props.alertFunction(`${result.message}`)
@@ -144,19 +157,19 @@ function CalendarView(props) {
                 props.alertFunction(error.message)
             })
         setShow(false)
-        setinit(false)
     }
 
-    async function getCalendarWithKey(){
+    async function getCalendarWithKey(cid, api_key) {
         const requestOptions = {
             method: 'Get',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${urlparams.api_key}`
+                'Authorization': `Bearer ${api_key}`
             },
             credentials: 'include',
         };
-        fetch(`${baseUrl}/api/v1/calendars/${urlparams.cid}`, requestOptions)
+        let c = randomColor(cid)
+        fetch(`${baseUrl}/api/v1/calendars/${cid}`, requestOptions)
             .then(async response => {
                 let result = await response.json()
                 if (response.status === 200) {
@@ -164,12 +177,13 @@ function CalendarView(props) {
                         let events = result.calendar.events.map(e => ({
                             title: "busy",
                             id: e.id,
+                            hexColor: c,
                             description: e.description,
-                            start: new Date(e.start_time),
-                            end: new Date(e.end_time),
+                            start: new Date(parseInt(e.start_time)),
+                            end: new Date(parseInt(e.end_time)),
                             delete: deleteEvent
                         }));
-                        setMyEventsList(events)
+                        setMyEventsList([...myEventsList, ...events])
                     }
                 }
                 else {
@@ -181,6 +195,108 @@ function CalendarView(props) {
             })
     }
 
+    function selectCoordinate(op, cid) {
+        let tmp = new Set(selected)
+        if (op) { // select
+            tmp.add(cid)
+        }
+        else { // unselect
+            tmp.delete(cid)
+        }
+        setSelected([...tmp])
+    }
+
+    async function getCoordinate() {
+        let tmp = new Set(selected)
+        if (urlparams.cid && tmp.has(urlparams.cid)) {
+            tmp.delete(parseInt(urlparams.cid))
+        }
+        tmp = [...tmp]
+
+        try {
+            const res = await Promise.all(tmp.map((cid) => {
+                let match_cal = calendars.find((cal)=> { return cal.data.attributes.id == cid})
+                match_cal = match_cal.data.attributes
+                let requestOptions = ""
+                let fetch_cid = ""
+                if(match_cal.type == 1){
+                    let api_key = match_cal.guesturl.split('api_key=')[1]
+                    let qq = match_cal.guesturl.split('cid=')[1]
+                    fetch_cid = qq.split('&')[0]
+
+                    console.log(api_key)
+                    requestOptions = {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${api_key}`
+                        },
+                        credentials: 'include'
+                    };
+                }else{
+                    fetch_cid = cid
+                    console.log(fetch_cid)
+                    requestOptions = {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include'
+                    };
+                }
+                return fetch(`${baseUrl}/api/v1/calendars/${fetch_cid}`, requestOptions)
+            }));
+            const data = await Promise.all(res.map(r => r.json()))
+            console.log(data.flat());
+            if (data.flat()) {
+                let allevents = []
+                data.flat().forEach(result => {
+                    let c = randomColor(result.calendar.id)
+                    let events = result.calendar.events.map(e => ({
+                        title: (e.title)?e.title:"busy",
+                        id: e.id,
+                        hexColor: c,
+                        description: e.description,
+                        start: new Date(parseInt(e.start_time)),
+                        end: new Date(parseInt(e.end_time)),
+                        delete: deleteEvent
+                    }));
+                    allevents = [...allevents, ...events]
+                });
+                console.log(allevents)
+                setMyEventsList([...myEventsList, ...allevents])
+            }
+        } catch(e) {
+            console.log(e.message)
+            throw Error("Promise failed");
+        }
+        setShow3(false)
+    }
+
+    function randomColor(seed) {
+        let str = ""
+        for (let i = 0; i < 3; i++) {
+            let r = 1 - (Math.sin(seed++))
+            // let r = Math.random()
+            let temp = (100 + Math.floor(r * 40)).toString(16)
+            str += temp
+        }
+        return str
+    }
+
+    function getCurrentCalendar(){
+        let title = ""
+        if(urlparams.cid && calendars){
+            let match_cal = calendars.find((cal)=> { return cal.data.attributes.id == urlparams.cid})
+
+            title = (match_cal.data.attributes.title)
+        }
+        if(urlparams.api_key){
+            title += "@guest"
+        }
+        setCurTitle(title)
+    }
+
     return (
         <>
             <div className="App">
@@ -188,10 +304,53 @@ function CalendarView(props) {
                     (user) ?
                         <>
                             <Row>
-                                <Col></Col>
-                                <Col><h1>Hello, {userInfo.username}</h1></Col>
-                                <Col>
-                                    <Button variant="secondary" onClick={() => { setShow(true) }}>add event</Button>
+                                <Col xs={2}></Col>
+                                <Col xs={6}>{<h2>calendar : {curTitle}</h2>}</Col>
+                                <Col >
+                                    <Button variant="success" onClick={() => { setShow3(true); setinit(false) }}>Coordinate</Button>{' '}
+                                    <Modal
+                                        show={show3}
+                                        onHide={() => { setShow3(false) }}
+                                        backdrop="static"
+                                        keyboard={false}
+                                    >
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Coordinate Calendar</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            {(calendars && urlparams.cid) ?
+                                                <Table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th># calendar title</th>
+                                                            <th> type</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {calendars.map((cal, id) => {
+                                                            let c = cal.data.attributes
+                                                            let check = (new Set(selected)).has(c.id)
+                                                            return (
+                                                                <tr key={id}>
+                                                                    <td>
+                                                                        <Form.Check defaultChecked={check} disabled={(urlparams.cid == c.id)} label={c.title} onChange={(e) => { selectCoordinate(e.target.checked, c.id); }}></Form.Check>
+                                                                    </td>
+                                                                    <td>my calendar</td>
+
+                                                                </tr>)
+                                                        })}
+                                                    </tbody>
+                                                </Table>
+                                                : ""
+                                            }
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                            <Button variant="primary" style={{ float: 'left' }} onClick={getCoordinate}>
+                                                Add
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Modal>
+                                    <Button variant="secondary" onClick={() => { setShow(true) }}>add event</Button>{' '}
                                     <Modal
                                         show={show}
                                         onHide={handleClose}
@@ -214,11 +373,11 @@ function CalendarView(props) {
                                                 </Form.Group>
                                                 <Form.Group>
                                                     <Form.Label>Start Date</Form.Label>
-                                                    <Form.Control type="datetime-local" name="start time" onChange={(e)=>{setstime(e.target.value)}}/>
+                                                    <Form.Control type="datetime-local" name="start time" onChange={(e) => { setstime(e.target.value) }} />
                                                 </Form.Group>
                                                 <Form.Group>
                                                     <Form.Label>End Date</Form.Label>
-                                                    <Form.Control type="datetime-local" name="end time" onChange={(e)=>{setetime(e.target.value)}}/>
+                                                    <Form.Control type="datetime-local" name="end time" onChange={(e) => { setetime(e.target.value) }} />
                                                 </Form.Group>
                                             </Form>
                                         </Modal.Body>
@@ -228,21 +387,21 @@ function CalendarView(props) {
                                             </Button>
                                         </Modal.Footer>
                                     </Modal>
-                                    <Button variant="info" onClick={() => { setShow2(true) }}>share calendar</Button>  
+                                    <Button variant="info" onClick={() => { setShow2(true) }}>share calendar</Button>
                                     <Modal
                                         show={show2}
-                                        onHide={()=>{setShow2(false)}}
+                                        onHide={() => { setShow2(false) }}
                                         backdrop="static"
                                         keyboard={false}>
                                         <Modal.Header closeButton>
                                             <Modal.Title>share your calendar</Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
-                                            <a href={`/calendar?cid=${urlparams.cid}&api_key=${userInfo.auth_token}`}>visitor's link below</a>
+                                            <a href={`/calendar?cid=${urlparams.cid}&api_key=${userInfo.auth_token}`}>guest's link below</a>
                                         </Modal.Body>
                                         <Modal.Footer>
                                         </Modal.Footer>
-                                    </Modal>  
+                                    </Modal>
                                 </Col>
                             </Row>
                         </>
@@ -260,6 +419,7 @@ function CalendarView(props) {
                             style={{ height: 500 }}
                             components={{ event: Event }}
                             popup
+                            eventPropGetter={(eventStyleGetter)}
                         />
                     </Col>
                 </Row>
@@ -269,22 +429,37 @@ function CalendarView(props) {
     );
 }
 
+function eventStyleGetter(event, start, end, isSelected) {
+    var backgroundColor = (event.hexColor) ? '#' + event.hexColor : "";
+    var style = {
+        backgroundColor: backgroundColor,
+        // borderRadius: '0px',
+        // opacity: 0.8,
+        // color: 'black',
+        // border: '0px',
+        // display: 'block'
+    };
+    return {
+        style: style
+    };
+}
+
 function Event(event) {
-    const [content,_] = useState(event.event)
+    const [content, _] = useState(event.event)
     return (
         <OverlayTrigger
-          trigger={"click"}
-          overlay={<Tooltip><>
-          <div>detail:<CloseButton style={{color:"white"}} onClick={()=>{content.delete(content.id)}}/></div>
-          <div>{content.description}</div>
-          <div>from: {content.start.toLocaleTimeString()}</div>
-          <div>until: {content.end.toLocaleTimeString()}</div>
-          {/* <div><Button size="sm" variant="secondary">remove</Button></div> */}
-          </></Tooltip>}
+            trigger={"click"}
+            overlay={<Tooltip><>
+                <div>detail:<CloseButton style={{ color: "white" }} onClick={() => { content.delete(content.id) }} /></div>
+                <div>{content.description}</div>
+                <div>from: {content.start.toLocaleTimeString()}</div>
+                <div>until: {content.end.toLocaleTimeString()}</div>
+                {/* <div><Button size="sm" variant="secondary">remove</Button></div> */}
+            </></Tooltip>}
         >
-          <span>{event.title}</span>
+            <span>{event.title}</span>
         </OverlayTrigger>
     );
-  }
+}
 
 export default CalendarView;
