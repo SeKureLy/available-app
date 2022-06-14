@@ -31,7 +31,7 @@ module Available
                   form: { code: code,
                           client_id: @config.GOOGLE_CLIENT_ID,
                           client_secret: @config.GOOGLE_CLIENT_SECRET,
-                          redirect_uri: 'http://localhost:9292/api/v1/auth/sso_callback',
+                          redirect_uri: "#{@config.APP_URL}/api/v1/auth/sso_callback",
                           grant_type: 'authorization_code'
                         })
       raise UnauthorizedError unless challenge_response.status < 400
