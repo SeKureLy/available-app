@@ -51,7 +51,8 @@ module Available
       puts "account_info = #{account_info}"
       {
         account: account_info['account']['data']['attributes'],
-        auth_token: account_info['auth_token']
+        auth_token: account_info['auth_token'],
+        google_auth_token: access_token
       }
     end
   end

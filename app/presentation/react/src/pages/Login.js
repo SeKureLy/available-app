@@ -70,10 +70,10 @@ function Login(props) {
 
         // Parameters to pass to OAuth 2.0 endpoint.
         var params = {
-            'client_id': '45920062800-06nvhbrsn45g72tsog13o6rfpo6bttcv.apps.googleusercontent.com',
+            'client_id': '45920062800-kpq0r0q0djo2de0ic0960ail28dj0jdg.apps.googleusercontent.com',
             'redirect_uri': `${baseUrl}/api/v1/auth/sso_callback`,
             'response_type': 'code',
-            'scope': 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+            'scope': 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.readonly',
             'include_granted_scopes': 'true',
             'prompt': 'consent'
             // 'access_type': 'offline'

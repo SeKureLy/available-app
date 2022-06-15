@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { Button, Form, Modal, Container, Table, Row, Col } from 'react-bootstrap'
 import { baseUrl } from '../config'
+import moment from 'moment'
 import { AuthContext } from "../contexts";
 
 function Account(props) {
@@ -215,6 +216,32 @@ function Account(props) {
         }
     }
 
+    async function getGoogleCalendar(){
+        let result = await getRequest(baseUrl + `/api/v1/google/calendar`)
+        console.log(result)
+    }
+
+    async function getGoogleEvent(){
+        let currentTime = moment().valueOf()
+        let minTime = currentTime - 14*24*60*60*1000  //14 days before now
+        let maxTime = currentTime + 14*24*60*60*1000  //14 days after now
+
+        let formatTime = moment(currentTime).format('YYYY-MM-DDTHH:mm:ssZ') 
+        let minFormatTime = moment(minTime).format('YYYY-MM-DDTHH:mm:ssZ') 
+        minFormatTime = minFormatTime.replaceAll("+","%2B")
+        minFormatTime = minFormatTime.replaceAll(":","%3A")
+
+        let maxFormatTime = moment(maxTime).format('YYYY-MM-DDTHH:mm:ssZ') 
+        maxFormatTime = maxFormatTime.replaceAll("+","%2B")
+        maxFormatTime = maxFormatTime.replaceAll(":","%3A")
+
+        let calendar_id = "suvincent0226@gapp.nthu.edu.tw"
+        calendar_id = calendar_id.replaceAll("@","%40")
+
+        let result = await getRequest(baseUrl + `/api/v1/google/event?calendar_id=${calendar_id}&timeMax=${maxFormatTime}&timeMin=${minFormatTime}`)
+        console.log(result)
+    }
+
     return (
         <>
             <Modal
@@ -298,6 +325,12 @@ function Account(props) {
                     <Col md="auto">
                         <Button variant="info" onClick={(e) => {addGuest(e) }}>Import guest calendar</Button>{' '}
                     </Col>
+                </Row>
+                <Row>
+                    <Col><Button onClick={getGoogleCalendar}>Fetch Google Calendar</Button></Col>
+                </Row>
+                <Row>
+                    <Col><Button onClick={getGoogleEvent}>Fetch Google Event</Button></Col>
                 </Row>
             </div>
             <br />
