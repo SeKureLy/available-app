@@ -17,12 +17,13 @@ function Account(props) {
     const urlparams = queryString.parse(search)
     const history = useHistory();
     const [init, setinit] = useState(false)
-    const [query, setQuery] = useState("")
+    const [googleCalendarList, setgoogleCalendarList] = useState("")
     const { user, setUser } = useContext(AuthContext);
     const {calendars, setCalendars} = useContext(AuthContext)
     const { userInfo, setUserInfo } = useContext(AuthContext);
     const [CalendarInfo, setCalendarInfo] = useState(null)
     const [show, setShow] = useState(false);
+    const [show2, setShow2] = useState(false);
     const handleClose = () => setShow(false);
     const [memberEmail, setMemberEmail] = useState("")
     const [calendarTitle, setCalendarTitle] = useState("")
@@ -146,6 +147,9 @@ function Account(props) {
 
     function addCalendar(e) {
         e.preventDefault()
+        if(calendarTitle == ""){
+            props.alertFunction("title can not be empty")
+        }
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -217,29 +221,76 @@ function Account(props) {
     }
 
     async function getGoogleCalendar(){
+        setShow2(true)
         let result = await getRequest(baseUrl + `/api/v1/google/calendar`)
         console.log(result)
+        setgoogleCalendarList(result.items)
     }
 
-    async function getGoogleEvent(){
-        let currentTime = moment().valueOf()
-        let minTime = currentTime - 14*24*60*60*1000  //14 days before now
-        let maxTime = currentTime + 14*24*60*60*1000  //14 days after now
-
-        let formatTime = moment(currentTime).format('YYYY-MM-DDTHH:mm:ssZ') 
-        let minFormatTime = moment(minTime).format('YYYY-MM-DDTHH:mm:ssZ') 
+    async function getGoogleEvent(calendar_id, calendar_name){
+        let minFormatTime = moment().startOf('month').format('YYYY-MM-DDTHH:mm:ssZ') 
         minFormatTime = minFormatTime.replaceAll("+","%2B")
         minFormatTime = minFormatTime.replaceAll(":","%3A")
-
-        let maxFormatTime = moment(maxTime).format('YYYY-MM-DDTHH:mm:ssZ') 
+        console.log(minFormatTime)
+        let maxFormatTime = moment().endOf('month').format('YYYY-MM-DDTHH:mm:ssZ') 
         maxFormatTime = maxFormatTime.replaceAll("+","%2B")
         maxFormatTime = maxFormatTime.replaceAll(":","%3A")
-
-        let calendar_id = "suvincent0226@gapp.nthu.edu.tw"
+        console.log(maxFormatTime)
         calendar_id = calendar_id.replaceAll("@","%40")
+        // create a calendar
+        try{
+            const requestOptionsadd = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title: calendar_name + "@google" }),
+                credentials: 'include'
+            };
+            calendar_id = calendar_id.replaceAll("#","%23")
+            let result = await getRequest(baseUrl + `/api/v1/google/event?timeMax=${maxFormatTime}&timeMin=${minFormatTime}&calendar_id=${calendar_id}`)
+            console.log(result)
+            if(result.message == "error") {
+                throw Error("import google calendar fail");
+            }
+            let response = await fetch(baseUrl + `/api/v1/calendars`, requestOptionsadd)
+            if(response.status != 200) {
+                throw Error("import google calendar fail");
+            }
+            let add_result = await response.json()
+            let cid = add_result.data.data.attributes.id
+            // fetch google calendar events
+            props.alertSuccessFunction("please wait import google calendar process done")
+            setShow2(false)
+            // add events to calendar
+            if(result && result.items.length > 0){
+                await Promise.all(result.items.map((event) => {
+                    let description = ""
+                    if(event.description) description += `description: ${event.description}\n`
+                    if(event.creator) description += `creator: ${event.creator}\n`
+                    if(event.htmlLink) description += `htmlLink: ${event.htmlLink}\n`
 
-        let result = await getRequest(baseUrl + `/api/v1/google/event?calendar_id=${calendar_id}&timeMax=${maxFormatTime}&timeMin=${minFormatTime}`)
-        console.log(result)
+                    const requestOptions = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include',
+                        body: JSON.stringify({
+                            "title": event.summary,
+                            "start_time": moment(event.start.dateTime).toDate().getTime().toString(),
+                            "end_time": moment(event.end.dateTime).toDate().getTime().toString(),
+                            "description": description
+                        })
+                    };
+                    return fetch(`${baseUrl}/api/v1/calendars/${cid}/events?action=add`, requestOptions)
+                }));
+                props.alertSuccessFunction("import google calendar done")
+                displayCalendars()
+            }
+        }catch(e){
+            props.alertFunction(e.message)
+        }
     }
 
     return (
@@ -301,8 +352,57 @@ function Account(props) {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <Modal
+                size="lg"
+                show={show2}
+                onHide={()=>{setShow2(false)}}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Calendar Members</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {
+                        (googleCalendarList && googleCalendarList.length > 0) ?
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <th>title</th>
+                                        <th>description</th>
+                                        <th>actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {googleCalendarList.map((member, id) => {
+                                        let c = member
+                                        return (
+                                            <tr key={id + 1}>
+                                                <td>{c.summary}</td>
+                                                <td>{c.description}</td>
+                                                <td>
+                                                    <Button variant="danger" onClick={()=>{getGoogleEvent(c.id, c.summary)}}>import</Button>{' '}
+                                                </td>
+                                            </tr>)
+                                    })}
+                                </tbody>
+                            </Table>
+                            : "empty google calendars"
+                    }
+                </Modal.Body>
+                <Modal.Footer>
+                    <span  className="mr-auto"> Notes: press "import" button will import current month events of selected calendar</span>
+                    <Button variant="secondary" style={{ float: 'left' }} onClick={()=>{setShow2(false)}}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <div className="App">
                 <h1>Account Info</h1>
+                <br />
+                <Row>
+                    <Col><Button onClick={getGoogleCalendar}>Fetch Google Calendar</Button></Col>
+                </Row>
                 <br />
                 <Row className="justify-content-center">
                     {
@@ -326,12 +426,7 @@ function Account(props) {
                         <Button variant="info" onClick={(e) => {addGuest(e) }}>Import guest calendar</Button>{' '}
                     </Col>
                 </Row>
-                <Row>
-                    <Col><Button onClick={getGoogleCalendar}>Fetch Google Calendar</Button></Col>
-                </Row>
-                <Row>
-                    <Col><Button onClick={getGoogleEvent}>Fetch Google Event</Button></Col>
-                </Row>
+                
             </div>
             <br />
             <Container>

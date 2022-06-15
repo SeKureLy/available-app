@@ -28,7 +28,7 @@ function App() {
     if (!user) account()
     if (!userInfo) accountInfo()
     if (!calendars) displayCalendars()
-  }, [user, userInfo]);
+  }, [user, userInfo, calendars]);
 
   async function account() {
     if (user) {
