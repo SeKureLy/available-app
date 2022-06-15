@@ -65,7 +65,8 @@ module Available
 
           current_account = Account.new(
             authorized[:account],
-            authorized[:auth_token]
+            authorized[:auth_token],
+            authorized[:google_auth_token]
           )
           
           puts current_account.username
