@@ -73,7 +73,7 @@ function Login(props) {
             'client_id': '45920062800-kpq0r0q0djo2de0ic0960ail28dj0jdg.apps.googleusercontent.com',
             'redirect_uri': `${baseUrl}/api/v1/auth/sso_callback`,
             'response_type': 'code',
-            'scope': 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.readonly',
+            'scope': 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.readonly',
             'include_granted_scopes': 'true',
             'prompt': 'consent'
             // 'access_type': 'offline'
