@@ -31,6 +31,7 @@ module Available
 
     configure do
       SecureMessage.setup(ENV.delete('MSG_KEY'))
+      SignedMessage.setup(config)
     end
 
     configure :production do
