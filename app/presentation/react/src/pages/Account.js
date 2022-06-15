@@ -247,7 +247,7 @@ function Account(props) {
                 body: JSON.stringify({ title: calendar_name + "@google" }),
                 credentials: 'include'
             };
-            window['getRequest'] = getRequest
+            calendar_id = calendar_id.replaceAll("#","%23")
             let result = await getRequest(baseUrl + `/api/v1/google/event?timeMax=${maxFormatTime}&timeMin=${minFormatTime}&calendar_id=${calendar_id}`)
             console.log(result)
             if(result.message == "error") {
