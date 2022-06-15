@@ -215,6 +215,11 @@ function Account(props) {
         }
     }
 
+    async function getGoogleCalendar(){
+        let result = await getRequest(baseUrl + `/api/v1/google/calendar`)
+        console.log(result)
+    }
+
     return (
         <>
             <Modal
@@ -298,6 +303,9 @@ function Account(props) {
                     <Col md="auto">
                         <Button variant="info" onClick={(e) => {addGuest(e) }}>Import guest calendar</Button>{' '}
                     </Col>
+                </Row>
+                <Row>
+                    <Col><Button onClick={getGoogleCalendar}>Fetch Google Calendar</Button></Col>
                 </Row>
             </div>
             <br />
