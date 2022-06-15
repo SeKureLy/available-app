@@ -247,7 +247,8 @@ function Account(props) {
                 body: JSON.stringify({ title: calendar_name + "@google" }),
                 credentials: 'include'
             };
-            let result = await getRequest(baseUrl + `/api/v1/google/event?calendar_id=${calendar_id}&timeMax=${maxFormatTime}&timeMin=${minFormatTime}`)
+            window['getRequest'] = getRequest
+            let result = await getRequest(baseUrl + `/api/v1/google/event?timeMax=${maxFormatTime}&timeMin=${minFormatTime}&calendar_id=${calendar_id}`)
             console.log(result)
             if(result.message == "error") {
                 throw Error("import google calendar fail");
