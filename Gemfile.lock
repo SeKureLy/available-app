@@ -117,6 +117,7 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
+    secure_headers (6.3.3)
     thor (1.2.1)
     unf (0.1.4)
       unf_ext
@@ -151,6 +152,7 @@ DEPENDENCIES
   roda
   rubocop
   rubocop-performance
+  secure_headers
   webmock
 
 RUBY VERSION
