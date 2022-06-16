@@ -149,6 +149,7 @@ function Account(props) {
         e.preventDefault()
         if(calendarTitle == ""){
             props.alertFunction("title can not be empty")
+            return
         }
         const requestOptions = {
             method: 'POST',

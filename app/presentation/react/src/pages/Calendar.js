@@ -174,6 +174,7 @@ function CalendarView(props) {
                 let result = await response.json()
                 if (response.status === 200) {
                     if (result.calendar) {
+                        setCurTitle(result.calendar.title + "@guest")
                         let events = result.calendar.events.map(e => ({
                             title: "busy",
                             id: e.id,
@@ -288,8 +289,11 @@ function CalendarView(props) {
         let title = ""
         if(urlparams.cid && calendars){
             let match_cal = calendars.find((cal)=> { return cal.data.attributes.id == urlparams.cid})
-
-            title = (match_cal.data.attributes.title)
+            try{
+                title = (match_cal.data.attributes.title)
+            }catch(e){
+                return
+            }
         }
         if(urlparams.api_key){
             title += "@guest"

@@ -30,7 +30,7 @@ module Available
         File.read('app/presentation/built/index.html')
       end
 
-      routing.on ['login', 'register', 'Account', 'logout', 'calendar'] do
+      routing.on ['login', 'register', 'Account', 'logout', 'calendar', 'account'] do
         File.read('app/presentation/built/index.html')
       end
 
