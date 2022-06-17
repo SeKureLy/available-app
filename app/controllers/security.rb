@@ -28,7 +28,7 @@ module Available
         secure: true,
         httponly: true,
         samesite: {
-          strict: true
+          lax: true
         }
       }
 
