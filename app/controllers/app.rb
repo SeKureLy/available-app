@@ -7,11 +7,14 @@ require 'json'
 module Available
   # Web App
   class App < Roda
-    use Rack::Cors, debug: true, logger: Logger.new($stdout) do
-      allowed_methods = %i[get post put delete options head]
-      allow do
-        origins 'localhost:3001'
-        resource '*', headers: :any, methods: allowed_methods, credentials: true
+    # if app is in production mode should not allow cross origin request
+    configure :development, :test do
+      use Rack::Cors, debug: true, logger: Logger.new($stdout) do
+        allowed_methods = %i[get post put delete options head]
+        allow do
+          origins 'localhost:3001'
+          resource '*', headers: :any, methods: allowed_methods, credentials: true
+        end
       end
     end
     plugin :public, root: 'app/presentation/built', gzip: true
