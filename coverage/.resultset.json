@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/spec/test_load_all.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/spec/test_load_all.rb": {
         "lines": [
           null,
           null,
@@ -18,7 +18,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/require_app.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/require_app.rb": {
         "lines": [
           null,
           null,
@@ -33,12 +33,12 @@
           8,
           2,
           2,
-          39,
+          40,
           null,
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/config/environment.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/config/environment.rb": {
         "lines": [
           null,
           null,
@@ -46,25 +46,6 @@
           1,
           1,
           1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
           null,
           1,
           1,
@@ -72,14 +53,35 @@
           1,
           null,
           1,
+          null,
           1,
           1,
           null,
           null,
           1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
           0,
-          0,
-          0,
+          null,
+          null,
           null,
           null,
           null,
@@ -100,7 +102,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/lib/json_request.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/lib/json_request.rb": {
         "lines": [
           null,
           null,
@@ -119,57 +121,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/lib/secure_message.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null
-        ]
-      },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/lib/secure_session.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/lib/secure_message.rb": {
         "lines": [
           null,
           null,
@@ -180,7 +132,57 @@
           1,
           null,
           1,
+          0,
+          0,
+          null,
+          null,
           1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null
+        ]
+      },
+      "/Users/juihungkao/ServiceSecurity/app-available/app/lib/secure_session.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
           null,
           null,
           null,
@@ -217,7 +219,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/lib/signed_message.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/lib/signed_message.rb": {
         "lines": [
           null,
           null,
@@ -241,7 +243,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/lib/string.security.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/lib/string.security.rb": {
         "lines": [
           null,
           null,
@@ -263,7 +265,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/models/account.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/models/account.rb": {
         "lines": [
           null,
           null,
@@ -305,7 +307,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/models/calendar.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/models/calendar.rb": {
         "lines": [
           null,
           null,
@@ -380,7 +382,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/models/calendars.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/models/calendars.rb": {
         "lines": [
           null,
           null,
@@ -400,7 +402,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/models/current_session.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/models/current_session.rb": {
         "lines": [
           null,
           null,
@@ -434,7 +436,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/models/event.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/models/event.rb": {
         "lines": [
           null,
           null,
@@ -480,7 +482,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/add_member.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/add_member.rb": {
         "lines": [
           null,
           null,
@@ -508,7 +510,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/authenticate_account.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/authenticate_account.rb": {
         "lines": [
           null,
           null,
@@ -543,7 +545,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/authorize_google_account.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/authorize_google_account.rb": {
         "lines": [
           null,
           null,
@@ -609,7 +611,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/create_account.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/create_account.rb": {
         "lines": [
           null,
           null,
@@ -643,7 +645,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/create_new_calendar.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/create_new_calendar.rb": {
         "lines": [
           null,
           null,
@@ -671,7 +673,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/create_new_event.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/create_new_event.rb": {
         "lines": [
           null,
           null,
@@ -699,7 +701,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/get_account_details.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/get_account_details.rb": {
         "lines": [
           null,
           null,
@@ -730,7 +732,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/get_all_calendars.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/get_all_calendars.rb": {
         "lines": [
           null,
           null,
@@ -753,7 +755,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/get_calendar.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/get_calendar.rb": {
         "lines": [
           null,
           null,
@@ -776,7 +778,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/get_event.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/get_event.rb": {
         "lines": [
           null,
           null,
@@ -799,36 +801,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/remove_event.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/remove_member.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/remove_event.rb": {
         "lines": [
           null,
           null,
@@ -857,7 +830,36 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/services/verify_registration.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/remove_member.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/juihungkao/ServiceSecurity/app-available/app/services/verify_registration.rb": {
         "lines": [
           null,
           null,
@@ -890,7 +892,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/forms/auth.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/forms/auth.rb": {
         "lines": [
           null,
           null,
@@ -942,7 +944,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/forms/form_base.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/forms/form_base.rb": {
         "lines": [
           null,
           null,
@@ -967,7 +969,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/forms/member_email.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/forms/member_email.rb": {
         "lines": [
           null,
           null,
@@ -986,7 +988,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/controllers/account.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/controllers/account.rb": {
         "lines": [
           null,
           null,
@@ -1060,7 +1062,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/controllers/app.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/controllers/app.rb": {
         "lines": [
           null,
           null,
@@ -1071,11 +1073,14 @@
           1,
           null,
           1,
+          null,
+          1,
           1,
           0,
           0,
           0,
           0,
+          null,
           null,
           null,
           1,
@@ -1106,7 +1111,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/controllers/auth.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/controllers/auth.rb": {
         "lines": [
           null,
           null,
@@ -1249,7 +1254,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/controllers/calendars.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/controllers/calendars.rb": {
         "lines": [
           null,
           null,
@@ -1353,7 +1358,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/controllers/events.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/controllers/events.rb": {
         "lines": [
           null,
           null,
@@ -1378,7 +1383,7 @@
           null
         ]
       },
-      "/Users/bryan.li/Desktop/Service Security/org/app-available/app/controllers/google.rb": {
+      "/Users/juihungkao/ServiceSecurity/app-available/app/controllers/google.rb": {
         "lines": [
           null,
           null,
@@ -1420,6 +1425,80 @@
           0,
           0,
           null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/juihungkao/ServiceSecurity/app-available/app/controllers/security.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          0,
           0,
           0,
           null,
@@ -1429,6 +1508,6 @@
         ]
       }
     },
-    "timestamp": 1655575951
+    "timestamp": 1655642900
   }
 }
