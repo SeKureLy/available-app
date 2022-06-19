@@ -14,6 +14,7 @@ module Available
     FONT_SRC = %w[https://cdn.jsdelivr.net].freeze
     SCRIPT_SRC = %w[https://cdn.jsdelivr.net].freeze
     STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net https://maxcdn.bootstrapcdn.com].freeze
+    GOOGLE_SSO_SRC = %w[https://accounts.google.com/o/oauth2/v2/auth].freeze
 
     configure :production do
       use Rack::SslEnforcer, hsts: true
@@ -45,12 +46,12 @@ module Available
         preserve_schemes: true,
         default_src: %w['self'],
         child_src: %w['self'],
-        connect_src: %w[wws:],
+        connect_src: %w[self:],
         img_src: %w['self'],
         font_src: %w['self'] + FONT_SRC,
         script_src: %w['self'] + SCRIPT_SRC,
         style_src: %w['self'] + STYLE_SRC,
-        form_action: %w['self'],
+        form_action: %w['self'] + GOOGLE_SSO_SRC,
         frame_ancestors: %w['none'],
         object_src: %w['none'],
         block_all_mixed_content: true,
