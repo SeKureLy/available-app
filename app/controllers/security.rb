@@ -13,7 +13,7 @@ module Available
 
     FONT_SRC = %w[https://cdn.jsdelivr.net].freeze
     SCRIPT_SRC = %w[https://cdn.jsdelivr.net].freeze
-    STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net].freeze
+    STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net https://maxcdn.bootstrapcdn.com].freeze
 
     configure :production do
       use Rack::SslEnforcer, hsts: true
@@ -49,12 +49,12 @@ module Available
         img_src: %w['self'],
         font_src: %w['self'] + FONT_SRC,
         script_src: %w['self'] + SCRIPT_SRC,
-        style_src: %W['self'] + STYLE_SRC,
+        style_src: %w['self'] + STYLE_SRC,
         form_action: %w['self'],
         frame_ancestors: %w['none'],
         object_src: %w['none'],
         block_all_mixed_content: true,
-        report_uri: %w[/security/report_csp_violation]
+        report_uri: %w[api/v1/security/report_csp_violation]
       }
       # rubocop:enable Lint/PercentStringArray
     end
@@ -63,6 +63,7 @@ module Available
       # POST security/report_csp_violation
       routing.post 'report_csp_violation' do
         App.logger.warn "CSP VIOLATION: #{request.body.read}"
+        {message: 'report_csp_violation receive'}.to_json
       end
     end
   end
