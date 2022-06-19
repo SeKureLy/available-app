@@ -17,21 +17,34 @@ describe 'Test Service Objects' do
 
   describe 'Find authenticated account' do
     it 'HAPPY: should find an authenticated account' do
-      WebMock.stub_request(:post, "#{API_URL}/auth/authenticate")
-             .with(body: @credentials.to_json)
-             .to_return(body: @api_account.to_json,
-                        headers: { 'content-type' => 'application/json' })
+      auth_account_file = 'spec/fixtures/auth_account.json'
+      # @credentials = { username: 'sekurely', password: 'mypa$$w0rd' }
+      # WebMock.allow_net_connect!
+      # response = HTTP.post("#{app.config.API_URL}/auth/authenticate",
+      #  body: SignedMessage.sign(@credentials).to_json)
+      # auth_account_json = response.body.to_s
+      # File.write(auth_account_file, auth_account_json)
 
-      account = Available::AuthenticateAccount.new(app.config).call(**@credentials)
+      auth_return_json = File.read(auth_account_file)
+
+      WebMock.stub_request(:post, "#{API_URL}/auth/authenticate")
+        .with(body: SignedMessage.sign(@credentials).to_json)
+        .to_return(body: auth_return_json,
+        headers: { 'content-type' => 'application/json' })
+
+      auth = Available::AuthenticateAccount.new(app.config).call(**@credentials)
+
+      account = auth[:account]
       _(account).wont_be_nil
-      _(account['attributes']['username']).must_equal @api_account[:attributes][:username]
-      _(account['attributes']['email']).must_equal @api_account[:attributes][:email]
+      _(account['username']).must_equal @api_account[:attributes][:username]
+      _(account['email']).must_equal @api_account[:attributes][:email]
     end
 
     it 'BAD: should not find a false authenticated account' do
       WebMock.stub_request(:post, "#{API_URL}/auth/authenticate")
-             .with(body: @mal_credentials.to_json)
-             .to_return(status: 403)
+        .with(body: SignedMessage.sign(@mal_credentials).to_json)
+        .to_return(status: 403)
+
       _(proc {
         Available::AuthenticateAccount.new(app.config).call(**@mal_credentials)
       }).must_raise Available::AuthenticateAccount::UnauthorizedError

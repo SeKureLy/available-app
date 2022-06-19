@@ -39,6 +39,9 @@ group :test do
   gem 'webmock'
 end
 
+# Test coverage
+gem 'simplecov'
+
 group :development, :test do
   gem 'rack-test'
   gem 'rerun'
