@@ -2,7 +2,7 @@
 
 require_relative 'calendar'
 
-module Available    
+module Available
   # Behaviors of the currently logged in account
   class Event
     attr_reader :id, :title, :start_time, :end_time, :description, # basic info
@@ -10,18 +10,16 @@ module Available
 
     def initialize(info)
       process_attributes(info['data']['attributes'])
-      if info['included']
-        process_included(info['included'])
-      end
+      process_included(info['included']) if info['included']
     end
 
-    def to_json(options = {})
+    def to_json(_options = {})
       {
         id:,
         title:,
         start_time:,
         end_time:,
-        description:,
+        description:
       }
     end
 
@@ -36,7 +34,7 @@ module Available
     end
 
     def process_included(included)
-      @calendar =(included['calendar'])
+      @calendar = (included['calendar'])
     end
   end
 end

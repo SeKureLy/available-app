@@ -9,7 +9,7 @@ module Available
     class InvalidAccount < StandardError
       def message = 'This account can no longer be created: please start again'
     end
-    
+
     def initialize(config)
       @config = config
     end

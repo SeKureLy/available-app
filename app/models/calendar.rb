@@ -12,24 +12,24 @@ module Available
       process_policies(calendar_info['policies'])
     end
 
-    def to_json(options = {})
-      if members && owner 
-        { 
+    def to_json(_options = {})
+      if members && owner
+        {
           id:,
           title:,
-          owner:owner.to_json,
-          members:members.map(&:to_json),
-          events:events.map(&:to_json),
-          policies:policies
+          owner: owner.to_json,
+          members: members.map(&:to_json),
+          events: events.map(&:to_json),
+          policies:
         }
       else
-        { 
+        {
           id:,
           title:,
-          owner:nil,
-          members:nil,
-          events:events.map(&:to_json),
-          policies:policies
+          owner: nil,
+          members: nil,
+          events: events.map(&:to_json),
+          policies:
         }
       end
     end
@@ -43,17 +43,14 @@ module Available
 
     def process_relationships(relationships)
       return unless relationships
-      if relationships['owner']
-        @owner = Account.new(relationships['owner']['data']['attributes'],'')
-      end
-      if relationships['members']
-        @members = process_members(relationships['members'])
-      end
+
+      @owner = Account.new(relationships['owner']['data']['attributes'], '') if relationships['owner']
+      @members = process_members(relationships['members']) if relationships['members']
       @events = process_events(relationships['events'])
     end
 
     def process_policies(policies)
-      @policies = (policies)
+      @policies = policies
     end
 
     def process_events(events_info)
@@ -65,7 +62,7 @@ module Available
     def process_members(members)
       return nil unless members
 
-      members.map { |account_info| Account.new(account_info['data']['attributes'],'') }
+      members.map { |account_info| Account.new(account_info['data']['attributes'], '') }
     end
   end
 end

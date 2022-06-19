@@ -17,11 +17,11 @@ module Available
 
     # Environment variables setup
     Figaro.application = Figaro::Application.new(
-      environment: environment,
+      environment:,
       path: File.expand_path('config/secrets.yml')
     )
     Figaro.load
-    def self.config() = Figaro.env
+    def self.config = Figaro.env
 
     # Logger setup
     LOGGER = Logger.new($stderr)
@@ -30,7 +30,7 @@ module Available
     ONE_MONTH = 30 * 24 * 60 * 60
 
     configure do
-      SecureSession.setup(ENV['REDIS_TLS_URL']) # REDIS_TLS_URL used again below
+      SecureSession.setup(ENV.fetch('REDIS_TLS_URL', nil)) # REDIS_TLS_URL used again below
       SecureMessage.setup(ENV.delete('MSG_KEY'))
       SignedMessage.setup(config)
     end

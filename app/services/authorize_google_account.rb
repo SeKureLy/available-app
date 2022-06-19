@@ -26,22 +26,21 @@ module Available
 
     def get_access_token_from_google(code)
       challenge_response =
-        HTTP.headers('Content-Type': 'application/x-www-form-urlencoded') #application/json
+        HTTP.headers('Content-Type': 'application/x-www-form-urlencoded') # application/json
             .post(@config.GOOGLE_TOKEN_URL,
-                  form: { code: code,
+                  form: { code:,
                           client_id: @config.GOOGLE_CLIENT_ID,
                           client_secret: @config.GOOGLE_CLIENT_SECRET,
                           redirect_uri: "#{@config.APP_URL}/api/v1/auth/sso_callback",
-                          grant_type: 'authorization_code'
-                        })
+                          grant_type: 'authorization_code' })
       raise UnauthorizedError unless challenge_response.status < 400
 
       JSON.parse(challenge_response)['access_token']
     end
 
     def get_sso_account_from_api(access_token)
-      signed_sso_info = { access_token: access_token }
-        .then { |sso_info| SignedMessage.sign(sso_info) }
+      signed_sso_info = { access_token: }
+                        .then { |sso_info| SignedMessage.sign(sso_info) }
 
       response =
         HTTP.post("#{@config.API_URL}/auth/sso",

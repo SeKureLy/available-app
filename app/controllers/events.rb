@@ -11,10 +11,10 @@ module Available
       # GET /events/[event_id]
       routing.get(String) do |event_id|
         event_info = GetEvent.new(App.config)
-                              .call(@current_account, event_id)
+                             .call(@current_account, event_id)
         event = Event.new(event_info)
 
-        return {current_user: @current_account.username, event: event.to_json}.to_json
+        return { current_user: @current_account.username, event: event.to_json }.to_json
       end
     end
   end

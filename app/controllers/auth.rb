@@ -19,7 +19,7 @@ module Available
 
           if login.failure?
             response.status = 401
-            return {message: Form.validation_errors(login)}.to_json;
+            return { message: Form.validation_errors(login) }.to_json
           end
 
           account_info = AuthenticateAccount.new(App.config).call(
@@ -32,18 +32,17 @@ module Available
             account_info[:auth_token]
           )
 
-
           CurrentSession.new(session).current_account = current_account
-
 
           flash[:notice] = "Welcome back #{account_info[:account]['username']}!"
           response.status = 200
-          return { account: account_info[:account], auth_token: account_info[:auth_token], message: flash[:notice] }.to_json
+          return { account: account_info[:account], auth_token: account_info[:auth_token],
+                   message: flash[:notice] }.to_json
           # routing.redirect '/'
         rescue AuthenticateAccount::UnauthorizedError
           # flash.now[:error] = 'Username and password did not match our records'
           response.status = 401
-          return {message: 'Username and password did not match our records'}.to_json
+          return { message: 'Username and password did not match our records' }.to_json
         rescue AuthenticateAccount::ApiServerError => e
           App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
           flash[:error] = 'Our servers are not responding -- please try later'
@@ -68,7 +67,7 @@ module Available
             authorized[:auth_token],
             authorized[:google_auth_token]
           )
-          
+
           puts current_account.username
           puts current_account.email
 
@@ -100,29 +99,29 @@ module Available
         routing.post do
           data = JSON.parse(routing.body.read)
           registration = Form::Registration.new.call(data)
-          
+
           if registration.failure?
             flash[:error] = Form.validation_errors(registration)
-            return {message: Form.validation_errors(registration)}.to_json
+            return { message: Form.validation_errors(registration) }.to_json
             # routing.redirect @register_route
           end
-          
+
           account_data = JsonRequestBody.symbolize(data)
           VerifyRegistration.new(App.config).call(account_data)
 
           flash[:notice] = 'Please check your email for a verification link'
-          return {message: 'Please check your email for a verification link'}.to_json
+          return { message: 'Please check your email for a verification link' }.to_json
           # routing.redirect '/'
         rescue VerifyRegistration::ApiServerError => e
           App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
           flash[:error] = 'Our servers are not responding -- please try later'
-          return {message: 'Our servers are not responding -- please try later'}.to_json
+          return { message: 'Our servers are not responding -- please try later' }.to_json
           # routing.redirect @register_route
         rescue StandardError => e
           App.logger.error "Could not verify registration: #{e.inspect}"
           flash[:error] = 'Please use English characters for username only'
           # routing.redirect @register_route
-          return {message: 'Please use English characters for username only'}.to_json
+          return { message: 'Please use English characters for username only' }.to_json
         end
       end
 
@@ -133,7 +132,7 @@ module Available
         # view :register_confirm,
         #      locals: { new_account:,
         #                registration_token: }
-    end
+      end
     end
   end
 end

@@ -12,10 +12,11 @@ module Available
         routing.is do
           if @current_account.logged_in?
             response.status = 200
-            { username: @current_account.username, email: @current_account.email, auth_token: @current_account.auth_token  }.to_json
+            { username: @current_account.username, email: @current_account.email,
+              auth_token: @current_account.auth_token }.to_json
           else
             response.status = 401
-            { message: "qq"}.to_json
+            { message: 'qq' }.to_json
           end
         end
         # GET api/v1/accounts/[username]
@@ -38,13 +39,13 @@ module Available
           puts body
 
           password = Form::Passwords.new.call(body)
-          
+
           puts password.errors(locale: :en).messages
 
           if password.failure?
             # raise 'Passwords do not match or empty'
             response.status = 401
-            return{ message: Form.message_values(password) }.to_json
+            return { message: Form.message_values(password) }.to_json
           end
 
           new_account = SecureMessage.decrypt(registration_token)
@@ -54,10 +55,10 @@ module Available
             password: body['password']
           )
           flash[:notice] = 'Account created! Please login'
-          return {message:'Account created! Please login'}.to_json
+          return { message: 'Account created! Please login' }.to_json
         rescue CreateAccount::InvalidAccount => e
           flash[:error] = e.message
-          return {message:flash[:error]}.to_json
+          return { message: flash[:error] }.to_json
         rescue StandardError => e
           flash[:error] = e.message
           routing.redirect(

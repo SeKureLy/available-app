@@ -11,7 +11,7 @@ module Available
 
     def call(current_account, calendar_id)
       response = HTTP.auth("Bearer #{current_account.auth_token}")
-                    .get("#{@config.API_URL}/calendars/#{calendar_id}")
+                     .get("#{@config.API_URL}/calendars/#{calendar_id}")
 
       response.code == 200 ? JSON.parse(response.body.to_s)['data'] : nil
     end

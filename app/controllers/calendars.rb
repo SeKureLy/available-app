@@ -12,32 +12,33 @@ module Available
         routing.is do
           # GET /calendars/
           routing.get do
-              calendars_list = GetAllCalendars.new(App.config).call(@current_account)
+            calendars_list = GetAllCalendars.new(App.config).call(@current_account)
 
-              return {current_user: @current_account.username, calendars: calendars_list}.to_json
+            return { current_user: @current_account.username, calendars: calendars_list }.to_json
           end
           # POST /calendars/
           routing.post do
             params = JSON.parse(routing.body.read)
-            calendar = CreateNewCalendar.new(App.config).call(current_account:@current_account, calendar_data: params)
+            calendar = CreateNewCalendar.new(App.config).call(current_account: @current_account, calendar_data: params)
             puts calendar['data']
-            return {current_user: @current_account.username, message: calendar['message'], data: calendar['data']}.to_json
+            return { current_user: @current_account.username, message: calendar['message'],
+                     data: calendar['data'] }.to_json
           end
         end
 
         routing.on String do |cal_id|
           # GET /calendars/[cal_id]
           routing.get do
-            if routing.headers['AUTHORIZATION'] != nil
-              scheme, auth_token = routing.headers['AUTHORIZATION'].split(' ')
-              temp_account = Account.new('temp', auth_token)
-            else
+            if routing.headers['AUTHORIZATION'].nil?
               temp_account = @current_account
+            else
+              scheme, auth_token = routing.headers['AUTHORIZATION'].split
+              temp_account = Account.new('temp', auth_token)
             end
             result = GetCalendar.new(App.config).call(temp_account, cal_id)
             calendar = Calendar.new(result)
-            
-            return {current_user: @current_account.username, calendar: calendar.to_json}.to_json
+
+            return { current_user: @current_account.username, calendar: calendar.to_json }.to_json
           end
           # POST /calendars/[cal_id]/members
           routing.post('members') do
@@ -64,11 +65,11 @@ module Available
               calendar_id: cal_id
             )
             flash[:notice] = task[:message]
-            return { message: "member: #{member_info[:email]} added to calendar"}.to_json if action=='add'
-            return { message: "member: #{member_info[:email]} removed from calendar"}.to_json if action=='remove'
+            return { message: "member: #{member_info[:email]} added to calendar" }.to_json if action == 'add'
+            return { message: "member: #{member_info[:email]} removed from calendar" }.to_json if action == 'remove'
           rescue StandardError
             flash[:error] = 'Could not find member'
-            routing.halt 500, {message: 'Could not find member'}.to_json
+            routing.halt 500, { message: 'Could not find member' }.to_json
           end
 
           routing.post('events') do
@@ -84,14 +85,14 @@ module Available
             task = task_list[action]
 
             task[:service].new(App.config).call(
-              current_account: @current_account, 
+              current_account: @current_account,
               calendar_id: cal_id,
               event_data:
             )
 
             { message: task[:message] }.to_json
           rescue StandardError => e
-            routing.halt 500, {message: "Could not #{task[:message]}"}.to_json
+            routing.halt 500, { message: "Could not #{task[:message]}" }.to_json
           end
         end
       end
